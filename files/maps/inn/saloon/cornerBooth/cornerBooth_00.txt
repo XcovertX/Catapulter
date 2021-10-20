@@ -1,0 +1,9 @@
+Saloon - corner booth - 00
+
+                  [x]
+         [c]      [x]
+      [t][t][t]   [x]
+   [c][t][t][t][c][x]
+      [t][t][t]   [x]
+         [c]   [c][x]
+[x][x][x][x][x][x][x]

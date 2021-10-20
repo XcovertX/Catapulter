@@ -1,0 +1,22 @@
+Saloon - 0%
+
+[x][x][x][x][x][x][x][x]   [x]
+[x]               [x]       []
+[x]   [x][B][A][R][x]       []
+                              
+[x]      [t]   [t]   [t]    []
+[x]                         []
+[x]         [t]   [t]      [x]
+[x][F] @    [t]   [t]   [B][x]
+[x][x][x][][][][x][][][][x][x]
+
+You're in a smoke filled saloon. The ambient chatter of the saloon's patrons
+fills the air along with the *clink* of glass mugs and silverware.
+
+A dwindling fire flickers next to you in the corner of the room.
+
+[Exits: n, e]
+%true%gem%
+The gem is pretty small.
+It has a greenish hue.
+%15%5%-1%1%-1%

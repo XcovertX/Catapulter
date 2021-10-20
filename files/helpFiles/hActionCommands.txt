@@ -1,0 +1,26 @@
+=======================================================================================================================
+|                                                 Action Commands                                                     |
+=======================================================================================================================
+|   learn - This action command is used when you want to learn about something that is learnable in the Superverse.   |
+|           In order to utilize the learn action command, you must be interacting with a source of information.       |
+|           Most commonly, a source of information will be a book or a non-player character. Other sources exist,     |
+|           though, these are the most common. To train a specific skill, the learn action command must first         |
+|           initialize the skill before you can practice it. See the 'train' action command for more details on       |
+|           training you learned skills.                                                                              |
+|                                                                                                                     |
+|           Learn examples: 'learn hide' , 'learn teleconnect' , 'learn balance' , 'learn levitate'                   |
+|                                                                                                                     |
+|   take -                                                                                                            |
+|   pick -                                                                                                            |
+|   examine -                                                                                                         |
+|   smell-                                                                                                            |
+|   cast-                                                                                                             |
+|   say-                                                                                                              |
+|   run-                                                                                                              |
+|   sprint-                                                                                                           |
+|   jump-                                                                                                             |
+|   taste-                                                                                                            |
+|   eat-                                                                                                              |
+|   drink-                                                                                                            |
+|                                                                                                                     |
+=======================================================================================================================
