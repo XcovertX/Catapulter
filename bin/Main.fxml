@@ -44,7 +44,7 @@
                      <children>
                         <BorderPane>
                            <center>
-                              <TextArea id="guiMap" fx:id="map" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="350.0" styleClass="map" BorderPane.alignment="CENTER">
+                              <TextArea id="guiMap" fx:id="map" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="350.0" styleClass="map" stylesheets="@application.css" BorderPane.alignment="CENTER">
                                  <BorderPane.margin>
                                     <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                  </BorderPane.margin>

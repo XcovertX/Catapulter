@@ -52,12 +52,9 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 		this.currentMap = currentRoom.getMap();
 		this.currentWorld = currentMap.getWorld();
 		
-		
-		
-		this.display = new DisplayNew();
-		
 		initializeGUI(); //javafx gui
 		
+		this.display = new DisplayNew();
 		
 		consLog = new ConsoleLogicNew( display );
 
@@ -182,7 +179,10 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 			String keyboard_css = this.getClass().getClassLoader().getResource("keyboard.css").toExternalForm();
 			Game.currentGame.gui.getStylesheets().add(keyboard_css);
 			
-			guiMapController = ( TextMapController ) fxmll.getController();
+//			guiMapController = new TextMapController();
+			
+//			guiMapController = ( TextMapController ) fxmll.getController();
+			
 			
 			Game.currentGame.window.setResizable( true );
 			Game.currentGame.window.setFullScreen( true );
