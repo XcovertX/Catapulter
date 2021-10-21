@@ -163,37 +163,31 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 	
 	public void initializeGUI() {
 		
+		Game.currentGame.window = new Stage();
+		FXMLLoader fxmll =  new FXMLLoader( getClass().getClassLoader().getResource( "Main.fxml" ) );
 		try {
-			
-			Game.currentGame.window = new Stage();
-//			System.out.println( getClass().getClassLoader().getResource( "Main.fxml" ).getPath() );
-			FXMLLoader fxmll =  new FXMLLoader( getClass().getClassLoader().getResource( "Main.fxml" ) );
 			Game.currentGame.root = fxmll.load();
-			Game.currentGame.gui = new GraphicalUserInterface( Game.currentGame.root );
-			Game.currentGame.window.setScene( Game.currentGame.gui );
-			
-			System.out.println( getClass().getClassLoader().getResource("application.css").getPath() );
-			String css = this.getClass().getClassLoader().getResource("application.css").toExternalForm();
-			Game.currentGame.gui.getStylesheets().add(css);
-			
-			String tabPane_css = this.getClass().getClassLoader().getResource("tabPane.css").toExternalForm();
-			Game.currentGame.gui.getStylesheets().add(tabPane_css);
-			
-			String keyboard_css = this.getClass().getClassLoader().getResource("keyboard.css").toExternalForm();
-			Game.currentGame.gui.getStylesheets().add(keyboard_css);
-			
-			//git test test test
-			
-			guiMapController = ( TextMapController ) fxmll.getController();
-			
-			Game.currentGame.window.setResizable( true );
-			Game.currentGame.window.setFullScreen( true );
-			Game.currentGame.window.show();
-		
-		} catch ( IOException e2 ) {
-			
-			e2.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		Game.currentGame.gui = new GraphicalUserInterface( Game.currentGame.root );
+		Game.currentGame.window.setScene( Game.currentGame.gui );
+		
+		String css = this.getClass().getClassLoader().getResource("application.css").toExternalForm();
+		Game.currentGame.gui.getStylesheets().add(css);
+		
+		String tabPane_css = this.getClass().getClassLoader().getResource("tabPane.css").toExternalForm();
+		Game.currentGame.gui.getStylesheets().add(tabPane_css);
+		
+		String keyboard_css = this.getClass().getClassLoader().getResource("keyboard.css").toExternalForm();
+		Game.currentGame.gui.getStylesheets().add(keyboard_css);
+	
+		guiMapController = ( TextMapController ) fxmll.getController();
+		
+		Game.currentGame.window.setResizable( true );
+		Game.currentGame.window.setFullScreen( true );
+		Game.currentGame.window.show();
 		
 
 	}
