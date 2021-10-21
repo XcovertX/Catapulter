@@ -154,7 +154,8 @@ public class DisplayNew {
     	}
 		
 		map.setText( mapRep );
-		Game.currentGame.getUI().getGuiMapController().setMapChars( mapRep );
+		Game.currentGame.mapChars = mapRep;
+		Game.currentGame.getUI().getGuiController().setMapChars();
 	}
 		
     public JTextField getInputField() {

@@ -30,7 +30,7 @@ public class TextMapController {
 		
 	}
 	
-	@FXML
+	
 	public void setMapChars( String mapChars ) {
 		guiMap.setText( mapChars );
 	}

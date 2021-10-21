@@ -44,6 +44,7 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 	private String[] commands;  
 	
 	private TextMapController guiMapController;
+	private Controller guiController;
 	
 	public UserInterfaceNew( Actor player ) {
 		
@@ -183,7 +184,8 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 		String keyboard_css = this.getClass().getClassLoader().getResource("keyboard.css").toExternalForm();
 		Game.currentGame.gui.getStylesheets().add(keyboard_css);
 	
-		guiMapController = ( TextMapController ) fxmll.getController();
+		setGuiController(( Controller ) fxmll.getController());
+//		guiMapController = ( TextMapController ) fxmll.getController();
 		
 		Game.currentGame.window.setResizable( true );
 		Game.currentGame.window.setFullScreen( true );
@@ -198,5 +200,13 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 
 	public void setGuiMapController(TextMapController guiMapController) {
 		this.guiMapController = guiMapController;
+	}
+
+	public Controller getGuiController() {
+		return guiController;
+	}
+
+	public void setGuiController(Controller guiController) {
+		this.guiController = guiController;
 	}
 }
