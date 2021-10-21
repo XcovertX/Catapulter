@@ -5,6 +5,6 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.TextMapController">
    <children>
-      <TextArea fx:id="map" prefHeight="300.0" prefWidth="300.0" styleClass="map" stylesheets="@map.css" />
+      <TextArea fx:id="map" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="350.0" styleClass="map" stylesheets="@map.css" />
    </children>
 </AnchorPane>
