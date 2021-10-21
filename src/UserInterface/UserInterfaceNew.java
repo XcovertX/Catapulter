@@ -182,6 +182,8 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 			String keyboard_css = this.getClass().getClassLoader().getResource("keyboard.css").toExternalForm();
 			Game.currentGame.gui.getStylesheets().add(keyboard_css);
 			
+			//git test test test
+			
 			guiMapController = ( TextMapController ) fxmll.getController();
 			
 			Game.currentGame.window.setResizable( true );
