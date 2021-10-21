@@ -3,9 +3,8 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="UserInterface.TextMapController">
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.TextMapController">
    <children>
-      <TextArea fx:id="map" prefHeight="200.0" prefWidth="200.0" />
+      <TextArea fx:id="map" prefHeight="300.0" prefWidth="300.0" styleClass="map" stylesheets="@map.css" />
    </children>
 </AnchorPane>
