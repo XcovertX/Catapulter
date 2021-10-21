@@ -38,11 +38,10 @@ public class Controller {
 		
 	}
 	
-	
-	public void setMapChars() {
+	public void setMapChars( String map ) {
 
 		Platform.runLater(() -> {
-			guiMap.setText( Game.currentGame.mapChars );
+			guiMap.setText( map );
 		});
 	}
 	

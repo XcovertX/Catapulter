@@ -153,9 +153,10 @@ public class DisplayNew {
 	    	roomNumberTotal = roomNumberTotal - aRoom.getRoomLength();
     	}
 		
+	    
+	    // TODO change Game.current game global variable mapChars
 		map.setText( mapRep );
-		Game.currentGame.mapChars = mapRep;
-		Game.currentGame.getUI().getGuiController().setMapChars();
+		Game.currentGame.getUI().getGuiController().setMapChars( mapRep );
 	}
 		
     public JTextField getInputField() {

@@ -60,8 +60,6 @@ public class Game {
     private boolean roomChange = false;
     private Actor player;  // the player - provides 'first person perspective'
     
-    public String mapChars; //test variable
-    
     public Game( boolean mapBuilderMode, boolean newGame ) {
     	
     	if( mapBuilderMode == true ) {
