@@ -3,42 +3,38 @@ package UserInterface;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 
 public class TextMapController {
 	
-	@FXML
-	private TextArea guiMap;
+	@FXML private TextArea map;
 	
-	@FXML
-	private URL location;
+	@FXML private URL location;
 	
-	@FXML
-	private ResourceBundle resources;
+	@FXML private ResourceBundle resources;
 	
-	public TextMapController() {
+	public TextMapController() { }
 	
-	}
-	
-
-	
-	@FXML
-	public TextArea getGuiMap() {
+	public TextArea getMap() {
 		
-		return guiMap;
-		
+		return map;
 	}
-	
 	
 	public void setMapChars( String mapChars ) {
-		guiMap.setText( mapChars );
-	}
 
-//	@Override
-//	public void initialize(URL arg0, ResourceBundle arg1) {
-//		// TODO Auto-generated method stub
-//		
-//	}
+		map.setText( mapChars );
+	}
+	
+	@FXML
+	private void initialize() {
+		
+		System.out.println("TextMapController Initialized");
+		
+		Platform.runLater(() -> {
+			
+		});
+	}
 
 }

@@ -23,6 +23,7 @@ import gameObjects.Actor;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -45,6 +46,7 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 	
 	private TextMapController guiMapController;
 	private Controller guiController;
+	private AnchorPane mapPane;
 	
 	public UserInterfaceNew( Actor player ) {
 		
@@ -165,13 +167,29 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 	public void initializeGUI() {
 		
 		Game.currentGame.window = new Stage();
+		
+
+		
 		FXMLLoader fxmll =  new FXMLLoader( getClass().getClassLoader().getResource( "Main.fxml" ) );
 		try {
 			Game.currentGame.root = fxmll.load();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		FXMLLoader mapLoader =  new FXMLLoader( getClass().getClassLoader().getResource( "Map.fxml" ) );
+		try {
+			mapPane = mapLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		// set main controller reference
+		setGuiController(( Controller ) fxmll.getController());
+		
+		// set nested controllers
+		guiController.setTextMapController( mapLoader.getController() );
+		
 		Game.currentGame.gui = new GraphicalUserInterface( Game.currentGame.root );
 		Game.currentGame.window.setScene( Game.currentGame.gui );
 		
@@ -183,9 +201,8 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 		
 		String keyboard_css = this.getClass().getClassLoader().getResource("keyboard.css").toExternalForm();
 		Game.currentGame.gui.getStylesheets().add(keyboard_css);
-	
-		setGuiController(( Controller ) fxmll.getController());
-//		guiMapController = ( TextMapController ) fxmll.getController();
+		
+		guiController.initializeMap();
 		
 		Game.currentGame.window.setResizable( true );
 		Game.currentGame.window.setFullScreen( true );

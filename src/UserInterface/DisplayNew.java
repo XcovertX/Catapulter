@@ -153,9 +153,7 @@ public class DisplayNew {
 	    	roomNumberTotal = roomNumberTotal - aRoom.getRoomLength();
     	}
 		
-	    
-	    // TODO change Game.current game global variable mapChars
-		map.setText( mapRep );
+		map.setText( mapRep ); // TODO remove once new GUI is in place
 		Game.currentGame.getUI().getGuiController().setMapChars( mapRep );
 	}
 		

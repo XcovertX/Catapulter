@@ -12,39 +12,50 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Circle;
 
 public class Controller {
-//	
-//	@FXML
-//	private TextMapController tmc;
 	
-	@FXML
-	private TextArea guiMap;
+	@FXML private URL location;
+	@FXML private ResourceBundle resources;
 	
-	@FXML
-	private URL location;
+	// GUI areas
+	@FXML private BorderPane mapHolder;
+	@FXML private TextArea guiMap;
 	
-	@FXML
-	private ResourceBundle resources;
+	// Controllers
+	@FXML private TextMapController tmc;
 	
-	public Controller() {
-	
-	}
+	public Controller() { }
 	
 	public TextArea getGuiMap() {
 		
-		return guiMap;
-		
+		return guiMap;	
 	}
+	
+//	public void setMapChars( String map ) {
+//
+//		Platform.runLater(() -> {
+//			guiMap.setText( map );
+//		});
+//	}
 	
 	public void setMapChars( String map ) {
 
 		Platform.runLater(() -> {
-			guiMap.setText( map );
+			
+			tmc.setMapChars( map );
 		});
 	}
 	
+	public void initializeMap() {
+		
+		Platform.runLater(() -> {
+			
+			mapHolder.setCenter( tmc.getMap() );
+		});
+	}
 	
 	@FXML
 	private void initialize() {
@@ -61,4 +72,9 @@ public class Controller {
 //		
 //		tmc.setMapChars( map );
 //	}
+	
+	public void setTextMapController( TextMapController tmc ) {
+		
+		this.tmc = tmc;
+	}
 }
