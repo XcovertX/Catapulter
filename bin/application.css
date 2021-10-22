@@ -16,15 +16,10 @@
 		-fx-border-width: 2;
 	}
 	
-	#guiMap{
-		
-	  -fx-font-family: Consolas;
-	  -fx-font-size: 18;
-	  -fx-background-color: #000c01;
-	  
-	  -fx-border-color: transparent;
-	  -fx-border-width: 2;
-
+	#background{
+		-fx-background-color: #15fc03;
+		-fx-border-color: #032401;
+		-fx-border-width: 2;
 	}
 	
 	 .progress-bar > .bar {
@@ -139,6 +134,8 @@
 	#textFieldGreen {
 		-fx-background-color: #001501;
 		-fx-text-fill: #15fc03;
+		-fx-font-family: Consolas;
+	    -fx-font-size: 8;
 	
 	}
 	

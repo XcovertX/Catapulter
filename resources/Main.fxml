@@ -32,9 +32,9 @@
             <Insets left="2.0" right="2.0" />
          </BorderPane.margin>
          <center>
-            <BorderPane style="-fx-background-color: red; -fx-border-width: 3; -fx-border-color: #032401;">
+            <BorderPane id="background" stylesheets="@application.css">
                <effect>
-                  <Glow level="0.2" />
+                  <Glow level="0.5" />
                </effect>
                <padding>
                   <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
@@ -54,7 +54,7 @@
                   </VBox>
                </right>
                <center>
-                  <BorderPane style="-fx-background-color: #15fc03;" BorderPane.alignment="CENTER">
+                  <BorderPane BorderPane.alignment="CENTER">
                      <center>
                         <TextArea id="consoleArea" fx:id="output" editable="false" stylesheets="@application.css" BorderPane.alignment="CENTER">
                            <cursor>
@@ -497,7 +497,7 @@
             <Insets left="2.0" right="2.0" />
          </BorderPane.margin>
          <center>
-            <BorderPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #15fc03; -fx-border-color: #032401; -fx-border-width: 3;">
+            <BorderPane id="background" minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="0.0" stylesheets="@application.css">
                <padding>
                   <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                </padding>
@@ -846,7 +846,7 @@
                         <Font name="Consolas Bold" size="8.0" />
                      </font>
                   </TextField>
-                  <TextField id="textFieldGreen" alignment="BOTTOM_LEFT" opacity="0.71" prefHeight="15.0" prefWidth="41.0" stylesheets="@application.css" text="SYSTEM">
+                  <TextField id="textFieldGreen" alignment="BOTTOM_LEFT" opacity="0.71" prefHeight="15.0" prefWidth="87.0" stylesheets="@application.css" text="SYSTEM">
                      <font>
                         <Font name="Consolas Bold" size="8.0" />
                      </font>
