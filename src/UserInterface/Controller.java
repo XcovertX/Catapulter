@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Circle;
 
@@ -22,24 +23,15 @@ public class Controller {
 	
 	// GUI areas
 	@FXML private BorderPane mapHolder;
+	@FXML private BorderPane consoleHolder;
 	@FXML private TextArea guiMap;
 	
 	// Controllers
 	@FXML private TextMapController tmc;
+	@FXML private TextInputController tip;
+	
 	
 	public Controller() { }
-	
-	public TextArea getGuiMap() {
-		
-		return guiMap;	
-	}
-	
-//	public void setMapChars( String map ) {
-//
-//		Platform.runLater(() -> {
-//			guiMap.setText( map );
-//		});
-//	}
 	
 	public void setMapChars( String map ) {
 
@@ -49,7 +41,16 @@ public class Controller {
 		});
 	}
 	
-	public void initializeMap() {
+	// sub-controller initializers
+	@FXML
+	private void initialize() {
+		
+		System.out.println("Controller Initialized");
+		
+		Platform.runLater(() -> { });
+	}
+	
+	public void initializeMapHolder() {
 		
 		Platform.runLater(() -> {
 			
@@ -57,24 +58,26 @@ public class Controller {
 		});
 	}
 	
-	@FXML
-	private void initialize() {
-		
-		System.out.println("Controller Initialized");
+	public void initializeConsoleHolder() {
 		
 		Platform.runLater(() -> {
 			
+			consoleHolder.setBottom( tip.getTextInput() );
 		});
 	}
 	
-	
-//	public void setMap( String map ) {
-//		
-//		tmc.setMapChars( map );
-//	}
+	public TextArea getGuiMap() {
+		
+		return guiMap;	
+	}
 	
 	public void setTextMapController( TextMapController tmc ) {
 		
 		this.tmc = tmc;
+	}
+	
+	public void setTextInputController( TextInputController tip ) {
+		
+		this.tip = tip;
 	}
 }

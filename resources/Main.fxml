@@ -54,7 +54,7 @@
                   </VBox>
                </right>
                <center>
-                  <BorderPane BorderPane.alignment="CENTER">
+                  <BorderPane fx:id="consoleHolder" BorderPane.alignment="CENTER">
                      <center>
                         <TextArea id="consoleArea" fx:id="output" editable="false" stylesheets="@application.css" BorderPane.alignment="CENTER">
                            <cursor>
