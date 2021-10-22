@@ -29,6 +29,7 @@ public class Controller {
 	// Controllers
 	@FXML private TextMapController tmc;
 	@FXML private TextInputController tip;
+	@FXML private ConsoleController cc;
 	
 	
 	public Controller() { }
@@ -62,6 +63,7 @@ public class Controller {
 		
 		Platform.runLater(() -> {
 			
+			consoleHolder.setCenter( cc.getConsole() );
 			consoleHolder.setBottom( tip.getTextInput() );
 		});
 	}
@@ -79,5 +81,10 @@ public class Controller {
 	public void setTextInputController( TextInputController tip ) {
 		
 		this.tip = tip;
+	}
+	
+	public void setConsoleController( ConsoleController cc ) {
+		
+		this.cc = cc;
 	}
 }

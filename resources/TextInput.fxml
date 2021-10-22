@@ -5,6 +5,6 @@
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="UserInterface.TextInputController">
    <children>
-      <TextField fx:id="textInput" styleClass="textInput" stylesheets="@TextInput.css" />
+      <TextField fx:id="textInput" styleClass="textInput" stylesheets="@console.css" />
    </children>
 </AnchorPane>

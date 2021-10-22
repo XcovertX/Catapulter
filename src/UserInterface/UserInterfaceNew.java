@@ -48,6 +48,7 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 	private Controller guiController;
 	private AnchorPane mapPane;	
 	private AnchorPane textInputPane;
+	private AnchorPane consolePane;
 	
 	public UserInterfaceNew( Actor player ) {
 		
@@ -183,6 +184,13 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 			e.printStackTrace();
 		}
 		
+		FXMLLoader consoleLoader =  new FXMLLoader( getClass().getClassLoader().getResource( "Console.fxml" ) );
+		try {
+			consolePane = consoleLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		FXMLLoader fxmll =  new FXMLLoader( getClass().getClassLoader().getResource( "Main.fxml" ) );
 		try {
 			Game.currentGame.root = fxmll.load();
@@ -196,6 +204,7 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 		// set nested controllers
 		guiController.setTextMapController( mapLoader.getController() );
 		guiController.setTextInputController( textInputLoader.getController() );
+		guiController.setConsoleController( consoleLoader.getController() );
 		
 		Game.currentGame.gui = new GraphicalUserInterface( Game.currentGame.root );
 		Game.currentGame.window.setScene( Game.currentGame.gui );
