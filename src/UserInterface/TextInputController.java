@@ -31,7 +31,7 @@ public class TextInputController {
 	@FXML
 	private void initialize() {
 		
-		System.out.println("TextFieldController Initialized");
+		System.out.println("TextInputController Initialized");
 		
 		Platform.runLater(() -> {
 			

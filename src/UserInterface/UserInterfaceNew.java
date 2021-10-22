@@ -47,6 +47,7 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 	private TextMapController guiMapController;
 	private Controller guiController;
 	private AnchorPane mapPane;	
+	private AnchorPane textInputPane;
 	
 	public UserInterfaceNew( Actor player ) {
 		
@@ -167,16 +168,7 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 	public void initializeGUI() {
 		
 		Game.currentGame.window = new Stage();
-		
 
-		
-		FXMLLoader fxmll =  new FXMLLoader( getClass().getClassLoader().getResource( "Main.fxml" ) );
-		try {
-			Game.currentGame.root = fxmll.load();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
 		FXMLLoader mapLoader =  new FXMLLoader( getClass().getClassLoader().getResource( "Map.fxml" ) );
 		try {
 			mapPane = mapLoader.load();
@@ -186,7 +178,14 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 		
 		FXMLLoader textInputLoader =  new FXMLLoader( getClass().getClassLoader().getResource( "TextInput.fxml" ) );
 		try {
-			mapPane = textInputLoader.load();
+			textInputPane = textInputLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		FXMLLoader fxmll =  new FXMLLoader( getClass().getClassLoader().getResource( "Main.fxml" ) );
+		try {
+			Game.currentGame.root = fxmll.load();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -211,6 +210,7 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 		Game.currentGame.gui.getStylesheets().add(keyboard_css);
 		
 		guiController.initializeMapHolder();
+		guiController.initializeConsoleHolder();
 		
 		Game.currentGame.window.setResizable( true );
 		Game.currentGame.window.setFullScreen( true );

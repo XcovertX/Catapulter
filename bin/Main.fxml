@@ -54,7 +54,7 @@
                   </VBox>
                </right>
                <center>
-                  <BorderPane BorderPane.alignment="CENTER">
+                  <BorderPane fx:id="consoleHolder" BorderPane.alignment="CENTER">
                      <center>
                         <TextArea id="consoleArea" fx:id="output" editable="false" stylesheets="@application.css" BorderPane.alignment="CENTER">
                            <cursor>
@@ -72,17 +72,6 @@
                         <Insets />
                      </BorderPane.margin>
                      <bottom>
-                        <TextField id="userInput" minHeight="25.0" stylesheets="@application.css" BorderPane.alignment="CENTER">
-                           <padding>
-                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                           </padding>
-                           <font>
-                              <Font name="Consolas" size="14.0" />
-                           </font>
-                           <BorderPane.margin>
-                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                           </BorderPane.margin>
-                        </TextField>
                      </bottom>
                      <effect>
                         <Glow level="0.5" />
