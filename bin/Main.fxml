@@ -48,25 +48,11 @@
                      <BorderPane.margin>
                         <Insets />
                      </BorderPane.margin>
-                     <effect>
-                        <Glow level="0.5" />
-                     </effect>
                   </VBox>
                </right>
                <center>
                   <BorderPane fx:id="consoleHolder" BorderPane.alignment="CENTER">
                      <center>
-                        <TextArea id="consoleArea" fx:id="output" editable="false" stylesheets="@application.css" BorderPane.alignment="CENTER">
-                           <cursor>
-                              <Cursor fx:constant="DEFAULT" />
-                           </cursor>
-                           <font>
-                              <Font name="Consolas" size="14.0" />
-                           </font>
-                           <BorderPane.margin>
-                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                           </BorderPane.margin>
-                        </TextArea>
                      </center>
                      <BorderPane.margin>
                         <Insets />
@@ -456,10 +442,16 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                      <effect>
-                        <Glow level="0.82" />
+                        <Glow level="0.5" />
                      </effect>
                   </VBox>
                </bottom>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
             </BorderPane>
          </center>
          <top>

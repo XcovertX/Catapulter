@@ -46,9 +46,9 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 	
 	private TextMapController guiMapController;
 	private Controller guiController;
-	private AnchorPane mapPane;	
-	private AnchorPane textInputPane;
-	private AnchorPane consolePane;
+	private BorderPane mapPane;	
+	private BorderPane textInputPane;
+	private BorderPane consolePane;
 	
 	public UserInterfaceNew( Actor player ) {
 		
