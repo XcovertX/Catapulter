@@ -60,8 +60,6 @@ public class Game {
     private boolean roomChange = false;
     private Actor player;  // the player - provides 'first person perspective'
     
-    private boolean initializing; // temp to test concept
-    
     public Game( boolean mapBuilderMode, boolean newGame ) {
     	
     	if( mapBuilderMode == true ) {
@@ -72,7 +70,7 @@ public class Game {
     		
     		// TODO build new game / load game selector
     		
-    		this.initializing = true;
+    		
     		
     		Game.currentGame = this;
     		
@@ -90,14 +88,11 @@ public class Game {
 //    		initializeGUI();
     		
     		userInterface = new UserInterfaceNew( player );
-    		System.out.println("check");
     		userInterface.getDisplay().setRoom( currentRoom );
  
 	        calendar = new GameCalendar( currentGame );
 
 	        setInputProcessor( new InputProcessor() );
-	        
-	        this.initializing = false;
 	        
     	} else {
     		
@@ -174,10 +169,6 @@ public class Game {
 		currentWorld.allLists( "environment" );
 //		currentWorld.allLists( "weather" );
 		currentWorld.allLists( "actors" );
-	}
-
-	public boolean isInitializing() {
-		return initializing;
 	}
 	
 	

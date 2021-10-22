@@ -42,22 +42,7 @@
                <right>
                   <VBox BorderPane.alignment="CENTER">
                      <children>
-<<<<<<< HEAD
                         <BorderPane fx:id="mapHolder" />
-=======
-                        <BorderPane>
-                           <center>
-                              <TextArea id="guiMap" fx:id="map" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="350.0" styleClass="map" stylesheets="@application.css" BorderPane.alignment="CENTER">
-                                 <BorderPane.margin>
-                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                 </BorderPane.margin>
-                                 <font>
-                                    <Font name="Consolas" size="18.0" />
-                                 </font>
-                              </TextArea>
-                           </center>
-                        </BorderPane>
->>>>>>> 9c575dfb1e80bd09faef808fe71846727579fb84
                         <BorderPane />
                      </children>
                      <BorderPane.margin>
