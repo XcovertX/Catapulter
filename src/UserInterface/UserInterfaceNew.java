@@ -57,12 +57,9 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 		this.currentMap = currentRoom.getMap();
 		this.currentWorld = currentMap.getWorld();
 		
-		
-		
-		this.display = new DisplayNew();
-		
 		initializeGUI(); //javafx gui
 		
+		this.display = new DisplayNew();
 		
 		consLog = new ConsoleLogicNew( display );
 
@@ -176,7 +173,7 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+			
 		FXMLLoader textInputLoader =  new FXMLLoader( getClass().getClassLoader().getResource( "TextInput.fxml" ) );
 		try {
 			textInputPane = textInputLoader.load();
