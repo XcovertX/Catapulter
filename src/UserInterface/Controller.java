@@ -70,7 +70,17 @@ public class Controller {
 	
 	public TextArea getGuiMap() {
 		
-		return guiMap;	
+		return tmc.getMap();	
+	}
+	
+	public TextArea getGuiConsole() {
+		
+		return cc.getConsole();	
+	}
+	
+	public TextField getGuiTextInput() {
+		
+		return tip.getTextInput();	
 	}
 	
 	public void setTextMapController( TextMapController tmc ) {

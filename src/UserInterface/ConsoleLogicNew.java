@@ -11,6 +11,7 @@ import javax.swing.text.StyleConstants;
 public class ConsoleLogicNew {
 
 	DisplayNew console;
+	private Controller controller;
 	
 	boolean trace = false;
 
@@ -25,8 +26,9 @@ public class ConsoleLogicNew {
 	int loop_times_temp = 1;
 
 	
-	public ConsoleLogicNew(DisplayNew con) {
+	public ConsoleLogicNew( DisplayNew con, Controller controller ) {
 		console = con;
+		this.controller = controller;
 	}
 
 	public void scrollTop() {
@@ -35,6 +37,7 @@ public class ConsoleLogicNew {
 	
 	public void scrollBottom() {
 		console.getConsoleDisplay().setCaretPosition(console.getConsoleDisplay().getDocument().getLength());
+		controller.get
 	}
 	
 	public void print(String s, boolean trace) {
@@ -128,8 +131,8 @@ public class ConsoleLogicNew {
 //    	println(file.getText(), trace, Color.WHITE);	
 //    }
     
-    public void consoleFeatures(String text) {
-		recent_used.add(text);
+    public void consoleFeatures( String text ) {
+		recent_used.add( text );
 		recent_used_id = 0;
 		scrollBottom();
 		console.getInputField().selectAll();
@@ -154,5 +157,13 @@ public class ConsoleLogicNew {
     public boolean getTrace() {
     	return trace;
     }
+
+	public Controller getController() {
+		return controller;
+	}
+
+	public void setController(Controller controller) {
+		this.controller = controller;
+	}
 }
 

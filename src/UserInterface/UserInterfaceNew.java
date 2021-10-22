@@ -42,6 +42,7 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 	
 	// input text from console text field
 	private String text;
+	private String jfxText;
 	private String[] commands;  
 	
 	private TextMapController guiMapController;
@@ -57,14 +58,12 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 		this.currentMap = currentRoom.getMap();
 		this.currentWorld = currentMap.getWorld();
 		
-		
-		
 		this.display = new DisplayNew();
 		
 		initializeGUI(); //javafx gui
 		
 		
-		consLog = new ConsoleLogicNew( display );
+		consLog = new ConsoleLogicNew( display, guiController );
 
 		inputTextField = display.getInputField();
 		inputTextField.addActionListener( new ActionListener() {
@@ -242,5 +241,21 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 
 	public void setGuiController(Controller guiController) {
 		this.guiController = guiController;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText( String jfxText ) {
+		this.text = jfxText;
+	}
+	
+	public String[] getCommands() {
+		return commands;
+	}
+	
+	public void setCommands( String[] inputCommands ) {
+		commands = inputCommands;
 	}
 }
