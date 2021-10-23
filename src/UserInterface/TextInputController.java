@@ -59,7 +59,7 @@ public class TextInputController {
 			
 			Game.in = new BufferedReader( new InputStreamReader( convertToInputStream( userInText ) ) );
 		
-		} catch (IOException e1) {
+		} catch ( IOException e1 ) {
 			
 			e1.printStackTrace();
 		} 

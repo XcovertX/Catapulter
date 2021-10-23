@@ -7,7 +7,9 @@
 }
 
 .consoleDisplay{
-	-fx-text-fill: #bd0002;
+	-fx-font-family: Consolas;
+	-fx-font-size: 10;
+	-fx-text-fill: #15fc03;
 	-fx-control-inner-background: #000c01;
 	-fx-background-color: #001501;
 	-fx-border-color: #032401;

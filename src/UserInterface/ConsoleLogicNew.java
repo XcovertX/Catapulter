@@ -37,7 +37,8 @@ public class ConsoleLogicNew {
 	
 	public void scrollBottom() {
 		console.getConsoleDisplay().setCaretPosition(console.getConsoleDisplay().getDocument().getLength());
-		controller.get
+		controller.getGuiConsole().positionCaret( ( controller.getGuiConsole().getText().split("\n") ).length );
+		controller.getGuiConsole().setScrollTop( Double.MAX_VALUE );
 	}
 	
 	public void print(String s, boolean trace) {
@@ -60,6 +61,11 @@ public class ConsoleLogicNew {
 		try {
 			console.document.insertString(console.document.getLength(), s, style);;
 		} catch (Exception ex) {}
+		
+		try {
+			// controller
+			controller.getGuiConsole().appendText(s);
+		} catch (Exception ex) {}
 	}
 	
 	public void println(String s, boolean trace) {
@@ -75,6 +81,7 @@ public class ConsoleLogicNew {
 	public void clear() {
 		try {
 			console.document.remove(0, console.document.getLength());
+//			controller.getGuiConsole().gey
 		} catch(Exception ex) {}
 	}
 	
