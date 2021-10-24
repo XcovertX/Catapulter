@@ -3,6 +3,7 @@ package start;
 import java.io.IOException;
 
 import game.Game;
+import javafx.application.Platform;
 
 public class GameLoop implements Runnable {
 	
@@ -20,7 +21,6 @@ public class GameLoop implements Runnable {
 		this.game = game;
 	}
 	
-
 	@Override
 	public void run() {
 
@@ -52,14 +52,18 @@ public class GameLoop implements Runnable {
 		try {
 			
 			game.updateWorld();
+				
 			game.getInputProcessor().update();
-			Thread.sleep(250); // TODO not sure how to appropriately free up the thread. Fix when build thread-pool
+			
+			Thread.sleep(100); // TODO not sure how to appropriately free up the thread. Fix when build thread-pool
+			
+		} catch (InterruptedException e) {
+			
+			e.printStackTrace();
 			
 		} catch (IOException e) {
 			
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			
+			System.out.println("Failed to update loop.");
 			e.printStackTrace();
 		}
 		ups++;

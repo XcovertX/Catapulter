@@ -56,6 +56,7 @@ public class Controller {
 		Platform.runLater(() -> {
 			
 			mapHolder.setCenter( tmc.getMap() );
+			
 		});
 	}
 	
@@ -65,6 +66,7 @@ public class Controller {
 			
 			consoleHolder.setCenter( cc.getConsole() );
 			consoleHolder.setBottom( tip.getTextInput() );
+			
 		});
 	}
 	
@@ -96,5 +98,10 @@ public class Controller {
 	public void setConsoleController( ConsoleController cc ) {
 		
 		this.cc = cc;
+	}
+	
+	public void insertText( String s ) {
+		
+		cc.insertText( s );
 	}
 }

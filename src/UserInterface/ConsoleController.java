@@ -1,9 +1,12 @@
 package UserInterface;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 
@@ -15,7 +18,11 @@ public class ConsoleController {
 	
 	@FXML private ResourceBundle resources;
 	
-	public ConsoleController() { }
+
+	
+	public ConsoleController() { 
+	
+	};
 	
 	public TextArea getConsole() {
 		
@@ -36,4 +43,18 @@ public class ConsoleController {
 			
 		});
 	}
+	
+	/*
+	 * Inserts text into the console and auto scrolls to the bottom.
+	 */
+	public void insertText( String s ) {
+		
+		console.setText( console.getText() + s );
+		console.positionCaret(s.length());
+		console.appendText("");
+		console.setScrollTop( Double.MAX_VALUE );
+
+	}
+	
+	
 }

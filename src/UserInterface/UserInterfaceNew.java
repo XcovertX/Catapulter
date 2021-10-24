@@ -8,7 +8,7 @@ import world.GameTile;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+//import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -20,14 +20,16 @@ import javax.swing.JTextField;
 
 import game.Game;
 import gameObjects.Actor;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class UserInterfaceNew implements ActionListener, KeyListener {
+public class UserInterfaceNew implements ActionListener {
 	
 	public BufferedReader in;
 	private GameWorld currentWorld;
@@ -47,6 +49,8 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 	
 	private TextMapController guiMapController;
 	private Controller guiController;
+	private ConsoleController guiConsoleController;
+	private TextInputController guiTextInputController;
 	private BorderPane mapPane;	
 	private BorderPane textInputPane;
 	private BorderPane consolePane;
@@ -61,7 +65,6 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 		this.display = new DisplayNew();
 		
 		initializeGUI(); //javafx gui
-		
 		
 		consLog = new ConsoleLogicNew( display, guiController );
 
@@ -89,18 +92,18 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 	});
 	
 	//  implementation of Key Listener to return key press events 
-	inputTextField.addKeyListener(new KeyListener() {
-		
-		@Override
-		public void keyPressed(KeyEvent e) {
-			consLog.keyPressedPerform(e);	
-		}
-		@Override
-		public void keyReleased(KeyEvent e) {}
-		@Override
-		public void keyTyped(KeyEvent e) {}	
-		
-		});
+//	inputTextField.addKeyListener(new KeyListener() {
+//		
+//		@Override
+//		public void keyPressed(KeyEvent e) {
+//			consLog.keyPressedPerform(e);	
+//		}
+//		@Override
+//		public void keyReleased(KeyEvent e) {}
+//		@Override
+//		public void keyTyped(KeyEvent e) {}	
+//		
+//		});
 	}
 	
 	// global logic
@@ -142,22 +145,6 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 	public void printColor(String s, Color c) {
 		
 		consLog.print(s, trace(), c);
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
 	}
 	
 	public DisplayNew getDisplay() {
@@ -201,12 +188,24 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 		setGuiController(( Controller ) fxmll.getController());
 		
 		// set nested controllers
-		guiController.setTextMapController( mapLoader.getController() );
-		guiController.setTextInputController( textInputLoader.getController() );
-		guiController.setConsoleController( consoleLoader.getController() );
+		setTextMapController( mapLoader.getController() );
+		setTextInputController( textInputLoader.getController() );
+		setConsoleController( consoleLoader.getController() );
 		
 		Game.currentGame.gui = new GraphicalUserInterface( Game.currentGame.root );
+
 		Game.currentGame.window.setScene( Game.currentGame.gui );
+		
+		Game.currentGame.gui.addEventFilter( KeyEvent.KEY_PRESSED, new EventHandler< KeyEvent >() {
+
+			@Override
+			public void handle( KeyEvent event ) {
+				
+				guiTextInputController.keyPressedPerform( event );
+				
+			}
+			
+		});
 		
 		String css = this.getClass().getClassLoader().getResource("application.css").toExternalForm();
 		Game.currentGame.gui.getStylesheets().add(css);
@@ -257,5 +256,38 @@ public class UserInterfaceNew implements ActionListener, KeyListener {
 	
 	public void setCommands( String[] inputCommands ) {
 		commands = inputCommands;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public ConsoleController getConsoleController() {
+		return guiConsoleController;
+	}
+
+	public void setConsoleController( ConsoleController consoleController ) {
+		this.guiConsoleController = consoleController;
+		guiController.setConsoleController( guiConsoleController );
+	}
+
+	public TextInputController getTextInputController() {
+		return guiTextInputController;
+	}
+
+	public void setTextInputController(TextInputController textInputController) {
+		this.guiTextInputController = textInputController;
+		guiController.setTextInputController( guiTextInputController );
+	}
+	
+	public TextMapController getTextMapController() {
+		return guiMapController;
+	}
+
+	public void setTextMapController( TextMapController textMapController) {
+		this.guiMapController = textMapController;
+		guiController.setTextMapController( guiMapController );
 	}
 }

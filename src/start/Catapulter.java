@@ -35,9 +35,11 @@ public class Catapulter extends Application {
 		
 			Game game = new Game( mapBuilderMode, newGame );
 	  	
-	    	new Thread( new GameLoop( game ) ).start();
+	    	Thread gameThread = new Thread( new GameLoop( game ) );
+	    	gameThread.setName( "Game_Thread" );
+	    	gameThread.start();
 	    	game.showIntro();
-	    	game.getInputProcessor().updateOutput( 0 ); // change this update once new login process implemented
+//	    	game.getInputProcessor().updateOutput( 0 ); // change this update once new login process implemented
 	    	
 		}
 	    	

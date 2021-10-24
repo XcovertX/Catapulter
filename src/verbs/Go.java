@@ -22,6 +22,7 @@ public class Go extends Action {
 
 	@Override
 	public void run( String thing ) {
+		
 	    if( thing.equalsIgnoreCase( "n" ) ) {
 	        updateOutput( movePlayerTo( Direction.NORTH ) );
 	    }

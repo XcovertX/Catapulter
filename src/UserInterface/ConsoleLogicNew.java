@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 
+import javafx.application.Platform;
+
 public class ConsoleLogicNew {
 
 	DisplayNew console;
@@ -36,21 +38,24 @@ public class ConsoleLogicNew {
 	}
 	
 	public void scrollBottom() {
+		
 		console.getConsoleDisplay().setCaretPosition(console.getConsoleDisplay().getDocument().getLength());
-		controller.getGuiConsole().positionCaret( ( controller.getGuiConsole().getText().split("\n") ).length );
-		controller.getGuiConsole().setScrollTop( Double.MAX_VALUE );
+			
 	}
 	
 	public void print(String s, boolean trace) {
+		
 		print(s, trace, new Color(255, 255, 255));
-		scrollBottom();
+		
 	}
 	
-	public void print(String s, boolean trace, Color c) {
+	public void print( String s, boolean trace, Color c ) {
+		
 		Style style = console.getConsoleDisplay().addStyle("Style", null);
 		StyleConstants.setForeground(style, c);
 		
 		if(trace) {
+			
 			Throwable t = new Throwable();
 			StackTraceElement[] elements = t.getStackTrace();
 			String caller = elements[0].getClassName();
@@ -59,23 +64,29 @@ public class ConsoleLogicNew {
 		}
 		
 		try {
-			console.document.insertString(console.document.getLength(), s, style);;
+			
+			console.document.insertString(console.document.getLength(), s, style);
+			
 		} catch (Exception ex) {}
 		
-		try {
-			// controller
-			controller.getGuiConsole().appendText(s);
-		} catch (Exception ex) {}
+		final String str = s;
+		Platform.runLater(() -> {
+	
+			controller.insertText( str );
+			
+		});
+			
+			scrollBottom();
 	}
 	
 	public void println(String s, boolean trace) {
+		
 		println(s, trace, new Color(255, 255, 255));
-		scrollBottom();
 	}
 	
 	public void println(String s, boolean trace, Color c) {
+		
 		print(s + "\n", trace, c);
-		scrollBottom();
 	}
 	
 	public void clear() {

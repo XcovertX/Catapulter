@@ -17,6 +17,7 @@ import game.WorldReader;
 import gameObjects.Actor;
 import gameObjects.Thing;
 import globals.Direction;
+import javafx.application.Platform;
 import verbs.Action;
 import verbs.Say;
 import world.GameMap;
@@ -145,9 +146,10 @@ public class InputProcessor {
         if ( roomNumber == Direction.NOEXIT ) {
         	
             s = "No Exit!";
-            currentExits = gt.getTileExits().toString();     
-            userInterface.println( s );
-            
+            currentExits = gt.getTileExits().toString();
+    
+        	userInterface.println( s );
+
         } else {
         	
     		gt.setTileChar(); // updates tile char
@@ -329,6 +331,7 @@ public class InputProcessor {
     }  
 
     public String ParseCommand( List< String > wordlist ) {
+
         String msg;
         if ( wordlist.size() == 1 ) {
             msg = ProcessVerb( wordlist );
@@ -343,6 +346,7 @@ public class InputProcessor {
     }
     
     public String parseCommand( List< String > wordList ) {
+
         String msg;
         List< String > sentenceComponents = SentenceComponents( wordList );	
         List< List < String > > bothLists;
@@ -360,8 +364,8 @@ public class InputProcessor {
     			nounAdjectives = joinAdjectiveNoun( bothLists );			// joins adjective with noun to better identify noun
     			wordCount = wordList.size();
 
-    			if( wordCount == 1 ) {										// if one word present => process verb
-	    			msg = ProcessVerb( wordList );
+    			if( wordCount == 1 ) {		
+    				msg = ProcessVerb( wordList );
 	    		} else if( wordCount == 2 ) {								// if two words present => process verb + noun
 	        		msg = ProcessVerbNoun( wordList );						
 	    		} else if( wordCount == 3 ) {								// if three words present => process verb + preposition + noun
@@ -401,8 +405,8 @@ public class InputProcessor {
     	List< List < String > > bothLists = new ArrayList< List < String > >();
     	bothLists.add( sentenceComponents );
     	bothLists.add( wordList );
-    	System.out.println( wordList );
-    	System.out.println( sentenceComponents );
+//    	System.out.println( wordList );
+//    	System.out.println( sentenceComponents );
     	return bothLists;
     }
     
@@ -431,8 +435,8 @@ public class InputProcessor {
     			}
     		}
     	}
-    	System.out.println( wordList );
-    	System.out.println( sentenceComponents );
+//    	System.out.println( wordList );
+//    	System.out.println( sentenceComponents );
     	return bothLists;
     	
     }
@@ -462,8 +466,8 @@ public class InputProcessor {
     			}
     		}
     	}
-    	System.out.println( wordList );
-    	System.out.println( sentenceComponents );
+//    	System.out.println( wordList );
+//    	System.out.println( sentenceComponents );
     	return bothLists;
     	
     }
@@ -504,9 +508,9 @@ public class InputProcessor {
     			i--; 													// shift count to account for deletion of adjective
     		}
     	}
-    	System.out.println( wordList );
-    	System.out.println( sentenceComponents );
-    	System.out.println( nounAdjectives );
+//    	System.out.println( wordList );
+//    	System.out.println( sentenceComponents );
+//    	System.out.println( nounAdjectives );
     	return nounAdjectives;
     }
     
@@ -529,12 +533,13 @@ public class InputProcessor {
 				components.add( i, "unknown" );
 			}
 		}
-		System.out.println( wordList ); // remove when done
-		System.out.println( components ); // remove when done
+//		System.out.println( wordList ); // remove when done
+//		System.out.println( components ); // remove when done
     	return components;
     }
    
     public List< String > WordList( String input ) {
+    	
         String delims = " \t,.:;?!\"'";
         List< String > stringList = new ArrayList<>();
         StringTokenizer tokenizer = new StringTokenizer( input, delims );
@@ -545,13 +550,15 @@ public class InputProcessor {
             
             stringList.add( t );
         }
+        
         return stringList;
     }
 	
     public String RunCommand( String inputstr ) {
         List< String > wordList;
         String s = "ok";
-        String lowString = inputstr.trim().toLowerCase();        
+        String lowString = inputstr.trim().toLowerCase();   
+
         if ( !lowString.equals( "q" ) ) {
             if ( lowString.equals( "" ) ) {
                 s = "You must enter a command";
@@ -564,34 +571,53 @@ public class InputProcessor {
     }
     
     public void roomChange() {
+    	
     	this.roomChange = true;
     }
     
     public void update() throws IOException {
     	
     	if( Game.in != null ) {
-    		
+
+//			Platform.runLater(() -> {
+				
     		try {
     			
 				input = Game.in.readLine();
+			
+				System.out.println( Thread.currentThread().getName() );
 				
+	    		output = RunCommand( input );
+	    		
+				userInterface.println( output );
+				
+	    		userInterface.getDisplay().setRoom( Game.currentRoom );
+	    		
+	      		Game.in.close();
+	      		Game.in = null;
+				
+	      		System.out.println("close and null");
+	      		
+	      		
 			} catch (IOException e) {
 				
 				e.printStackTrace();
+				
 			}
-    		output = RunCommand( input );
-        	userInterface.println( output );
-        	userInterface.getDisplay().setRoom( Game.currentRoom );
-      		Game.in.close();
-      		Game.in = null;
+
+//			});
+
     	} else if( roomChange == true ) {
 
         	userInterface.getDisplay().setRoom( Game.currentRoom );
+        	
         	roomChange = false;
+
     	}
     }
     
     public void render() {
+    	
     }
     
 	public KnownVerbs getKnownVerbs() {
