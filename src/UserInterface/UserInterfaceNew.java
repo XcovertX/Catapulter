@@ -51,9 +51,11 @@ public class UserInterfaceNew implements ActionListener {
 	private Controller guiController;
 	private ConsoleController guiConsoleController;
 	private TextInputController guiTextInputController;
+	private KeyboardController guiKeyboardController;
 	private BorderPane mapPane;	
 	private BorderPane textInputPane;
 	private BorderPane consolePane;
+	private BorderPane keyboardPane;
 	
 	public UserInterfaceNew( Actor player ) {
 		
@@ -177,6 +179,13 @@ public class UserInterfaceNew implements ActionListener {
 			e.printStackTrace();
 		}
 		
+		FXMLLoader keyboardLoader =  new FXMLLoader( getClass().getClassLoader().getResource( "Keyboard.fxml" ) );
+		try {
+			keyboardPane = keyboardLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		FXMLLoader fxmll =  new FXMLLoader( getClass().getClassLoader().getResource( "Main.fxml" ) );
 		try {
 			Game.currentGame.root = fxmll.load();
@@ -191,6 +200,7 @@ public class UserInterfaceNew implements ActionListener {
 		setTextMapController( mapLoader.getController() );
 		setTextInputController( textInputLoader.getController() );
 		setConsoleController( consoleLoader.getController() );
+		setKeyboardController( keyboardLoader.getController() );
 		
 		Game.currentGame.gui = new GraphicalUserInterface( Game.currentGame.root );
 
@@ -202,6 +212,18 @@ public class UserInterfaceNew implements ActionListener {
 			public void handle( KeyEvent event ) {
 				
 				guiTextInputController.keyPressedPerform( event );
+				guiKeyboardController.keyPressedPerform( event );
+				
+			}
+			
+		});
+		
+		Game.currentGame.gui.addEventFilter( KeyEvent.KEY_RELEASED, new EventHandler< KeyEvent >() {
+
+			@Override
+			public void handle( KeyEvent event ) {
+			
+				guiKeyboardController.keyReleasedPerform( event );
 				
 			}
 			
@@ -218,11 +240,11 @@ public class UserInterfaceNew implements ActionListener {
 		
 		guiController.initializeMapHolder();
 		guiController.initializeConsoleHolder();
+		guiController.initializeKeyboardHolder();
 		
 		Game.currentGame.window.setResizable( true );
 		Game.currentGame.window.setFullScreen( true );
 		Game.currentGame.window.show();
-		
 
 	}
 
@@ -289,5 +311,14 @@ public class UserInterfaceNew implements ActionListener {
 	public void setTextMapController( TextMapController textMapController) {
 		this.guiMapController = textMapController;
 		guiController.setTextMapController( guiMapController );
+	}
+
+	public KeyboardController getKeyboardController() {
+		return guiKeyboardController;
+	}
+
+	public void setKeyboardController(KeyboardController keyboardController) {
+		this.guiKeyboardController = keyboardController;
+		guiController.setKeyboardController( guiKeyboardController );
 	}
 }

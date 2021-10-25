@@ -7,3 +7,9 @@
 	-fx-border-color: #032401;
 	-fx-border-width: 2;
 }
+
+.map *.text {
+    -fx-text-alignment: center;
+}
+
+

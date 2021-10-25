@@ -25,14 +25,18 @@
 		-fx-padding: 9px;
 	}
 	
-	.vbox{
+	#keyboard{
 		-fx-control-inner-background: #032401;
 		-fx-background-color: #000c01;
 		
 	}
 	
-	.pane{
-		-fx-background-color: #15fc03;
+	#pane{
+		-fx-background-color: #001501;
+	}
+	
+	#backGround{
+		
 	}
 	
 	

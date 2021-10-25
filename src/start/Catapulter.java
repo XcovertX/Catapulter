@@ -39,7 +39,7 @@ public class Catapulter extends Application {
 	    	gameThread.setName( "Game_Thread" );
 	    	gameThread.start();
 	    	game.showIntro();
-//	    	game.getInputProcessor().updateOutput( 0 ); // change this update once new login process implemented
+	    	game.getInputProcessor().updateOutput( 0 ); // change this update once new login process implemented
 	    	
 		}
 	    	

@@ -25,11 +25,13 @@ public class Controller {
 	@FXML private BorderPane mapHolder;
 	@FXML private BorderPane consoleHolder;
 	@FXML private TextArea guiMap;
+	@FXML private BorderPane mainHolder;
 	
 	// Controllers
 	@FXML private TextMapController tmc;
 	@FXML private TextInputController tip;
 	@FXML private ConsoleController cc;
+	@FXML private KeyboardController kc;
 	
 	
 	public Controller() { }
@@ -66,6 +68,16 @@ public class Controller {
 			
 			consoleHolder.setCenter( cc.getConsole() );
 			consoleHolder.setBottom( tip.getTextInput() );
+		
+			
+		});
+	}
+	
+	public void initializeKeyboardHolder() {
+		
+		Platform.runLater(() -> {
+			
+			mainHolder.setBottom( kc.getKeyboard() );
 			
 		});
 	}
@@ -98,6 +110,11 @@ public class Controller {
 	public void setConsoleController( ConsoleController cc ) {
 		
 		this.cc = cc;
+	}
+	
+	public void setKeyboardController( KeyboardController kc ) {
+		
+		this.kc = kc;
 	}
 	
 	public void insertText( String s ) {

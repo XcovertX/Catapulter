@@ -37,7 +37,7 @@ public class ConsoleController {
 	@FXML
 	private void initialize() {
 		
-		System.out.println("ConsoleController Initialized");
+		System.out.println( "ConsoleController Initialized" );
 		
 		Platform.runLater(() -> {
 			

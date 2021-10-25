@@ -50,9 +50,7 @@ public class TextInputController {
 		System.out.println("TextInputController Initialized");
 		
 		Platform.runLater(() -> {
-			
-			
-			
+	
 		});
 	}
 	
@@ -107,14 +105,21 @@ public class TextInputController {
 				recentUsedID++;
 			}
 		
-			textInput.setText( recentUsed.get( recentUsed.size() - 1 - recentUsedID ) );
+			if( recentUsed.size() != 0 ) {
+				
+				textInput.setText( recentUsed.get( recentUsed.size() - 1 - recentUsedID ) );
+			}
 		
 		} else if( e.getCode() == KeyCode.DOWN ) {
 			if( recentUsedID > 0 ) {
 				
 				recentUsedID--;
 			}
-			textInput.setText( recentUsed.get( recentUsed.size() - 1 - recentUsedID ) );
+			
+			if( recentUsed.size() != 0 ) {
+				
+				textInput.setText( recentUsed.get( recentUsed.size() - 1 - recentUsedID ) );
+			}
 		}
     }
     
