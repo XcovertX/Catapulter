@@ -85,8 +85,6 @@ public class Game {
     		
     		player = new Human( "player", "This is a player", currentTile, new ThingList(), " @ " );
     		
-//    		initializeGUI();
-    		
     		userInterface = new UserInterfaceNew( player );
     		userInterface.getDisplay().setRoom( currentRoom );
  

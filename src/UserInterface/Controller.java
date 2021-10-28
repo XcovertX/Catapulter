@@ -56,8 +56,8 @@ public class Controller {
 	public void initializeMapHolder() {
 		
 		Platform.runLater(() -> {
-			
-			mapHolder.setCenter( tmc.getMap() );
+
+			mapHolder.setCenter( tmc.getMapPane() );
 			
 		});
 	}
@@ -68,7 +68,6 @@ public class Controller {
 			
 			consoleHolder.setCenter( cc.getConsole() );
 			consoleHolder.setBottom( tip.getTextInput() );
-		
 			
 		});
 	}

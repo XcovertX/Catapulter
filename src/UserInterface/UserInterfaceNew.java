@@ -93,19 +93,6 @@ public class UserInterfaceNew implements ActionListener {
 		}
 	});
 	
-	//  implementation of Key Listener to return key press events 
-//	inputTextField.addKeyListener(new KeyListener() {
-//		
-//		@Override
-//		public void keyPressed(KeyEvent e) {
-//			consLog.keyPressedPerform(e);	
-//		}
-//		@Override
-//		public void keyReleased(KeyEvent e) {}
-//		@Override
-//		public void keyTyped(KeyEvent e) {}	
-//		
-//		});
 	}
 	
 	// global logic

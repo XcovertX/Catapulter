@@ -6,10 +6,3 @@
 	-fx-border-width: 2;
 }
 
-.consoleDisplay{
-	-fx-text-fill: #bd0002;
-	-fx-control-inner-background: #000c01;
-	-fx-background-color: #001501;
-	-fx-border-color: #032401;
-	-fx-border-width: 2
-}

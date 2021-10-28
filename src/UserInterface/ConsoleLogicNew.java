@@ -148,7 +148,9 @@ public class ConsoleLogicNew {
 //    	FileReader file = new FileReader(fName, dName);
 //    	println(file.getText(), trace, Color.WHITE);	
 //    }
-    
+	
+	
+	// old gui -- remove when new gui fully implemented
     public void consoleFeatures( String text ) {
 		recent_used.add( text );
 		recent_used_id = 0;
@@ -156,6 +158,7 @@ public class ConsoleLogicNew {
 		console.getInputField().selectAll();
     }
     
+    // old gui -- remove when new gui fully implemented
     public void keyPressedPerform(KeyEvent e) {
     	if(e.getKeyCode() == KeyEvent.VK_UP) {
 			if(recent_used_id < (recent_used_maximum - 1) && recent_used_id < (recent_used.size() - 1)) {
