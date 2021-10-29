@@ -39,8 +39,8 @@ public class TextMapController {
 		StackPane tempSP = new StackPane(tempT);
 		tempSP.layout();
 
-		double roomlength = tempT.getLayoutBounds().getWidth() + 50;
-		double roomWidth = tempT.getLayoutBounds().getHeight() + 40;
+		double roomlength = tempT.getLayoutBounds().getWidth() + 60;
+		double roomWidth = tempT.getLayoutBounds().getHeight() + 60;
 		
 		System.out.println( "Room length: " + roomlength);
 		System.out.println( "Room width: " + roomWidth);
@@ -56,6 +56,9 @@ public class TextMapController {
 		System.out.println("TextMapController Initialized");
 		
 		Platform.runLater(() -> {
+			
+			map.setPrefWidth(350);
+			map.setPrefHeight(350);
 			
 		});
 	}

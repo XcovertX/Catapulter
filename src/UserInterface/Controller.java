@@ -68,6 +68,7 @@ public class Controller {
 			
 			consoleHolder.setCenter( cc.getConsole() );
 			consoleHolder.setBottom( tip.getTextInput() );
+			tip.getTextInput().requestFocus();
 			
 		});
 	}

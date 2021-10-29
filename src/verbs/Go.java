@@ -104,10 +104,11 @@ public class Go extends Action {
         		
         		//TODO This doesn't make sense --
         		GameTile door = (GameTile) ( Game.currentRoom.getTiles().get( exit ) );
-        		Game.currentWorld =  Game.worldReader.getWorld( door.getExternalMapLocation(), door.getExternalMapName() );
-        		Game.currentMap = (GameMap) ( Game.currentWorld.getMaps().get( 0 ) );
-        		Game.currentRoom = (GameRoom) ( Game.currentMap.getRooms().get( 0 ) );
-        		Game.currentTile = (GameTile) ( Game.currentRoom.getTiles().get( door.getExternalTile() ) );
+//        		Game.currentWorld =  worldReader.getWorld( door.getExternalMapLocation(), door.getExternalMapName() );
+        		Game.currentTile.setTileCharToDefaultTileChar();
+        		Game.currentMap  = ( GameMap )  ( Game.currentWorld.getMaps().get( Game.currentWorld.getMaps().findIndexOf( door.getExternalMapName() ) ) );
+        		Game.currentRoom = ( GameRoom ) ( Game.currentMap.getRooms().get( Game.currentMap.getRooms().findIndexOf( door.getExternalRoomName() ) ) );
+        		Game.currentTile = ( GameTile ) ( Game.currentRoom.getTiles().get( door.getExternalTile() ) );
         		
         		Game.currentMap.setWorld( Game.currentWorld );
         		Game.currentRoom.setMap( Game.currentMap );

@@ -190,7 +190,7 @@ public class UserInterfaceNew implements ActionListener {
 		setKeyboardController( keyboardLoader.getController() );
 		
 		Game.currentGame.gui = new GraphicalUserInterface( Game.currentGame.root );
-
+		
 		Game.currentGame.window.setScene( Game.currentGame.gui );
 		
 		Game.currentGame.gui.addEventFilter( KeyEvent.KEY_PRESSED, new EventHandler< KeyEvent >() {

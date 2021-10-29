@@ -91,12 +91,14 @@ public class InputProcessor {
         	if( ( ( ( GameTile) Game.currentRoom.getTiles().get( exit ) ) ).isDoor() ) { //NOTE: you can stop using this if you want the NPA to stay in room.
         		
         		//TODO This doesn't make sense --
+        		// What needs to be done: each json should be a map
         		
         		GameTile door = (GameTile) ( Game.currentRoom.getTiles().get( exit ) );
-        		Game.currentWorld =  worldReader.getWorld( door.getExternalMapLocation(), door.getExternalMapName() );
-        		Game.currentMap = (GameMap) ( Game.currentWorld.getMaps().get( 0 ) );
-        		Game.currentRoom = (GameRoom) ( Game.currentMap.getRooms().get( 0 ) );
-        		Game.currentTile = (GameTile) ( Game.currentRoom.getTiles().get( door.getExternalTile() ) );
+        		Game.currentTile.setTileCharToDefaultTileChar();
+//        		Game.currentWorld =  worldReader.getWorld( door.getExternalMapLocation(), door.getExternalMapName() );
+        		Game.currentMap  = ( GameMap )  ( Game.currentWorld.getMaps().get( Game.currentWorld.getMaps().findIndexOf( door.getExternalMapName() ) ) );
+        		Game.currentRoom = ( GameRoom ) ( Game.currentMap.getRooms().get( Game.currentMap.getRooms().findIndexOf( door.getExternalRoomName() ) ) );
+        		Game.currentTile = ( GameTile ) ( Game.currentRoom.getTiles().get( door.getExternalTile() ) );
         		
         		Game.currentMap.setWorld( Game.currentWorld );
         		Game.currentRoom.setMap( Game.currentMap );

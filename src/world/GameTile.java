@@ -24,10 +24,11 @@ public class GameTile extends ThingHolder {
     
     // for moving to new maps
     private boolean isDoor = false;
-    private boolean exitMap = false;
-    private boolean exitRoom = false;
-    private String externalMapLocation = "";
+//    private boolean exitMap = false;
+//    private boolean exitRoom = false;
+//    private String externalMapLocation = "";
     private String externalMapName = "";
+    private String externalRoomName = "";
     private int externalTile = 0;
 
     public GameTile() {
@@ -289,15 +290,15 @@ public class GameTile extends ThingHolder {
     	return tileNumber;
     }
 
-	public String getExternalMapLocation() {
-		
-		return externalMapLocation;
-	}
-
-	public void setExternalMap( String externalMapLocation ) {
-		
-		this.externalMapLocation = externalMapLocation;
-	}
+//	public String getExternalMapLocation() {
+//		
+//		return externalMapLocation;
+//	}
+//
+//	public void setExternalMap( String externalMapLocation ) {
+//		
+//		this.externalMapLocation = externalMapLocation;
+//	}
 
 	public String getExternalMapName() {
 		
@@ -382,16 +383,22 @@ public class GameTile extends ThingHolder {
 	public void setTileNumber( int tileNumber ) {
 		this.tileNumber = tileNumber;
 	}
-	public boolean isExitMap() {
-		return exitMap;
+//	public boolean isExitMap() {
+//		return exitMap;
+//	}
+//	public void setExitMap(boolean exitMap) {
+//		this.exitMap = exitMap;
+//	}
+//	public boolean isExitRoom() {
+//		return exitRoom;
+//	}
+//	public void setExitRoom(boolean exitRoom) {
+//		this.exitRoom = exitRoom;
+//	}
+	public String getExternalRoomName() {
+		return externalRoomName;
 	}
-	public void setExitMap(boolean exitMap) {
-		this.exitMap = exitMap;
-	}
-	public boolean isExitRoom() {
-		return exitRoom;
-	}
-	public void setExitRoom(boolean exitRoom) {
-		this.exitRoom = exitRoom;
+	public void setExternalRoomName(String externalRoomName) {
+		this.externalRoomName = externalRoomName;
 	}
 }

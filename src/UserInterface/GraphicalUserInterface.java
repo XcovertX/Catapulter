@@ -12,6 +12,7 @@ public class GraphicalUserInterface extends Scene {
 	public GraphicalUserInterface( Parent root ) {
 		
 		super( root );
+		
 
 	}
 	
