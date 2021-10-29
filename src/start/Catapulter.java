@@ -34,7 +34,6 @@ public class Catapulter extends Application {
         if ( mapBuilderMode != true ) {
 		
 			Game game = new Game( mapBuilderMode, newGame );
-	  	
 	    	Thread gameThread = new Thread( new GameLoop( game ) );
 	    	gameThread.setName( "Game_Thread" );
 	    	gameThread.start();
