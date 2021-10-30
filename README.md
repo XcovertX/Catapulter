@@ -21,5 +21,7 @@ java, gson
 Clone the repo: 
   
     git clone https://github.com/XcovertX/Catapulter.git
+    
+You'll need to install dependencies for JavaFX and GSON
 
 launch the game from: src/start/Catapulter.java
