@@ -75,6 +75,19 @@ public class Take extends Action {
 							}
 						}
 					}
+				} else {
+					
+					if( thingHolder.getThings().thingExists( thingNameOne ) ) {
+						int indexOne = thingHolder.getThings().findIndexOf( thingNameOne );
+						Thing thingOne = thingHolder.getThings().get( indexOne );
+						Game.currentGame.getUI().println( "You " + getRandomActionDescriptor() + " retrieve the " 
+								+ thingOne + getPreposition( "take", thingOne ) + "the " + thingHolder + "." );
+						thingHolder.removeThing( indexOne );
+						Game.currentGame.getPlayer().addThing( thingOne );
+						thingOne.setLocationInRoom( "inventory" );
+					} else {
+						Game.currentGame.getUI().println( "I don't see a " + thingNameOne + " in the " + thingHolder + "." );
+					}
 				}
 			} else {
 				if( thingTwo.isThingHolder() ) {

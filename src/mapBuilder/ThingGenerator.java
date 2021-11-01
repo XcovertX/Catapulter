@@ -41,6 +41,7 @@ public class ThingGenerator {
 		things.put( "Bottle", new Bottle() );
 		things.put( "Cat", new Cat() );
 		things.put( "Chest", new Chest() );
+		things.put( "Closet", new Container() );
 		things.put( "Container", new Container() );
 		things.put( "Furniture", new Furniture() );
 		things.put( "Key", new Key() );

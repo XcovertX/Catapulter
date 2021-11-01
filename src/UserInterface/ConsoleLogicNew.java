@@ -72,6 +72,7 @@ public class ConsoleLogicNew {
 		final String str = s;
 		Platform.runLater(() -> {
 	
+			
 			controller.insertText( str );
 			
 		});

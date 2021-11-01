@@ -43,7 +43,6 @@ public class Look extends Action {
 			
 			Thing thing = Game.currentTile.getThings().findThisObject( thingName );
 
-			System.out.println("here1");
 			Game.currentGame.getUI().println( thing.getDescription() );
 			
 			if( thing.isReadable() ) {
@@ -69,7 +68,6 @@ public class Look extends Action {
 			}
 			if( thing.isThingHolder() ) {
 				
-				System.out.println( "heheheheh" );
 				ThingHolder thingHolder = ( ThingHolder ) thing;
 				
 				if( thingHolder.holdsItemsOnTop() ) {
