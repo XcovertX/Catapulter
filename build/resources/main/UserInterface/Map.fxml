@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="mapPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UserInterface.TextMapController">
+   <center>
+      <VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="350.0" styleClass="pane" stylesheets="@map.css">
+         <children>
+            <TextArea fx:id="map" maxHeight="300.0" maxWidth="300.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="350.0" styleClass="map" stylesheets="@map.css" text="lkaslkldk">
+               <effect>
+                  <Glow />
+               </effect>
+            </TextArea>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <bottom>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

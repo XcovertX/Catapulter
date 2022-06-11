@@ -32,6 +32,7 @@ import main.java.gameObjects.Treasure;
 import main.java.gameObjects.Vegetable;
 import main.java.gameObjects.Water;
 import main.java.gameObjects.Weapon;
+import main.java.resources.res.ResourceLoader;
 import main.java.weapons.Gun;
 import main.java.wearableObjects.Ring;
 import main.java.wearableObjects.WearableThing;
@@ -39,7 +40,6 @@ import main.java.world.GameMap;
 import main.java.world.GameRoom;
 import main.java.world.GameTile;
 import main.java.world.GameWorld;
-import main.java.resources.res.ResourceLoader;
 
 public class WorldReader {
 	

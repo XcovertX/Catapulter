@@ -21,13 +21,12 @@ import main.java.gameObjects.RoomList;
 import main.java.gameObjects.Thing;
 import main.java.gameObjects.ThingList;
 import main.java.gameObjects.TileList;
+import main.java.resources.res.ResourceLoader;
 import main.java.utility.MapWriter;
 import main.java.world.GameMap;
 import main.java.world.GameRoom;
 import main.java.world.GameTile;
 import main.java.world.GameWorld;
-//import res.ResourceLoader;
-import main.java.resources.res.ResourceLoader;
 
 public class RoomBuilder implements ActionListener {
 	

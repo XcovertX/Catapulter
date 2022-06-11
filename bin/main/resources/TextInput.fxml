@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.UserInterface.TextInputController">
+   <center>
+      <TextField fx:id="textInput" onAction="#userIn" styleClass="textInput" stylesheets="@console.css">
+         <BorderPane.margin>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </BorderPane.margin>
+      </TextField>
+   </center>
+</BorderPane>

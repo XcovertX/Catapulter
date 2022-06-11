@@ -1,0 +1,52 @@
+
+	.button {
+		-fx-text-fill: #15fc03;
+		-fx-control-inner-background: #000c01;
+		-fx-background-color: #001501;
+		-fx-font-weight: bold;
+		-fx-font-size: 14;
+		-fx-font-Family: consolas;
+		-fx-border-color: #000c01;
+		-fx-border-width: 4;
+	}
+	
+	.text-field{
+		-fx-text-fill: #bd0002;
+		-fx-control-inner-background: #000c01;
+		-fx-background-color: #001501;
+		-fx-font-weight: bold;
+		-fx-font-size: 14;
+		-fx-font-Family: consolas;
+	}
+
+	
+	.enterButton{
+		-fx-shape: "M 204 216 L 204 300 L 300 300 L 300 132 L 168 132 L 168 216 L 204 216 ";
+		-fx-padding: 9px;
+	}
+	
+	#keyboard{
+		-fx-control-inner-background: #032401;
+		-fx-background-color: #000c01;
+		
+	}
+	
+	#pane{
+		-fx-background-color: #001501;
+	}
+	
+	#backGround{
+		
+	}
+	
+	
+
+
+	
+
+	
+
+
+
+
+	

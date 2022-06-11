@@ -148,6 +148,7 @@ public class UserInterfaceNew implements ActionListener {
 		try {
 			mapPane = mapLoader.load();
 		} catch (IOException e) {
+			System.out.println( "Can not find folder" );
 			e.printStackTrace();
 		}
 		
@@ -294,7 +295,7 @@ public class UserInterfaceNew implements ActionListener {
 		return guiMapController;
 	}
 
-	public void setTextMapController( TextMapController textMapController) {
+	public void setTextMapController( TextMapController textMapController ) {
 		this.guiMapController = textMapController;
 		guiController.setTextMapController( guiMapController );
 	}

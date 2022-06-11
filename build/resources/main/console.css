@@ -1,0 +1,64 @@
+.textInput{
+	-fx-text-fill: #15fc03;
+	-fx-control-inner-background: #000c01;
+	-fx-background-color: #001501;
+	-fx-border-color: #032401;
+	-fx-border-width: 2;
+	-fx-accent: #15fc03;
+	-fx-highlight-text-fill: #bd0002;
+}
+
+
+.consoleDisplay{
+	-fx-font-family: Consolas;
+	-fx-font-size: 10;
+	-fx-text-fill: #15fc03;
+	-fx-control-inner-background: #000c01;
+	-fx-background-color: #000c01;
+	-fx-border-color: #032401;
+	-fx-border-width: 2
+}
+
+.consoleDisplay .scroll-bar:vertical .track{
+    -fx-background-color :#000c01;
+    -fx-border-color :#032401;
+    -fx-background-radius : 0.0em;
+	-fx-border-width: 2;
+}
+
+.consoleDisplay .scroll-bar:horizontal .track{
+	-fx-min-width: 0;
+    -fx-pref-width: 0;
+    -fx-max-width: 0;
+}
+
+
+.consoleDisplay .scroll-bar:vertical .thumb{
+    -fx-background-color :#032401;
+    -fx-border-color :#15fc03;
+    -fx-background-radius : 0.0em;
+	-fx-border-width: 2
+}
+
+.consoleDisplay .scroll-bar:vertical .decrement-button{
+    -fx-background-color :#000c01;
+    -fx-border-color :#15fc03;
+    -fx-background-radius : 0.0em;
+	-fx-border-width: 2
+}
+
+.consoleDisplay .scroll-bar:vertical .increment-button{
+    -fx-background-color :#000c01;
+    -fx-border-color :#15fc03;
+    -fx-background-radius : 0.0em;
+	-fx-border-width: 2
+}
+
+.consoleDisplay .scroll-bar:vertical .decrement-button .decrement-arrow{
+	-fx-background-color :#000c01;
+	
+}
+
+.consoleDisplay .scroll-bar:vertical .increment-button .increment-arrow{
+	-fx-background-color :#000c01;
+}

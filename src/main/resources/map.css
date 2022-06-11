@@ -1,0 +1,33 @@
+.map{
+  	-fx-font-family: Consolas;
+	-fx-font-size: 18;
+	-fx-text-fill: #15fc03;
+	-fx-background-color: transparent;
+	-fx-border-width: 0;
+	-fx-control-inner-background: transparent;
+
+}
+
+.map *.text {
+    -fx-text-alignment: center;
+}
+
+.map .scroll-pane {
+	-fx-background: transparent;
+}
+
+.map .scroll-pane .viewport {
+	-fx-background: transparent;
+}
+
+.map .scroll-pane .content {
+	-fx-background: transparent;
+}
+
+.pane{
+	-fx-control-inner-background: #000c01;
+	-fx-background-color: #001501;
+	-fx-border-color: #032401;
+	-fx-border-width: 2;
+}
+

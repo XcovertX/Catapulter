@@ -1,0 +1,186 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+	#consoleArea{
+		-fx-text-fill: #bd0002;
+		-fx-control-inner-background: #000c01;
+		-fx-background-color: #001501;
+		-fx-border-color: #032401;
+		-fx-border-width: 2
+	}
+	
+	#userInput{
+		-fx-text-fill: #bd0002;
+		-fx-control-inner-background: #000c01;
+		-fx-background-color: #001501;
+		-fx-border-color: #032401;
+		-fx-border-width: 2;
+	}
+	
+	 .progress-bar > .bar {
+	    -fx-padding:0;
+	    -fx-background-radius:0;
+	    -fx-background-insets: 0;
+	    -fx-background-color:  #15fc03;
+	    -fx-border-color: #15fc03;
+		-fx-border-width: 2;
+	}
+
+	.progress-bar > .track {
+	   -fx-background-color: #000c01;
+	   -fx-background-radius: 0;
+	   -fx-background-insets: 0, 1;
+	   
+		-fx-border-color: #15fc03;
+		-fx-border-width: 2;
+	
+	}
+	
+	#progressBarRed {
+		
+		
+		-fx-text-fill: #000c01;
+		-fx-background-color: #bd0002;
+		
+	    -fx-background-color: #000c01;
+	    -fx-background-radius: 0;
+	    -fx-background-insets: 0, 1;
+	   
+		-fx-border-color: #15fc03;
+		-fx-border-width: 2;
+		
+	}
+	
+	#statLabelRed {
+		-fx-text-fill: #000c01;
+		-fx-background-color: #bd0002;
+		
+	}
+	
+	#statLabelWhite {
+		-fx-text-fill: #000c01;
+		-fx-background-color: #fac8fe;
+		
+	}
+	
+	#statLabelGreen {
+		-fx-text-fill: #000c01;
+		-fx-background-color: #15fc03;
+		
+	}
+	
+	#map {
+		-fx-text-fill: #bd0002;
+		-fx-control-inner-background: #000c01;
+		-fx-background-color: #001501;
+		-fx-border-color: #032401;
+		-fx-border-width: 2
+	}
+	
+	#inventory {
+		-fx-text-fill: #bd0002;
+		-fx-control-inner-background: #000c01;
+		-fx-background-color: #001501;
+		-fx-border-color: #032401;
+		-fx-border-width: 2
+	}
+	
+	#tools {
+		-fx-text-fill: #bd0002;
+		-fx-control-inner-background: #000c01;
+		-fx-background-color: #001501;
+		-fx-border-color: #032401;
+		-fx-border-width: 2
+	}
+	
+	#button {
+		-fx-text-fill: #bd0002;
+		-fx-control-inner-background: #000c01;
+		-fx-background-color: #001501;
+		-fx-border-color: #15fc03;
+		-fx-border-width: 2;
+	}
+	
+	#separator {
+		-fx-background-color: transparent;
+	}
+	
+	#panel {
+		-fx-background-color: #001501;
+	}
+	
+	#time {
+		-fx-text-fill: #bd0002;
+		-fx-control-inner-background: #000c01;
+		-fx-background-color: #001501;
+		-fx-border-color: #15fc03;
+		-fx-border-width: 2
+	}
+	
+	#textField {
+		-fx-background-color: #001501;
+		-fx-text-fill: #bd0002;
+	
+	}
+	
+	#textFieldGreen {
+		-fx-background-color: #001501;
+		-fx-text-fill: #15fc03;
+	
+	}
+	
+	#textFieldWhite {
+		-fx-background-color: #001501;
+		-fx-text-fill: #15fc03;
+	
+	}
+	
+	.chart {
+    -fx-padding: 10px; 
+}
+.chart-content {
+    -fx-padding: 30px;    
+}
+ 
+.chart-title {
+  -fx-text-fill: #15fc03;
+}
+ 
+.axis-label {
+  -fx-text-fill: #15fc03;
+}
+ 
+.chart-legend {
+   -fx-background-color:  transparent;
+   -fx-padding: 20px;
+}
+ 
+.chart-legend-item-symbol{
+   -fx-background-radius: 0;
+}
+ 
+.chart-legend-item{
+    -fx-text-fill: #15fc03;
+}
+ 
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+.chart-vertical-grid-lines {
+    -fx-stroke: #15fc03;
+}
+.chart-horizontal-grid-lines {
+    -fx-stroke: #15fc03;
+}
+.chart-alternative-row-fill {
+    -fx-fill: transparent;
+    -fx-stroke: transparent;
+    -fx-stroke-width: 0;
+}
+	
+
+	
+
+
+
+
+	

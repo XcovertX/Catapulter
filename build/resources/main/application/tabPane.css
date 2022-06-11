@@ -1,0 +1,45 @@
+.tab-pane *.tab-header-area *.tab-header-background {
+  -fx-background-color:#000c01;
+}
+
+.tab-pane {
+-fx-background-color:#000c01;
+}
+
+.tab {
+  -fx-font-family: Consolas;
+  -fx-font-size: 18;
+  -fx-background-color: #000c01;
+  
+  -fx-border-color: transparent;
+  -fx-border-width: 2;
+}
+
+.tab:selected {
+    -fx-text-fill: #15fc03;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: #15fc03;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+	-fx-border-color: transparent;
+}
+
+.tab-label{
+	
+  -fx-text-fill: #032401;
+  -fx-font-weight: bold;
+  
+}
+
+	#panel {
+		
+   		 -fx-border-color: #15fc03;
+   		 -fx-border-width: 2;
+	}
+
+
+
+	

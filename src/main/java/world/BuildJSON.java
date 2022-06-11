@@ -8,7 +8,6 @@ import java.io.IOException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-//import res.ResourceLoader;
 import main.java.resources.res.ResourceLoader;
 
 public class BuildJSON {

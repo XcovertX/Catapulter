@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 import java.util.concurrent.TimeUnit;
 
 import com.google.gson.Gson;
-//import res.ResourceLoader;
+
 import main.java.resources.res.ResourceLoader;
 
 public class MapWriter {
