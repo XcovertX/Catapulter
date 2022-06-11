@@ -14,14 +14,13 @@ I'll update this as soon as I add the objects into the game.
 
 Outside of all of that, I love SciFi and feel like it's under represented in the rouge-like / mud games. I aim to change that. ;)
 
-# Prerequisites
-java, gson
-
 # Setup
 Clone the repo: 
   
     git clone https://github.com/XcovertX/Catapulter.git
     
-You'll need to install dependencies for JavaFX and GSON
+cd Catapulter
 
-launch the game from: src/start/Catapulter.java
+gradle build
+
+gradle run
