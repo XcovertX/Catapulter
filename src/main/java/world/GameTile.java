@@ -282,6 +282,7 @@ public class GameTile extends ThingHolder {
     }
     
     public String getTileChar() {
+    	setTileChar();
     	return this.tileChar;
     }
     

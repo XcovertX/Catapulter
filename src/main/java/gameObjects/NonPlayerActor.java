@@ -1,5 +1,6 @@
 package main.java.gameObjects;
 
+import main.java.characteristics.Dexterity;
 import main.java.world.GameTile;
 
 public abstract class NonPlayerActor extends Actor {
@@ -9,16 +10,24 @@ public abstract class NonPlayerActor extends Actor {
 	protected boolean movementType;
 	private int movementFreq;
 	private int movementDelay;
+	private int lastMovement;
+	private String recentlyVisited;
 	
 
 	public NonPlayerActor(String aName, String aDescription, GameTile aGameTile, ThingList tList, String npaSymbol ) {
 		super(aName, aDescription, aGameTile, tList, npaSymbol );
 		this.setNPC( true );
+		this.lastMovement = 0;
+		this.recentlyVisited = null;
+		this.dexterity = new Dexterity();
 		this.type = "NonPlayerActor";
 	}
 
 	public NonPlayerActor() {
 		this.setNPC( true );
+		this.lastMovement = 0;
+		this.recentlyVisited = null;
+		this.dexterity = new Dexterity();
 		this.type = "NonPlayerActor";
 	}
 
@@ -56,6 +65,24 @@ public abstract class NonPlayerActor extends Actor {
 		this.movementDelay = movementDelay;
 	}
 	
+	public void incrementLastMovement() {
+		this.lastMovement += 1;
+	}
 	
+	public int getLastMovement() {
+		return this.lastMovement;
+	}
+	
+	public void setLastMovement() {
+		this.lastMovement = 0;
+	}
+
+	public String getRecentlyVisited() {
+		return recentlyVisited;
+	}
+
+	public void setRecentlyVisited(String recentlyVisited) {
+		this.recentlyVisited = recentlyVisited;
+	}
 
 }

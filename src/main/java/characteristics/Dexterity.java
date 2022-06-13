@@ -11,7 +11,7 @@ public class Dexterity {
 	private int accuracy;
 	
 	public Dexterity() {
-		
+		this.speedOfMovement = 100;
 	}
 
 	public int getHandEyeCoordination() {

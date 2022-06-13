@@ -1,6 +1,5 @@
 package main.java.gameObjects;
 
-import main.java.game.Game;
 import main.java.world.GameTile;
 
 public class Cat extends Animal {

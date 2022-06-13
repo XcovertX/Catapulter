@@ -399,7 +399,9 @@ public class Thing {
 			}
 		}
 	}
-	
+	/*
+	 * Recursively locates all thing objects in the world and .
+	 */
 	public void allLists() {
 		
 		UpdateWorldMethods commands = new UpdateWorldMethods();
