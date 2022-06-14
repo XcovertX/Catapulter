@@ -17,33 +17,33 @@ public class UpdateThirst extends UpdateWorld {
 			
 			actor.incrementThirstCounter();
 			
-			if( actor.getThirstCounter() > 60 ) {
+			if( actor.getThirstCounter() > 1000 ) {
 				actor.incrementThirst( 1 );
 				actor.setThirstCounter( 0 );
-				Game.currentGame.getUI().printlnColor( Double.toString( actor.getThirst() ), CatapulterColor.RED40 );
+				Game.currentGame.getUI().printlnColor( ( "Thirst: " + Double.toString( actor.getThirst() ) ), CatapulterColor.RED20 );
 			}
 			
-			if( actor.getThirst() == 50 && actor.getThirstCounter() > 59 ) {
+			if( actor.getThirst() == 50 && actor.getThirstCounter() == 0 ) {
 				
 				Game.currentGame.getUI().printlnColor( "You are beginning to get thirsty.", CatapulterColor.RED20 );
 				
-			} else if( actor.getThirst() == 60 && actor.getThirstCounter() > 59 ) {
+			} else if( actor.getThirst() == 60 && actor.getThirstCounter() == 0 ) {
 				
 				Game.currentGame.getUI().printlnColor( "Your mouth is dry. You need to find something to drink.", CatapulterColor.RED30 );
 				
-			} else if( actor.getThirst() == 70 && actor.getThirstCounter() > 59 ) {
+			} else if( actor.getThirst() == 70 && actor.getThirstCounter() == 0 ) {
 				
 				Game.currentGame.getUI().printlnColor( "You need to find something to drink soon.", CatapulterColor.RED50 );
 				
-			} else if( actor.getThirst() == 80 && actor.getThirstCounter() > 59 ) {
+			} else if( actor.getThirst() == 80 && actor.getThirstCounter() == 0 ) {
 				
 				Game.currentGame.getUI().printlnColor( "Your lips are chapped and your mouth is dry. You need to find something to drink soon.", CatapulterColor.RED60 );
 				
-			} else if( actor.getThirst() == 85 && actor.getThirstCounter() > 59 ) {
+			} else if( actor.getThirst() == 85 && actor.getThirstCounter() == 0 ) {
 				
 				Game.currentGame.getUI().printlnColor( "You need to find something to drink soon.", CatapulterColor.RED70 );
 				
-			} else if( actor.getThirst() > 90 && actor.getThirstCounter() > 59 ) {
+			} else if( actor.getThirst() > 90 && actor.getThirstCounter() == 0 ) {
 				
 				Game.currentGame.getUI().printlnColor( "You are VERY thirsty and in need of a water.", CatapulterColor.RED80 );
 				actor.decrementHitPoints( .5 );

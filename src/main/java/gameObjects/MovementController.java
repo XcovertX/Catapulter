@@ -78,30 +78,30 @@ public class MovementController {
 		if( randomDirection == "n" && recentlyVisited != "n" ) {
 			
 			this.recentlyVisited = "s";
-			updateOutput(movePlayerTo(Direction.NORTH));
+			updateOutput( movePlayerTo( Direction.NORTH ) );
 			
 		} else if( randomDirection == "s" && recentlyVisited != "s" ) {
 			
 			this.recentlyVisited = "n";
-			updateOutput(movePlayerTo(Direction.SOUTH));
+			updateOutput( movePlayerTo( Direction.SOUTH ) );
 			
 		} else if( randomDirection == "e" && recentlyVisited != "e" ) {
 			
 			this.recentlyVisited = "w";
-			updateOutput(movePlayerTo(Direction.EAST));
+			updateOutput( movePlayerTo( Direction.EAST ) );
 			
 		} else if( randomDirection == "w" && recentlyVisited != "w" ) {
 			
 			this.recentlyVisited = "e";
-			updateOutput(movePlayerTo(Direction.WEST));
+			updateOutput( movePlayerTo( Direction.WEST ) );
 			
 		} else {
-			
+			this.recentlyVisited = null; //remove this one diagonal movement implemented
 			randomRoomNumber( currentExits );
 		}
 	}
 	
-	// move a Person (typically the player) to a Room
+	// move an actor to a new tile
     void moveActorTo( Actor p, GameTile aGameTile ) {
     	
         p.setTile( aGameTile );

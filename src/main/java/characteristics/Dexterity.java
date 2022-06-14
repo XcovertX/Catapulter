@@ -10,8 +10,14 @@ public class Dexterity {
 	private int balance;
 	private int accuracy;
 	
-	public Dexterity() {
-		this.speedOfMovement = 100;
+	public Dexterity( int multiplier ) {
+		this.setAccuracy( 3 * multiplier );
+		this.setAgility( 3 * multiplier );
+		this.setBalance( 2 * multiplier );
+		this.setFineMotor( 2 * multiplier );
+		this.setHandEyeCoordination( 3 * multiplier );
+		this.setReflexes( 3 * multiplier );
+		this.setSpeedOfMovement( 3 * multiplier );
 	}
 
 	public int getHandEyeCoordination() {

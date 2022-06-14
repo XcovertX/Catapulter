@@ -1,5 +1,6 @@
 package main.java.gameObjects;
 
+import main.java.characteristics.Constitution;
 import main.java.characteristics.Dexterity;
 import main.java.world.GameTile;
 
@@ -19,7 +20,8 @@ public abstract class NonPlayerActor extends Actor {
 		this.setNPC( true );
 		this.lastMovement = 0;
 		this.recentlyVisited = null;
-		this.dexterity = new Dexterity();
+		this.constitution = new Constitution( 5 );
+		this.dexterity = new Dexterity( 5 );
 		this.type = "NonPlayerActor";
 	}
 
@@ -27,7 +29,8 @@ public abstract class NonPlayerActor extends Actor {
 		this.setNPC( true );
 		this.lastMovement = 0;
 		this.recentlyVisited = null;
-		this.dexterity = new Dexterity();
+		this.constitution = new Constitution( 1 );
+		this.dexterity = new Dexterity( 10 );
 		this.type = "NonPlayerActor";
 	}
 

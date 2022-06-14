@@ -8,7 +8,13 @@ public class Constitution {
 	private int resistanceToPoison;
 	private int resistanceToDisease;
 	
-	public Constitution(){}
+	public Constitution( int multiplier ){
+		this.setHealth( 3 * multiplier );
+		this.setPhysique( 2 * multiplier );
+		this.setResistanceToDisease( 5 * multiplier );
+		this.setResistanceToPoison( 5 * multiplier );
+		this.setToughness( 3 * multiplier );
+	}
 
 	public int getPhysique() {
 		return physique;
