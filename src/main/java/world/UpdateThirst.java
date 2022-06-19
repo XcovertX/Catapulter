@@ -46,7 +46,7 @@ public class UpdateThirst extends UpdateWorld {
 			} else if( actor.getThirst() > 90 && actor.getThirstCounter() == 0 ) {
 				
 				Game.currentGame.getUI().printlnColor( "You are VERY thirsty and in need of a water.", CatapulterColor.RED80 );
-				actor.decrementHitPoints( .5 );
+				actor.decrementHitPoints( 1 );
 				
 			}
 		}	

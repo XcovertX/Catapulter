@@ -45,7 +45,7 @@ public class UpdateHunger extends UpdateWorld {
 			} else if( actor.getHunger() > 90 && actor.getHungerCounter() == 0 ) {
 				
 				Game.currentGame.getUI().printlnColor( "You are VERY hungry and in need of a meal.", CatapulterColor.RED100 );
-				actor.decrementHitPoints( .5 );
+				actor.decrementHitPoints( 1 );
 			}
 		}
 	}

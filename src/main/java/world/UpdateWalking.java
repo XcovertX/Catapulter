@@ -25,7 +25,7 @@ public class UpdateWalking extends UpdateWorld {
 				mc = npc.getMC();
 				mc.incrementCounter();
 			
-				if( mc.getCounter() > npc.getDexterity().getSpeedOfMovement() ) {
+				if( mc.getCounter() > npc.getStats().getDexterity() ) {
 					if( npc.isWandering() ) {	
 						
 						mc.randomRoomNumber( mc.getCurrentTile().getTileExits() );

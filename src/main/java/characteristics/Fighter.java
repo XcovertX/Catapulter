@@ -1,6 +1,6 @@
 package main.java.characteristics;
 
-import calculator.D10;
+import main.java.calculator.D10;
 
 public class Fighter extends ActorClass {
 

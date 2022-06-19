@@ -16,6 +16,7 @@ public class Cat extends Animal {
 		
 		this.setHoldable(true);
 		this.setHitPoints ( 3 );
+		this.getStats().setArmorClass( 2 );;
 		this.actorSymbol = " c ";
 		this.type = "Cat";
 	}

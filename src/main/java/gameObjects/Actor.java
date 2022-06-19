@@ -60,12 +60,12 @@ public class Actor extends ThingHolder {
         this.currentTile = aGameTile;
         this.setIsAlive( true );
         this.isActor = true;
+        this.setStats( new ActorStats() );
         this.setThirst( 0 );
         this.setHitPoints( 5 );
         this.setHunger( 0 );
         this.setDecomposed( 100 );
         this.setActorSymbol(aActorSymbol);
-        this.setStats( new ActorStats() );
 //        this.constitution = new Constitution( 7 );
 //        this.setDexterity( new Dexterity( 4 ) );
         this.type = "Actor";
@@ -76,11 +76,11 @@ public class Actor extends ThingHolder {
         super( "", "", new ThingList() ); 
         this.setIsAlive( true );
         this.isActor = true;
+        this.setStats( new ActorStats() );
         this.setThirst( 0 );
         this.setHitPoints( 5 );
         this.setHunger( 0 );
         this.setDecomposed( 100 );
-        this.setStats( new ActorStats() );
 //        this.constitution = new Constitution( 1 );
 //        this.setDexterity( new Dexterity( 1 ) );
         this.type = "Actor";

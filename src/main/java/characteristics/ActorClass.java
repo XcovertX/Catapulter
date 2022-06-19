@@ -3,7 +3,7 @@ package main.java.characteristics;
 import java.util.HashMap;
 import java.util.Map;
 
-import calculator.Dice;
+import main.java.calculator.Dice;
 
 public abstract class ActorClass {
 	

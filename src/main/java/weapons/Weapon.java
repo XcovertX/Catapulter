@@ -1,6 +1,6 @@
 package main.java.weapons;
 
-import calculator.Dice;
+import main.java.calculator.Dice;
 import main.java.gameObjects.Thing;
 
 public abstract class Weapon extends Thing {

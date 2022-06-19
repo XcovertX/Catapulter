@@ -129,7 +129,7 @@ public class ActorStats {
 	
 	public int calculateArmorClass() {
 		
-		return 10 + this.calculateDexterity();
+		return 50 + this.calculateDexterity();
 	}
 
 	public ActorClass getClassType() {

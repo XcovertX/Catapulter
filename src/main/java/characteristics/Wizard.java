@@ -1,6 +1,6 @@
 package main.java.characteristics;
 
-import calculator.D6;
+import main.java.calculator.D6;
 
 public class Wizard extends ActorClass {
 
