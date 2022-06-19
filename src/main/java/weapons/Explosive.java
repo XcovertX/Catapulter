@@ -1,7 +1,5 @@
 package main.java.weapons;
 
-import main.java.gameObjects.Weapon;
-
 public abstract class Explosive extends Weapon {
 	
 	private int blastRadius;

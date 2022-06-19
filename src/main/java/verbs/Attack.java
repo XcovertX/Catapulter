@@ -17,7 +17,7 @@ public class Attack extends Action {
 	
 	public Attack(Actor actorOne, Actor actorTwo ) {
 		if( actorOne.equals( Game.currentGame.getPlayer() ) ) {
-			if( calculateSuccess( actorOne ) ) {
+			if( calculateHitSuccess( actorOne, actorTwo ) ) {
 				Game.currentGame.getUI().print( "You " );
 				Game.currentGame.getUI().printColor( "STRIKE", Color.RED );
 				Game.currentGame.getUI().print( " the " );
@@ -32,7 +32,7 @@ public class Attack extends Action {
 				Game.currentGame.getUI().println( "!" );
 			}
 		} else {
-			if( calculateSuccess( actorOne ) ) {
+			if( calculateHitSuccess( actorTwo, actorOne ) ) {
 				Game.currentGame.getUI().print( "The " );
 				Game.currentGame.getUI().printColor( actorOne.toString(), Color.GREEN );
 				Game.currentGame.getUI().print( " delivers a " );
@@ -93,10 +93,9 @@ public class Attack extends Action {
 		
 	}
 	
-	public boolean calculateSuccess( Actor actor ) {
-		Random rand = new Random();
-		int chance = rand.nextInt( 100 );
-		if( actor.getDexterity().getAccuracy() > chance ) {
+	public boolean calculateHitSuccess( Actor attacker, Actor attacked ) {
+		int attack = attacker.getStats().getClassType().getHitDie().roll();
+		if( attack >= attacked.getStats().getArmorClass() ) {
 			return true;
 		} else {
 			return false;

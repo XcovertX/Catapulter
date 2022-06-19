@@ -15,8 +15,8 @@ public class Fight {
 	public Fight( Actor actorOne, Actor actorTwo ) {
 		this.setOpponentOne( actorOne );
 		this.setOpponentTwo( actorTwo );
-		this.setCounterOne( actorOne.getDexterity().getSpeedOfMovement() );
-		this.setCounterTwo( actorTwo.getDexterity().getSpeedOfMovement() );
+		this.setCounterOne( actorOne.getStats().getDexterity() );
+		this.setCounterTwo( actorTwo.getStats().getDexterity() );
 		this.opponentOne.setEngagedInCombat( true );
 		this.opponentTwo.setEngagedInCombat( true );
 		this.opponentOne.setFight( this );
@@ -28,12 +28,12 @@ public class Fight {
 	public void combatCycle() {
 		
 		
-		if( counterOne/( opponentOne.getDexterity().getSpeedOfMovement() ) > 1 ) {
+		if( counterOne/( opponentOne.getStats().getDexterity() ) > 1 ) {
 			new Attack( opponentOne, opponentTwo );
 			setCounterOne( 0 );
 		}
 		
-		if( counterTwo/( opponentTwo.getDexterity().getSpeedOfMovement() ) > 1 ) {
+		if( counterTwo/( opponentTwo.getStats().getDexterity() ) > 1 ) {
 			new Attack( opponentTwo, opponentOne );
 			setCounterTwo( 0 );
 		}

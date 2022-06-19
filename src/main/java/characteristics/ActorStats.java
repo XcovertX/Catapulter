@@ -5,8 +5,10 @@ import java.util.LinkedList;
 public class ActorStats {
 	
 	private int level;
-	private Race race;
 	private int age;
+	private ActorRace race;
+	private ActorClass classType;
+	private int ArmorClass;
 	
 	// health, magic, experience
 	private int HPMax;
@@ -16,7 +18,7 @@ public class ActorStats {
 	private int XPMax;
 	private int XPCurrent;
 	
-	// baseline stats
+	// strength stats
 	private int strength;
 	private int dexterity;
 	private int constitution;
@@ -24,9 +26,16 @@ public class ActorStats {
 	private int wisdom;
 	private int charisma;
 	
+	
+	
+	private int attackSpeed;
+	
+	
 	// baseline modifiers
 	private int luck;
 	private int proficiency;
+	private int hunger;
+	private int thirst;
 	
 	private LinkedList< StatModifier > baseModifiers;
 	private LinkedList< StatModifier > raceModifiers;
@@ -36,40 +45,124 @@ public class ActorStats {
 	private LinkedList< StatModifier > magicModifiers;
 	private LinkedList< StatModifier > classModifiers;
 	
+	private ActorAdvancement advancement = new ActorAdvancement();
+	
+	public ActorStats() {
+		this.setLevel( 1 );
+		this.setAge( 204 );
+		this.setCharisma( 8 );
+		this.setDexterity( 13 );
+		this.setIntelligence( 10 );
+		this.setWisdom( 12 );
+		this.setStrength( 15 );
+		this.setConstitution( 14 );
+		
+		this.setClassType( new Fighter() );
+		this.setRace( new Dwarf() );
+		this.setArmorClass( calculateArmorClass() );
+		
+		this.setRaceModifiers( this.getRace().getRaceModifiers() );
+		
+		this.setThirst( 0 );
+		this.setHunger( 0 );
+	}
+	
 	// stat calculations
+	
+	public void levelUp() {
+		
+		
+	}
+	
+	public int calculateEncumbrance() {
+		
+		int total;
+		if( this.race.getAverageSize().equals( "small" ) ) {
+			
+			total = this.strength * 8;
+			
+		} else if( this.race.getAverageSize().equals( "medium" ) ) {
+			
+			total = this.strength * 30;
+			
+		} else if( this.race.getAverageSize().equals( "large" ) ) {
+			
+			total = this.strength * 60;
+			
+		} else {
+			
+			total = -1;
+		}
+		
+		return total;
+	}
+	
+	public int calculateHPMax() {
+		
+		return this.getClassType().getHitDie().getMax() + this.calculateConstitution();
+	}
 	
 	public int calculateStrength() {
 		
-		return 0;
+		return this.strength;
 	}
 	public int calculateConstitution() {
 		
-		return 0;
+		return this.constitution;
 	}
 	public int calculateDexterity() {
 		
-		return 0;
+		return this.dexterity;
 	}
 	public int calculateIntelligence() {
 		
-		return 0;
+		return this.intelligence;
 	}
 	public int calculateWisdom() {
 		
-		return 0;
+		return this.wisdom;
 	}
 	public int calculateCharisma() {
 		
-		return 0;
+		return this.charisma;
 	}
 	
 	public int calculateArmorClass() {
 		
 		return 10 + this.calculateDexterity();
 	}
-	
-	
-	
+
+	public ActorClass getClassType() {
+		return classType;
+	}
+
+	public void setClassType(ActorClass classType) {
+		this.classType = classType;
+	}
+
+	public int getHunger() {
+		return hunger;
+	}
+
+	public void setHunger(int hunger) {
+		this.hunger = hunger;
+	}
+
+	public int getThirst() {
+		return this.thirst;
+	}
+
+	public void setThirst(int thirst) {
+		this.thirst = thirst;
+	}
+
+	public ActorAdvancement getAdvancement() {
+		return advancement;
+	}
+
+	public void setAdvancement(ActorAdvancement advancement) {
+		this.advancement = advancement;
+	}
 
 	public LinkedList< StatModifier > getBaseAdditives() {
 		
@@ -91,12 +184,12 @@ public class ActorStats {
 		this.level = level;
 	}
 
-	public Race getRace() {
+	public ActorRace getRace() {
 		
 		return race;
 	}
 
-	public void setRace( Race race ) {
+	public void setRace( ActorRace race ) {
 		
 		this.race = race;
 	}
@@ -320,7 +413,14 @@ public class ActorStats {
 		
 		this.classModifiers = classModifiers;
 	}
-	
-	
+
+	public int getArmorClass() {
+		return ArmorClass;
+	}
+
+	public void setArmorClass(int armorClass) {
+		ArmorClass = armorClass;
+	}
+
 
 }

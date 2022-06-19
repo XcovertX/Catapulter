@@ -2,7 +2,7 @@ package main.java.weapons;
 
 import main.java.gameObjects.Actor;
 
-public abstract class Gun extends RangeWeapon {
+public abstract class Gun extends FiredWeapon {
 	
 	private int ammunitionRemaining;
 	private Ammunition ammo;
@@ -28,6 +28,14 @@ public abstract class Gun extends RangeWeapon {
 
 	public void setAmmunitionRemaining(int ammunitionRemaining) {
 		this.ammunitionRemaining = ammunitionRemaining;
+	}
+
+	public Ammunition getAmmo() {
+		return ammo;
+	}
+
+	public void setAmmo(Ammunition ammo) {
+		this.ammo = ammo;
 	}
 
 }

@@ -1,7 +1,5 @@
 package main.java.weapons;
 
-import main.java.gameObjects.Weapon;
-
 public abstract class Blade extends Weapon {
 	
 	private double sharpness;

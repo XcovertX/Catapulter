@@ -1,19 +1,26 @@
 package main.java.characteristics;
 
-public abstract class StatModifier {
+public class StatModifier {
 
 	private String name;
 	private int id;
 	private int modifierValue;
 	private String statType;
 	
+	public StatModifier( String name, String statType, int modifierValue, int ID ) {
+		this.setName( name );
+		this.setStatType( statType );
+		this.setModifierValue( modifierValue );
+		this.setId( ID );
+	}
+	
 
 	public int getModifierValue() {
 		return modifierValue;
 	}
 
-	public void setModifierValue( int bonusValue ) {
-		this.modifierValue = bonusValue;
+	public void setModifierValue( int modifierValue ) {
+		this.modifierValue = modifierValue;
 	}
 
 	public String getName() {

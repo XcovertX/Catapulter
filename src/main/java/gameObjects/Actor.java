@@ -3,6 +3,7 @@ package main.java.gameObjects;
 import java.awt.Color;
 
 import main.java.body.Body;
+import main.java.characteristics.ActorStats;
 import main.java.characteristics.Charisma;
 import main.java.characteristics.Constitution;
 import main.java.characteristics.Dexterity;
@@ -22,16 +23,18 @@ public class Actor extends ThingHolder {
 	
 	private Body body;
 	
-	protected double hitPoints;
-	protected int thirst;
-	protected int hunger;
+	private ActorStats stats;
 	
-	protected Strength strength;
-	protected Dexterity dexterity;
-	protected Constitution constitution;
-	protected Intelligence intelligence;
-	protected Wisdom wisdom;
-	protected Charisma charisma;
+//	protected double hitPoints;
+//	protected int thirst;
+//	protected int hunger;
+	
+//	protected Strength strength;
+//	protected Dexterity dexterity;
+//	protected Constitution constitution;
+//	protected Intelligence intelligence;
+//	protected Wisdom wisdom;
+//	protected Charisma charisma;
 
 	protected int decomposed;
 	private int thirstCounter;
@@ -62,8 +65,9 @@ public class Actor extends ThingHolder {
         this.setHunger( 0 );
         this.setDecomposed( 100 );
         this.setActorSymbol(aActorSymbol);
-        this.constitution = new Constitution( 7 );
-        this.setDexterity( new Dexterity( 4 ) );
+        this.setStats( new ActorStats() );
+//        this.constitution = new Constitution( 7 );
+//        this.setDexterity( new Dexterity( 4 ) );
         this.type = "Actor";
     }
 
@@ -76,11 +80,25 @@ public class Actor extends ThingHolder {
         this.setHitPoints( 5 );
         this.setHunger( 0 );
         this.setDecomposed( 100 );
-        this.constitution = new Constitution( 1 );
-        this.setDexterity( new Dexterity( 1 ) );
+        this.setStats( new ActorStats() );
+//        this.constitution = new Constitution( 1 );
+//        this.setDexterity( new Dexterity( 1 ) );
         this.type = "Actor";
 	}
     
+    
+	public ActorStats getStats() {
+		return stats;
+	}
+
+	public void setStats(ActorStats stats) {
+		this.stats = stats;
+	}
+
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
+	}
+
 	public void setTile( GameTile aGameTile ) {
     	
         currentTile = aGameTile;
@@ -110,32 +128,32 @@ public class Actor extends ThingHolder {
 	
     public void setThirst( int tLevel ) {
     	
-        this.thirst = tLevel;
+        this.getStats().setThirst( tLevel );
     }
 
     public int getThirst() {
 
-        return this.thirst;
+        return this.getStats().getThirst();
     }
     
     public void setHunger( int hLevel ) {
     	
-        this.hunger = hLevel;
+        this.getStats().setHunger( hLevel );
     }
 
     public int getHunger() {
 
-        return this.hunger;
+        return this.getStats().getHunger();
     }
 
 	public double getHitPoints() {
 		
-		return hitPoints;
+		return this.getStats().getHPCurrent();
 	}
 
 	public void setHitPoints( int hitPoints ) {
 		
-		this.hitPoints = hitPoints;
+		this.getStats().setHPCurrent( hitPoints );
 	}
 
 	public boolean isAttackable() {
@@ -144,50 +162,6 @@ public class Actor extends ThingHolder {
 
 	public void setAttackable( boolean attackable ) {
 		this.attackable = attackable;
-	}
-
-	public Strength getStrength() {
-		return strength;
-	}
-
-	public void setStrength( Strength strength ) {
-		this.strength = strength;
-	}
-
-	public Dexterity getDexterity() {
-		return dexterity;
-	}
-
-	public void setDexterity( Dexterity dexterity ) {
-		this.dexterity = dexterity;
-	}
-
-	public Constitution getConstitution() {
-		return constitution;
-	}
-
-	public void setConstitution( Constitution constitution ) {
-		this.constitution = constitution;
-	}
-
-	public Intelligence getIntelligence() {
-		return intelligence;
-	}
-
-	public void setIntelligence( Intelligence intelligence ) {
-		this.intelligence = intelligence;
-	}
-
-	public Wisdom getWisdom() {
-		return wisdom;
-	}
-
-	public void setWisdom( Wisdom wisdom ) {
-		this.wisdom = wisdom;
-	}
-
-	public Charisma getCharisma() {
-		return charisma;
 	}
 	
 	public void setIsAlive( boolean isAlive ) {
@@ -198,20 +172,16 @@ public class Actor extends ThingHolder {
 		return this.isAlive;
 	}
 	
-	public void setCharisma( Charisma charisma ) {
-		this.charisma = charisma;
-	}
-	
-	public void decrementHitPoints( double amount ) {
-		this.hitPoints = hitPoints - amount;
+	public void decrementHitPoints( int amount ) {
+		this.getStats().setHPCurrent( this.getStats().getHPCurrent() - amount );
 	}
 	
 	public void incrementHunger( int amount ) {
-		this.hunger = hunger + amount;
+		this.getStats().setHunger( this.getStats().getHunger() + amount);
 	}
 	
 	public void incrementThirst( int amount ) {
-		this.thirst = thirst + amount;
+		this.getStats().setThirst( this.getStats().getThirst() + amount);
 	}
 	
 	public void die() {

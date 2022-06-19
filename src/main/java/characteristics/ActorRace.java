@@ -1,6 +1,11 @@
 package main.java.characteristics;
 
-public abstract class Race {
+import java.util.LinkedList;
+
+public abstract class ActorRace {
+	
+	private LinkedList< StatModifier > raceModifiers;
+	private String averageSize;
 	
 	private int strengthBenefit;
 	private int dexterityBenefit;
@@ -64,6 +69,22 @@ public abstract class Race {
 
 	public void setLuckBenefit( int luckBenefit ) {
 		this.luckBenefit = luckBenefit;
+	}
+
+	public LinkedList< StatModifier > getRaceModifiers() {
+		return raceModifiers;
+	}
+
+	public void setRaceModifiers(LinkedList< StatModifier > raceModifiers) {
+		this.raceModifiers = raceModifiers;
+	}
+
+	public String getAverageSize() {
+		return averageSize;
+	}
+
+	public void setAverageSize(String averageSize) {
+		this.averageSize = averageSize;
 	}
 
 }
