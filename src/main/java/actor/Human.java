@@ -1,6 +1,7 @@
-package main.java.gameObjects;
+package main.java.actor;
 
 import main.java.body.HumanBody;
+import main.java.gameObjects.ThingList;
 import main.java.world.GameTile;
 
 public class Human extends Actor{

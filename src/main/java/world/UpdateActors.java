@@ -1,7 +1,7 @@
 package main.java.world;
 
-import main.java.gameObjects.Actor;
-import main.java.gameObjects.NonPlayerActor;
+import main.java.actor.Actor;
+import main.java.actor.NonPlayerActor;
 import main.java.gameObjects.Thing;
 
 public class UpdateActors extends UpdateWorld {

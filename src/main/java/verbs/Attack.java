@@ -3,9 +3,9 @@ package main.java.verbs;
 import java.awt.Color;
 import java.util.Random;
 
+import main.java.actor.Actor;
+import main.java.actor.NonPlayerActor;
 import main.java.game.Game;
-import main.java.gameObjects.Actor;
-import main.java.gameObjects.NonPlayerActor;
 
 public class Attack extends Action {
 

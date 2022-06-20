@@ -1,6 +1,7 @@
 package main.java.weapons;
 
 import main.java.calculator.Dice;
+import main.java.damage.Damage;
 import main.java.gameObjects.Thing;
 
 public abstract class Weapon extends Thing {
@@ -11,6 +12,7 @@ public abstract class Weapon extends Thing {
 	
 	private String weaponType;
 	private String damageType;
+	private Damage damage;
 	private int damagePotential;
 	private int damageRange;
 	private double weaponHealth;
@@ -125,6 +127,14 @@ public abstract class Weapon extends Thing {
 
 	public void setVersatile(boolean isVersatile) {
 		this.isVersatile = isVersatile;
+	}
+
+	public Damage getDamage() {
+		return damage;
+	}
+
+	public void setDamage(Damage damage) {
+		this.damage = damage;
 	}
 	
 	

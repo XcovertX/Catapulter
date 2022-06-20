@@ -1,6 +1,6 @@
 package main.java.weapons;
 
-import main.java.gameObjects.Actor;
+import main.java.actor.Actor;
 
 public abstract class Gun extends FiredWeapon {
 	

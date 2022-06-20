@@ -1,4 +1,4 @@
-package main.java.gameObjects;
+package main.java.actor;
 
 import java.awt.Color;
 
@@ -11,6 +11,8 @@ import main.java.characteristics.Intelligence;
 import main.java.characteristics.Strength;
 import main.java.characteristics.Wisdom;
 import main.java.game.Game;
+import main.java.gameObjects.ThingHolder;
+import main.java.gameObjects.ThingList;
 import main.java.verbs.Conversation;
 import main.java.verbs.Fight;
 import main.java.world.GameTile;

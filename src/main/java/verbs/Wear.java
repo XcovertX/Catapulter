@@ -1,7 +1,7 @@
 package main.java.verbs;
 
+import main.java.actor.Human;
 import main.java.game.Game;
-import main.java.gameObjects.Human;
 import main.java.gameObjects.Thing;
 import main.java.wearableObjects.WearableThing;
 

@@ -1,6 +1,6 @@
 package main.java.world;
 
-import main.java.gameObjects.Actor;
+import main.java.actor.Actor;
 import main.java.gameObjects.Thing;
 import main.java.verbs.Fight;
 

@@ -3,14 +3,14 @@ package main.java.utility;
 import java.util.HashMap;
 import java.util.Map;
 
-import main.java.gameObjects.Actor;
+import main.java.actor.Actor;
+import main.java.actor.NonPlayerActor;
 import main.java.gameObjects.Bottle;
 import main.java.gameObjects.Chest;
 import main.java.gameObjects.Container;
 import main.java.gameObjects.Furniture;
 import main.java.gameObjects.Key;
 import main.java.gameObjects.Lock;
-import main.java.gameObjects.NonPlayerActor;
 import main.java.gameObjects.Table;
 import main.java.gameObjects.Thing;
 import main.java.gameObjects.ThingHolder;

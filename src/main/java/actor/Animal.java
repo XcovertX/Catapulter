@@ -1,5 +1,6 @@
-package main.java.gameObjects;
+package main.java.actor;
 
+import main.java.gameObjects.ThingList;
 import main.java.world.GameTile;
 
 public abstract class Animal extends NonPlayerActor {

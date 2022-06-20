@@ -1,9 +1,9 @@
 package main.java.world;
 
-import main.java.gameObjects.MovementController;
-import main.java.gameObjects.NonPlayerActor;
+import main.java.actor.NonPlayerActor;
 import main.java.gameObjects.ThingHolder;
 import main.java.gameObjects.ThingList;
+import main.java.inputProcessor.MovementController;
 
 
 public class GameRoom extends ThingHolder {

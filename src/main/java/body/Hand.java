@@ -1,5 +1,7 @@
 package main.java.body;
 
+import main.java.weapons.Weapon;
+
 public class Hand extends BodyPartGroup {
 	
 	private Thumb thumb;
@@ -7,6 +9,8 @@ public class Hand extends BodyPartGroup {
 	private Finger indexFinger;
 	private Finger ringFinger;
 	private Finger pinky;
+	
+	private Weapon weildedWeapon;
 	
 	
 	public Hand() {
@@ -56,6 +60,14 @@ public class Hand extends BodyPartGroup {
 
 	public void setThumb(Thumb thumb) {
 		this.thumb = thumb;
+	}
+
+	public Weapon getWeildedWeapon() {
+		return weildedWeapon;
+	}
+
+	public void setWeildedWeapon(Weapon weildedWeapon) {
+		this.weildedWeapon = weildedWeapon;
 	}
 
 }

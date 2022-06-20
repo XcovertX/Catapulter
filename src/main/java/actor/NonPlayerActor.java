@@ -1,7 +1,9 @@
-package main.java.gameObjects;
+package main.java.actor;
 
 import main.java.characteristics.Constitution;
 import main.java.characteristics.Dexterity;
+import main.java.gameObjects.ThingList;
+import main.java.inputProcessor.MovementController;
 import main.java.world.GameTile;
 
 public abstract class NonPlayerActor extends Actor {

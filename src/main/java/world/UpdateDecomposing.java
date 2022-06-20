@@ -1,7 +1,7 @@
 package main.java.world;
 
+import main.java.actor.Actor;
 import main.java.game.Game;
-import main.java.gameObjects.Actor;
 import main.java.gameObjects.Bone;
 import main.java.gameObjects.Skull;
 import main.java.gameObjects.Thing;

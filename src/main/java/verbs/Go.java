@@ -2,8 +2,8 @@ package main.java.verbs;
 
 import java.awt.Color;
 
+import main.java.actor.Actor;
 import main.java.game.Game;
-import main.java.gameObjects.Actor;
 import main.java.globals.Direction;
 import main.java.world.GameMap;
 import main.java.world.GameRoom;

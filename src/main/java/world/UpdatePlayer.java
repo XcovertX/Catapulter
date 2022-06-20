@@ -2,8 +2,8 @@ package main.java.world;
 
 import java.awt.Color;
 
+import main.java.actor.Actor;
 import main.java.game.Game;
-import main.java.gameObjects.Actor;
 import main.java.gameObjects.Thing;
 import main.java.globals.CatapulterColor;
 

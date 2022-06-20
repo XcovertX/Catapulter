@@ -46,10 +46,10 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
-import main.java.gameObjects.Actor;
+import main.java.actor.Actor;
+import main.java.actor.NonPlayerActor;
 import main.java.gameObjects.Chest;
 import main.java.gameObjects.Key;
-import main.java.gameObjects.NonPlayerActor;
 import main.java.gameObjects.Table;
 import main.java.gameObjects.Thing;
 import main.java.gameObjects.ThingHolder;

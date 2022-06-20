@@ -13,8 +13,8 @@ import java.io.InputStreamReader;
 
 import javax.swing.JTextField;
 
+import main.java.actor.Actor;
 import main.java.game.Game;
-import main.java.gameObjects.Actor;
 import main.java.world.GameMap;
 import main.java.world.GameRoom;
 import main.java.world.GameTile;

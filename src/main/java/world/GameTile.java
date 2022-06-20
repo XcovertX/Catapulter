@@ -3,9 +3,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import main.java.actor.Actor;
+import main.java.actor.NonPlayerActor;
 import main.java.game.Game;
-import main.java.gameObjects.Actor;
-import main.java.gameObjects.NonPlayerActor;
 import main.java.gameObjects.Thing;
 import main.java.gameObjects.ThingHolder;
 import main.java.gameObjects.ThingList;

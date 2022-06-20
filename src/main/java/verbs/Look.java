@@ -2,11 +2,11 @@ package main.java.verbs;
 
 import java.awt.Color;
 
+import main.java.actor.Actor;
+import main.java.actor.Human;
 import main.java.game.Game;
-import main.java.gameObjects.Actor;
 import main.java.gameObjects.Container;
 import main.java.gameObjects.HomogeneousContentContainer;
-import main.java.gameObjects.Human;
 import main.java.gameObjects.Thing;
 import main.java.gameObjects.ThingHolder;
 import main.java.globals.CatapulterColor;
