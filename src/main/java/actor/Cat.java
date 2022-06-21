@@ -9,6 +9,7 @@ public class Cat extends Animal {
 		super(aName, aDescription, aGameTile, tList, npaSymbol);
 		this.setHoldable(true);
 		this.setHitPoints ( 3 );
+		this.setControllerType( "cat" );
 		this.actorSymbol = " c ";
 		this.type = "Cat";
 	}
@@ -17,7 +18,8 @@ public class Cat extends Animal {
 		
 		this.setHoldable(true);
 		this.setHitPoints ( 3 );
-		this.getStats().setArmorClass( 2 );;
+		this.getStats().setArmorClass( 2 );
+		this.setControllerType( "cat" );
 		this.actorSymbol = " c ";
 		this.type = "Cat";
 	}

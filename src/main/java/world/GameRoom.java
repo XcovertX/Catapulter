@@ -4,6 +4,7 @@ import main.java.actor.NonPlayerActor;
 import main.java.gameObjects.ThingHolder;
 import main.java.gameObjects.ThingList;
 import main.java.inputProcessor.MovementController;
+import main.java.inputProcessor.MovementControllerList;
 
 
 public class GameRoom extends ThingHolder {
@@ -30,14 +31,15 @@ public class GameRoom extends ThingHolder {
 	}
 	
 	public void initializeNPCMovement() {
+		
+		MovementControllerList mcl = new MovementControllerList();
 
 		for( int i = 0; i < this.things.size(); i++) {
 			GameTile tile = ( GameTile ) this.things.get( i );
 			for( int j = 0; j < tile.getNPCs().size(); j++ ) {
 				if( tile.getNPCs().get( j ).isNPC() ) {
 					NonPlayerActor npc = ( NonPlayerActor ) tile.getNPCs().get( j );
-					npc.setMC( new MovementController( npc ) );
-					System.out.println( npc );
+					npc.setMC( mcl.getController( npc ) );
 				}
 			}
 		}

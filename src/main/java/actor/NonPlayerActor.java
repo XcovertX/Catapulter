@@ -10,17 +10,23 @@ public abstract class NonPlayerActor extends Actor {
 	
 	protected transient MovementController mc;
 	
-	protected boolean movementType;
+	protected String movementType; // inRoomWonder, inMapWonder, customWonder, purposeDriven
 	private int movementFreq;
 	private int movementDelay;
 	private int lastMovement;
 	private String recentlyVisited;
+	
+	private int walkSpeed;
+	private int runSpeed;
+	
+	private String controllerType;
 	
 
 	public NonPlayerActor(String aName, String aDescription, GameTile aGameTile, ThingList tList, String npaSymbol ) {
 		super(aName, aDescription, aGameTile, tList, npaSymbol );
 		this.setNPC( true );
 		this.lastMovement = 0;
+		this.movementType = "inRoomWonder";
 		this.recentlyVisited = null;
 		this.type = "NonPlayerActor";
 	}
@@ -28,6 +34,7 @@ public abstract class NonPlayerActor extends Actor {
 	public NonPlayerActor() {
 		this.setNPC( true );
 		this.lastMovement = 0;
+		this.movementType = "inRoomWonder";
 		this.recentlyVisited = null;
 		this.type = "NonPlayerActor";
 	}
@@ -42,11 +49,11 @@ public abstract class NonPlayerActor extends Actor {
 	
 	public abstract void actionList();
 
-	public boolean movementType() {
+	public String getMovementType() {
 		return movementType;
 	}
 
-	public void setMovementType(boolean movementType) {
+	public void setMovementType(String movementType) {
 		this.movementType = movementType;
 	}
 
@@ -84,6 +91,30 @@ public abstract class NonPlayerActor extends Actor {
 
 	public void setRecentlyVisited(String recentlyVisited) {
 		this.recentlyVisited = recentlyVisited;
+	}
+
+	public int getWalkSpeed() {
+		return walkSpeed;
+	}
+
+	public void setWalkSpeed(int walkSpeed) {
+		this.walkSpeed = walkSpeed;
+	}
+
+	public int getRunSpeed() {
+		return runSpeed;
+	}
+
+	public void setRunSpeed(int runSpeed) {
+		this.runSpeed = runSpeed;
+	}
+
+	public String getControllerType() {
+		return controllerType;
+	}
+
+	public void setControllerType(String controllerType) {
+		this.controllerType = controllerType;
 	}
 
 }

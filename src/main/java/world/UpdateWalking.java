@@ -4,6 +4,7 @@ import main.java.actor.Actor;
 import main.java.actor.NonPlayerActor;
 import main.java.gameObjects.Thing;
 import main.java.inputProcessor.MovementController;
+import main.java.inputProcessor.MovementControllerList;
 
 public class UpdateWalking extends UpdateWorld {
 	
@@ -16,19 +17,41 @@ public class UpdateWalking extends UpdateWorld {
 			Actor actor = ( Actor ) aThing;
 			if( actor.isNPC() ) {
 				NonPlayerActor npc = ( NonPlayerActor ) actor;
-			
+				
+				MovementControllerList mcl = new MovementControllerList( npc );
 				
 				if( npc.getMC() == null ) {
-					npc.setMC( new MovementController( npc ) );
+//					MovementControllerList mcl = new MovementControllerList();
+					npc.setMC( mcl.getController( npc ) );
+					if( npc.getMC() == null ) {
+						System.out.println(npc.getControllerType());
+						System.out.println("===============================$$$$JK$J$J$J$");
+					}
 				}
 				
 				mc = npc.getMC();
 				mc.incrementCounter();
 			
 				if( mc.getCounter() > npc.getStats().getDexterity() ) {
-					if( npc.isWandering() ) {	
+					if( mc.getMovementType().equals( "inRoomWander" ) ) {	
 						
-						mc.randomRoomNumber( mc.getCurrentTile().getTileExits() );
+						mc.moveToRandomTile( mc.getCurrentTile().getTileExits() );
+					
+					} else if( mc.getMovementType().equals( "inRoomWander" ) ) {	
+						
+						mc.inRoomWander( mc.getCurrentTile().getTileExits() );
+					
+					} else if( mc.getMovementType().equals( "inMapWander" ) ) {	
+						
+						mc.moveToRandomTile( mc.getCurrentTile().getTileExits() );
+					
+					} else if( mc.getMovementType().equals( "customWander" ) ) {	
+						
+						mc.customWander( mc.getCurrentTile().getTileExits() );
+					
+					} else if( mc.getMovementType().equals( "purposeDriven" ) ) {	
+						
+						mc.moveToRandomTile( mc.getCurrentTile().getTileExits() );
 					
 					} else {
 						

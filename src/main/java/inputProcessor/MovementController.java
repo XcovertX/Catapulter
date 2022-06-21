@@ -19,9 +19,9 @@ import main.java.world.GameRoom;
 import main.java.world.GameTile;
 import main.java.world.GameWorld;
 
-public class MovementController {
+public abstract class MovementController {
 	
-	private NonPlayerActor npa;
+	private NonPlayerActor npc;
 	private Timer timer;
 	private GameWorld currentWorld;
 	private GameMap currentMap;
@@ -33,43 +33,34 @@ public class MovementController {
     // controller state
     private boolean movementRandom;
     private boolean movementCustom;
-    private int speed;
-    private int freq;
+    private String movementType;
+    private int walkSpeed;
+    private int runSpeed;
     private int delay;
-    private int counter;
+    private int stopCounter;
+    private int counter = 0;
     
     List< String > commands = new ArrayList<>(Arrays.asList(
             "take", "drop", "look",
             "n", "s", "w", "e" ) );
     List< String > objects = new ArrayList<>( Arrays.asList() );
 	
-	public MovementController( NonPlayerActor npc ) {
-		
-		this.npa = npc;
-		this.currentTile = npa.getCurrentGameTile();
-		this.currentRoom = this.currentTile.getRoom();
-		this.currentMap = currentRoom.getMap();
-		this.currentWorld = currentMap.getWorld();
-		
-		this.recentlyVisited = null;
-		this.setSpeed( 10 );
-		this.setMovementRandom( npa.movementType() );
-		this.setMovementCustom( false );
-		this.setFreq( 5000 );					//why?
-		this.setDelay( npa.movementDelay() );
-		this.currentTile.setTileChar();
-		
+	public MovementController() { }
+	
+	public void inRoomWander( ArrayList< String > currentExits ) {
+		moveToRandomTile( currentExits );
 	}
+	
+	public abstract void customWander( ArrayList< String > currentExits );
 	
 	
 	//TODO add other directions
-	public void randomRoomNumber( ArrayList< String > currentExits ) {
+	public void moveToRandomTile( ArrayList< String > currentExits ) {
 		
 		Random rand = new Random();
 		int randomNumber = rand.nextInt( currentExits.size() );
 		String randomDirection = currentExits.get( randomNumber );
 		
-		System.out.println( currentExits );
 		if( currentExits.size() == 1 ) {
 			randomDirection = currentExits.get(0);
 			recentlyVisited = null;
@@ -96,7 +87,7 @@ public class MovementController {
 			
 		} else {
 			this.recentlyVisited = null; //remove this one diagonal movement implemented
-			randomRoomNumber( currentExits );
+			moveToRandomTile( currentExits );
 		}
 	}
 	
@@ -149,7 +140,7 @@ public class MovementController {
         // return: Constant representing the room number moved to
         // or NOEXIT (see moveTo())
         //        
-        return moveTo(this.npa, dir);
+        return moveTo(this.npc, dir);
     }
 
     private void goN() {
@@ -171,23 +162,23 @@ public class MovementController {
     public void updateOutput( int tileNumber ) { 
 
     	GameTile previousTile = currentTile;
-    	previousTile.getNPCs().remove( npa ); 
+    	previousTile.getNPCs().remove( npc ); 
     	previousTile.setTileChar();
-        currentTile = npa.getTile(); 
-        currentTile.addNPC( npa );
+        currentTile = npc.getTile(); 
+        currentTile.addNPC( npc );
         currentTile.setTileChar();
         
         if( currentRoom.equals( Game.currentRoom ) ) {
         	Game.currentGame.roomChange();
-        	if( Game.currentGame.getPlayer().getTile().equals(npa.getTile() ) ) {
-        		Game.currentGame.getUI().printColor( npa.getName(), Color.green );
+        	if( Game.currentGame.getPlayer().getTile().equals(npc.getTile() ) ) {
+        		Game.currentGame.getUI().printColor( npc.getName(), Color.green );
         		Game.currentGame.getUI().print( " has entered from the " );
         		Game.currentGame.getUI().printlnColor( cameFrom().toString(), Color.CYAN);
-        		Cat temp = ( Cat ) npa;
+        		Cat temp = ( Cat ) npc;
         		
         		temp.sayMeow();
         	} else if( Game.currentGame.getPlayer().getTile().equals( previousTile ) ) {
-        		Game.currentGame.getUI().printColor( npa.getName(), Color.green );
+        		Game.currentGame.getUI().printColor( npc.getName(), Color.green );
         		Game.currentGame.getUI().print( " has exited to the " );
         		Game.currentGame.getUI().printlnColor( wentTo().toString(), Color.CYAN);
         	}
@@ -361,16 +352,8 @@ public class MovementController {
 		this.timer = new Timer();
 	}
 	
-	public void setNPA( NonPlayerActor npa ) {
-		this.npa = npa;
-	}
-
-	public int getFreq() {
-		return freq;
-	}
-
-	public void setFreq(int freq) {
-		this.freq = freq;
+	public void setNPC( NonPlayerActor npc ) {
+		this.npc = npc;
 	}
 
 	public int getDelay() {
@@ -381,12 +364,20 @@ public class MovementController {
 		this.delay = delay;
 	}
 
-	public int getSpeed() {
-		return speed;
+	public int getWalkSpeed() {
+		return walkSpeed;
 	}
 
-	public void setSpeed(int speed) {
-		this.speed = speed;
+	public void setWalkSpeed(int walkSpeed) {
+		this.walkSpeed = walkSpeed;
+	}
+	
+	public int getRunSpeed() {
+		return runSpeed;
+	}
+
+	public void setRunSpeed(int runSpeed) {
+		this.runSpeed = runSpeed;
 	}
 
 	public int getCounter() {
@@ -399,5 +390,29 @@ public class MovementController {
 	
 	public void incrementCounter() {
 		counter++;
+	}
+	
+	public void setRecentlyVisited( String dir ) {
+		this.recentlyVisited = dir;
+	}
+	
+	public String getRecentlyVisited() {
+		return this.recentlyVisited;
+	}
+
+	public String getMovementType() {
+		return movementType;
+	}
+
+	public void setMovementType(String movementType) {
+		this.movementType = movementType;
+	}
+
+	public int getStopCounter() {
+		return stopCounter;
+	}
+
+	public void setStopCounter(int stopCounter) {
+		this.stopCounter = stopCounter;
 	}
 }
