@@ -19542,7 +19542,7 @@
             {
               "npcs": [
                 {
-                  "movementType": "inRoomWander",
+                  "movementType": "customWander",
                   "movementFreq": 400,
                   "movementDelay": 0,
                   "actorSymbol": " c ",

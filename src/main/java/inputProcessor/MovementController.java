@@ -29,6 +29,7 @@ public abstract class MovementController {
 	private GameTile currentTile;
 	
 	private String recentlyVisited;
+	private int movementTotal;
 	
     // controller state
     private boolean movementRandom;
@@ -355,6 +356,10 @@ public abstract class MovementController {
 	public void setNPC( NonPlayerActor npc ) {
 		this.npc = npc;
 	}
+	
+	public NonPlayerActor getNPC() {
+		return this.npc;
+	}
 
 	public int getDelay() {
 		return delay;
@@ -414,5 +419,17 @@ public abstract class MovementController {
 
 	public void setStopCounter(int stopCounter) {
 		this.stopCounter = stopCounter;
+	}
+
+	public int getMovementTotal() {
+		return movementTotal;
+	}
+
+	public void setMovementTotal(int movementTotal) {
+		this.movementTotal = movementTotal;
+	}
+	
+	public void incrementMovementTotalCounter() {
+		this.movementTotal++;
 	}
 }

@@ -28,7 +28,6 @@ public class MovementControllerList {
 		try {
 			return controllers.get( controllerType );
 		} catch( IllegalArgumentException e ) {
-			System.out.println("====##################========================");
 			return null;
 		} 
 	}

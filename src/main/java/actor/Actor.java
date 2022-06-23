@@ -50,6 +50,7 @@ public class Actor extends ThingHolder {
 	private boolean isWalking;
 	private boolean isRunning;
 	private boolean isWandering;
+	private boolean isSitting;
 	
 	private Fight fight; 					//current fight
 	private Conversation conversation;		//current conversation
@@ -77,6 +78,7 @@ public class Actor extends ThingHolder {
     	
         super( "", "", new ThingList() ); 
         this.setIsAlive( true );
+        this.setIsSitting( false );
         this.isActor = true;
         this.setStats( new ActorStats() );
         this.setThirst( 0 );
@@ -338,6 +340,14 @@ public class Actor extends ThingHolder {
 
 	public void setRace(String race) {
 		this.race = race;
+	}
+
+	public boolean isSitting() {
+		return isSitting;
+	}
+
+	public void setIsSitting(boolean isSitting) {
+		this.isSitting = isSitting;
 	}
     
 }
