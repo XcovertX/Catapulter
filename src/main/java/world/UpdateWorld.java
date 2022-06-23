@@ -6,6 +6,4 @@ public abstract class UpdateWorld {
 	
 	public abstract void run( Thing aThing );
 	
-	
-
 }

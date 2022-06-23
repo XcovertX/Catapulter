@@ -18,30 +18,28 @@ public class UpdateWalking extends UpdateWorld {
 			if( actor.isNPC() ) {
 				NonPlayerActor npc = ( NonPlayerActor ) actor;
 				
-				MovementControllerList mcl = new MovementControllerList( npc );
-				
+//				MovementControllerList mcl = new MovementControllerList( npc );
 				if( npc.getMC() == null ) {
-//					MovementControllerList mcl = new MovementControllerList();
+					MovementControllerList mcl = new MovementControllerList( npc );
 					npc.setMC( mcl.getController( npc ) );
-					if( npc.getMC() == null ) {
-						System.out.println(npc.getControllerType());
-						System.out.println("===============================$$$$JK$J$J$J$");
-					}
+
+					System.out.println(npc.getControllerType());
 				}
 				
 				mc = npc.getMC();
 				mc.incrementCounter();
 			
 				if( mc.getCounter() > npc.getStats().getDexterity() ) {
+
 					if( mc.getMovementType().equals( "inRoomWander" ) ) {	
-						
+
 						mc.moveToRandomTile( mc.getCurrentTile().getTileExits() );
 					
-					} else if( mc.getMovementType().equals( "inRoomWander" ) ) {	
+					} else if( mc.getMovementType().equals( "inMapWander" ) ) {	
 						
 						mc.inRoomWander( mc.getCurrentTile().getTileExits() );
 					
-					} else if( mc.getMovementType().equals( "inMapWander" ) ) {	
+					} else if( mc.getMovementType().equals( "inWorldWander" ) ) {	
 						
 						mc.moveToRandomTile( mc.getCurrentTile().getTileExits() );
 					

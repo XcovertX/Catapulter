@@ -20,7 +20,6 @@ public class CatMovementController extends MovementController {
 		this.setMovementType( cat.getMovementType() );
 		this.setDelay( cat.movementDelay() );
 		this.getCurrentTile().setTileChar();
-		
 	}
 
 	@Override
