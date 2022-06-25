@@ -105,12 +105,12 @@ public class Actor extends ThingHolder {
 
 	public void setTile( GameTile aGameTile ) {
     	
-        currentTile = aGameTile;
+        this.currentTile = aGameTile;
     }
 
     public GameTile getTile() {
 
-        return this.currentTile;
+        return currentTile;
     }
 
 	public String getActorSymbol() {

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import main.java.actor.Cat;
 import main.java.actor.NonPlayerActor;
 import main.java.calculator.D20;
+import main.java.globals.Direction;
 
 public class CatMovementController extends MovementController {
 	
@@ -16,17 +17,18 @@ public class CatMovementController extends MovementController {
 		
 		this.setNPC( cat );
 		this.setCurrentTile( cat.getCurrentGameTile() );
+		this.setPreviousTile( cat.getCurrentGameTile() );
 		this.setCurrentRoom( this.getCurrentTile().getRoom() );
 		this.setCurrentMap( this.getCurrentRoom().getMap() );
 		this.setCurrentWorld( this.getCurrentMap().getWorld() );
-		
+		this.setRelativeHeading( Direction.NORTH );
 		this.setRecentlyVisited( cat.getRecentlyVisited() );
 		this.setWalkSpeed( cat.getWalkSpeed() );
 		this.setRunSpeed( cat.getRunSpeed() );
 		this.setMovementType( cat.getMovementType() );
 		this.setDelay( cat.movementDelay() );
 		this.setSitCounter( 0 );
-		this.setMaxSitTime( 50 );
+		this.setMaxSitTime( 10 );
 		this.getCurrentTile().setTileChar();
 	}
 
@@ -36,7 +38,7 @@ public class CatMovementController extends MovementController {
 		if( this.getNPC().isSitting() ) {
 			this.sitCounter++;
 			this.setCounter( 0 );
-			if( new D20().roll() > 15 ) {
+			if( new D20().roll() > 19 ) {
 				( ( Cat ) this.getNPC() ).sayMeow();
 			}
 			if( this.sitCounter > this.maxSitTime ) {
@@ -55,6 +57,11 @@ public class CatMovementController extends MovementController {
 				this.setMovementTotal( 0 );
 			}
 		}
+	}
+	@Override
+	public void purposeDriven( ArrayList< String > currentExits ) {
+		
+		followWallLeft();
 	}
 
 	public int getSitCounter() {

@@ -49,7 +49,7 @@ public class UpdateWalking extends UpdateWorld {
 					
 					} else if( mc.getMovementType().equals( "purposeDriven" ) ) {	
 						
-						mc.moveToRandomTile( mc.getCurrentTile().getTileExits() );
+						mc.purposeDriven( mc.getCurrentTile().getTileExits() );
 					
 					} else {
 						

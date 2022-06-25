@@ -20,10 +20,11 @@ public class Cat extends Animal {
 		
 		this.setHoldable(true);
 		this.setHitPoints ( 3 );
-		this.getStats().setDexterity( 15 );
+		this.getStats().setDexterity( 10 );
 		this.getStats().setArmorClass( 2 );
 		this.setControllerType( "cat" );
 		this.setMovementType("inRoomWander");
+		this.setRecentlyVisited( "n" );
 		this.actorSymbol = " c ";
 		this.type = "Cat";
 	}
