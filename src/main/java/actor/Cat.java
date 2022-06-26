@@ -24,7 +24,7 @@ public class Cat extends Animal {
 		this.getStats().setArmorClass( 2 );
 		this.setControllerType( "cat" );
 		this.setMovementType("inRoomWander");
-		this.setRecentlyVisited( "n" );
+		this.setDistanceBounds( "inMap" );
 		this.actorSymbol = " c ";
 		this.type = "Cat";
 	}

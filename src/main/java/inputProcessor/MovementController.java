@@ -42,6 +42,7 @@ public abstract class MovementController {
     private int stopCounter;
     private int counter = 0;
     private String lastDirection;
+    private String distanceBounds; // inWorld, inMap, inRoom
     
     // relative heading
     private Direction relativeHeading;
@@ -311,30 +312,30 @@ public abstract class MovementController {
                 exit = gt.getSE();
                 break;
             default:
-                exit = Direction.NOEXIT; // noexit - stay in same room
+                exit = Direction.NOEXIT;
                 break;
         }
+        
         if ( exit != Direction.NOEXIT ) {
         	
-        	if( ( ( ( GameTile ) getCurrentRoom().getTiles().get( exit ) ).isDoor() ) ) { //NOTE: you can stop using this if you want the NPA to stay in room.
+        	if( ( ( ( GameTile ) getCurrentRoom().getTiles().get( exit ) ).isDoor() ) ) { 
         		
-        		GameTile door = (GameTile) ( this.currentRoom.getTiles().get( exit ) );
-//        		this.previousTile = this.currentTile;
-        		
-        		this.currentMap  = ( GameMap )  ( Game.currentWorld.getMaps().get( Game.currentWorld.getMaps().findIndexOf( door.getExternalMapName() ) ) );
-        		this.currentRoom = ( GameRoom ) ( this.currentMap.getRooms().get( this.currentMap.getRooms().findIndexOf( door.getExternalRoomName() ) ) );
-//        		this.currentTile = ( GameTile ) ( this.currentRoom.getTiles().get( door.getExternalTile() ) );
-        		
-//        		Game.currentMap.setWorld( Game.currentWorld );
-//        		Game.currentRoom.setMap( Game.currentMap );
-//        		Game.currentTile.setRoom( Game.currentRoom ); 
-        		
-        		moveActorTo( anActor, ( GameTile ) ( this.currentRoom.getTiles().get( door.getExternalTile() ) ) );
+        		if( !npc.getDistanceBounds().equals( "inRoom" ) ) {
+	        		
+	        		GameTile door = (GameTile) ( this.currentRoom.getTiles().get( exit ) );
+	        		
+	        		this.currentMap  = ( GameMap )  ( Game.currentWorld.getMaps().get( Game.currentWorld.getMaps().findIndexOf( door.getExternalMapName() ) ) );
+	        		this.currentRoom = ( GameRoom ) ( this.currentMap.getRooms().get( this.currentMap.getRooms().findIndexOf( door.getExternalRoomName() ) ) );
+	        		
+	        		moveActorTo( anActor, ( GameTile ) ( this.currentRoom.getTiles().get( door.getExternalTile() ) ) );
+	        		
+        		} else {
+        			
+        			moveActorTo( anActor, ( GameTile ) this.currentRoom.getTiles().get( exit ) );	
+        		}
         		
         	} else {
         		
-        		System.out.println( "move to" + exit );
-        		System.out.println( ( ( GameTile ) this.currentRoom.getTiles().get( exit ) ).getTileNumber() );
         		moveActorTo( anActor, ( GameTile ) this.currentRoom.getTiles().get( exit ) );
         	}
         }
@@ -342,9 +343,7 @@ public abstract class MovementController {
     }
 
     public int movePlayerTo( Direction dir ) {
-        // return: Constant representing the room number moved to
-        // or NOEXIT (see moveTo())
-        //        
+      
         return moveTo( this.npc, dir );
     }
 
@@ -365,22 +364,16 @@ public abstract class MovementController {
     }
 
     public void updateOutput( int tileNumber ) { 
-
-    	System.out.println( "pt: " + previousTile.getTileNumber() );
-    	System.out.println( "ct: " + currentTile.getTileNumber() );
-//    	previousTile.setTileCharToDefaultTileChar();
-//        currentTile.setTileChar();
-        
+ 
         if( this.currentRoom.equals( Game.currentRoom ) ||
         	this.previousTile.getRoom().equals( Game.currentRoom )	) {
-//        	Game.currentGame.roomChange(); 												// is this used?
         	if( Game.currentGame.getPlayer().getTile().equals( npc.getTile() ) ) {
         		Game.currentGame.getUI().printColor( npc.getName(), Color.green );
         		Game.currentGame.getUI().print( " has entered from the " );
         		Game.currentGame.getUI().printlnColor( cameFrom().toString(), Color.CYAN);
         		Cat temp = ( Cat ) npc;
-        		
         		temp.sayMeow();
+        		
         	} else if( Game.currentGame.getPlayer().getTile().equals( previousTile ) ) {
         		Game.currentGame.getUI().printColor( npc.getName(), Color.green );
         		Game.currentGame.getUI().print( " has exited to the " );
@@ -674,5 +667,13 @@ public abstract class MovementController {
 	
 	public GameTile getPreviousTile() {
 		return this.previousTile;
+	}
+
+	public String getDistanceBounds() {
+		return distanceBounds;
+	}
+
+	public void setDistanceBounds(String distanceBounds) {
+		this.distanceBounds = distanceBounds;
 	}
 }

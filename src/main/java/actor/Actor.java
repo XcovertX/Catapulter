@@ -55,6 +55,7 @@ public class Actor extends ThingHolder {
 	private Fight fight; 					//current fight
 	private Conversation conversation;		//current conversation
 	protected long deathDate;
+	private String distanceBounds;
 	
 
     public Actor( String aName, String aDescription, GameTile aGameTile, ThingList tList, String aActorSymbol ) {
@@ -348,6 +349,14 @@ public class Actor extends ThingHolder {
 
 	public void setIsSitting(boolean isSitting) {
 		this.isSitting = isSitting;
+	}
+
+	public String getDistanceBounds() {
+		return distanceBounds;
+	}
+
+	public void setDistanceBounds(String distanceBounds) {
+		this.distanceBounds = distanceBounds;
 	}
     
 }
