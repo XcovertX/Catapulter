@@ -424,7 +424,7 @@ public class Thing {
 					
 					for( int j = 0; j < aTile.getNPCs().size(); j++ ) {
 						Thing thing = aTile.getNPCs().get( j );
-						commands.getUpdateCommand( "nonplayer_actors" ).run( thing );
+						commands.getUpdateCommand( "actors" ).run( thing );
 					}
 					
 				} else {

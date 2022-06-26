@@ -10,7 +10,6 @@ public abstract class NonPlayerActor extends Actor {
 	
 	protected transient MovementController mc;
 	
-	protected String movementType; // inRoomWonder, inMapWonder, customWonder, purposeDriven
 	private int movementFreq;
 	private int movementDelay;
 	private int lastMovement;
@@ -48,14 +47,6 @@ public abstract class NonPlayerActor extends Actor {
 	}
 	
 	public abstract void actionList();
-
-	public String getMovementType() {
-		return movementType;
-	}
-
-	public void setMovementType(String movementType) {
-		this.movementType = movementType;
-	}
 
 	public int movementFreq() {
 		return movementFreq;

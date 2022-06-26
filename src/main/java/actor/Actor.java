@@ -26,6 +26,7 @@ public class Actor extends ThingHolder {
 	private Body body;
 	
 	private ActorStats stats;
+	protected String movementType; // inRoomWonder, inMapWonder, customWonder, purposeDriven
 	
 //	protected double hitPoints;
 //	protected int thirst;
@@ -357,6 +358,14 @@ public class Actor extends ThingHolder {
 
 	public void setDistanceBounds(String distanceBounds) {
 		this.distanceBounds = distanceBounds;
+	}
+	
+	public String getMovementType() {
+		return movementType;
+	}
+
+	public void setMovementType(String movementType) {
+		this.movementType = movementType;
 	}
     
 }

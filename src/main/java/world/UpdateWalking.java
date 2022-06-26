@@ -28,11 +28,12 @@ public class UpdateWalking extends UpdateWorld {
 				
 				mc = npc.getMC();
 				mc.incrementCounter();
-			
+				
 				if( mc.getCounter() > npc.getStats().getDexterity() ) {
-
+					System.out.println("updating walking");
 					if( mc.getMovementType().equals( "inRoomWander" ) ) {	
 
+						System.out.println("updating in room wander");
 						mc.moveToRandomTile( mc.getCurrentTile().getTileExits() );
 					
 					} else if( mc.getMovementType().equals( "inMapWander" ) ) {	
@@ -44,7 +45,7 @@ public class UpdateWalking extends UpdateWorld {
 						mc.moveToRandomTile( mc.getCurrentTile().getTileExits() );
 					
 					} else if( mc.getMovementType().equals( "customWander" ) ) {	
-						
+						System.out.println("updating custom");
 						mc.customWander( mc.getCurrentTile().getTileExits() );
 					
 					} else if( mc.getMovementType().equals( "purposeDriven" ) ) {	

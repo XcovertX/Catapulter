@@ -109,49 +109,4 @@ public class ThingList extends LinkedList< Thing > {
 		
 		return aThingIndex;
 	}
-	
-//	public boolean isEmpty() {
-//		return list.isEmpty();
-//	}
-//	
-//	public Thing getLast() {
-//		return list.getLast();
-//	}
-//	
-//	public void add( Thing aThing ) {
-//		this.list.add( aThing );
-//	}
-//	
-//	public Thing get( int index ) {
-//		return this.list.get( index );
-//	}
-//	
-//	public void remove( int index ) {
-//		this.list.remove( index );
-//	}
-//	
-//	public void remove( Thing aThing ) {
-//		int index = findIndexOf( aThing.getName() );
-//		remove( index );
-//	}
-//	
-//	public LinkedList< Thing > getThings() {
-//		return this.list;
-//	}
-//	
-//	public int size() {
-//		return this.list.size();
-//	}
-//
-//	public void removeFirst() {
-//		this.list.removeFirst();
-//	}
-//
-//	public Thing getFirst() {
-//		return this.list.getFirst();
-//	}
-//	
-//	public void removeFirstOccurrence( Thing aThing ) {
-//		this.list.removeFirstOccurrence( aThing );
-//	}
 }
