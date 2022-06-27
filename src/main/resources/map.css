@@ -7,6 +7,10 @@
 	-fx-control-inner-background: transparent;
 
 }
+.styled-text-area .text {
+    -fx-fill: #15fc03;
+
+}
 
 .map *.text {
     -fx-text-alignment: center;

@@ -3,6 +3,8 @@ package main.java.UserInterface;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.fxmisc.richtext.InlineCssTextArea;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -82,7 +84,7 @@ public class Controller {
 		});
 	}
 	
-	public TextArea getGuiMap() {
+	public InlineCssTextArea getGuiMap() {
 		
 		return tmc.getMap();	
 	}

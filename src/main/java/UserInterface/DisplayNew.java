@@ -114,7 +114,7 @@ public class DisplayNew {
         characterViewerPanel.setBackground( new Color( 50, 50, 50 ) );
         
         // make character.txt an attribute of Actor
-        String c = new SignReader( "/files/graphics/", "character.txt").getText();
+        String c = new SignReader( "/files/graphics/", "character.txt" ).getText();
         character = new JTextArea( c );
         character.setFont( new Font( "Consolas", Font.BOLD, 10 ) );
         character.setBackground( new Color( 50, 50, 50 ) );

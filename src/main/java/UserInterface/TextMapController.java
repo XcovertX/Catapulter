@@ -8,13 +8,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import org.fxmisc.richtext.InlineCssTextArea;
 
 public class TextMapController {
 	
 	@FXML private BorderPane mapPane;
 	
-	@FXML private TextArea map;
+	@FXML private InlineCssTextArea map;
 	
 	@FXML private URL location;
 	
@@ -27,38 +29,41 @@ public class TextMapController {
 		return mapPane;
 	}
 	
-	public TextArea getMap() {
+	public InlineCssTextArea getMap() {
 		
 		return map;
 	}
 	
 	public void setMapChars( String mapChars ) {
 		
-		Text tempT = new Text(mapChars);
-		tempT.setFont( map.getFont() );
-		StackPane tempSP = new StackPane(tempT);
+		Text tempT = new Text( mapChars );
+		tempT.setFont( new Font("Consolas", 38) );
+		StackPane tempSP = new StackPane( tempT );
 		tempSP.layout();
 
-		double roomlength = tempT.getLayoutBounds().getWidth() + 60;
-		double roomWidth = tempT.getLayoutBounds().getHeight() + 60;
+		double roomlength = tempT.getLayoutBounds().getWidth();
+		double roomWidth = tempT.getLayoutBounds().getHeight();
 		
-		System.out.println( "Room length: " + roomlength);
-		System.out.println( "Room width: " + roomWidth);
+		System.out.println( "Room length: " + roomlength + 60);
+		System.out.println( "Room width: " + roomWidth + 60);
 		
-		map.setPrefWidth(roomlength);
-		map.setPrefHeight(roomWidth);
-		map.setText( mapChars );
+
+		map.deleteText(0, map.getLength());
+		map.appendText( mapChars );
+		map.setPrefWidth( roomlength );
+		map.setPrefWidth( roomWidth );
+		map.setDisable(true);
 	}
 	
 	@FXML
 	private void initialize() {
 		
-		System.out.println("TextMapController Initialized");
+		System.out.println( "TextMapController Initialized" );
 		
 		Platform.runLater(() -> {
 			
-			map.setPrefWidth(350);
-			map.setPrefHeight(350);
+			map.setPrefWidth( 350 );
+			map.setPrefHeight( 350 );
 			
 		});
 	}
