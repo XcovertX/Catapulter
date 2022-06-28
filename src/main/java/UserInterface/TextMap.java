@@ -30,7 +30,7 @@ public class TextMap {
     	}
 		
 	    textMap = mapRep;
-		Game.currentGame.getUI().getGuiController().setMapChars( mapRep );
+		Game.currentGame.getUI().getGuiController().setMapChars( mapRep, aRoom.getRoomWidth(), aRoom.getRoomLength() );
 	}
 	
 	public void mapPan() {

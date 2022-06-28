@@ -34,24 +34,24 @@ public class TextMapController {
 		return map;
 	}
 	
-	public void setMapChars( String mapChars ) {
+	public void setMapChars( String mapChars, int width, int height ) {
 		
 		Text tempT = new Text( mapChars );
-		tempT.setFont( new Font("Consolas", 38) );
+		tempT.setFont( new Font("Consolas", 18) );
 		StackPane tempSP = new StackPane( tempT );
 		tempSP.layout();
 
-		double roomlength = tempT.getLayoutBounds().getWidth();
-		double roomWidth = tempT.getLayoutBounds().getHeight();
+		double roomlength = tempT.getLayoutBounds().getHeight();
+		double roomWidth = tempT.getLayoutBounds().getWidth();
 		
-		System.out.println( "Room length: " + roomlength + 60);
-		System.out.println( "Room width: " + roomWidth + 60);
+		System.out.println( "Room length: " + roomlength );
+		System.out.println( "Room width: " + roomWidth );
 		
 
 		map.deleteText(0, map.getLength());
 		map.appendText( mapChars );
-		map.setPrefWidth( roomlength );
 		map.setPrefWidth( roomWidth );
+		map.setPrefHeight( roomlength );
 		map.setDisable(true);
 	}
 	

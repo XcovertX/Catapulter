@@ -38,11 +38,11 @@ public class Controller {
 	
 	public Controller() { }
 	
-	public void setMapChars( String map ) {
+	public void setMapChars( String map, int width, int height ) {
 
 		Platform.runLater(() -> {
 			
-			tmc.setMapChars( map );
+			tmc.setMapChars( map, width, height);
 		});
 	}
 	

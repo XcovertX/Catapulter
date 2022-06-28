@@ -180,7 +180,7 @@ public class DisplayNew {
 	    }
 		map.setText( mapRep ); // TODO remove once new GUI is in place
 		
-		Game.currentGame.getUI().getGuiController().setMapChars( mapRep );
+		Game.currentGame.getUI().getGuiController().setMapChars( mapRep, aRoom.getRoomWidth(), aRoom.getRoomLength() ) ;
 		
 	}
 
