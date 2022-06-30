@@ -1,6 +1,7 @@
 package main.java.UserInterface;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import org.fxmisc.richtext.InlineCssTextArea;
@@ -38,11 +39,11 @@ public class Controller {
 	
 	public Controller() { }
 	
-	public void setMapChars( String map, int width, int height ) {
+	public void setMapChars( String map, ArrayList< ArrayList< TileChar > > tileChars  ) {
 
 		Platform.runLater(() -> {
 			
-			tmc.setMapChars( map, width, height);
+			tmc.setMapChars( map, tileChars );
 		});
 	}
 	

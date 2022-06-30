@@ -1,6 +1,9 @@
 package main.java.UserInterface;
 
+import java.util.ArrayList;
+
 import main.java.game.Game;
+import main.java.gameObjects.ThingList;
 import main.java.world.GameRoom;
 import main.java.world.GameTile;
 
@@ -8,6 +11,7 @@ public class TextMap {
 
 	private GameRoom gr;
 	private String textMap;
+	private ArrayList< String > mapColors;
 	
 	public TextMap() {
 		
@@ -16,21 +20,30 @@ public class TextMap {
 	public void setRoom( GameRoom aRoom ) {
 		
 		String mapRep = "";
+		ArrayList< ArrayList< TileChar > > tileChars = new ArrayList<>();
 		int roomNumberTotal = aRoom.getRoomLength() * aRoom.getRoomWidth();
 		
 	    for( int i = aRoom.getRoomWidth(); i > 0; i-- ) {
 	    	
+	    	ArrayList< TileChar > row = new ArrayList<>();
+	    	
 	    	for( int j = aRoom.getRoomLength(); j > 0; j-- ) {
 	    		
 	    		int index = roomNumberTotal - j;
-	    		mapRep += ( ( GameTile ) aRoom.getTiles().get( index ) ).getTileChar();
+	    		
+	    		GameTile gt = ( GameTile ) aRoom.getTiles().get( index );
+	    		
+	    		mapRep += gt.getCurrentTileChar();
+	    		
+	    		row.add( gt.getCurrentTileChar() );
 	    	}
+	    	tileChars.add( row );
 	    	mapRep += "\r\n";
 	    	roomNumberTotal = roomNumberTotal - aRoom.getRoomLength();
     	}
-		
+	    System.out.println("");
 	    textMap = mapRep;
-		Game.currentGame.getUI().getGuiController().setMapChars( mapRep, aRoom.getRoomWidth(), aRoom.getRoomLength() );
+		Game.currentGame.getUI().getGuiController().setMapChars( mapRep, tileChars );
 	}
 	
 	public void mapPan() {

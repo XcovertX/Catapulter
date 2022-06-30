@@ -29,7 +29,7 @@ public class CatMovementController extends MovementController {
 		this.setDelay( cat.movementDelay() );
 		this.setSitCounter( 0 );
 		this.setMaxSitTime( 10 );
-		this.getCurrentTile().setTileChar();
+		this.getCurrentTile().setCurrentTileChar();
 	}
 
 	@Override

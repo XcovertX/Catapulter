@@ -1,5 +1,8 @@
 package main.java.gameObjects;
 
+import java.awt.Color;
+
+import main.java.UserInterface.TileChar;
 import main.java.world.GameMap;
 import main.java.world.GameRoom;
 import main.java.world.GameTile;
@@ -48,7 +51,8 @@ public class Thing {
     protected boolean hasSmallText;
     protected boolean hasThingList;
     
-    protected String tileChar;
+//    protected String tileChar;
+    private TileChar tileChar;
    
     
     public String type = "Thing";
@@ -57,6 +61,7 @@ public class Thing {
     	this.name = "";
     	this.altNames = new String[0];
     	this.description = "";
+    	this.tileChar = new TileChar();
     	this.readableLargeText = "";
     	this.readableSmallText = "";
     	this.readableLargeTextLocation = "";
@@ -508,11 +513,11 @@ public class Thing {
 		this.descriptors = descriptors;
 	}
 
-	public String getTileChar() {
+	public TileChar getTileChar() {
 		return tileChar;
 	}
 
-	public void setTileChar(String tileChar) {
+	public void setTileChar( TileChar tileChar ) {
 		this.tileChar = tileChar;
 	}
 }

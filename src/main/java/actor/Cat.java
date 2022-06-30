@@ -1,18 +1,18 @@
 package main.java.actor;
 
+import main.java.UserInterface.TileChar;
 import main.java.game.Game;
 import main.java.gameObjects.ThingList;
 import main.java.world.GameTile;
 
 public class Cat extends Animal {
 
-	public Cat(String aName, String aDescription, GameTile aGameTile, ThingList tList, String npaSymbol, int freq) {
-		super(aName, aDescription, aGameTile, tList, npaSymbol);
+	public Cat(String aName, String aDescription, GameTile aGameTile, ThingList tList, String npcSymbol, int freq) {
+		super(aName, aDescription, aGameTile, tList, npcSymbol);
 		this.setHoldable(true);
 		this.setHitPoints ( 3 );
 		this.setControllerType( "cat" );
-		this.setMovementType("inRoomWander");
-		this.actorSymbol = " c ";
+		this.setMovementType( "inRoomWander" );
 		this.type = "Cat";
 	}
 	
@@ -23,9 +23,9 @@ public class Cat extends Animal {
 		this.getStats().setDexterity( 10 );
 		this.getStats().setArmorClass( 2 );
 		this.setControllerType( "cat" );
-		this.setMovementType("inRoomWander");
+		this.setMovementType( "inRoomWander" );
 		this.setDistanceBounds( "inMap" );
-		this.actorSymbol = " c ";
+		this.setTileChar( new TileChar( " c " ) );
 		this.type = "Cat";
 	}
 

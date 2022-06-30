@@ -1,6 +1,7 @@
 package main.java.UserInterface;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
@@ -10,6 +11,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import main.java.world.GameTile;
+
 import org.fxmisc.richtext.InlineCssTextArea;
 
 public class TextMapController {
@@ -34,25 +37,34 @@ public class TextMapController {
 		return map;
 	}
 	
-	public void setMapChars( String mapChars, int width, int height ) {
+	public void setMapChars( String mapChars, ArrayList< ArrayList< TileChar > > tileChars ) {
 		
 		Text tempT = new Text( mapChars );
-		tempT.setFont( new Font("Consolas", 18) );
+		tempT.setFont( new Font( "Consolas", 18) );
 		StackPane tempSP = new StackPane( tempT );
 		tempSP.layout();
 
 		double roomlength = tempT.getLayoutBounds().getHeight();
 		double roomWidth = tempT.getLayoutBounds().getWidth();
 		
-		System.out.println( "Room length: " + roomlength );
-		System.out.println( "Room width: " + roomWidth );
+		map.deleteText( 0, map.getLength() );
 		
+		for( int i = 0; i < tileChars.size(); i++ ) {
+			ArrayList< TileChar > row = tileChars.get(i);
+			for( int j = 0; j < tileChars.size(); j++ ) {
+				TileChar tc = row.get(j);
+				map.appendText( tc.getChar() );
+				if( tc.getTileCharColor() != null ) {
+					map.setStyle( map.getLength() - 3, map.getLength(), "-fx-fill: " + tc.getTileCharColor() );
+				}
+			}
+			map.appendText("\n");
+		}
 
-		map.deleteText(0, map.getLength());
-		map.appendText( mapChars );
+
 		map.setPrefWidth( roomWidth );
 		map.setPrefHeight( roomlength );
-		map.setDisable(true);
+		map.setDisable( true );
 	}
 	
 	@FXML

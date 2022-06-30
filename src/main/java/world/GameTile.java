@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import main.java.UserInterface.TileChar;
 import main.java.actor.Actor;
 import main.java.actor.NonPlayerActor;
 import main.java.game.Game;
@@ -19,14 +20,12 @@ public class GameTile extends ThingHolder {
 	private int n, s, w, e, nw, ne, sw, se, u, d, special;
     private int tileNumber;
     private boolean notTile;
-    private List< String > currentTileCharPriorityQueue = new ArrayList<>();
-    private String defaultTileChar;
+    private TileChar currentTileChar;
+    private TileChar defaultTileChar;
+   
     
     // for moving to new maps
     private boolean isDoor = false;
-//    private boolean exitMap = false;
-//    private boolean exitRoom = false;
-//    private String externalMapLocation = "";
     private String externalMapName = "";
     private String externalRoomName = "";
     private int externalTile = 0;
@@ -45,8 +44,9 @@ public class GameTile extends ThingHolder {
         this.d = Direction.NOEXIT;
         this.special = Direction.NOEXIT;
         this.npcs = new ThingList();
-    	this.defaultTileChar = "   ";
-    	this.tileChar = defaultTileChar;
+    	this.setDefaultTileChar( new TileChar( "   " ) );
+    	this.setCurrentTileChar( this.defaultTileChar );
+//    	this.setCurrentTileChar();
     	this.type = "Tile";
     }
     public GameTile( String aName, String aDescription, GameRoom aRoom, ThingList thingList, 
@@ -70,9 +70,9 @@ public class GameTile extends ThingHolder {
         this.special = Direction.NOEXIT;
         
         this.tileNumber = aTileNumber;
-        
-        this.defaultTileChar = defaultTileChar;
-        this.tileChar = this.defaultTileChar;
+    	this.setDefaultTileChar( new TileChar( "   " ) );
+    	this.setCurrentTileChar( this.defaultTileChar );
+//    	this.setCurrentTileChar();
     }
 
     // --- accessor methods ---
@@ -265,25 +265,29 @@ public class GameTile extends ThingHolder {
 
     }
     
-    public void setTileCharToDefaultTileChar() {
-    	this.tileChar = defaultTileChar;
+    public void setCurrentTileCharToDefaultTileChar() {
+    	
+    	this.currentTileChar = defaultTileChar;
     }
     
-    public void setTileChar() {
+    public void setCurrentTileChar() {
     	
     	if( Game.currentGame.getPlayer().getTile().equals( this ) ) {
-    		this.tileChar = Game.currentGame.getPlayer().getActorSymbol();
-    	} else if( npcs.isEmpty() == false ) {
+    		this.setCurrentTileChar( Game.currentGame.getPlayer().getTileChar() );
+    	} else if( !npcs.isEmpty() ) {
     		Actor mostRecentActor = ( Actor ) this.npcs.getLast();
-    		this.tileChar = mostRecentActor.getActorSymbol();
-    	} else if( npcs.isEmpty() == true ) {
-    		this.tileChar = defaultTileChar;
+    		this.setCurrentTileChar( mostRecentActor.getTileChar() );
+    	} else if( !things.isEmpty() ) {
+    		Thing item = this.things.getLast();
+    		this.setCurrentTileChar( item.getTileChar() );
+    	} else {
+    		this.setCurrentTileCharToDefaultTileChar();
     	}
     }
     
-    public String getTileChar() {
-    	setTileChar();
-    	return this.tileChar;
+    public TileChar getCurrentTileChar() {
+    	setCurrentTileChar();
+    	return this.currentTileChar;
     }
     
     public int getTileNumber() {
@@ -353,8 +357,7 @@ public class GameTile extends ThingHolder {
 	
 	public Actor getNPC( int index ) {
 			
-		return (Actor) npcs.get(index);
-			
+		return (Actor) npcs.get(index);	
 	}
 
 	public GameRoom getRoom() {
@@ -366,40 +369,43 @@ public class GameTile extends ThingHolder {
 		
 		this.room = room;
 	}
-	public List< String > getCharPriorityQueue() {
-		return currentTileCharPriorityQueue;
-	}
-	public void setcTileChar( List< String > charPriorityQueue ) {
-		this.currentTileCharPriorityQueue = charPriorityQueue;
-	}
 	
-	public void setDefaultTileChar( String tileChar ) {
+//	public List< String > getCharPriorityQueue() {
+//		
+//		return currentTileCharPriorityQueue;
+//	}
+//	
+//	public void setcTileChar( List< String > charPriorityQueue ) {
+//		
+//		this.currentTileCharPriorityQueue = charPriorityQueue;
+//	}
+	
+	public void setDefaultTileChar( TileChar tileChar ) {
+		
 		this.defaultTileChar = tileChar;
 	}
 	
-	public String getDefaultTileChar() {
+	public TileChar getDefaultTileChar() {
+		
 		return this.defaultTileChar;
 	}
 	
 	public void setTileNumber( int tileNumber ) {
+		
 		this.tileNumber = tileNumber;
 	}
-//	public boolean isExitMap() {
-//		return exitMap;
-//	}
-//	public void setExitMap(boolean exitMap) {
-//		this.exitMap = exitMap;
-//	}
-//	public boolean isExitRoom() {
-//		return exitRoom;
-//	}
-//	public void setExitRoom(boolean exitRoom) {
-//		this.exitRoom = exitRoom;
-//	}
+	
 	public String getExternalRoomName() {
+		
 		return externalRoomName;
 	}
+	
 	public void setExternalRoomName(String externalRoomName) {
+		
 		this.externalRoomName = externalRoomName;
+	}
+	
+	public void setCurrentTileChar(TileChar currentTileChar) {
+		this.currentTileChar = currentTileChar;
 	}
 }

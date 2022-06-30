@@ -65,7 +65,7 @@ public class Go extends Action {
 	 // move a Person to a Room
     void moveActorTo( Actor p, GameTile aGameTile ) {
         p.setTile( aGameTile );
-        aGameTile.setTileChar();
+        aGameTile.setCurrentTileChar();
         
     }
 
@@ -105,7 +105,7 @@ public class Go extends Action {
         		//TODO This doesn't make sense --
         		GameTile door = (GameTile) ( Game.currentRoom.getTiles().get( exit ) );
 //        		Game.currentWorld =  worldReader.getWorld( door.getExternalMapLocation(), door.getExternalMapName() );
-        		Game.currentTile.setTileCharToDefaultTileChar();
+        		Game.currentTile.setCurrentTileCharToDefaultTileChar();
         		Game.currentMap  = ( GameMap )  ( Game.currentWorld.getMaps().get( Game.currentWorld.getMaps().findIndexOf( door.getExternalMapName() ) ) );
         		Game.currentRoom = ( GameRoom ) ( Game.currentMap.getRooms().get( Game.currentMap.getRooms().findIndexOf( door.getExternalRoomName() ) ) );
         		Game.currentTile = ( GameTile ) ( Game.currentRoom.getTiles().get( door.getExternalTile() ) );
@@ -120,14 +120,14 @@ public class Go extends Action {
 //        		currentMap = currentRoom.getMap();
         		
         		moveActorTo( anActor, Game.currentTile );
-        		Game.currentTile.setTileChar(); //sets previous tile char
+        		Game.currentTile.setCurrentTileChar(); //sets previous tile char
         		
         	} else {
         		
         		GameTile previousTile = Game.currentTile;
         		Game.currentTile = (GameTile) Game.currentRoom.getTiles().get( exit );
         		moveActorTo( anActor, Game.currentTile );
-        		previousTile.setTileChar(); //sets previous tile char
+        		previousTile.setCurrentTileChar(); //sets previous tile char
         	}
         }
         return exit;

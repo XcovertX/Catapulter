@@ -87,14 +87,14 @@ public class InputProcessor {
         }
         if ( exit != Direction.NOEXIT ) {
         	
-    		gt.setTileChar(); //TODO Make this a variable
+    		gt.setCurrentTileChar(); //TODO Make this a variable
         	if( ( ( ( GameTile) Game.currentRoom.getTiles().get( exit ) ) ).isDoor() ) { //NOTE: you can stop using this if you want the NPA to stay in room.
         		
         		//TODO This doesn't make sense --
         		// What needs to be done: each json should be a map
         		
         		GameTile door = (GameTile) ( Game.currentRoom.getTiles().get( exit ) );
-        		Game.currentTile.setTileCharToDefaultTileChar();
+        		Game.currentTile.setCurrentTileCharToDefaultTileChar();
 //        		Game.currentWorld =  worldReader.getWorld( door.getExternalMapLocation(), door.getExternalMapName() );
         		Game.currentMap  = ( GameMap )  ( Game.currentWorld.getMaps().get( Game.currentWorld.getMaps().findIndexOf( door.getExternalMapName() ) ) );
         		Game.currentRoom = ( GameRoom ) ( Game.currentMap.getRooms().get( Game.currentMap.getRooms().findIndexOf( door.getExternalRoomName() ) ) );
@@ -154,7 +154,7 @@ public class InputProcessor {
 
         } else {
         	
-    		gt.setTileChar(); // updates tile char
+    		gt.setCurrentTileChar(); // updates tile char
     		userInterface.printColor( "Time: " + Game.calendar.getTime(), Color.ORANGE );
     		userInterface.printColor( "Wind Direction: " + Game.calendar.getWeather().getCurrentWindDirection() + " ::: ", Color.ORANGE );
     		userInterface.printlnColor( "Wind Speed: " + Game.calendar.getWeather().getCurrentWindIntensity(), Color.ORANGE );

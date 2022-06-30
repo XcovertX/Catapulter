@@ -46,6 +46,7 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
+import main.java.UserInterface.TileChar;
 import main.java.actor.Actor;
 import main.java.actor.NonPlayerActor;
 import main.java.gameObjects.Chest;
@@ -1520,7 +1521,7 @@ public class RoomBuilderView extends JFrame implements ActionListener, ListSelec
     }
     
     public void setCurrentTileDefaultTileChar() {
-    	this.currentTileDefaultTileChar = currentTile.getDefaultTileChar();
+    	this.currentTileDefaultTileChar = currentTile.getDefaultTileChar().getChar();
     }
     
     // saving methods
@@ -1573,8 +1574,8 @@ public class RoomBuilderView extends JFrame implements ActionListener, ListSelec
     
     public void saveDefaultTileChar() {
     	
-    	this.currentTile.setDefaultTileChar( currentTileDefaultTileChar );
-    	this.currentTile.setTileCharToDefaultTileChar();
+    	this.currentTile.setDefaultTileChar( new TileChar( currentTileDefaultTileChar ) );
+    	this.currentTile.setCurrentTileCharToDefaultTileChar();
     }
     
 	public void buildLayout( int numberOfTiles ) {

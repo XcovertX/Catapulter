@@ -3,6 +3,7 @@ package main.java.globals;
 import java.awt.Color;
 
 public class CatapulterColor {
+	
 	public static final Color RED10 = new Color(255, 229, 229);
 	public static final Color RED20 = new Color(255, 204, 204);
 	public static final Color RED30 = new Color(255, 179, 179);

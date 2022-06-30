@@ -2,6 +2,7 @@ package main.java.actor;
 
 import java.awt.Color;
 
+import main.java.UserInterface.TileChar;
 import main.java.body.Body;
 import main.java.characteristics.ActorStats;
 import main.java.characteristics.Charisma;
@@ -27,17 +28,6 @@ public class Actor extends ThingHolder {
 	
 	private ActorStats stats;
 	protected String movementType; // inRoomWonder, inMapWonder, customWonder, purposeDriven
-	
-//	protected double hitPoints;
-//	protected int thirst;
-//	protected int hunger;
-	
-//	protected Strength strength;
-//	protected Dexterity dexterity;
-//	protected Constitution constitution;
-//	protected Intelligence intelligence;
-//	protected Wisdom wisdom;
-//	protected Charisma charisma;
 
 	protected int decomposed;
 	private int thirstCounter;
@@ -70,9 +60,7 @@ public class Actor extends ThingHolder {
         this.setHitPoints( 5 );
         this.setHunger( 0 );
         this.setDecomposed( 100 );
-        this.setActorSymbol(aActorSymbol);
-//        this.constitution = new Constitution( 7 );
-//        this.setDexterity( new Dexterity( 4 ) );
+        this.setTileChar( new TileChar( aActorSymbol, "#00b6ff" ) );
         this.type = "Actor";
     }
 
@@ -87,8 +75,7 @@ public class Actor extends ThingHolder {
         this.setHitPoints( 5 );
         this.setHunger( 0 );
         this.setDecomposed( 100 );
-//        this.constitution = new Constitution( 1 );
-//        this.setDexterity( new Dexterity( 1 ) );
+        this.setTileChar( new TileChar() );
         this.type = "Actor";
 	}
     
@@ -114,16 +101,6 @@ public class Actor extends ThingHolder {
 
         return currentTile;
     }
-
-	public String getActorSymbol() {
-		
-		return actorSymbol;
-	}
-
-	public void setActorSymbol( String actorSymbol ) {
-		
-		this.actorSymbol = actorSymbol;
-	}
 	
 	// TODO make some kind of verb list for other character 
 	public void say( String words ) {

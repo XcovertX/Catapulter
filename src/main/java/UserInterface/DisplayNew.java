@@ -46,6 +46,7 @@ public class DisplayNew {
 	private String textMap;
 	private int[] mapEdges;
 	private ArrayList<String> mapList;
+	private ArrayList< ArrayList< TileChar > > tileChars;
 	
 	
 	public DisplayNew() {
@@ -145,6 +146,7 @@ public class DisplayNew {
 		String mapRep = "";
 		textMap = "";
 		mapList = new ArrayList<>();
+		tileChars = new ArrayList<>();
 		String[] mapArray = new String[ aRoom.getRoomWidth() * aRoom.getRoomLength() ];
 		camera();
 		int tileNumberTotal = aRoom.getRoomLength() * aRoom.getRoomWidth();
@@ -153,15 +155,22 @@ public class DisplayNew {
 		int k = 0;
 	    for( int i = aRoom.getRoomWidth(); i > 0; i-- ) {
 	    	
+	    	ArrayList< TileChar > row = new ArrayList<>();
 	    	for( int j = aRoom.getRoomLength(); j > 0; j-- ) {
 	    		
 	    		int index = tileNumberTotal - j;
-	    		mapRep += ( ( GameTile ) aRoom.getTiles().get( index ) ).getTileChar();
+	    		GameTile gt = ( GameTile ) aRoom.getTiles().get( index );
+	    		TileChar tc = gt.getCurrentTileChar();
+	    		row.add( tc );
+	    		String c = tc.getChar();
+	    		mapRep += c;
 	    		textMap += ( " " + Integer.toString( index ) );
 	    		mapList.add( Integer.toString( index ) );
-	    		mapArray[ k ] = ( ( GameTile ) aRoom.getTiles().get( index ) ).getTileChar();
+	    		mapArray[ k ] = ( ( GameTile ) aRoom.getTiles().get( index ) ).getCurrentTileChar().getChar();
+	    		
 	    		k++;
 	    	}
+	    	tileChars.add( row );
 	    	textMap += "\r\n";
 	    	if( i > 1 ) {
 	    		mapRep += "\r\n";
@@ -180,7 +189,7 @@ public class DisplayNew {
 	    }
 		map.setText( mapRep ); // TODO remove once new GUI is in place
 		
-		Game.currentGame.getUI().getGuiController().setMapChars( mapRep, aRoom.getRoomWidth(), aRoom.getRoomLength() ) ;
+		Game.currentGame.getUI().getGuiController().setMapChars( mapRep, tileChars ) ;
 		
 	}
 
