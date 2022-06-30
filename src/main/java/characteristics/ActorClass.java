@@ -5,7 +5,7 @@ import java.util.Map;
 
 import main.java.calculator.Dice;
 
-public abstract class ActorClass {
+public class ActorClass {
 	
 	private Map< String, ActorSkill > skills = new HashMap<>();
 	private Dice hitDie;

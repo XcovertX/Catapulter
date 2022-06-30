@@ -3,7 +3,7 @@ package main.java.UserInterface;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+//import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -13,6 +13,14 @@ import java.io.InputStreamReader;
 
 import javax.swing.JTextField;
 
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import main.java.actor.Actor;
 import main.java.game.Game;
 import main.java.world.GameMap;
@@ -20,7 +28,7 @@ import main.java.world.GameRoom;
 import main.java.world.GameTile;
 import main.java.world.GameWorld;
 
-public class UserInterface implements ActionListener, KeyListener {
+public class UserInterface implements ActionListener {
 	
 	public BufferedReader in;
 	private GameWorld currentWorld;
@@ -35,7 +43,18 @@ public class UserInterface implements ActionListener, KeyListener {
 	
 	// input text from console text field
 	private String text;
-	private String[] commands;
+	private String jfxText;
+	private String[] commands;  
+	
+	private TextMapController guiMapController;
+	private Controller guiController;
+	private ConsoleController guiConsoleController;
+	private TextInputController guiTextInputController;
+	private KeyboardController guiKeyboardController;
+	private BorderPane mapPane;	
+	private BorderPane textInputPane;
+	private BorderPane consolePane;
+	private BorderPane keyboardPane;
 	
 	public UserInterface( Actor player ) {
 		
@@ -46,8 +65,9 @@ public class UserInterface implements ActionListener, KeyListener {
 		
 		this.display = new Display();
 		
-		display.setRoom( currentRoom );
-		consLog = new ConsoleLogic( display );
+		initializeGUI(); //javafx gui
+		
+		consLog = new ConsoleLogic( display, guiController );
 
 		inputTextField = display.getInputField();
 		inputTextField.addActionListener( new ActionListener() {
@@ -72,19 +92,6 @@ public class UserInterface implements ActionListener, KeyListener {
 		}
 	});
 	
-	//  implementation of Key Listener to return key press events 
-	inputTextField.addKeyListener(new KeyListener() {
-		
-		@Override
-		public void keyPressed(KeyEvent e) {
-			consLog.keyPressedPerform(e);	
-		}
-		@Override
-		public void keyReleased(KeyEvent e) {}
-		@Override
-		public void keyTyped(KeyEvent e) {}	
-		
-		});
 	}
 	
 	// global logic
@@ -127,28 +134,178 @@ public class UserInterface implements ActionListener, KeyListener {
 		
 		consLog.print(s, trace(), c);
 	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-	}
 	
 	public Display getDisplay() {
 		
 		return this.display;
 	}
+	
+	public void initializeGUI() {
+		
+		Game.currentGame.window = new Stage();
+
+		FXMLLoader mapLoader =  new FXMLLoader( getClass().getClassLoader().getResource( "Map.fxml" ) );
+		try {
+			mapPane = mapLoader.load();
+		} catch (IOException e) {
+			System.out.println( "Can not find folder" );
+			e.printStackTrace();
+		}
+		
+		FXMLLoader textInputLoader =  new FXMLLoader( getClass().getClassLoader().getResource( "TextInput.fxml" ) );
+		try {
+			textInputPane = textInputLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		FXMLLoader consoleLoader =  new FXMLLoader( getClass().getClassLoader().getResource( "Console.fxml" ) );
+		try {
+			consolePane = consoleLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		FXMLLoader keyboardLoader =  new FXMLLoader( getClass().getClassLoader().getResource( "SmallKeyboard.fxml" ) );
+		try {
+			keyboardPane = keyboardLoader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		FXMLLoader fxmll =  new FXMLLoader( getClass().getClassLoader().getResource( "Main.fxml" ) );
+		try {
+			Game.currentGame.root = fxmll.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		// set main controller reference
+		setGuiController( ( Controller ) fxmll.getController() );
+		
+		// set nested controllers
+		setTextMapController( mapLoader.getController() );
+		setTextInputController( textInputLoader.getController() );
+		setConsoleController( consoleLoader.getController() );
+		setKeyboardController( keyboardLoader.getController() );
+		
+		Game.currentGame.gui = new GraphicalUserInterface( Game.currentGame.root );
+		
+		Game.currentGame.window.setScene( Game.currentGame.gui );
+		
+		Game.currentGame.gui.addEventFilter( KeyEvent.KEY_PRESSED, new EventHandler< KeyEvent >() {
+
+			@Override
+			public void handle( KeyEvent event ) {
+				
+				guiTextInputController.keyPressedPerform( event );
+				guiKeyboardController.keyPressedPerform( event );
+				
+			}
+			
+		});
+		
+		Game.currentGame.gui.addEventFilter( KeyEvent.KEY_RELEASED, new EventHandler< KeyEvent >() {
+
+			@Override
+			public void handle( KeyEvent event ) {
+			
+				guiKeyboardController.keyReleasedPerform( event );
+				
+			}
+			
+		});
+		
+		String css = this.getClass().getClassLoader().getResource("application.css").toExternalForm();
+		Game.currentGame.gui.getStylesheets().add(css);
+		
+		String tabPane_css = this.getClass().getClassLoader().getResource("tabPane.css").toExternalForm();
+		Game.currentGame.gui.getStylesheets().add(tabPane_css);
+		
+		String keyboard_css = this.getClass().getClassLoader().getResource("keyboard.css").toExternalForm();
+		Game.currentGame.gui.getStylesheets().add(keyboard_css);
+		
+		guiController.initializeMapHolder();
+		guiController.initializeConsoleHolder();
+		guiController.initializeKeyboardHolder();
+		
+		Game.currentGame.window.setResizable( true );
+		Game.currentGame.window.setFullScreen( true );
+		Game.currentGame.window.show();
+
+	}
+
+	public TextMapController getGuiMapController() {
+		return guiMapController;
+	}
+
+	public void setGuiMapController(TextMapController guiMapController) {
+		this.guiMapController = guiMapController;
+	}
+
+	public Controller getGuiController() {
+		return guiController;
+	}
+
+	public void setGuiController(Controller guiController) {
+		this.guiController = guiController;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText( String jfxText ) {
+		this.text = jfxText;
+	}
+	
+	public String[] getCommands() {
+		return commands;
+	}
+	
+	public void setCommands( String[] inputCommands ) {
+		commands = inputCommands;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public ConsoleController getConsoleController() {
+		return guiConsoleController;
+	}
+
+	public void setConsoleController( ConsoleController consoleController ) {
+		this.guiConsoleController = consoleController;
+		guiController.setConsoleController( guiConsoleController );
+	}
+
+	public TextInputController getTextInputController() {
+		return guiTextInputController;
+	}
+
+	public void setTextInputController(TextInputController textInputController) {
+		this.guiTextInputController = textInputController;
+		guiController.setTextInputController( guiTextInputController );
+	}
+	
+	public TextMapController getTextMapController() {
+		return guiMapController;
+	}
+
+	public void setTextMapController( TextMapController textMapController ) {
+		this.guiMapController = textMapController;
+		guiController.setTextMapController( guiMapController );
+	}
+
+	public KeyboardController getKeyboardController() {
+		return guiKeyboardController;
+	}
+
+	public void setKeyboardController(KeyboardController keyboardController) {
+		this.guiKeyboardController = keyboardController;
+		guiController.setKeyboardController( guiKeyboardController );
+	}
 }
-
-
-

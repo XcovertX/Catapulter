@@ -12,7 +12,6 @@ import java.util.StringTokenizer;
 
 import javafx.application.Platform;
 import main.java.UserInterface.UserInterface;
-import main.java.UserInterface.UserInterfaceNew;
 import main.java.actor.Actor;
 import main.java.game.Game;
 import main.java.game.WorldReader;
@@ -30,7 +29,7 @@ public class InputProcessor {
 	private WorldReader worldReader;
     private String input;
     private String output;
-    private UserInterfaceNew userInterface;
+    private UserInterface userInterface;
     private boolean roomChange = false;
     private Actor player;  // the player - provides 'first person perspective'
 

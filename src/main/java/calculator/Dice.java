@@ -1,11 +1,13 @@
 package main.java.calculator;
 
-public abstract class Dice {
+public class Dice {
 	
 	private int min;
 	private int max;
 	
-	public abstract int roll();
+	public int roll() {
+		return -1;
+	};
 
 	public int getMin() {
 		return min;

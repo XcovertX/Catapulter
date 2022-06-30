@@ -18,7 +18,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.java.UserInterface.GraphicalUserInterface;
 import main.java.UserInterface.UserInterface;
-import main.java.UserInterface.UserInterfaceNew;
 import main.java.actor.Actor;
 import main.java.actor.Cat;
 import main.java.actor.Human;
@@ -55,7 +54,7 @@ public class Game {
 	public static WorldReader worldReader;
     private String input;
     private String output;
-    private UserInterfaceNew userInterface;
+    private UserInterface userInterface;
     private InputProcessor inputProcessor;
     private boolean roomChange = false;
     private Actor player;  // the player - provides 'first person perspective'
@@ -76,16 +75,16 @@ public class Game {
     		
     		worldReader = new WorldReader();
     		
-    		currentWorld =  worldReader.getWorld( "files/worlds/catapulter", "TestWorld.json" );
+    		currentWorld =  worldReader.getWorld( "files/worlds/catapulter", "Catapulter.json" );
     		currentMap = (GameMap) ( currentWorld.getMaps().get( 0 ) );
     		currentRoom = (GameRoom) ( currentMap.getRooms().get( 0 ) );
-    		currentTile = (GameTile) ( currentRoom.getTiles().get( 12 ) );
+    		currentTile = (GameTile) ( currentRoom.getTiles().get( 48 ) );
     		
     		currentWorld.setLocations();
     		
     		player = new Human( "player", "This is a player", currentTile, new ThingList(), " @ " );
     		
-    		userInterface = new UserInterfaceNew( player );
+    		userInterface = new UserInterface( player );
     		userInterface.getDisplay().setRoom( currentRoom );
  
 	        calendar = new GameCalendar( currentGame );
@@ -150,7 +149,7 @@ public class Game {
     public void render() {
     }
     
-    public UserInterfaceNew getUI() {
+    public UserInterface getUI() {
     	return this.userInterface;
     }
 

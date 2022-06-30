@@ -2,7 +2,7 @@ package main.java.characteristics;
 
 import java.util.LinkedList;
 
-public abstract class ActorRace {
+public class ActorRace {
 	
 	private LinkedList< StatModifier > raceModifiers;
 	private String averageSize;
@@ -14,6 +14,20 @@ public abstract class ActorRace {
 	private int wisdomBenefit;
 	private int charismaBenefit;
 	private int luckBenefit;
+	
+	public ActorRace() {
+		
+		this.setRaceModifiers( new LinkedList<>() );
+		this.setAverageSize( "" );
+		this.setStrengthBenefit( 0 );
+		this.setDexterityBenefit( 0 );
+		this.setConstitutionBenefit( 0 );
+		this.setIntelligenceBenefit( 0 );
+		this.setWisdomBenefit( 0 );
+		this.setCharismaBenefit( 0 );
+		this.setLuckBenefit( 0 );
+		
+	}
 	
 	public int getStrengthBenefit() {
 		return strengthBenefit;

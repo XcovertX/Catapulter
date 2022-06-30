@@ -174,6 +174,7 @@ public class Actor extends ThingHolder {
 		setDeathDate( Game.calendar.getTick() );
 		setDecomposed( 100 );
 		setDecomposing( true );
+		this.getTileChar().setCharColor( "#E1341E" );
 		
 	}
 	

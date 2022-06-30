@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -19,6 +21,8 @@ import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.text.StyledDocument;
 
+import javafx.geometry.Rectangle2D;
+import main.java.game.Game;
 import main.java.utility.SignReader;
 import main.java.world.GameRoom;
 import main.java.world.GameTile;
@@ -39,6 +43,10 @@ public class Display {
 	
 	private JPanel characterViewerPanel;
 	private JTextArea character;
+	private String textMap;
+	private int[] mapEdges;
+	private ArrayList<String> mapList;
+	private ArrayList< ArrayList< TileChar > > tileChars;
 	
 	
 	public Display() {
@@ -107,7 +115,7 @@ public class Display {
         characterViewerPanel.setBackground( new Color( 50, 50, 50 ) );
         
         // make character.txt an attribute of Actor
-        String c = new SignReader( "/files/graphics/", "character.txt").getText();
+        String c = new SignReader( "/files/graphics/", "character.txt" ).getText();
         character = new JTextArea( c );
         character.setFont( new Font( "Consolas", Font.BOLD, 10 ) );
         character.setBackground( new Color( 50, 50, 50 ) );
@@ -136,23 +144,236 @@ public class Display {
 	public void setRoom( GameRoom aRoom ) {
 		
 		String mapRep = "";
-		int roomNumberTotal = aRoom.getRoomLength() * aRoom.getRoomWidth();
+		textMap = "";
+		mapList = new ArrayList<>();
+		tileChars = new ArrayList<>();
+		String[] mapArray = new String[ aRoom.getRoomWidth() * aRoom.getRoomLength() ];
+		camera();
+		int tileNumberTotal = aRoom.getRoomLength() * aRoom.getRoomWidth();
 		mainFrame.setTitle( aRoom.getName() );
 		
-		
+		int k = 0;
 	    for( int i = aRoom.getRoomWidth(); i > 0; i-- ) {
 	    	
+	    	ArrayList< TileChar > row = new ArrayList<>();
 	    	for( int j = aRoom.getRoomLength(); j > 0; j-- ) {
 	    		
-	    		int index = roomNumberTotal - j;
-	    		mapRep += ( ( GameTile ) aRoom.getTiles().get( index ) ).getTileChar();
+	    		int index = tileNumberTotal - j;
+	    		GameTile gt = ( GameTile ) aRoom.getTiles().get( index );
+	    		TileChar tc = gt.getCurrentTileChar();
+	    		row.add( tc );
+	    		String c = tc.getChar();
+	    		mapRep += c;
+	    		textMap += ( " " + Integer.toString( index ) );
+	    		mapList.add( Integer.toString( index ) );
+	    		mapArray[ k ] = ( ( GameTile ) aRoom.getTiles().get( index ) ).getCurrentTileChar().getChar();
+	    		
+	    		k++;
 	    	}
-	    	mapRep += "\r\n";
-	    	roomNumberTotal = roomNumberTotal - aRoom.getRoomLength();
+	    	tileChars.add( row );
+	    	textMap += "\r\n";
+	    	if( i > 1 ) {
+	    		mapRep += "\r\n";
+	    	}
+	    	mapList.add( "\r\n" );
+	    	tileNumberTotal = tileNumberTotal - aRoom.getRoomLength();
     	}
 		
-		map.setText( mapRep );
+	    int x = 0;
+	    for(int i = 0; i < aRoom.getRoomWidth(); i++ ) {
+	    	for( int j = 0; j < aRoom.getRoomLength(); j++ ) {
+	    		System.out.print( mapArray[x] );
+	    		x++;
+	    	}
+	    	System.out.println();
+	    }
+		map.setText( mapRep ); // TODO remove once new GUI is in place
+		
+		Game.currentGame.getUI().getGuiController().setMapChars( mapRep, tileChars ) ;
+		
 	}
+
+	public void camera() {
+		
+		int length = 10;
+		int width = 10;
+		
+		Rectangle2D cam = new Rectangle2D( 0, 0, length, width );
+		
+		
+		
+		mapEdges = calculateMapEdgeDistances(); // 0 = n, 1 = s, 2 = e, 3 = w
+		
+		int roomWidth = Game.currentRoom.getRoomWidth();
+		int roomLength = Game.currentRoom.getRoomLength();	
+		int currentTileNum = Game.currentTile.getTileNumber();
+		int currentRow = mapEdges[ 3 ];
+		int currentColumn = mapEdges[ 1 ];
+		
+		System.out.println( currentRow );
+		System.out.println( currentColumn );
+		System.out.println( Arrays.toString( mapEdges ) );
+		
+		ArrayList<String> westWallTrimmed;
+		
+		if( roomWidth > 10 ) {
+			
+			// west wall
+			int westWallDistance = mapEdges[ 3 ];
+			if( westWallDistance > 5 ) {
+				int westWallDifference = westWallDistance - 5;
+				for( int i = 0; i < mapList.size(); i++ ) {
+					
+				}
+			}
+			
+		}
+			
+		
+		if( mapEdges[ 0 ] > 10 ) {
+			
+		}
+		
+		
+	}
+	
+	// direction calculations
+    public int northEquation( GameTile gt ) {
+    
+    	return gt.getTileNumber() + Game.currentRoom.getRoomLength();
+    }
+    
+    public int southEquation( GameTile gt ) {
+    	
+    	return gt.getTileNumber() - Game.currentRoom.getRoomLength();
+    }
+    
+    public int eastEquation( GameTile gt ) {
+    	
+    	return gt.getTileNumber() + 1;
+    }
+    
+    public int westEquation( GameTile gt ) {
+    	
+    	return gt.getTileNumber() - 1;
+    }
+	
+    // map edge calculator
+    
+    public int[] calculateMapEdgeDistances() {
+    	
+    	GameTile startTile = Game.currentTile;
+    	
+    	int[] wallDistances = new int[ 4 ]; 			// 0 = n, 1 = s, 2 = e, 3 = w
+    	
+    	for( int i = 0; i < Game.currentRoom.getRoomWidth(); i++ ) {
+    		
+    		if( northWall( startTile ) ) {
+
+    			wallDistances[ 0 ] = i;
+    			startTile = Game.currentTile;
+    			break;
+    			
+    		} else {
+    			
+    			startTile = ( GameTile ) Game.currentRoom.getTiles().get( northEquation( startTile ) );
+    		}
+    	}
+    	
+    	for( int i = 0; i < Game.currentRoom.getRoomWidth(); i++ ) {
+    		
+    		if( southWall( startTile ) ) {
+    			
+    			wallDistances[ 1 ] = i;
+    			startTile = Game.currentTile;
+    			break;
+    			
+    		} else {
+    			
+    			startTile = ( GameTile ) Game.currentRoom.getTiles().get( southEquation( startTile ) );
+    		}
+    	}
+    	
+    	for( int i = 0; i < Game.currentRoom.getRoomLength(); i++ ) {
+    		
+    		if( eastWall( startTile ) ) {
+    			
+    			wallDistances[ 2 ] = i;
+    			startTile = Game.currentTile;
+    			break;
+    			
+    		} else {
+    			
+    			startTile = ( GameTile ) Game.currentRoom.getTiles().get( eastEquation( startTile ) );
+    		}
+    		
+    	}
+    	
+    	for( int i = 0; i < Game.currentRoom.getRoomLength(); i++ ) {
+    		
+    		if( westWall( startTile ) ) {
+    			
+    			wallDistances[ 3 ] = i;
+    			startTile = Game.currentTile;
+    			break;
+    			
+    		} else {
+    			
+    			startTile = ( GameTile ) Game.currentRoom.getTiles().get( westEquation( startTile ) );
+    		}
+    	}
+    	
+    	return wallDistances;
+    }
+    
+	// map wall detection
+    public boolean northWall( GameTile gt ) {
+    	
+    	if( northEquation( gt ) > Game.currentRoom.getRoomSize() - 1 ) {
+    		
+    		return true;
+    		
+    	} else {
+    		
+    		return false;
+    	}
+    }
+    
+    public boolean southWall( GameTile gt ) {
+    	
+    	if( southEquation( gt ) < 0 ) {
+    		
+    		return true;
+    		
+    	} else {
+    		
+    		return false;
+    	}
+    }
+    
+    public boolean eastWall( GameTile gt ) {
+
+    	if ( ( eastEquation( gt ) ) % ( Game.currentRoom.getRoomLength() )  == 0 ) {
+    		
+    		return true;
+    		
+    	} else {
+    		
+    		return false;
+    	}
+    }
+    
+    public boolean westWall( GameTile gt ) {
+
+    	if ( ( gt.getTileNumber() ) % ( Game.currentRoom.getRoomLength() )  == 0 ) {
+    		
+    		return true;
+    		
+    	} else {
+    		
+    		return false;
+    	}
+    }
 		
     public JTextField getInputField() {
     	return consoleInput;

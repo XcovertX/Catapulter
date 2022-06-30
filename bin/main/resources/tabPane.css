@@ -4,11 +4,12 @@
 
 .tab-pane {
 -fx-background-color:#000c01;
+
 }
 
 .tab {
   -fx-font-family: Consolas;
-  -fx-font-size: 18;
+  -fx-font-size: 12;
   -fx-background-color: #000c01;
   
   -fx-border-color: transparent;

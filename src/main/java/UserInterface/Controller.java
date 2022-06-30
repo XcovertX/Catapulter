@@ -16,6 +16,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import main.java.game.Game;
 
@@ -29,6 +30,7 @@ public class Controller {
 	@FXML private BorderPane consoleHolder;
 	@FXML private TextArea guiMap;
 	@FXML private BorderPane mainHolder;
+	@FXML private BorderPane keyboardHolder;
 	
 	// Controllers
 	@FXML private TextMapController tmc;
@@ -80,7 +82,7 @@ public class Controller {
 		
 		Platform.runLater(() -> {
 			
-			mainHolder.setBottom( kc.getKeyboard() );
+			keyboardHolder.setBottom( kc.getKeyboard() );
 			
 		});
 	}

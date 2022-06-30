@@ -4,13 +4,20 @@
 		-fx-control-inner-background: #000c01;
 		-fx-background-color: #001501;
 		-fx-font-weight: bold;
-		-fx-font-size: 14;
+		-fx-font-size: 10;
 		-fx-font-Family: consolas;
 		-fx-border-color: #000c01;
-		-fx-border-width: 4;
+		-fx-border-width: 1;
+		-fx-background-radius: 0;
+		-fx-background-insets: 0 0 0 0, 0, 1, 2;
 	}
 	
-	.text-field{
+
+	.button:focused {
+    	-fx-background-insets: -0.2, 1, 2, -1.4, 2.6;
+	}
+	
+	.text-field {
 		-fx-text-fill: #bd0002;
 		-fx-control-inner-background: #000c01;
 		-fx-background-color: #001501;
@@ -20,15 +27,15 @@
 	}
 
 	
-	.enterButton{
-		-fx-shape: "M 204 216 L 204 300 L 300 300 L 300 132 L 168 132 L 168 216 L 204 216 ";
-		-fx-padding: 9px;
+	.enterButton {
+		-fx-shape: "M 204 200 L 204 301 L 301 301 L 301 132 L 168 132 L 168 200 L 204 200";
+		-fx-border-width: 0;
 	}
 	
 	#keyboard{
 		-fx-control-inner-background: #032401;
 		-fx-background-color: #000c01;
-		
+		-fx-background-insets: 0 0 0 0, 0, 1, 2;
 	}
 	
 	#pane{

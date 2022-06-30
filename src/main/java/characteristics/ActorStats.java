@@ -26,8 +26,6 @@ public class ActorStats {
 	private int wisdom;
 	private int charisma;
 	
-	
-	
 	private int attackSpeed;
 	
 	

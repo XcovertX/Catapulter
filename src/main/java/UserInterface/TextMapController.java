@@ -40,7 +40,7 @@ public class TextMapController {
 	public void setMapChars( String mapChars, ArrayList< ArrayList< TileChar > > tileChars ) {
 		
 		Text tempT = new Text( mapChars );
-		tempT.setFont( new Font( "Consolas", 18) );
+		tempT.setFont( new Font( "Consolas", 12) );
 		StackPane tempSP = new StackPane( tempT );
 		tempSP.layout();
 

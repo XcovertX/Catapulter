@@ -8,9 +8,12 @@ import javax.swing.JOptionPane;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 
+import javafx.application.Platform;
+
 public class ConsoleLogic {
 
 	Display console;
+	private Controller controller;
 	
 	boolean trace = false;
 
@@ -25,8 +28,9 @@ public class ConsoleLogic {
 	int loop_times_temp = 1;
 
 	
-	public ConsoleLogic(Display con) {
+	public ConsoleLogic( Display con, Controller controller ) {
 		console = con;
+		this.controller = controller;
 	}
 
 	public void scrollTop() {
@@ -34,19 +38,24 @@ public class ConsoleLogic {
 	}
 	
 	public void scrollBottom() {
+		
 		console.getConsoleDisplay().setCaretPosition(console.getConsoleDisplay().getDocument().getLength());
+			
 	}
 	
 	public void print(String s, boolean trace) {
+		
 		print(s, trace, new Color(255, 255, 255));
-		scrollBottom();
+		
 	}
 	
-	public void print(String s, boolean trace, Color c) {
+	public void print( String s, boolean trace, Color c ) {
+		
 		Style style = console.getConsoleDisplay().addStyle("Style", null);
 		StyleConstants.setForeground(style, c);
 		
 		if(trace) {
+			
 			Throwable t = new Throwable();
 			StackTraceElement[] elements = t.getStackTrace();
 			String caller = elements[0].getClassName();
@@ -55,23 +64,36 @@ public class ConsoleLogic {
 		}
 		
 		try {
-			console.document.insertString(console.document.getLength(), s, style);;
+			
+			console.document.insertString(console.document.getLength(), s, style);
+			
 		} catch (Exception ex) {}
+		
+		final String str = s;
+		Platform.runLater(() -> {
+	
+			
+			controller.insertText( str );
+			
+		});
+			
+			scrollBottom();
 	}
 	
 	public void println(String s, boolean trace) {
+		
 		println(s, trace, new Color(255, 255, 255));
-		scrollBottom();
 	}
 	
 	public void println(String s, boolean trace, Color c) {
+		
 		print(s + "\n", trace, c);
-		scrollBottom();
 	}
 	
 	public void clear() {
 		try {
 			console.document.remove(0, console.document.getLength());
+//			controller.getGuiConsole().gey
 		} catch(Exception ex) {}
 	}
 	
@@ -127,14 +149,17 @@ public class ConsoleLogic {
 //    	FileReader file = new FileReader(fName, dName);
 //    	println(file.getText(), trace, Color.WHITE);	
 //    }
-    
-    public void consoleFeatures(String text) {
-		recent_used.add(text);
+	
+	
+	// old gui -- remove when new gui fully implemented
+    public void consoleFeatures( String text ) {
+		recent_used.add( text );
 		recent_used_id = 0;
 		scrollBottom();
 		console.getInputField().selectAll();
     }
     
+    // old gui -- remove when new gui fully implemented
     public void keyPressedPerform(KeyEvent e) {
     	if(e.getKeyCode() == KeyEvent.VK_UP) {
 			if(recent_used_id < (recent_used_maximum - 1) && recent_used_id < (recent_used.size() - 1)) {
@@ -150,11 +175,17 @@ public class ConsoleLogic {
 			console.getInputField().setText(recent_used.get(recent_used.size() - 1 - recent_used_id));
 		}
     }
-
     
     public boolean getTrace() {
     	return trace;
     }
-   
 
+	public Controller getController() {
+		return controller;
+	}
+
+	public void setController(Controller controller) {
+		this.controller = controller;
+	}
 }
+
