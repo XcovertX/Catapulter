@@ -41,7 +41,37 @@
 	
 	}
 	
-	#progressBarRed {
+	#progressBarHealth {
+		
+		
+		-fx-text-fill: #000c01;
+		-fx-background-color: #bd0002;
+		
+	    -fx-background-color: #000c01;
+	    -fx-background-radius: 0;
+	    -fx-background-insets: 0, 1;
+	   
+		-fx-border-color: #15fc03;
+		-fx-border-width: 2;
+		
+	}
+	
+		#progressBarTech {
+		
+		
+		-fx-text-fill: #000c01;
+		-fx-background-color: #bd0002;
+		
+	    -fx-background-color: #000c01;
+	    -fx-background-radius: 0;
+	    -fx-background-insets: 0, 1;
+	   
+		-fx-border-color: #15fc03;
+		-fx-border-width: 2;
+		
+	}
+	
+		#progressBarStamina {
 		
 		
 		-fx-text-fill: #000c01;
@@ -59,18 +89,25 @@
 	#statLabelRed {
 		-fx-text-fill: #000c01;
 		-fx-background-color: #bd0002;
-		
+		-fx-background-radius: 0;
+		-fx-font-family: Consolas;
+		-fx-label-padding: 0 0 0 2;
 	}
 	
 	#statLabelWhite {
 		-fx-text-fill: #000c01;
 		-fx-background-color: #fac8fe;
-		
+		-fx-background-radius: 0;
+		-fx-font-family: Consolas;
+		-fx-label-padding: 0 0 0 2;
 	}
 	
 	#statLabelGreen {
 		-fx-text-fill: #000c01;
 		-fx-background-color: #15fc03;
+		-fx-background-radius: 0;
+		-fx-font-family: Consolas;
+		-fx-label-padding: 0 0 0 2;
 		
 	}
 	
@@ -107,6 +144,7 @@
 	
 	#panel {
 		-fx-background-color: #001501;
+		-fx-background-radius: 0;
 	}
 	
 	#time {
@@ -134,6 +172,14 @@
 	#textFieldWhite {
 		-fx-background-color: #001501;
 		-fx-text-fill: #15fc03;
+	
+	}
+	
+	#headingLabel {
+		-fx-background-color: #001501;
+		-fx-text-fill: #15fc03;
+		-fx-font-family: Consolas;
+	    -fx-font-size: 8;
 	
 	}
 	

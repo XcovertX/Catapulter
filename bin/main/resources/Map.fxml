@@ -1,58 +1,193 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import org.fxmisc.richtext.InlineCssTextArea?>
 
-<BorderPane fx:id="mapPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.UserInterface.TextMapController">
+<BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.UserInterface.TextMapController">
    <center>
-      <VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="350.0" styleClass="pane" stylesheets="@map.css" BorderPane.alignment="CENTER">
-         <children>
-            <InlineCssTextArea fx:id="map" styleClass="map" stylesheets="@map.css" textInsertionStyle="">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </InlineCssTextArea>
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-         </BorderPane.margin>
-      </VBox>
-   </center>
-   <bottom>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <Pane prefHeight="200.0" prefWidth="200.0" styleClass="pane" stylesheets="@map.css">
-               <VBox.margin>
+      <BorderPane fx:id="mapPane">
+         <center>
+            <TabPane BorderPane.alignment="CENTER">
+               <BorderPane.margin>
                   <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-               </VBox.margin>
-               <children>
-                  <TabPane layoutX="3.0" layoutY="2.0" prefHeight="194.0" prefWidth="344.0" tabClosingPolicy="UNAVAILABLE">
-                    <tabs>
-                      <Tab text="TECH">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="159.0" prefWidth="128.0" />
-                        </content>
-                      </Tab>
-                      <Tab text="ARMOR">
-                        <content>
+               </BorderPane.margin>
+               <tabs>
+                  <Tab text="ROOM">
+                     <content>
+                        <VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="350.0" styleClass="pane" stylesheets="@map.css">
+                           <children>
+                              <InlineCssTextArea fx:id="map" styleClass="map" stylesheets="@map.css" textInsertionStyle="">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </InlineCssTextArea>
+                           </children>
+                        </VBox>
+                     </content>
+                  </Tab>
+                  <Tab text="MAP">
+                    <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="pane" stylesheets="@map.css">
+                           <center>
+                              <InlineCssTextArea styleClass="map" stylesheets="@map.css" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                    </content>
+                  </Tab>
+                  <Tab text="WORLD">
+                    <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="pane" stylesheets="@map.css">
+                           <center>
+                              <InlineCssTextArea styleClass="map" stylesheets="@map.css" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                    </content>
+                  </Tab>
+               </tabs>
+            </TabPane>
+         </center>
+         <left>
+            <TabPane tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="TECH">
+                  <content>
+                        <BorderPane styleClass="pane" stylesheets="@map.css">
+                           <center>
+                          <AnchorPane styleClass="map" stylesheets="@application.css" />
+                           </center>
+                        </BorderPane>
+                  </content>
+                </Tab>
+                <Tab text="ARMOR">
+                  <content>
+                        <BorderPane styleClass="pane" stylesheets="@map.css">
+                           <center>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                        </content>
-                      </Tab>
-                        <Tab text="WEAPON">
-                          <content>
+                           </center>
+                        </BorderPane>
+                  </content>
+                </Tab>
+                  <Tab text="WEAPON">
+                    <content>
+                        <BorderPane styleClass="pane" stylesheets="@map.css">
+                           <center>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                          </content>
-                        </Tab>
-                    </tabs>
-                  </TabPane>
-               </children>
-            </Pane>
-         </children></VBox>
-   </bottom>
+                           </center>
+                        </BorderPane>
+                    </content>
+                  </Tab>
+                  <Tab text="INVENTORY">
+                    <content>
+                        <BorderPane styleClass="pane" stylesheets="@map.css">
+                           <center>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                           </center>
+                        </BorderPane>
+                    </content>
+                  </Tab>
+              </tabs>
+               <BorderPane.margin>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </BorderPane.margin>
+            </TabPane>
+         </left>
+         <bottom>
+            <BorderPane BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </BorderPane.margin>
+               <center>
+                  <TilePane prefHeight="100.0" prefTileHeight="100.0" prefTileWidth="100.0" prefWidth="200.0" styleClass="pane" stylesheets="@map.css">
+                     <BorderPane.margin>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </BorderPane.margin>
+                     <children>
+                        <ProgressIndicator prefHeight="36.0" prefWidth="0.0" progress="0.26" stylesheets="@combat.css" />
+                        <ProgressIndicator progress="0.0" />
+                        <ProgressIndicator prefHeight="40.0" prefWidth="94.0" progress="0.0" />
+                     </children>
+                  </TilePane>
+               </center>
+               <top>
+                  <BorderPane BorderPane.alignment="CENTER">
+                     <left>
+                        <Label id="headingLabel" alignment="BOTTOM_LEFT" stylesheets="@application.css" text="COMBAT" BorderPane.alignment="BOTTOM_LEFT">
+                           <BorderPane.margin>
+                              <Insets right="5.0" />
+                           </BorderPane.margin>
+                        </Label>
+                     </left>
+                     <right>
+                        <HBox BorderPane.alignment="CENTER">
+                           <children>
+                              <VBox>
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <Label alignment="TOP_LEFT" prefHeight="27.0" prefWidth="68.0" stylesheets="@Health.css" text="HEALTH">
+                                       <VBox.margin>
+                                          <Insets bottom="1.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <ProgressBar prefHeight="20.0" prefWidth="200.0" progress="0.09" stylesheets="@Health.css">
+                                       <VBox.margin>
+                                          <Insets top="1.0" />
+                                       </VBox.margin>
+                                    </ProgressBar>
+                                 </children>
+                              </VBox>
+                              <VBox>
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <Label alignment="TOP_LEFT" prefHeight="27.0" prefWidth="68.0" stylesheets="@Tech.css" text="TECH">
+                                       <VBox.margin>
+                                          <Insets bottom="1.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <ProgressBar prefHeight="20.0" prefWidth="200.0" progress="0.53" stylesheets="@Tech.css">
+                                       <VBox.margin>
+                                          <Insets top="1.0" />
+                                       </VBox.margin>
+                                    </ProgressBar>
+                                 </children>
+                              </VBox>
+                              <VBox>
+                                 <HBox.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </HBox.margin>
+                                 <children>
+                                    <Label alignment="TOP_LEFT" prefHeight="27.0" prefWidth="68.0" stylesheets="@Stamina.css" text="STAMINA">
+                                       <VBox.margin>
+                                          <Insets bottom="1.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <ProgressBar prefHeight="20.0" prefWidth="200.0" progress="0.92" stylesheets="@Stamina.css">
+                                       <VBox.margin>
+                                          <Insets top="1.0" />
+                                       </VBox.margin>
+                                    </ProgressBar>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </right>
+                  </BorderPane>
+               </top>
+            </BorderPane>
+         </bottom>
+      </BorderPane>
+   </center>
 </BorderPane>

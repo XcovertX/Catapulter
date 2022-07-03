@@ -1,0 +1,25 @@
+	.progress-indicator {
+		-fx-background-color: #91027F;
+		-fx-progress-color: #91027F;
+		-fx-background-insets: 0;
+		-fx-background-radius: 0;
+	}
+	
+	.progress-indicator .indicator {
+	    -fx-padding:0;
+	    -fx-background-radius:0;
+	    -fx-background-insets: 0;
+	    -fx-background-color:  #bd0002;
+	    -fx-border-color: #bd0002;
+		-fx-border-width: 2;
+	}
+
+	.progress-bar > .track {
+	   -fx-background-color: #000c01;
+	   -fx-background-radius: 0;
+	   -fx-background-insets: 0, 1;
+	   
+		-fx-border-color: #bd0002;
+		-fx-border-width: 2;
+	
+	}

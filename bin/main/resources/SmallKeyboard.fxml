@@ -5,15 +5,12 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="74.0" minWidth="139.0" prefHeight="74.0" prefWidth="188.0" styleClass="backGround" stylesheets="@keyboard.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.UserInterface.KeyboardController">
-   <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-   </padding>
+<BorderPane stylesheets="@keyboard.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.UserInterface.KeyboardController">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
-   <center>
-      <Pane fx:id="keyboard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="180.0" BorderPane.alignment="CENTER">
+   <bottom>
+      <Pane fx:id="keyboard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="181.0" styleClass="pane" stylesheets="@keyboard.css">
          <children>
             <Button fx:id="ButtonESC" layoutX="4.0" layoutY="4.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="10.0" prefWidth="10.0">
                <opaqueInsets>
@@ -311,7 +308,16 @@
                </opaqueInsets>
             </Button>
          </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
       </Pane>
-   </center>
+   </bottom>
+   <padding>
+      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+   </padding>
                
 </BorderPane>

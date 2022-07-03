@@ -35,3 +35,11 @@
 	-fx-border-width: 2;
 }
 
+.heading {
+	-fx-control-inner-background: #000c01;
+	-fx-background-color: #001501;
+	-fx-font-family: Arial Black;
+	-fx-text-fill: #15fc03;
+	-fx-font-size: 20;
+}
+

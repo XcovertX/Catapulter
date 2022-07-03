@@ -38,12 +38,15 @@
 		-fx-background-insets: 0 0 0 0, 0, 1, 2;
 	}
 	
-	#pane{
+	.pane{
 		-fx-background-color: #001501;
+		-fx-border-color :#032401;
+		-fx-border-width: 1;
+		-fx-control-inner-background: #000c01;
 	}
 	
-	#backGround{
-		
+	.backGround{
+		-fx-background-color: #15fc03;
 	}
 	
 	
