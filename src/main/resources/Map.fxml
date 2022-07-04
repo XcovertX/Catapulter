@@ -30,28 +30,67 @@
                      <content>
                         <BorderPane styleClass="pane" stylesheets="@map.css">
                            <center>
-                              <VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="350.0" styleClass="pane" stylesheets="@map.css">
-                                 <children>
-                                    <InlineCssTextArea fx:id="map" styleClass="map" stylesheets="@map.css" textInsertionStyle="">
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                    </InlineCssTextArea>
-                                 </children>
+                              <BorderPane prefHeight="350.0" prefWidth="350.0" styleClass="pane">
                                  <BorderPane.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" />
                                  </BorderPane.margin>
-                              </VBox>
+                                 <center>
+                                    <InlineCssTextArea fx:id="map" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="350.0" styleClass="map" stylesheets="@map.css" textInsertionStyle="" BorderPane.alignment="CENTER" />
+                                 </center>
+                                 <top>
+                                    <BorderPane BorderPane.alignment="CENTER">
+                                       <right>
+                                          <VBox BorderPane.alignment="CENTER">
+                                             <children>
+                                                <HBox>
+                                                   <children>
+                                                      <Label layoutX="10.0" layoutY="10.0" styleClass="map" text="CATAPULTER">
+                                                         <HBox.margin>
+                                                            <Insets left="2.0" right="2.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <Label styleClass="map" text="||">
+                                                         <HBox.margin>
+                                                            <Insets left="2.0" right="2.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <Label layoutX="12.0" layoutY="10.0" styleClass="map" text="PERELANDRA">
+                                                         <HBox.margin>
+                                                            <Insets left="2.0" right="2.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <Label layoutX="82.0" layoutY="10.0" styleClass="map" text="||">
+                                                         <HBox.margin>
+                                                            <Insets left="2.0" right="2.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                      <Label layoutX="100.0" layoutY="10.0" styleClass="map" text="LOADING BAY">
+                                                         <HBox.margin>
+                                                            <Insets left="2.0" right="10.0" />
+                                                         </HBox.margin>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </right>
+                                       <BorderPane.margin>
+                                          <Insets />
+                                       </BorderPane.margin>
+                                    </BorderPane>
+                                 </top>
+                              </BorderPane>
                            </center>
                            <top>
                               <BorderPane BorderPane.alignment="CENTER">
-                                 <center>
-                                    <Label styleClass="map" text="10 : 22 : 48" BorderPane.alignment="CENTER" />
-                                 </center>
                                  <left>
                                     <VBox BorderPane.alignment="CENTER">
                                        <children>
-                                          <Label styleClass="map" stylesheets="@map.css" text="Group:" />
+                                          <Label styleClass="map" stylesheets="@map.css" text="GROUP:">
+                                             <padding>
+                                                <Insets bottom="2.0" left="5.0" />
+                                             </padding>
+                                          </Label>
                                           <VBox styleClass="pane" stylesheets="@map.css">
                                              <children>
                                                 <BorderPane>
@@ -89,6 +128,26 @@
                                        </BorderPane.margin>
                                     </VBox>
                                  </left>
+                                 <top>
+                                    <VBox BorderPane.alignment="CENTER">
+                                       <children>
+                                          <BorderPane>
+                                             <center>
+                                                <Label styleClass="map" text=":::" />
+                                             </center>
+                                             <left>
+                                                <Label styleClass="map" text="17 : JAN : 2267" BorderPane.alignment="CENTER" />
+                                             </left>
+                                             <right>
+                                                <Label styleClass="map" text="10 : 22 : 48" BorderPane.alignment="CENTER" />
+                                             </right>
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                          </BorderPane>
+                                       </children>
+                                    </VBox>
+                                 </top>
                               </BorderPane>
                            </top>
                         </BorderPane>
