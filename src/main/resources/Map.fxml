@@ -7,6 +7,7 @@
 <?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -172,6 +173,9 @@
                     </content>
                   </Tab>
                </tabs>
+               <effect>
+                  <Glow level="0.5" />
+               </effect>
             </TabPane>
          </center>
          <bottom>
@@ -298,6 +302,9 @@
                <BorderPane.margin>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </BorderPane.margin>
+               <effect>
+                  <Glow level="0.5" />
+               </effect>
             </TabPane>
          </right>
          <left>
@@ -309,14 +316,11 @@
                            <children>
                               <Label styleClass="heading" stylesheets="@map.css" text="LORN CALDERN">
                                  <HBox.margin>
-                                    <Insets left="2.0" right="5.0" top="9.0" />
+                                    <Insets left="10.0" right="5.0" top="5.0" />
                                  </HBox.margin>
                                  <font>
                                     <Font name="Arial Black" size="18.0" />
                                  </font>
-                                 <padding>
-                                    <Insets left="2.0" right="4.0" />
-                                 </padding>
                               </Label>
                            </children>
                         </HBox>
@@ -380,9 +384,9 @@
                                        </BorderPane.margin>
                                     </HBox>
                                  </right>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
                               </BorderPane>
                               <HBox>
                                  <children>
@@ -399,7 +403,7 @@
                                           <Insets bottom="1.0" left="1.0" top="1.0" />
                                        </HBox.margin>
                                     </ProgressBar>
-                                    <Label styleClass="map" text="07%">
+                                    <Label id="healthPercent" stylesheets="@Health.css" text="07%">
                                        <HBox.margin>
                                           <Insets bottom="1.0" left="10.0" right="1.0" top="1.0" />
                                        </HBox.margin>
@@ -421,7 +425,7 @@
                                           <Insets bottom="1.0" left="1.0" top="1.0" />
                                        </HBox.margin>
                                     </ProgressBar>
-                                    <Label styleClass="map" text="49%">
+                                    <Label id="techPercent" styleClass="map" stylesheets="@Tech.css" text="49%">
                                        <HBox.margin>
                                           <Insets bottom="1.0" left="10.0" right="1.0" top="1.0" />
                                        </HBox.margin>
@@ -443,7 +447,7 @@
                                           <Insets bottom="1.0" left="1.0" top="1.0" />
                                        </HBox.margin>
                                     </ProgressBar>
-                                    <Label styleClass="map" text="95%">
+                                    <Label id="staminaPercent" stylesheets="@Stamina.css" text="95%">
                                        <HBox.margin>
                                           <Insets bottom="1.0" left="10.0" right="1.0" top="1.0" />
                                        </HBox.margin>
@@ -464,6 +468,9 @@
                <BorderPane.margin>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </BorderPane.margin>
+               <effect>
+                  <Glow level="0.5" />
+               </effect>
             </BorderPane>
          </left>
       </BorderPane>

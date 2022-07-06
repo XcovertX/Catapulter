@@ -1,0 +1,11 @@
+Drone / Pets -
+	Characters can obtain a pet or drone that will aid in fighting
+	
+Console Growth / expansion as a feature of leveling up -
+	new features and controls
+	new slots to hold / wield multiple weapons
+	new action buttons
+	expanded map
+	large map view
+	
+

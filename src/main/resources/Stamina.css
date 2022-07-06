@@ -25,3 +25,14 @@
 		-fx-label-padding: 0 0 0 2;
 		-fx-font-size: 8;
 	}
+	
+		#staminaPercent {
+		-fx-font-family: Consolas;
+		-fx-font-size: 12;
+		-fx-text-fill: #15fc03;
+		-fx-background-color: transparent;
+		-fx-border-width: 0;
+		-fx-control-inner-background: transparent;
+		-fx-label-padding: 0 0 0 0;
+		
+	}
