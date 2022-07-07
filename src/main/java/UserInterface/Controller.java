@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -19,6 +20,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import main.java.game.Game;
+import main.java.gameObjects.Thing;
+import main.java.gameObjects.ThingList;
 
 public class Controller {
 	
@@ -31,6 +34,7 @@ public class Controller {
 	@FXML private TextArea guiMap;
 	@FXML private BorderPane mainHolder;
 	@FXML private BorderPane keyboardHolder;
+	@FXML private ListView< Thing > listInventory;
 	
 	// Controllers
 	@FXML private TextMapController tmc;
@@ -46,6 +50,14 @@ public class Controller {
 		Platform.runLater(() -> {
 			
 			tmc.setMapChars( map, tileChars );
+		});
+	}
+	
+	public void setInventoryList( ThingList testList  ) {
+
+		Platform.runLater(() -> {
+			
+			listInventory.getItems().addAll( testList );
 		});
 	}
 	

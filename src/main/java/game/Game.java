@@ -31,6 +31,8 @@ import main.java.globals.Direction;
 import main.java.inputProcessor.InputProcessor;
 import main.java.mapBuilder.RoomBuilder;
 import main.java.utility.SignReader;
+import main.java.weapons.Revolver;
+import main.java.wearableObjects.Ring;
 import main.java.world.GameMap;
 import main.java.world.GameRoom;
 import main.java.world.GameTile;
@@ -83,6 +85,12 @@ public class Game {
     		currentWorld.setLocations();
     		
     		player = new Human( "player", "This is a player", currentTile, new ThingList(), " @ " );
+    		Ring ring = new Ring();
+    		ring.setName( "Ring of Might and Madness" );
+    		Revolver r = new Revolver();
+    		r.setName( "revolver" );
+    		player.getInventory().add( ring );
+    		player.getInventory().add( r );
     		
     		userInterface = new UserInterface( player );
     		userInterface.getDisplay().setRoom( currentRoom );

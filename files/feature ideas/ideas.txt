@@ -1,11 +1,19 @@
 Drone / Pets -
 	Characters can obtain a pet or drone that will aid in fighting
 	
+GUI slot / window for viewing pet /drone stats
+	
 Console Growth / expansion as a feature of leveling up -
 	new features and controls
 	new slots to hold / wield multiple weapons
 	new action buttons
 	expanded map
 	large map view
-	
+
+GUI have dedicated general description box for a given room
+	General descriptions are listed here
+	stops text area from reprinting each time play moves
+
+
+Compass showing true north and player's relative direction
 

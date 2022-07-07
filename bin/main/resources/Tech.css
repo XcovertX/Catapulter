@@ -2,8 +2,8 @@
 	    -fx-padding:0;
 	    -fx-background-radius:0;
 	    -fx-background-insets: 0;
-	    -fx-background-color:  #fac8fe;
-	    -fx-border-color: #fac8fe;
+	    -fx-background-color:  #15fc03;
+	    -fx-border-color: #15fc03;
 		-fx-border-width: 2;
 	}
 
@@ -11,25 +11,24 @@
 	   -fx-background-color: #000c01;
 	   -fx-background-radius: 0;
 	   -fx-background-insets: 0, 1;
-	   
-		-fx-border-color: #fac8fe;
-		-fx-border-width: 2;
+	   -fx-border-color: #15fc03;
+	   -fx-border-width: 2;
 	
 	}
 	
 		.label {
 		-fx-text-fill: #000c01;
-		-fx-background-color: #fac8fe;
+		-fx-background-color: #15fc03;
 		-fx-background-radius: 0;
 		-fx-font-family: Consolas;
 		-fx-label-padding: 0 0 0 2;
-		-fx-font-size: 8;
+		-fx-font-size: 10;
 	}
 	
 	#techPercent {
 		-fx-font-family: Consolas;
 		-fx-font-size: 12;
-		-fx-text-fill: #fac8fe;
+		-fx-text-fill: #15fc03;
 		-fx-background-color: transparent;
 		-fx-border-width: 0;
 		-fx-control-inner-background: transparent;

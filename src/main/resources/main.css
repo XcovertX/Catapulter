@@ -1,0 +1,23 @@
+.list-view {
+	-fx-background-color: transparent;
+	-fx-border-width: 0;
+	-fx-control-inner-background: transparent;
+}
+
+.list-view .list-cell {
+  	-fx-font-family: Consolas;
+	-fx-font-size: 12;
+	-fx-text-fill: #15fc03;
+}
+
+
+
+.list-view:focused .list-cell:filled:selected, .list-view:focused .list-cell:filled:selected:hover {
+    -fx-background-color: #15fc03;
+    -fx-text-fill: #000c01;
+}
+
+.list-cell:filled:hover {
+    -fx-border-color: #15fc03;
+    -fx-text-fill: #000c01;
+}

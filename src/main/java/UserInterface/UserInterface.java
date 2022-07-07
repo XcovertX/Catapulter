@@ -23,6 +23,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import main.java.actor.Actor;
 import main.java.game.Game;
+import main.java.gameObjects.ThingList;
 import main.java.world.GameMap;
 import main.java.world.GameRoom;
 import main.java.world.GameTile;
@@ -228,6 +229,11 @@ public class UserInterface implements ActionListener {
 		guiController.initializeMapHolder();
 		guiController.initializeConsoleHolder();
 		guiController.initializeKeyboardHolder();
+		
+		// test
+		ThingList playerInventory = Game.currentGame.getPlayer().getInventory();
+		String[] testlist = {"Is this working?", "yep"};
+		guiController.setInventoryList( playerInventory );
 		
 		Game.currentGame.window.setResizable( true );
 		Game.currentGame.window.setFullScreen( true );
