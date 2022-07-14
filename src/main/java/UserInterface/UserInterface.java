@@ -232,8 +232,11 @@ public class UserInterface implements ActionListener {
 		
 		// test
 		ThingList playerInventory = Game.currentGame.getPlayer().getInventory();
-		String[] testlist = {"Is this working?", "yep"};
 		guiController.setInventoryList( playerInventory );
+		
+		// test room description
+		String roomDescription = Game.currentGame.getPlayer().getTile().getRoom().getDescription();
+		guiController.setRoomDescription( roomDescription );
 		
 		Game.currentGame.window.setResizable( true );
 		Game.currentGame.window.setFullScreen( true );

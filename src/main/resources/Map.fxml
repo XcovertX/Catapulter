@@ -186,7 +186,7 @@
                         </Label>
                      </left>
                      <top>
-                        <InlineCssTextArea styleClass="pane" stylesheets="@map.css" BorderPane.alignment="CENTER" />
+                        <InlineCssTextArea fx:id="roomDescription" styleClass="pane" stylesheets="@map.css" BorderPane.alignment="CENTER" />
                      </top>
                   </BorderPane>
                </top>

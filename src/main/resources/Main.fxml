@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="300.0" prefHeight="736.0" prefWidth="1376.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.UserInterface.Controller">
@@ -292,183 +289,181 @@
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
-                           <center>
-                              <BorderPane>
-                                 <left>
-                                    <HBox spacing="4.0" BorderPane.alignment="CENTER">
+                        </BorderPane>
+                        <BorderPane stylesheets="@primaryWeapon.css">
+                           <left>
+                              <HBox spacing="4.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <VBox>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
                                        <children>
-                                          <VBox>
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                             <children>
-                                                <BorderPane id="heading" stylesheets="@primaryWeapon.css">
+                                          <BorderPane id="heading" stylesheets="@primaryWeapon.css">
+                                             <padding>
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                             </padding>
+                                             <left>
+                                                <HBox spacing="2.0" BorderPane.alignment="CENTER">
+                                                   <children>
+                                                      <VBox>
+                                                         <children>
+                                                            <Label id="weaponInfoLabel" layoutX="10.0" layoutY="10.0" stylesheets="@primaryWeapon.css" text="TYPE:" />
+                                                            <Label id="weaponInfoLabel" stylesheets="@primaryWeapon.css" text="CAPACITY:" />
+                                                            <Label id="weaponInfoLabel" layoutX="10.0" layoutY="10.0" stylesheets="@primaryWeapon.css" text="CONDITION:" />
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox layoutX="10.0" layoutY="10.0">
+                                                         <children>
+                                                            <Label id="weaponInfoLabel" layoutX="10.0" layoutY="10.0" stylesheets="@primaryWeapon.css" text="PROJECTILE" />
+                                                            <Label id="weaponInfoLabel" stylesheets="@primaryWeapon.css" text="6" />
+                                                            <Label id="weaponInfoLabel" layoutX="10.0" layoutY="10.0" stylesheets="@primaryWeapon.css" text="DEGR" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </left>
+                                             <bottom>
+                                                <BorderPane id="paneStatBackground" stylesheets="@main.css" BorderPane.alignment="CENTER">
+                                                   <right>
+                                                      <VBox spacing="2.0" BorderPane.alignment="CENTER">
+                                                         <children>
+                                                            <Label id="loadedLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="HOLSTERED" />
+                                                            <Label id="loadedLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="LOADED" />
+                                                         </children>
+                                                      </VBox>
+                                                   </right>
+                                                </BorderPane>
+                                             </bottom>
+                                             <top>
+                                                <Label id="heading" stylesheets="@primaryWeapon.css" text="PRIMARY WEAPON:" BorderPane.alignment="CENTER">
                                                    <padding>
-                                                      <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                                      <Insets right="10.0" />
                                                    </padding>
+                                                </Label>
+                                             </top>
+                                          </BorderPane>
+                                          <BorderPane id="ammoLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css">
+                                             <VBox.margin>
+                                                <Insets top="2.0" />
+                                             </VBox.margin>
+                                             <left>
+                                                <Label id="ammoHeadingLabel" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="AMMUNITION:" />
+                                             </left>
+                                             <padding>
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                             </padding>
+                                             <center>
+                                                <Label id="ammoCountLabel" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="5 / 29" />
+                                             </center>
+                                             <bottom>
+                                                <BorderPane BorderPane.alignment="CENTER">
                                                    <left>
                                                       <HBox spacing="2.0" BorderPane.alignment="CENTER">
                                                          <children>
                                                             <VBox>
                                                                <children>
-                                                                  <Label id="weaponInfoLabel" layoutX="10.0" layoutY="10.0" stylesheets="@primaryWeapon.css" text="TYPE:" />
-                                                                  <Label id="weaponInfoLabel" stylesheets="@primaryWeapon.css" text="CAPACITY:" />
-                                                                  <Label id="weaponInfoLabel" layoutX="10.0" layoutY="10.0" stylesheets="@primaryWeapon.css" text="CONDITION:" />
-                                                               </children>
-                                                            </VBox>
-                                                            <VBox layoutX="10.0" layoutY="10.0">
-                                                               <children>
-                                                                  <Label id="weaponInfoLabel" layoutX="10.0" layoutY="10.0" stylesheets="@primaryWeapon.css" text="PROJECTILE" />
-                                                                  <Label id="weaponInfoLabel" stylesheets="@primaryWeapon.css" text="6" />
-                                                                  <Label id="weaponInfoLabel" layoutX="10.0" layoutY="10.0" stylesheets="@primaryWeapon.css" text="DEGR" />
-                                                               </children>
-                                                            </VBox>
-                                                         </children>
-                                                      </HBox>
-                                                   </left>
-                                                   <bottom>
-                                                      <BorderPane id="paneStatBackground" stylesheets="@main.css" BorderPane.alignment="CENTER">
-                                                         <right>
-                                                            <VBox spacing="2.0" BorderPane.alignment="CENTER">
-                                                               <children>
-                                                                  <Label id="loadedLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="HOLSTERED" />
-                                                                  <Label id="loadedLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="LOADED" />
-                                                               </children>
-                                                            </VBox>
-                                                         </right>
-                                                      </BorderPane>
-                                                   </bottom>
-                                                   <top>
-                                                      <Label id="heading" stylesheets="@primaryWeapon.css" text="PRIMARY WEAPON:" BorderPane.alignment="CENTER">
-                                                         <padding>
-                                                            <Insets right="10.0" />
-                                                         </padding>
-                                                      </Label>
-                                                   </top>
-                                                </BorderPane>
-                                                <BorderPane id="ammoLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css">
-                                                   <VBox.margin>
-                                                      <Insets top="2.0" />
-                                                   </VBox.margin>
-                                                   <left>
-                                                      <Label id="ammoHeadingLabel" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="AMMUNITION:" />
-                                                   </left>
-                                                   <padding>
-                                                      <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                                                   </padding>
-                                                   <center>
-                                                      <Label id="ammoCountLabel" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="5 / 29" />
-                                                   </center>
-                                                   <bottom>
-                                                      <BorderPane BorderPane.alignment="CENTER">
-                                                         <left>
-                                                            <HBox spacing="2.0" BorderPane.alignment="CENTER">
-                                                               <children>
-                                                                  <VBox>
-                                                                     <children>
-                                                                        <Label id="ammoLabel" alignment="TOP_LEFT" stylesheets="@primaryWeapon.css" text="TYPE">
-                                                                           <padding>
-                                                                              <Insets right="2.0" />
-                                                                           </padding>
-                                                                        </Label>
-                                                                        <Label id="ammoLabel" alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" stylesheets="@primaryWeapon.css" text="CALIBER:">
-                                                                           <padding>
-                                                                              <Insets right="2.0" />
-                                                                           </padding>
-                                                                        </Label>
-                                                                        <Label id="ammoLabel" alignment="TOP_LEFT" layoutX="10.0" layoutY="23.0" stylesheets="@primaryWeapon.css" text="AUGMENTATION:">
-                                                                           <padding>
-                                                                              <Insets right="2.0" />
-                                                                           </padding>
-                                                                        </Label>
-                                                                     </children>
-                                                                  </VBox>
-                                                                  <VBox>
-                                                                     <children>
-                                                                        <Label id="weaponInfoLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="EXPLOSIVE" />
-                                                                        <Label id="weaponInfoLabel" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text=".45" />
-                                                                        <Label id="weaponInfoLabel" layoutX="10.0" layoutY="23.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="SERIAL" />
-                                                                     </children>
-                                                                  </VBox>
-                                                               </children>
-                                                            </HBox>
-                                                         </left>
-                                                      </BorderPane>
-                                                   </bottom>
-                                                </BorderPane>
-                                             </children>
-                                          </VBox>
-                                          <BorderPane>
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                             <center>
-                                                <VBox spacing="2.0">
-                                                   <children>
-                                                      <BorderPane>
-                                                         <top>
-                                                            <Label id="weaponNameLabel" alignment="CENTER" stylesheets="@primaryWeapon.css" text="REVOLVER" BorderPane.alignment="CENTER_LEFT" />
-                                                         </top>
-                                                         <left>
-                                                            <VBox spacing="2.0" BorderPane.alignment="CENTER">
-                                                               <children>
-                                                                  <Label id="atkLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="DAMAGE:" />
-                                                                  <Label id="critLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="CRITICAL:" />
-                                                                  <Label id="accLabel" layoutX="10.0" layoutY="25.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="ACCURACY:" />
-                                                                  <Label id="fireRateLabel" alignment="TOP_LEFT" stylesheets="@primaryWeapon.css" text="FIRE RATE:">
+                                                                  <Label id="ammoLabel" alignment="TOP_LEFT" stylesheets="@primaryWeapon.css" text="TYPE">
+                                                                     <padding>
+                                                                        <Insets right="2.0" />
+                                                                     </padding>
+                                                                  </Label>
+                                                                  <Label id="ammoLabel" alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" stylesheets="@primaryWeapon.css" text="CALIBER:">
+                                                                     <padding>
+                                                                        <Insets right="2.0" />
+                                                                     </padding>
+                                                                  </Label>
+                                                                  <Label id="ammoLabel" alignment="TOP_LEFT" layoutX="10.0" layoutY="23.0" stylesheets="@primaryWeapon.css" text="AUGMENTATION:">
                                                                      <padding>
                                                                         <Insets right="2.0" />
                                                                      </padding>
                                                                   </Label>
                                                                </children>
                                                             </VBox>
-                                                         </left>
-                                                         <right>
-                                                            <VBox spacing="2.0" BorderPane.alignment="CENTER">
+                                                            <VBox>
                                                                <children>
-                                                                  <Label id="atkPercentLabel" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="+15.0%" />
-                                                                  <Label id="critPercentLabel" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="+1.2%" />
-                                                                  <Label id="accPercentLabel" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="-1.2%" />
-                                                                  <Label id="fireRatePercentLabel" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="-1.2%" />
+                                                                  <Label id="weaponInfoLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="EXPLOSIVE" />
+                                                                  <Label id="weaponInfoLabel" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text=".45" />
+                                                                  <Label id="weaponInfoLabel" layoutX="10.0" layoutY="23.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="SERIAL" />
                                                                </children>
                                                             </VBox>
-                                                         </right>
-                                                      </BorderPane>
-                                                   </children>
-                                                </VBox>
-                                             </center>
-                                             <bottom>
-                                                <HBox spacing="2.0" BorderPane.alignment="CENTER">
-                                                   <children>
-                                                      <Label id="augmentationLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="AUGMENTATION:">
-                                                         <HBox.margin>
-                                                            <Insets />
-                                                         </HBox.margin>
-                                                         <padding>
-                                                            <Insets right="2.0" />
-                                                         </padding>
-                                                      </Label>
-                                                      <Label id="augmentationTypeLabel" stylesheets="@primaryWeapon.css" text="FOCAL">
-                                                         <HBox.margin>
-                                                            <Insets />
-                                                         </HBox.margin>
-                                                      </Label>
-                                                   </children>
-                                                </HBox>
+                                                         </children>
+                                                      </HBox>
+                                                   </left>
+                                                </BorderPane>
                                              </bottom>
                                           </BorderPane>
                                        </children>
-                                    </HBox>
-                                 </left>
-                                 <right>
-                                    <VBox stylesheets="@primaryWeapon.css" BorderPane.alignment="CENTER">
-                                       <BorderPane.margin>
-                                          <Insets />
-                                       </BorderPane.margin>
                                     </VBox>
-                                 </right>
-                              </BorderPane>
-                           </center>
+                                    <BorderPane>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <center>
+                                          <VBox spacing="2.0">
+                                             <children>
+                                                <BorderPane>
+                                                   <top>
+                                                      <Label id="weaponNameLabel" alignment="CENTER" stylesheets="@primaryWeapon.css" text="REVOLVER" BorderPane.alignment="CENTER_LEFT" />
+                                                   </top>
+                                                   <left>
+                                                      <VBox spacing="2.0" BorderPane.alignment="CENTER">
+                                                         <children>
+                                                            <Label id="atkLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="DAMAGE:" />
+                                                            <Label id="critLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="CRITICAL:" />
+                                                            <Label id="accLabel" layoutX="10.0" layoutY="25.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="ACCURACY:" />
+                                                            <Label id="fireRateLabel" alignment="TOP_LEFT" stylesheets="@primaryWeapon.css" text="FIRE RATE:">
+                                                               <padding>
+                                                                  <Insets right="2.0" />
+                                                               </padding>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                   </left>
+                                                   <right>
+                                                      <VBox spacing="2.0" BorderPane.alignment="CENTER">
+                                                         <children>
+                                                            <Label id="atkPercentLabel" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="+15.0%" />
+                                                            <Label id="critPercentLabel" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="+1.2%" />
+                                                            <Label id="accPercentLabel" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="-1.2%" />
+                                                            <Label id="fireRatePercentLabel" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="-1.2%" />
+                                                         </children>
+                                                      </VBox>
+                                                   </right>
+                                                </BorderPane>
+                                             </children>
+                                          </VBox>
+                                       </center>
+                                       <bottom>
+                                          <HBox spacing="2.0" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <Label id="augmentationLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@primaryWeapon.css" text="AUGMENTATION:">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                   <padding>
+                                                      <Insets right="2.0" />
+                                                   </padding>
+                                                </Label>
+                                                <Label id="augmentationTypeLabel" stylesheets="@primaryWeapon.css" text="FOCAL">
+                                                   <HBox.margin>
+                                                      <Insets />
+                                                   </HBox.margin>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </bottom>
+                                    </BorderPane>
+                                 </children>
+                              </HBox>
+                           </left>
+                           <right>
+                              <VBox stylesheets="@primaryWeapon.css" BorderPane.alignment="CENTER">
+                                 <BorderPane.margin>
+                                    <Insets />
+                                 </BorderPane.margin>
+                              </VBox>
+                           </right>
                         </BorderPane>
                      </children>
                      <BorderPane.margin>
@@ -479,22 +474,6 @@
                      </padding>
                   </VBox>
                </center>
-               <bottom>
-                  <Accordion stylesheets="@main.css" BorderPane.alignment="CENTER">
-                    <panes>
-                      <TitledPane animated="false" prefHeight="0.0" prefWidth="295.0" stylesheets="@main.css" text="WEAPONS">
-                           <content>
-                              <Pane prefHeight="200.0" prefWidth="200.0" styleClass="pane" stylesheets="@main.css" />
-                           </content>
-                        </TitledPane>
-                      <TitledPane animated="false" stylesheets="@main.css" text="untitled 2">
-                           <content>
-                              <Pane prefHeight="200.0" prefWidth="200.0" styleClass="pane" stylesheets="@main.css" />
-                           </content>
-                        </TitledPane>
-                    </panes>
-                  </Accordion>
-               </bottom>
                <effect>
                   <Glow />
                </effect></BorderPane>

@@ -53,6 +53,14 @@ public class Controller {
 		});
 	}
 	
+	public void setRoomDescription( String description ) {
+
+		Platform.runLater(() -> {
+			
+			tmc.setRoomDescription( description );
+		});
+	}
+	
 	public void setInventoryList( ThingList testList  ) {
 
 		Platform.runLater(() -> {

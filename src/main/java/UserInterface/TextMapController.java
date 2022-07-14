@@ -21,6 +21,8 @@ public class TextMapController {
 	
 	@FXML private InlineCssTextArea map;
 	
+	@FXML private InlineCssTextArea roomDescription;
+	
 	@FXML private URL location;
 	
 	@FXML private ResourceBundle resources;
@@ -65,6 +67,13 @@ public class TextMapController {
 		map.setPrefWidth( roomWidth );
 		map.setPrefHeight( roomlength );
 		map.setDisable( true );
+	}
+	
+	public void setRoomDescription( String description ) {
+		
+		roomDescription.deleteText( 0, roomDescription.getLength() );
+		roomDescription.appendText( description );
+		roomDescription.setDisable( true );
 	}
 	
 	@FXML
