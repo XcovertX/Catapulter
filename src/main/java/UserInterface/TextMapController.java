@@ -53,7 +53,7 @@ public class TextMapController {
 		
 		for( int i = 0; i < tileChars.size(); i++ ) {
 			ArrayList< TileChar > row = tileChars.get(i);
-			for( int j = 0; j < tileChars.size(); j++ ) {
+			for( int j = 0; j < row.size(); j++ ) {
 				TileChar tc = row.get(j);
 				map.appendText( tc.getChar() );
 				if( tc.getTileCharColor() != null ) {
