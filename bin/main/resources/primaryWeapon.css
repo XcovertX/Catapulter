@@ -1,0 +1,208 @@
+	 .progress-bar > .bar {
+	    -fx-padding:0;
+	    -fx-background-radius:0;
+	    -fx-background-insets: 0;
+	    -fx-background-color:  #bd0002;
+	    -fx-border-color: #bd0002;
+		-fx-border-width: 2;
+	}
+
+	.progress-bar > .track {
+	   -fx-background-color: #000c01;
+	   -fx-background-radius: 0;
+	   -fx-background-insets: 0, 1;
+	   -fx-border-color: #bd0002;
+	   -fx-border-width: 2;
+	
+	}
+	
+	#heading {
+		-fx-text-fill: #000c01;
+		-fx-background-color: #15fc03;
+		-fx-background-radius: 0;
+		-fx-font-family: Consolas;
+		-fx-label-padding: 0 0 0 0;
+		-fx-font-size: 18;
+	}
+	
+	#weaponNameLabel {
+		-fx-font-family: Consolas;
+		-fx-font-size: 18;
+		-fx-text-fill: #fac8fe;
+		-fx-background-color: transparent;
+		-fx-border-width: 0;
+		-fx-control-inner-background: transparent;
+		-fx-label-padding: 0 0 0 0;
+	}
+	
+	#ammoHeadingLabel {
+		-fx-text-fill: #000c01;
+		-fx-background-color: #fac8fe;
+		-fx-background-radius: 0;
+		-fx-font-family: Consolas;
+		-fx-label-padding: 0 0 0 2;
+		-fx-font-size: 14;
+	}
+	
+	#ammoLabel {
+		-fx-text-fill: #000c01;
+		-fx-background-color: #fac8fe;
+		-fx-background-radius: 0;
+		-fx-font-family: Consolas;
+		-fx-label-padding: 0 0 0 2;
+		-fx-font-size: 10;
+	}
+	
+	#ammoCountLabel {
+		-fx-font-family: Consolas;
+		-fx-font-size: 10;
+		-fx-text-fill: #fac8fe;
+		-fx-background-color: #000c01;
+		-fx-border-width: 0;
+		-fx-control-inner-background: #000c01;
+		-fx-label-padding: 0 2 0 2;
+	}
+	
+	#augmentationLabel {
+		-fx-text-fill: #000c01;
+		-fx-background-color: #15fc03;
+		-fx-background-radius: 0;
+		-fx-font-family: Consolas;
+		-fx-label-padding: 0 0 0 2;
+		-fx-font-size: 10;
+	}
+	
+	#augmentationTypeLabel {
+		-fx-font-family: Consolas;
+		-fx-font-size: 10;
+		-fx-text-fill: #15fc03;
+		-fx-background-color: transparent;
+		-fx-border-width: 0;
+		-fx-control-inner-background: transparent;
+		-fx-label-padding: 0 0 0 0;
+	}
+	
+	#atkLabel {
+		-fx-text-fill: #000c01;
+		-fx-background-color: #15fc03;
+		-fx-background-radius: 0;
+		-fx-font-family: Consolas;
+		-fx-label-padding: 0 0 0 2;
+		-fx-font-size: 10;
+	}
+	
+	#atkPercentLabel {
+		-fx-font-family: Consolas;
+		-fx-font-size: 10;
+		-fx-text-fill: #15fc03;
+		-fx-background-color: transparent;
+		-fx-border-width: 0;
+		-fx-control-inner-background: transparent;
+		-fx-label-padding: 0 0 0 0;
+	}
+	
+	#critLabel {
+		-fx-text-fill: #000c01;
+		-fx-background-color: #15fc03;
+		-fx-background-radius: 0;
+		-fx-font-family: Consolas;
+		-fx-label-padding: 0 0 0 2;
+		-fx-font-size: 10;
+	}
+	
+	#critPercentLabel {
+		-fx-font-family: Consolas;
+		-fx-font-size: 10;
+		-fx-text-fill: #15fc03;
+		-fx-background-color: transparent;
+		-fx-border-width: 0;
+		-fx-control-inner-background: transparent;
+		-fx-label-padding: 0 0 0 0;
+	}
+	
+	#accLabel {
+		-fx-text-fill: #000c01;
+		-fx-background-color: #bd0002;
+		-fx-background-radius: 0;
+		-fx-font-family: Consolas;
+		-fx-label-padding: 0 0 0 2;
+		-fx-font-size: 10;
+	}
+	
+	#accPercentLabel {
+		-fx-font-family: Consolas;
+		-fx-font-size: 10;
+		-fx-text-fill: #bd0002;
+		-fx-background-color: transparent;
+		-fx-border-width: 0;
+		-fx-control-inner-background: transparent;
+		-fx-label-padding: 0 0 0 0;
+	}
+	
+	#fireRateLabel {
+		-fx-text-fill: #000c01;
+		-fx-background-color: #fac8fe;
+		-fx-background-radius: 0;
+		-fx-font-family: Consolas;
+		-fx-label-padding: 0 0 0 2;
+		-fx-font-size: 10;
+	}
+	
+	#fireRatePercentLabel {
+		-fx-font-family: Consolas;
+		-fx-font-size: 10;
+		-fx-text-fill: #fac8fe;
+		-fx-background-color: transparent;
+		-fx-border-width: 0;
+		-fx-control-inner-background: transparent;
+		-fx-label-padding: 0 0 0 0;
+	}
+	
+	#weaponInfoLabel {
+		-fx-font-family: Consolas;
+		-fx-font-size: 10;
+		-fx-text-fill: #000c01;
+		-fx-background-color: transparent;
+		-fx-border-width: 0;
+		-fx-control-inner-background: transparent;
+		-fx-label-padding: 0 0 0 0;
+	}
+	
+	#largeSolidLabel {
+		-fx-text-fill: #000c01;
+		-fx-background-color: #15fc03;
+		-fx-background-radius: 0;
+		-fx-font-family: Consolas;
+		-fx-label-padding: 0 0 0 2;
+		-fx-font-size: 10;
+	}
+	
+	#largeTransparentLabel {
+		-fx-font-family: Consolas;
+		-fx-font-size: 10;
+		-fx-text-fill: #15fc03;
+		-fx-background-color: transparent;
+		-fx-border-width: 0;
+		-fx-control-inner-background: transparent;
+		-fx-label-padding: 0 0 0 0;
+	}
+	
+	#loadedLabel {
+		-fx-font-family: Consolas;
+		-fx-font-size: 8;
+		-fx-text-fill: #15fc03;
+		-fx-background-color: #000c01;
+		-fx-border-width: 0;
+		-fx-control-inner-background: #000c01;
+		-fx-label-padding: 0 2 0 2;
+	}
+	
+	#smallTransparentLabel {
+		-fx-font-family: Consolas;
+		-fx-font-size: 10;
+		-fx-text-fill: #000c01;
+		-fx-background-color: transparent;
+		-fx-border-width: 0;
+		-fx-control-inner-background: transparent;
+		-fx-label-padding: 0 0 0 0;
+	}

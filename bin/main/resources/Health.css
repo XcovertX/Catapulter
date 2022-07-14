@@ -11,19 +11,19 @@
 	   -fx-background-color: #000c01;
 	   -fx-background-radius: 0;
 	   -fx-background-insets: 0, 1;
-	   
-		-fx-border-color: #bd0002;
-		-fx-border-width: 2;
+	   -fx-border-color: #bd0002;
+	   -fx-border-width: 2;
 	
 	}
 	
-		.label {
+		#solidLabel {
 		-fx-text-fill: #000c01;
 		-fx-background-color: #bd0002;
 		-fx-background-radius: 0;
 		-fx-font-family: Consolas;
 		-fx-label-padding: 0 0 0 2;
-		-fx-font-size: 10;
+		-fx-font-size: 12;
+		-fx-font-weight: bold;
 	}
 	
 		#healthPercent {

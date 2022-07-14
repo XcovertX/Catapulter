@@ -17,3 +17,6 @@ GUI have dedicated general description box for a given room
 
 Compass showing true north and player's relative direction
 
+Barcode / Qcode next to each player and npc
+
+Tile Icons that can be used instead of ASCII

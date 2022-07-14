@@ -10,8 +10,6 @@
 	-fx-text-fill: #15fc03;
 }
 
-
-
 .list-view:focused .list-cell:filled:selected, .list-view:focused .list-cell:filled:selected:hover {
     -fx-background-color: #15fc03;
     -fx-text-fill: #000c01;
@@ -20,4 +18,79 @@
 .list-cell:filled:hover {
     -fx-border-color: #15fc03;
     -fx-text-fill: #000c01;
+}
+
+.pane{
+	-fx-control-inner-background: #000c01;
+	-fx-background-color: #001501;
+	-fx-border-color: #032401;
+	-fx-border-width: 2;
+}
+
+.label {
+	-fx-text-fill: #000c01;
+	-fx-background-color: #15fc03;
+	-fx-background-radius: 0;
+	-fx-font-family: Consolas;
+	-fx-label-padding: 0 0 0 2;
+	-fx-font-size: 10;
+	-fx-font-weight: bold;
+	-fx-font-family: 'Montserrat ExtraBold';
+	
+}
+
+#labelSmall {
+	-fx-text-fill: #000c01;
+	-fx-background-color: #15fc03;
+	-fx-background-radius: 0;
+	-fx-font-family: Consolas;
+	-fx-label-padding: 0 0 0 2;
+	-fx-font-size: 8;
+	-fx-font-weight: bold;
+	-fx-font-family: 'Montserrat ExtraBold';
+	
+}
+
+#transparentLabel {
+	-fx-font-family: Consolas;
+	-fx-font-size: 11;
+	-fx-text-fill: #15fc03;
+	-fx-background-color: transparent;
+	-fx-border-width: 0;
+	-fx-control-inner-background: transparent;
+	-fx-label-padding: 0 0 0 0;	
+}
+
+#transparentLabelSmall {
+	-fx-font-family: Consolas;
+	-fx-font-size: 10;
+	-fx-text-fill: #15fc03;
+	-fx-background-color: transparent;
+	-fx-border-width: 0;
+	-fx-control-inner-background: transparent;
+	-fx-label-padding: 0 0 0 0;	
+}
+
+#paneStatBackground {
+	-fx-font-family: Consolas;
+	-fx-font-size: 10;
+	-fx-text-fill: #000c01;
+	-fx-background-color: #15fc03;
+	-fx-border-width: 0;
+	-fx-pane-padding: 0 0 0 0;	
+}
+
+#paneStatDecor {
+	-fx-font-family: Consolas;
+	-fx-font-size: 10;
+	-fx-text-fill: #15fc03;
+	-fx-background-color: #000c01;
+	-fx-border-width: 0;
+	-fx-pane-padding: 0 0 0 0;	
+}
+
+.accordion > .titled-pane > .title {
+    -fx-background-color:#15fc03;
+    -fx-background-insets: -1 0 0 0, 0 1 1 1, 1 2 2 2;
+    -fx-background-radius: 0, 0, 0;
 }

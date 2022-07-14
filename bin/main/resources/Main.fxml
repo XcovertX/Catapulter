@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="300.0" prefHeight="736.0" prefWidth="1376.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.UserInterface.Controller">
@@ -289,7 +292,136 @@
                </BorderPane.margin>
                <effect>
                   <Glow level="0.5" />
-               </effect></BorderPane>
+               </effect>
+               <center>
+                  <VBox styleClass="pane" stylesheets="@main.css" BorderPane.alignment="CENTER">
+                     <children>
+                        <BorderPane>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <center>
+                              <HBox spacing="4.0">
+                                 <children>
+                                    <VBox>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <children>
+                                          <Label stylesheets="@main.css" text="PRIMARY WEAPON:">
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <BorderPane id="paneStatBackground" prefHeight="8.0" prefWidth="126.0" stylesheets="@main.css">
+                                             <padding>
+                                                <Insets bottom="1.0" left="2.0" right="2.0" top="2.0" />
+                                             </padding>
+                                             <right>
+                                                <HBox spacing="2.0" BorderPane.alignment="CENTER" />
+                                             </right>
+                                          </BorderPane>
+                                          <BorderPane id="paneStatBackground" layoutX="10.0" layoutY="43.0" prefHeight="12.0" prefWidth="126.0" stylesheets="@main.css">
+                                             <padding>
+                                                <Insets bottom="2.0" left="2.0" right="2.0" top="1.0" />
+                                             </padding>
+                                             <right>
+                                                <HBox spacing="2.0" BorderPane.alignment="CENTER">
+                                                   <children>
+                                                      <Pane id="paneStatDecor" prefHeight="9.0" prefWidth="3.0" />
+                                                      <Pane id="paneStatDecor" layoutX="10.0" layoutY="10.0" prefHeight="9.0" prefWidth="3.0" />
+                                                      <Pane id="paneStatDecor" layoutX="10.0" layoutY="10.0" prefHeight="9.0" prefWidth="3.0" />
+                                                      <Pane id="paneStatDecor" layoutX="10.0" layoutY="10.0" prefHeight="9.0" prefWidth="3.0" />
+                                                   </children>
+                                                </HBox>
+                                             </right>
+                                          </BorderPane>
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="2.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <children>
+                                          <Label id="transparentLabel" text="REVOLVER">
+                                             <padding>
+                                                <Insets top="1.0" />
+                                             </padding>
+                                          </Label>
+                                          <HBox spacing="4.0">
+                                             <children>
+                                                <Label id="labelSmall" stylesheets="@main.css" text="ATK: ">
+                                                   <padding>
+                                                      <Insets bottom="3.0" right="5.0" />
+                                                   </padding>
+                                                </Label>
+                                                <Label id="transparentLabelSmall" layoutX="10.0" layoutY="10.0" stylesheets="@main.css" text="+15.0%" />
+                                                <Label id="labelSmall" layoutX="10.0" layoutY="10.0" stylesheets="@main.css" text="CRIT:">
+                                                   <padding>
+                                                      <Insets bottom="3.0" right="5.0" />
+                                                   </padding>
+                                                </Label>
+                                                <Label id="transparentLabelSmall" layoutX="39.0" layoutY="10.0" stylesheets="@main.css" text="+1.2%" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </center>
+                           <bottom>
+                              <HBox BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label prefWidth="18.0" styleClass="map" stylesheets="@Health.css" text="A">
+                                       <padding>
+                                          <Insets bottom="5.0" right="10.0" />
+                                       </padding>
+                                       <HBox.margin>
+                                          <Insets right="1.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <ProgressBar prefHeight="18.0" prefWidth="200.0" progress="0.26" stylesheets="@Health.css">
+                                       <HBox.margin>
+                                          <Insets left="1.0" />
+                                       </HBox.margin>
+                                    </ProgressBar>
+                                    <Label id="healthPercent" stylesheets="@Health.css" text="009%">
+                                       <HBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets top="2.0" />
+                                 </padding>
+                              </HBox>
+                           </bottom>
+                        </BorderPane>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </BorderPane.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+               </center>
+               <bottom>
+                  <Accordion stylesheets="@main.css" BorderPane.alignment="CENTER">
+                    <panes>
+                      <TitledPane animated="false" text="untitled 1">
+                           <content>
+                              <Pane prefHeight="200.0" prefWidth="200.0" />
+                           </content>
+                        </TitledPane>
+                      <TitledPane animated="false" text="untitled 2">
+                           <content>
+                              <Pane prefHeight="200.0" prefWidth="200.0" />
+                           </content>
+                        </TitledPane>
+                    </panes>
+                  </Accordion>
+               </bottom></BorderPane>
          </center>
          <bottom>
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
