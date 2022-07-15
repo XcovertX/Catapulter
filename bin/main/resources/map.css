@@ -8,12 +8,13 @@
 
 }
 .styled-text-area .text {
-    -fx-fill: #15fc03;
-
+	-fx-fill: #15fc03;
+	-fx-line-spacing: 30px;
 }
 
-.map *.text {
-    -fx-text-alignment: center;
+.styled-text-area {
+    -fx-font-size: 12px;
+    -fx-font-family: Consolas;
 }
 
 .map .scroll-pane {
@@ -35,11 +36,5 @@
 	-fx-border-width: 2;
 }
 
-.heading {
-	-fx-control-inner-background: #000c01;
-	-fx-background-color: #001501;
-	-fx-font-family: Arial Black;
-	-fx-text-fill: #15fc03;
-	-fx-font-size: 20;
-}
+
 

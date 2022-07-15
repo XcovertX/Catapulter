@@ -49,20 +49,24 @@ public class TextMapController {
 		double roomlength = tempT.getLayoutBounds().getHeight();
 		double roomWidth = tempT.getLayoutBounds().getWidth();
 		
+		map.clearStyle( 0, map.getLength() );
 		map.deleteText( 0, map.getLength() );
+		
 		
 		for( int i = 0; i < tileChars.size(); i++ ) {
 			ArrayList< TileChar > row = tileChars.get(i);
 			for( int j = 0; j < row.size(); j++ ) {
 				TileChar tc = row.get(j);
+				
 				map.appendText( tc.getChar() );
 				if( tc.getTileCharColor() != null ) {
-					map.setStyle( map.getLength() - 3, map.getLength(), "-fx-fill: " + tc.getTileCharColor() );
-				}
+					
+					map.setStyle( map.getLength() - 3, map.getLength(), "-fx-fill: " + tc.getTileCharColor() + ";" );
+					
+				} 
 			}
 			map.appendText("\n");
 		}
-
 
 		map.setPrefWidth( roomWidth );
 		map.setPrefHeight( roomlength );

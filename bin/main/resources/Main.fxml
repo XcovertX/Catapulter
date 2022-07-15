@@ -83,10 +83,10 @@
          <top>
             <BorderPane BorderPane.alignment="CENTER">
                <left>
-                  <Label id="headingLabel" stylesheets="@application.css" text="INVENTORY" BorderPane.alignment="CENTER" />
+                  <Label id="headingLabel" stylesheets="@application.css" text="MAP" BorderPane.alignment="CENTER" />
                </left>
                <right>
-                  <Label id="headingLabel" stylesheets="@application.css" text="MAP" BorderPane.alignment="CENTER" />
+                  <Label id="headingLabel" stylesheets="@application.css" text="SETTINGS" BorderPane.alignment="CENTER" />
                </right>
             </BorderPane>
          </top>
