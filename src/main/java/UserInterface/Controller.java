@@ -1,5 +1,6 @@
 package main.java.UserInterface;
 
+import java.awt.Graphics2D;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -50,6 +51,7 @@ public class Controller {
 		Platform.runLater(() -> {
 			
 			tmc.setMapChars( map, tileChars );
+			
 		});
 	}
 	
@@ -58,6 +60,19 @@ public class Controller {
 		Platform.runLater(() -> {
 			
 			tmc.setRoomDescription( description );
+		});
+	}
+	
+	public void setTileMap() {
+
+		Platform.runLater(() -> {
+			
+			try {
+				tmc.setTileMap();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		});
 	}
 	

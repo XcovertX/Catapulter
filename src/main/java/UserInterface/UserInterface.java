@@ -1,16 +1,21 @@
 package main.java.UserInterface;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 //import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import javax.imageio.ImageIO;
 import javax.swing.JTextField;
 
 import javafx.event.EventHandler;
@@ -65,7 +70,7 @@ public class UserInterface implements ActionListener {
 		this.currentWorld = currentMap.getWorld();
 		
 		this.display = new Display();
-		
+
 		initializeGUI(); //javafx gui
 		
 		consLog = new ConsoleLogic( display, guiController );
@@ -93,6 +98,14 @@ public class UserInterface implements ActionListener {
 		}
 	});
 	
+	}
+	
+	void render(Graphics2D g, TmxParser tmx){
+		for (int j = 0; j < tmx.map_rows; j++) {
+			for (int i = 0; i < tmx.map_cols; i++) {
+				g.drawImage(tmx.tiles[j][i], null, i * tmx.size, j * tmx.size);
+		    }
+		}
 	}
 	
 	// global logic
@@ -229,6 +242,23 @@ public class UserInterface implements ActionListener {
 		guiController.initializeMapHolder();
 		guiController.initializeConsoleHolder();
 		guiController.initializeKeyboardHolder();
+		
+		//test
+		TmxParser tmx;
+		BufferedImage bImage;
+		Graphics2D g;
+		File file = new File("files/map.png");
+		try {
+			tmx = new TmxParser("files/test_tile_room.tmx");
+			bImage = tmx.tiles[0][0];
+			ImageIO.write(bImage, "png", file);
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			System.out.println("File Not Found");
+			e2.printStackTrace();
+		}
+		
+		
 		
 		// test
 		ThingList playerInventory = Game.currentGame.getPlayer().getInventory();
