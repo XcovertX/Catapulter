@@ -11,6 +11,7 @@ public class TMX {
 
 	String tmx_path;
 	String tsx_path = "";
+	String[] tsx_paths;
 
 	int tilewidth;
 	int tileheight;
@@ -18,10 +19,14 @@ public class TMX {
 	int mapheight;
 	int size;
 	
+	NodeList layerList;
+	NodeList tilesets;
+	
 	public int tiles[][][];
 	public ArrayList<Rect> objs = new ArrayList<Rect>();
 	String[] tokens;
 	String image_Path;
+	String[] image_paths;
 
 	public TMX(String path) throws Exception {
 		this.tmx_path = path;
@@ -37,10 +42,19 @@ public class TMX {
 		tilewidth = Integer.parseInt(map.getAttribute("tilewidth"));
 		tileheight = Integer.parseInt(map.getAttribute("tileheight"));
 		size = mapwidth * mapheight;
-		NodeList layerList = doc.getElementsByTagName("layer");
-		Node tileset = map.getElementsByTagName("tileset").item(0);
-		Node source = tileset.getAttributes().item(1);
-		tsx_path += source.getNodeValue();
+		
+		
+		layerList = doc.getElementsByTagName("layer");
+		tilesets = map.getElementsByTagName("tileset");
+		tsx_paths = new String[tilesets.getLength()];
+
+		for(int i = 0; i < tilesets.getLength(); i++) {
+			Node source = tilesets.item(i).getAttributes().item(1);
+			System.out.println("*****" + tilesets.item(i).getAttributes().item(0));
+			System.out.println(source.getNodeValue().toString());
+			tsx_paths[i] = file.getParent() + "/" + source.getNodeValue().toString();
+		}
+		
 		tiles = new int[layerList.getLength()][mapheight][mapwidth];
 		for (int i = 0; i < layerList.getLength(); i++) {
 			Node layers = layerList.item(i);
@@ -95,12 +109,14 @@ public class TMX {
 				}
 			}
 		}
-		image_Path = TSX();
+//		image_Path = TSX();
+		image_paths = TSXs();
 	}
 
 	String TSX() throws Exception {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+		
 		File file = new File(tsx_path);
 		Document doc = dBuilder.parse(file);
 		doc.getDocumentElement().normalize();
@@ -109,6 +125,26 @@ public class TMX {
 		imagePath += root.getElementsByTagName("image").item(0).getAttributes().item(1).getNodeValue();
 		return imagePath;
 	}
+	
+	String[] TSXs() throws Exception {
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+		String[] imagePaths = new String[tsx_paths.length];
+		for(int i = 0; i <imagePaths.length; i++) {
+			System.out.println("tsx path: " + tsx_paths[i]);
+			File file = new File(tsx_paths[i]);
+			Document doc = dBuilder.parse(file);
+			doc.getDocumentElement().normalize();
+			Element root = doc.getDocumentElement();
+			imagePaths[i] = file.getParent() + "/";
+			System.out.println("imagePath " + i + ": " + imagePaths[i]);
+			System.out.println(root.getElementsByTagName("image").getLength());
+			imagePaths[i] += root.getElementsByTagName("image").item(0).getAttributes().item(1).getNodeValue();
+		}
+		return imagePaths;
+	}
+	
+		
 
 	public String getImagePath() {
 		return image_Path;

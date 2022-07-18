@@ -100,14 +100,6 @@ public class UserInterface implements ActionListener {
 	
 	}
 	
-	void render(Graphics2D g, TmxParser tmx){
-		for (int j = 0; j < tmx.map_rows; j++) {
-			for (int i = 0; i < tmx.map_cols; i++) {
-				g.drawImage(tmx.tiles[j][i], null, i * tmx.size, j * tmx.size);
-		    }
-		}
-	}
-	
 	// global logic
 	public void logic() {
 		
@@ -250,7 +242,7 @@ public class UserInterface implements ActionListener {
 		File file = new File("files/map.png");
 		try {
 			tmx = new TmxParser("files/test_tile_room.tmx");
-			bImage = tmx.tiles[0][0];
+			bImage = tmx.tiles[0][0][0];
 			ImageIO.write(bImage, "png", file);
 		} catch (Exception e2) {
 			// TODO Auto-generated catch block

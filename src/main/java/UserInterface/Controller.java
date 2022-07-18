@@ -122,10 +122,10 @@ public class Controller {
 		});
 	}
 	
-	public InlineCssTextArea getGuiMap() {
-		
-		return tmc.getMap();	
-	}
+//	public InlineCssTextArea getGuiMap() {
+//		
+//		return tmc.getMap();	
+//	}
 	
 	public TextArea getGuiConsole() {
 		

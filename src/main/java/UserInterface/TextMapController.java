@@ -32,7 +32,7 @@ public class TextMapController {
 	
 	@FXML private BorderPane mapPane;
 	
-	@FXML private InlineCssTextArea map;
+//	@FXML private InlineCssTextArea map;
 	
 	@FXML private Canvas tileMap;
 	
@@ -49,44 +49,46 @@ public class TextMapController {
 		return mapPane;
 	}
 	
-	public InlineCssTextArea getMap() {
-		
-		return map;
-	}
+//	public InlineCssTextArea getMap() {
+//		
+//		return map;
+//	}
 	
 	public void setMapChars( String mapChars, ArrayList< ArrayList< TileChar > > tileChars ) {
 		
-		Text tempT = new Text( mapChars );
-		tempT.setFont( new Font( "Consolas", 12) );
-		StackPane tempSP = new StackPane( tempT );
-		tempSP.layout();
-
-		double roomlength = tempT.getLayoutBounds().getHeight();
-		double roomWidth = tempT.getLayoutBounds().getWidth();
-		
-		map.clearStyle( 0, map.getLength() );
-		map.deleteText( 0, map.getLength() );
-		
-		
-		for( int i = 0; i < tileChars.size(); i++ ) {
-			ArrayList< TileChar > row = tileChars.get(i);
-			for( int j = 0; j < row.size(); j++ ) {
-				TileChar tc = row.get(j);
-				
-				map.appendText( tc.getChar() );
-				if( tc.getTileCharColor() != null ) {
-					
-					map.setStyle( map.getLength() - 3, map.getLength(), "-fx-fill: " + tc.getTileCharColor() + ";" );
-					
-				} 
-			}
-			map.appendText("\n");
-		}
-
-		map.setPrefWidth( roomWidth );
-		map.setPrefHeight( roomlength );
-		map.setDisable( true );
+//		Text tempT = new Text( mapChars );
+//		tempT.setFont( new Font( "Consolas", 12) );
+//		StackPane tempSP = new StackPane( tempT );
+//		tempSP.layout();
+//
+//		double roomlength = tempT.getLayoutBounds().getHeight();
+//		double roomWidth = tempT.getLayoutBounds().getWidth();
+//		
+//		map.clearStyle( 0, map.getLength() );
+//		map.deleteText( 0, map.getLength() );
+//		
+//		
+//		for( int i = 0; i < tileChars.size(); i++ ) {
+//			ArrayList< TileChar > row = tileChars.get(i);
+//			for( int j = 0; j < row.size(); j++ ) {
+//				TileChar tc = row.get(j);
+//				
+//				map.appendText( tc.getChar() );
+//				if( tc.getTileCharColor() != null ) {
+//					
+//					map.setStyle( map.getLength() - 3, map.getLength(), "-fx-fill: " + tc.getTileCharColor() + ";" );
+//					
+//				} 
+//			}
+//			map.appendText("\n");
+//		}
+//
+//		map.setPrefWidth( roomWidth );
+//		map.setPrefHeight( roomlength );
+//		map.setDisable( true );
 	}
+	
+	public void render() {};
 	
 	public void setRoomDescription( String description ) {
 		
@@ -97,21 +99,18 @@ public class TextMapController {
 	
 	public void setTileMap() throws Exception {
 		
-//		Image image;
-//		File pathToFile = new File("files/map.png");
-//		image = new Image(pathToFile.toURI().toString());
-//		tileMap.setImage(image);;
-//		System.out.println("Tile Map Set");
-		
-		TmxParser tmx = new TmxParser( "files/test_tile_room.tmx" );
+		TmxParser tmx = new TmxParser( "files/testRoom.tmx" );
 		GraphicsContext gc = tileMap.getGraphicsContext2D();
-		
-		  for (int j = 0; j < tmx.map_rows; j++) {
-			    for (int i = 0; i < tmx.map_cols; i++) {
-			    	Image image = SwingFXUtils.toFXImage(tmx.tiles[j][i], null);
-			    	gc.drawImage(image, (double) i * tmx.size, (double) j * tmx.size);
+		for (int i = 0; i < tmx.layers; i++) {
+			for (int j = 0; j < tmx.map_rows; j++) {
+			    for (int k = 0; k < tmx.map_cols; k++) {
+			    	if(tmx.tiles[i][j][k] != null) {
+			    		Image image = SwingFXUtils.toFXImage(tmx.tiles[i][j][k], null);
+			    		gc.drawImage(image, (double) k * tmx.size, (double) j * tmx.size);
+			    	}
 			    }
-		  }
+			}
+		}
 	}
 	
 	@FXML
@@ -121,8 +120,8 @@ public class TextMapController {
 		
 		Platform.runLater(() -> {
 			
-			map.setPrefWidth( 350 );
-			map.setPrefHeight( 350 );
+//			map.setPrefWidth( 350 );
+//			map.setPrefHeight( 350 );
 			try {
 				setTileMap();
 			} catch (Exception e) {
