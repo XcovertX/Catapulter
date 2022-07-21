@@ -103,10 +103,11 @@ public class TextMapController {
 		GraphicsContext gc = tileMap.getGraphicsContext2D();
 		TMXParser tmx = new TMXParser( Game.currentRoom.getTMX() );
 		TileImageMap tileImageMap = tmx.getTileImageMap();
+		tileImageMap.flipMapVertically();
 		for (int i = 0; i < tmx.layer_count; i++) {
 			for (int j = 0; j < tmx.map_rows; j++) {
 			    for (int k = 0; k < tmx.map_cols; k++) {
-			    	TileImageLayer tileImageLayer = tileImageMap.getTileImage( j, k ).getImageLayer( i );
+			    	TileImageLayer tileImageLayer = tileImageMap.getVerticallyFlippedTileImage( j, k ).getImageLayer( i );
 			    	if( tileImageLayer != null) {
 			    		TileImageFrame tileImageFrame = tileImageLayer.getActiveFrame();
 			    		BufferedImage frameImage = tileImageFrame.getFrameImage();

@@ -18,7 +18,6 @@ public class TileImageLayer {
 	
 	public TileImageFrame getActiveFrame() {
 		
-		System.out.println("afi: " + activeFrameIndex);
 		return frames[ activeFrameIndex ];
 	}
 	

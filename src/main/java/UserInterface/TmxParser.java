@@ -20,6 +20,10 @@ class TMXParser {
 	
 	private TileImageMap tileImageMap;
 
+	/*
+	 * TMX Parser pulls all of the needed information from a tmx file and
+	 * constructs TileImage objects to use for the player's map
+	 */
 	public TMXParser( String path ) throws Exception {
 		
 		tmx = new TMX( path );
