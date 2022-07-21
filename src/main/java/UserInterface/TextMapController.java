@@ -24,6 +24,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import main.java.game.Game;
 import main.java.world.GameTile;
 
 import org.fxmisc.richtext.InlineCssTextArea;
@@ -99,18 +100,34 @@ public class TextMapController {
 	
 	public void setTileMap() throws Exception {
 		
-		TmxParser tmx = new TmxParser( "files/testRoom.tmx" );
 		GraphicsContext gc = tileMap.getGraphicsContext2D();
-		for (int i = 0; i < tmx.layers; i++) {
+		TMXParser tmx = new TMXParser( Game.currentRoom.getTMX() );
+		TileImageMap tileImageMap = tmx.getTileImageMap();
+		for (int i = 0; i < tmx.layer_count; i++) {
 			for (int j = 0; j < tmx.map_rows; j++) {
 			    for (int k = 0; k < tmx.map_cols; k++) {
-			    	if(tmx.tiles[i][j][k] != null) {
-			    		Image image = SwingFXUtils.toFXImage(tmx.tiles[i][j][k], null);
-			    		gc.drawImage(image, (double) k * tmx.size, (double) j * tmx.size);
+			    	TileImageLayer tileImageLayer = tileImageMap.getTileImage( j, k ).getImageLayer( i );
+			    	if( tileImageLayer != null) {
+			    		TileImageFrame tileImageFrame = tileImageLayer.getActiveFrame();
+			    		BufferedImage frameImage = tileImageFrame.getFrameImage();
+			    		Image image = SwingFXUtils.toFXImage( frameImage, null );
+			    		gc.drawImage( image, ( double ) k * tmx.size, ( double ) j * tmx.size );
 			    	}
 			    }
 			}
 		}
+		
+//		GraphicsContext gc = tileMap.getGraphicsContext2D();
+//		for (int i = 0; i < tmx.layer_count; i++) {
+//			for (int j = 0; j < tmx.map_rows; j++) {
+//			    for (int k = 0; k < tmx.map_cols; k++) {
+//			    	if(tmx.tiles[i][j][k] != null) {
+//			    		Image image = SwingFXUtils.toFXImage(tmx.tiles[i][j][k], null);
+//			    		gc.drawImage(image, (double) k * tmx.size, (double) j * tmx.size);
+//			    	}
+//			    }
+//			}
+//		}
 	}
 	
 	@FXML

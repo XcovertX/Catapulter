@@ -585,8 +585,6 @@ public class InputProcessor {
     		try {
     			
 				input = Game.in.readLine();
-			
-				System.out.println( Thread.currentThread().getName() );
 				
 	    		output = RunCommand( input );
 	    		
@@ -596,8 +594,6 @@ public class InputProcessor {
 	    		
 	      		Game.in.close();
 	      		Game.in = null;
-				
-	      		System.out.println("close and null");
 	      		
 	      		
 			} catch (IOException e) {
@@ -618,6 +614,8 @@ public class InputProcessor {
     }
     
     public void render() {
+    	
+    	userInterface.getGuiController().setTileMap();
     	
     }
     

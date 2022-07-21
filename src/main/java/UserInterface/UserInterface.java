@@ -235,20 +235,20 @@ public class UserInterface implements ActionListener {
 		guiController.initializeConsoleHolder();
 		guiController.initializeKeyboardHolder();
 		
-		//test
-		TmxParser tmx;
-		BufferedImage bImage;
-		Graphics2D g;
-		File file = new File("files/map.png");
-		try {
-			tmx = new TmxParser("files/test_tile_room.tmx");
-			bImage = tmx.tiles[0][0][0];
-			ImageIO.write(bImage, "png", file);
-		} catch (Exception e2) {
-			// TODO Auto-generated catch block
-			System.out.println("File Not Found");
-			e2.printStackTrace();
-		}
+//		//test
+//		TMXParser tmx;
+//		BufferedImage bImage;
+//		Graphics2D g;
+//		File file = new File("files/map.png");
+//		try {
+//			tmx = new TMXParser("files/test_tile_room.tmx");
+//			bImage = tmx.tiles[0][0][0];
+//			ImageIO.write(bImage, "png", file);
+//		} catch (Exception e2) {
+//			// TODO Auto-generated catch block
+//			System.out.println("File Not Found");
+//			e2.printStackTrace();
+//		}
 		
 		
 		

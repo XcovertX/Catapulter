@@ -14,9 +14,11 @@ public class GameRoom extends ThingHolder {
 	private int roomWidth;
 	private boolean inside;
 	private boolean outside;
+	private String tmx;
 	
 	public GameRoom() {
 		super( "", "", new ThingList() );
+		this.tmx = "files/testRoom.tmx";
 		this.type = "Room";
 	}
 
@@ -101,18 +103,32 @@ public class GameRoom extends ThingHolder {
 	}
 
 	public boolean isInside() {
+		
 		return inside;
 	}
 
 	public void setInside(boolean inside) {
+		
 		this.inside = inside;
 	}
 
 	public boolean isOutside() {
+		
 		return outside;
 	}
 
 	public void setOutside(boolean outside) {
+		
 		this.outside = outside;
+	}
+
+	public String getTMX() {
+		
+		return tmx;
+	}
+
+	public void setTMX( String tmx ) {
+		
+		this.tmx = tmx;
 	}
 }

@@ -77,10 +77,10 @@ public class Game {
     		
     		worldReader = new WorldReader();
     		
-    		currentWorld =  worldReader.getWorld( "files/worlds/catapulter", "Catapulter.json" );
+    		currentWorld =  worldReader.getWorld( "files/worlds/testtileworld", "testtileworld.json" );
     		currentMap = (GameMap) ( currentWorld.getMaps().get( 0 ) );
-    		currentRoom = (GameRoom) ( currentMap.getRooms().get( 1 ) );
-    		currentTile = (GameTile) ( currentRoom.getTiles().get( 16 ) );
+    		currentRoom = (GameRoom) ( currentMap.getRooms().get( 0 ) );
+    		currentTile = (GameTile) ( currentRoom.getTiles().get( 40 ) );
     		
     		currentWorld.setLocations();
     		
