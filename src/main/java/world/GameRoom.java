@@ -1,5 +1,6 @@
 package main.java.world;
 
+import main.java.UserInterface.TileImageMap;
 import main.java.actor.NonPlayerActor;
 import main.java.gameObjects.ThingHolder;
 import main.java.gameObjects.ThingList;
@@ -130,5 +131,14 @@ public class GameRoom extends ThingHolder {
 	public void setTMX( String tmx ) {
 		
 		this.tmx = tmx;
+	}
+	
+	public void setTileImages( TileImageMap tileImageMap ) {
+		
+		ThingList tiles = getTiles();
+		for( int i = 0; i < tiles.size(); i++ ) {
+			GameTile tile = ( GameTile ) tiles.get( i );
+			tile.setTileImage( tileImageMap.getTileImageArray()[ i ] );
+		}
 	}
 }

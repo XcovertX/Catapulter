@@ -101,22 +101,44 @@ public class TextMapController {
 	public void setTileMap() throws Exception {
 		
 		GraphicsContext gc = tileMap.getGraphicsContext2D();
-		TMXParser tmx = new TMXParser( Game.currentRoom.getTMX() );
-		TileImageMap tileImageMap = tmx.getTileImageMap();
-		tileImageMap.flipMapVertically();
+		TMXParser tmx = new TMXParser( Game.currentRoom );
+		
 		for (int i = 0; i < tmx.layer_count; i++) {
+			int accumulator = 0;
 			for (int j = 0; j < tmx.map_rows; j++) {
 			    for (int k = 0; k < tmx.map_cols; k++) {
-			    	TileImageLayer tileImageLayer = tileImageMap.getVerticallyFlippedTileImage( j, k ).getImageLayer( i );
+			    	GameTile gameTile = ( GameTile ) Game.currentRoom.getTiles().get( accumulator );
+			    	TileImage tileImage = gameTile.getTileImage();
+			    	System.out.println( "tile num: " + gameTile.getTileNumber() + " img num: " + gameTile.getTileNumber() );
+			    	TileImageLayer tileImageLayer = tileImage.getImageLayer( i );
 			    	if( tileImageLayer != null) {
 			    		TileImageFrame tileImageFrame = tileImageLayer.getActiveFrame();
 			    		BufferedImage frameImage = tileImageFrame.getFrameImage();
 			    		Image image = SwingFXUtils.toFXImage( frameImage, null );
 			    		gc.drawImage( image, ( double ) k * tmx.size, ( double ) j * tmx.size );
 			    	}
+			    	accumulator += 1;
 			    }
 			}
 		}
+		
+//		GraphicsContext gc = tileMap.getGraphicsContext2D();
+//		TMXParser tmx = new TMXParser( Game.currentRoom.getTMX() );
+//		TileImageMap tileImageMap = tmx.getTileImageMap();
+//		tileImageMap.flipMapVertically();
+//		for (int i = 0; i < tmx.layer_count; i++) {
+//			for (int j = 0; j < tmx.map_rows; j++) {
+//			    for (int k = 0; k < tmx.map_cols; k++) {
+//			    	TileImageLayer tileImageLayer = tileImageMap.getVerticallyFlippedTileImage( j, k ).getImageLayer( i );
+//			    	if( tileImageLayer != null) {
+//			    		TileImageFrame tileImageFrame = tileImageLayer.getActiveFrame();
+//			    		BufferedImage frameImage = tileImageFrame.getFrameImage();
+//			    		Image image = SwingFXUtils.toFXImage( frameImage, null );
+//			    		gc.drawImage( image, ( double ) k * tmx.size, ( double ) j * tmx.size );
+//			    	}
+//			    }
+//			}
+//		}
 		
 //		GraphicsContext gc = tileMap.getGraphicsContext2D();
 //		for (int i = 0; i < tmx.layer_count; i++) {

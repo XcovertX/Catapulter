@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import main.java.UserInterface.TileChar;
+import main.java.UserInterface.TileImage;
 import main.java.actor.Actor;
 import main.java.actor.NonPlayerActor;
 import main.java.game.Game;
@@ -29,6 +30,8 @@ public class GameTile extends ThingHolder {
     private String externalMapName = "";
     private String externalRoomName = "";
     private int externalTile = 0;
+    
+    private TileImage tileImage;
 
     public GameTile() {
     	super( "", "", new ThingList() );
@@ -407,5 +410,11 @@ public class GameTile extends ThingHolder {
 	
 	public void setCurrentTileChar(TileChar currentTileChar) {
 		this.currentTileChar = currentTileChar;
+	}
+	public TileImage getTileImage() {
+		return tileImage;
+	}
+	public void setTileImage(TileImage tileImage) {
+		this.tileImage = tileImage;
 	}
 }

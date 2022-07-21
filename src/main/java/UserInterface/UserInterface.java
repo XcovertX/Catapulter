@@ -249,35 +249,7 @@ public class UserInterface implements ActionListener {
 //			System.out.println("File Not Found");
 //			e2.printStackTrace();
 //		}
-		int accumulator = 0;
-		int[][] test2DArray = new int[4][3];
-		for( int i = 0; i < test2DArray.length; i++ ) {
-			for( int j = 0; j < test2DArray[0].length; j++ ) {
-				test2DArray[i][j] = accumulator;
-				accumulator += 1;
-			}
-		}
-		
-		for( int i = 0; i < test2DArray.length; i++ ) {
-			for( int j = 0; j < test2DArray[0].length; j++ ) {
-				System.out.print( test2DArray[i][j] );
-			}
-			System.out.print( "\n" );
-		}
-		
-		int[][] test2DArrayCopy = new int[4][3];
-		for( int i = 0; i < test2DArray.length; i++ ) {
-			for( int j = 0; j < test2DArray[0].length; j++ ) {
-				test2DArrayCopy[test2DArray[0].length - i][j] = test2DArray[i][j];
-			}
-		}
-		
-		for( int i = 0; i < test2DArrayCopy.length; i++ ) {
-			for( int j = 0; j < test2DArrayCopy[0].length; j++ ) {
-				System.out.print( test2DArrayCopy[i][j] );
-			}
-			System.out.print( "\n" );
-		}
+
 		
 		// test
 		ThingList playerInventory = Game.currentGame.getPlayer().getInventory();

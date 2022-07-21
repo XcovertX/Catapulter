@@ -16,7 +16,7 @@ public class TileImageRenderer {
 	
 	public void initTileMap() throws Exception {
 		
-		TMXParser tmx = new TMXParser( Game.currentRoom.getTMX() );
+		TMXParser tmx = new TMXParser( Game.currentRoom );
 //		GraphicsContext gc = tileMap.getGraphicsContext2D();
 		for (int i = 0; i < tmx.layer_count; i++) {
 			for (int j = 0; j < tmx.map_rows; j++) {
@@ -24,7 +24,7 @@ public class TileImageRenderer {
 			    	if(tmx.tiles[i][j][k] != null) {
 			    		if( i == 0 ) {
 			    			
-			    			tileImageMap[j][k] = new TileImage( tmx.layer_count );
+//			    			tileImageMap[j][k] = new TileImage( tmx.layer_count );
 			    			
 			    		} 
 			    		

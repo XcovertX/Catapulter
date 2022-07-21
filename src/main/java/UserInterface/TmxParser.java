@@ -7,8 +7,11 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import main.java.world.GameRoom;
+
 class TMXParser {
 
+	private GameRoom gameRoom;
 	private TMX tmx;
 	private TSX[] TSXs;
 	public int size;
@@ -24,9 +27,10 @@ class TMXParser {
 	 * TMX Parser pulls all of the needed information from a tmx file and
 	 * constructs TileImage objects to use for the player's map
 	 */
-	public TMXParser( String path ) throws Exception {
+	public TMXParser( GameRoom gRoom ) throws Exception {
 		
-		tmx = new TMX( path );
+		gameRoom = gRoom;
+		tmx = new TMX( gRoom.getTMX() );
 		TSXs = constructAllTSX();
 		images = getImages();
 		size = tmx.getTilewidth();
@@ -40,6 +44,8 @@ class TMXParser {
 		tileImageMap.buildLayout( map_rows, map_cols );
 		
 		for( int i = 0; i < tmx.getTiles().length; i++ ) { 						// for each layer
+			
+			int accumulator = 0;
 			
 			for( int j = 0; j < tmx.getTiles()[ 0 ].length; j++ ) { 			// for each row 
 
@@ -58,7 +64,7 @@ class TMXParser {
 							
 							// building initial tile image
 							if( i == 0 ) {
-								TileImage tileImage = new TileImage( layer_count );
+								TileImage tileImage = new TileImage( layer_count, accumulator );
 								tileImageMap.setTileImage( j, k, tileImage );
 							}
 							TileImage tileImage = tileImageMap.getTileImage( j, k );
@@ -90,8 +96,13 @@ class TMXParser {
 						}
 					}
 				}
+				accumulator += 1;
 			}
 		}
+		
+		tileImageMap.flipMapVertically();
+		tileImageMap.transformToArray();
+		gRoom.setTileImages( tileImageMap );
 
 		objs = tmx.getObjs();
 	}
@@ -150,6 +161,14 @@ class TMXParser {
 	public void setTileImageMap( TileImageMap tileImageMap ) {
 		
 		this.tileImageMap = tileImageMap;
+	}
+
+	public GameRoom getGameRoom() {
+		return gameRoom;
+	}
+
+	public void setGameRoom(GameRoom gameRoom) {
+		this.gameRoom = gameRoom;
 	}
 	
 //	public TileImageFrame[] constructAllFrames() {
