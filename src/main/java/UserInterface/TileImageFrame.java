@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 public class TileImageFrame {
 	
 	private BufferedImage frameImage;
-	private int frameDuration;
+	private long frameDuration;
 
 	public BufferedImage getFrameImage() {
 		
@@ -17,7 +17,7 @@ public class TileImageFrame {
 		this.frameImage = frameImage;
 	}
 
-	public int getFrameDuration() {
+	public long getFrameDuration() {
 		
 		return frameDuration;
 	}

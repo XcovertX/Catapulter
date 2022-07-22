@@ -41,7 +41,7 @@ public class GameLoop implements Runnable {
 				
 				update();
 				accumulator -= updateRate;
-//				render();
+				render();
 			}
 //			render();
 //			printStats();
@@ -72,8 +72,8 @@ public class GameLoop implements Runnable {
 	
 	private void render() {
 		
-		game.getInputProcessor().render();
-		fps++;
+		game.getUI().getGuiMapController().render();
+//		fps++;
 	}
 	
 	private void printStats() {

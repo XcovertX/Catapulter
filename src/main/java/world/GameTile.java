@@ -50,6 +50,7 @@ public class GameTile extends ThingHolder {
     	this.setDefaultTileChar( new TileChar( "   " ) );
     	this.setCurrentTileChar( this.defaultTileChar );
 //    	this.setCurrentTileChar();
+    	this.setGameTile(true);
     	this.type = "Tile";
     }
     public GameTile( String aName, String aDescription, GameRoom aRoom, ThingList thingList, 

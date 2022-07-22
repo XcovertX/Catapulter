@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 
 import main.java.world.GameRoom;
 
-class TMXParser {
+public class TMXParser {
 
 	private GameRoom gameRoom;
 	private TMX tmx;
@@ -72,6 +72,7 @@ class TMXParser {
 							// building tile layer i with frames
 							
 				    		boolean isAnimated = tsx.isAnimated();
+//				    		System.out.println("isAnimated: " + isAnimated);
 				    		int activeFrame = 0;
 				    		int frameCount;
 				    		if( isAnimated ) {
@@ -89,6 +90,9 @@ class TMXParser {
 				    			
 				    			frames[ l ] = new TileImageFrame();
 				    			frames[ l ].setFrameImage( tileSetImage.getSubimage( ( position + l ) * size, 0, size, size ) );
+				    			if( isAnimated ) {
+				    				frames[ l ].setFrameDuration( Integer.valueOf( tsx.getFrames().item( l ).getAttributes().getNamedItem( "duration" ).getNodeValue() ) );
+				    			}
 				    		}
 
 							TileImageLayer imageLayer = new TileImageLayer( isAnimated, frames, activeFrame );
@@ -103,7 +107,6 @@ class TMXParser {
 		tileImageMap.flipMapVertically();
 		tileImageMap.transformToArray();
 		gRoom.setTileImages( tileImageMap );
-
 		objs = tmx.getObjs();
 	}
 	
@@ -170,13 +173,4 @@ class TMXParser {
 	public void setGameRoom(GameRoom gameRoom) {
 		this.gameRoom = gameRoom;
 	}
-	
-//	public TileImageFrame[] constructAllFrames() {
-//		
-//	}
-	
-//	public BufferedImage[] getTSXFrames() {
-//		
-//	}
-
 }

@@ -47,6 +47,8 @@ public class Thing {
     protected boolean isTranslucent;
     protected boolean isActor;
     protected boolean isNPC;
+    protected boolean isGameTile;
+    protected boolean isGameRoom;
     protected boolean hasLargeText;
     protected boolean hasSmallText;
     protected boolean hasThingList;
@@ -519,5 +521,17 @@ public class Thing {
 
 	public void setTileChar( TileChar tileChar ) {
 		this.tileChar = tileChar;
+	}
+
+	public boolean isGameTile() {
+		return isGameTile;
+	}
+
+	public void setGameTile(boolean isGameTile) {
+		this.isGameTile = isGameTile;
+	}
+
+	public boolean isGameRoom() {
+		return isGameRoom;
 	}
 }

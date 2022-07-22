@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.java.UserInterface.GraphicalUserInterface;
+import main.java.UserInterface.TMXParser;
 import main.java.UserInterface.UserInterface;
 import main.java.actor.Actor;
 import main.java.actor.Cat;
@@ -38,6 +39,7 @@ import main.java.world.GameRoom;
 import main.java.world.GameTile;
 import main.java.world.GameWorld;
 import main.java.world.UpdatePlayer;
+import main.java.world.UpdateRoomTileAnimations;
 
 public class Game {
     
@@ -94,7 +96,12 @@ public class Game {
     		
     		userInterface = new UserInterface( player );
     		userInterface.getDisplay().setRoom( currentRoom );
- 
+    		try {
+				new TMXParser( currentRoom );
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	        calendar = new GameCalendar( currentGame );
 
 	        setInputProcessor( new InputProcessor() );
@@ -171,6 +178,7 @@ public class Game {
 	
 	public void updateWorld() {
 		new UpdatePlayer().run();
+		new UpdateRoomTileAnimations().run( Game.currentRoom );
 		currentWorld.allLists( "environment" );
 //		currentWorld.allLists( "weather" );
 		currentWorld.allLists( "actors" );

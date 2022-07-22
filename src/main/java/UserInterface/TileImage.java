@@ -15,6 +15,7 @@ public class TileImage {
 		
 		return imageLayers;
 	}
+	
 	public void setImageLayers( TileImageLayer[] imageLayers ) {
 		
 		this.imageLayers = imageLayers;

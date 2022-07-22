@@ -13,6 +13,8 @@ public class GameCalendar extends Time {
 	private int day;
 	private int hour;
 	private int minute;
+	private int second;
+	private int millisecond;
 	private long tick;
 	
 	private Sun sun;
@@ -24,6 +26,8 @@ public class GameCalendar extends Time {
 	private final int monthInDays = 30;
 	private final int dayInHours = 20;
 	private final int hourInMinutes = 60;
+	private final int minuteInSeconds = 60;
+	private final int secondInMilliseconds = 1000;
 	
 	private final int january = 1;
 	private final int february = 2;
@@ -56,7 +60,7 @@ public class GameCalendar extends Time {
 		this.setMoon( new Moon( this ) );
 		this.setWeather( new Weather( this, region ) );
 
-		controller( 0, 1000 );
+		controller( 0, 10 );
 	}
 	
 	public GameCalendar( int aYear, int aMonth, int aDay, int aHour, int aMinute ) {
@@ -68,7 +72,7 @@ public class GameCalendar extends Time {
 		this.minute = aMinute;
 		this.tick = 0;
 	
-		controller( 0, 1000 );
+		controller( 0, 10 );
 	}
 	
 	private void controller( int delay, int freq ) {
@@ -82,6 +86,32 @@ public class GameCalendar extends Time {
 		@Override
 		public void run() {
 			
+			incrementTenMilliseconds();
+		}
+	}
+	
+	public void incrementTenMilliseconds() {
+		
+		if( this.millisecond < secondInMilliseconds - 1 ) {
+			
+			this.millisecond += 10;
+			
+		} else {
+			
+			this.millisecond = 0;
+			incrementSecond();
+		}
+	}
+	
+	public void incrementSecond() {
+		
+		if( this.second < minuteInSeconds - 1 ) {
+			
+			this.second++;
+			
+		} else {
+			
+			this.second = 0;
 			incrementMinute();
 		}
 	}
@@ -147,11 +177,15 @@ public class GameCalendar extends Time {
 	}
 	
 	public void printClock() {
-		System.out.println(year + " : " + month + " : " + day + " : " + hour + " : " + minute);
+		System.out.println( year + " : " + month + " : " + day + " : " + hour + " : " + minute + " : " + second + " : " + millisecond );
 	}
 	
 	public void printWind() {
 		System.out.println("Wind Direction: " + weather.getWind().getDirection() + " :: Wind Intensity: " + weather.getWind().getIntensity() );
+	}
+	
+	public String getClock() {
+		return year + " : " + month + " : " + day + " : " + hour + " : " + minute + " : " + second + " : " + millisecond;
 	}
 	
 	public int[] getDate() {
@@ -177,6 +211,7 @@ public class GameCalendar extends Time {
 	}
 	
 	public int getMinute() {
+		
 		return this.minute;
 	}
 	
@@ -190,18 +225,22 @@ public class GameCalendar extends Time {
 	}
 	
 	public Sun getSun() {
+		
 		return sun;
 	}
 
 	public void setSun( Sun sun ) {
+		
 		this.sun = sun;
 	}
 
 	public Moon getMoon() {
+		
 		return moon;
 	}
 
-	public void setMoon(Moon moon) {
+	public void setMoon( Moon moon ) {
+		
 		this.moon = moon;
 	}
 
@@ -254,26 +293,52 @@ public class GameCalendar extends Time {
 	}
 	
 	public int getCurrentMinuteOfDay() {
+		
 		return ( getHour() * this.hourInMinutes ) + getMinute();
 	}
 
 	public int currentDayOfYear() {
+		
 		return getMonth() * this.monthInDays + getDay();
 	}
 
 	public Weather getWeather() {
+		
 		return weather;
 	}
 
-	public void setWeather(Weather weather) {
+	public void setWeather( Weather weather ) {
+		
 		this.weather = weather;
 	}
 
 	public long getTick() {
+		
 		return tick;
 	}
 
-	public void setTick(long tick) {
+	public void setTick( long tick ) {
+		
 		this.tick = tick;
+	}
+
+	public int getSecond() {
+		
+		return second;
+	}
+
+	public void setSecond( int second ) {
+		
+		this.second = second;
+	}
+
+	public int getMillisecond() {
+		
+		return millisecond;
+	}
+
+	public void setMillisecond( int millisecond ) {
+		
+		this.millisecond = millisecond;
 	}
 }

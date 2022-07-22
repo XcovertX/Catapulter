@@ -9,7 +9,7 @@ import main.java.globals.CatapulterColor;
 public class UpdateThirst extends UpdateWorld {
 
 	@Override
-	public void run(Thing aThing) {
+	public void run( Thing aThing ) {
 		
 		if( aThing.isActor() ) {
 			

@@ -20,6 +20,7 @@ public class GameRoom extends ThingHolder {
 	public GameRoom() {
 		super( "", "", new ThingList() );
 		this.tmx = "files/testRoom.tmx";
+		this.isGameRoom = true;
 		this.type = "Room";
 	}
 
@@ -31,6 +32,7 @@ public class GameRoom extends ThingHolder {
 		this.map = aGameMap;
 		this.roomLength = aRoomLength;
 		this.roomWidth = aRoomWidth;
+		this.isGameRoom = true;
 	}
 	
 	public void initializeNPCMovement() {

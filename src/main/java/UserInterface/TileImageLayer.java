@@ -5,7 +5,8 @@ import java.awt.image.BufferedImage;
 public class TileImageLayer {
 	
 	private boolean isAnimated;
-	private int timeAccumulation; // in milliseconds
+	private long timeAccumulation; // in milliseconds
+	private long lastUpdate;
 	private TileImageFrame[] frames;
 	private int activeFrameIndex;
 	
@@ -14,6 +15,8 @@ public class TileImageLayer {
 		this.isAnimated = isAnimated;
 		this.frames = frames;
 		this.activeFrameIndex = activeImageIndex;
+		this.lastUpdate = System.currentTimeMillis();
+		this.timeAccumulation = 0;
 	}
 	
 	public TileImageFrame getActiveFrame() {
@@ -23,11 +26,20 @@ public class TileImageLayer {
 	
 	public boolean frameSwapTimeCheck() {
 		
+		updateTimeAccumulation();
+		System.out.println( timeAccumulation );
+		System.out.println( frames[ activeFrameIndex ].getFrameDuration() );
 		if( timeAccumulation >= frames[ activeFrameIndex ].getFrameDuration() ) {
-			
+			lastUpdate = System.currentTimeMillis();
+			timeAccumulation = 0;
 			return true;
 		}
 		return false;
+	}
+	
+	private void updateTimeAccumulation() {
+		
+		timeAccumulation += System.currentTimeMillis() - lastUpdate;
 	}
 	
 	public void increaseTimeAccumulation( int msCount ) {
@@ -42,7 +54,7 @@ public class TileImageLayer {
 	
 	public void cycleActiveImage() {
 		
-		if( !( activeFrameIndex + 1 <= frames.length ) ) {
+		if( !( activeFrameIndex + 1 >= frames.length ) ) {
 			
 			activeFrameIndex += 1;
 			
