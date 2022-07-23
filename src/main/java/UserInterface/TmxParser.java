@@ -7,21 +7,23 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import main.java.gameObjects.Thing;
 import main.java.world.GameRoom;
 
 public class TMXParser {
 
 	private GameRoom gameRoom;
+	private Thing aThing;
 	private TMX tmx;
 	private TSX[] TSXs;
 	public int size;
 	public int layer_count, map_cols, map_rows, img_cols, img_rows, frames;
-	public ArrayList<Rect> objs = new ArrayList<Rect>();
+	public ArrayList< ObjectImage > objs = new ArrayList< ObjectImage >();
 	public BufferedImage image;
 	public BufferedImage[] images;
 	public BufferedImage tiles[][][];
 	
-	private TileImageMap tileImageMap;
+	private ImageMap tileImageMap;
 
 	/*
 	 * TMX Parser pulls all of the needed information from a tmx file and
@@ -40,7 +42,7 @@ public class TMXParser {
 		map_rows = ( int ) ( tmx.getMapheight() );
 		tiles = new BufferedImage[ layer_count ][ map_rows ][ map_cols ];
 		
-		tileImageMap = new TileImageMap();
+		tileImageMap = new ImageMap();
 		tileImageMap.buildLayout( map_rows, map_cols );
 		
 		for( int i = 0; i < tmx.getTiles().length; i++ ) { 						// for each layer
@@ -64,10 +66,10 @@ public class TMXParser {
 							
 							// building initial tile image
 							if( i == 0 ) {
-								TileImage tileImage = new TileImage( layer_count, accumulator );
+								Image tileImage = new Image( layer_count, accumulator );
 								tileImageMap.setTileImage( j, k, tileImage );
 							}
-							TileImage tileImage = tileImageMap.getTileImage( j, k );
+							Image tileImage = tileImageMap.getTileImage( j, k );
 							
 							// building tile layer i with frames
 							
@@ -84,18 +86,18 @@ public class TMXParser {
 				    			frameCount = 1;
 				    		}
 				    		
-				    		TileImageFrame[] frames = new TileImageFrame[ frameCount ];
+				    		ImageFrame[] frames = new ImageFrame[ frameCount ];
 				    		
 				    		for( int l = 0; l < frames.length; l++ ) {
 				    			
-				    			frames[ l ] = new TileImageFrame();
+				    			frames[ l ] = new ImageFrame();
 				    			frames[ l ].setFrameImage( tileSetImage.getSubimage( ( position + l ) * size, 0, size, size ) );
 				    			if( isAnimated ) {
 				    				frames[ l ].setFrameDuration( Integer.valueOf( tsx.getFrames().item( l ).getAttributes().getNamedItem( "duration" ).getNodeValue() ) );
 				    			}
 				    		}
 
-							TileImageLayer imageLayer = new TileImageLayer( isAnimated, frames, activeFrame );
+							ImageLayer imageLayer = new ImageLayer( isAnimated, frames, activeFrame );
 							tileImage.setImageLayer( i, imageLayer );
 						}
 					}
@@ -109,6 +111,94 @@ public class TMXParser {
 		gRoom.setTileImages( tileImageMap );
 		objs = tmx.getObjs();
 	}
+	
+	
+//	public TMXParser( Thing aThing ) throws Exception {
+//		
+//		this.aThing = aThing;
+//		this.tmx = new TMX( aThing.getTMX() );
+//		
+//		if( tmx != null ) {
+//			
+//			TSXs = constructAllTSX();
+//			images = getImages();
+//			size = tmx.getTilewidth();
+//			
+//			layer_count = tmx.getLayerList().getLength();
+//			map_cols = ( int ) ( tmx.getMapwidth() );
+//			map_rows = ( int ) ( tmx.getMapheight() );
+////			tiles = new BufferedImage[ layer_count ][ map_rows ][ map_cols ];
+////			
+////			tileImageMap = new TileImageMap();
+////			tileImageMap.buildLayout( map_rows, map_cols );
+//			
+//			for( int i = 0; i < tmx.getTiles().length; i++ ) { 						// for each layer
+//				
+//				int accumulator = 0;
+//				
+//				for( int j = 0; j < tmx.getTiles()[ 0 ].length; j++ ) { 			// for each row 
+//	
+//					for( int k = 0; k < tmx.getTiles()[ 0 ][ 0 ].length; k++ ) {	// for each column
+//	
+//						int tmxTileNum = tmx.getTiles()[ i ][ j ][ k ];				// number designating sub-image id		
+//						int tileSetNum = getTileSetNum( tmxTileNum );   			// number designate what tile set to use
+//						if( tileSetNum >= 0 ) {
+//							int firstgID = Integer.valueOf( tmx.getTilesets().item( tileSetNum ).getAttributes().item( 0 ).getNodeValue() );
+//							int position = tmxTileNum - firstgID;
+//							if( position >= 0 ) {
+//								
+//								BufferedImage tileSetImage = ImageIO.read( new File( tmx.getImage_paths()[ tileSetNum ] ) );
+//								
+//								TSX tsx = TSXs[ tileSetNum ];
+//								
+//								// building initial tile image
+//								if( i == 0 ) {
+//									TileImage tileImage = new TileImage( layer_count, accumulator );
+//									tileImageMap.setTileImage( j, k, tileImage );
+//								}
+//								TileImage tileImage = tileImageMap.getTileImage( j, k );
+//								
+//								// building tile layer i with frames
+//								
+//					    		boolean isAnimated = tsx.isAnimated();
+//	//				    		System.out.println("isAnimated: " + isAnimated);
+//					    		int activeFrame = 0;
+//					    		int frameCount;
+//					    		if( isAnimated ) {
+//					    			
+//					    			frameCount = tsx.getFrames().getLength(); 
+//					    			
+//					    		} else {
+//					    			
+//					    			frameCount = 1;
+//					    		}
+//					    		
+//					    		TileImageFrame[] frames = new TileImageFrame[ frameCount ];
+//					    		
+//					    		for( int l = 0; l < frames.length; l++ ) {
+//					    			
+//					    			frames[ l ] = new TileImageFrame();
+//					    			frames[ l ].setFrameImage( tileSetImage.getSubimage( ( position + l ) * size, 0, size, size ) );
+//					    			if( isAnimated ) {
+//					    				frames[ l ].setFrameDuration( Integer.valueOf( tsx.getFrames().item( l ).getAttributes().getNamedItem( "duration" ).getNodeValue() ) );
+//					    			}
+//					    		}
+//	
+//								TileImageLayer imageLayer = new TileImageLayer( isAnimated, frames, activeFrame );
+//								tileImage.setImageLayer( i, imageLayer );
+//							}
+//						}
+//					}
+//					accumulator += 1;
+//				}
+//			}
+//			
+//			tileImageMap.flipMapVertically();
+//			tileImageMap.transformToArray();
+//			gRoom.setTileImages( tileImageMap );
+//			objs = tmx.getObjs();
+//		}
+//	}
 	
 	public BufferedImage[] getImages() throws IOException {
 		BufferedImage[] imgs = new BufferedImage[ tmx.getImage_paths().length ];
@@ -156,12 +246,12 @@ public class TMXParser {
 		return tsxs;
 	}
 
-	public TileImageMap getTileImageMap() {
+	public ImageMap getTileImageMap() {
 		
 		return tileImageMap;
 	}
 
-	public void setTileImageMap( TileImageMap tileImageMap ) {
+	public void setTileImageMap( ImageMap tileImageMap ) {
 		
 		this.tileImageMap = tileImageMap;
 	}
@@ -172,5 +262,13 @@ public class TMXParser {
 
 	public void setGameRoom(GameRoom gameRoom) {
 		this.gameRoom = gameRoom;
+	}
+
+	public Thing getAThing() {
+		return aThing;
+	}
+
+	public void setAThing(Thing aThing) {
+		this.aThing = aThing;
 	}
 }

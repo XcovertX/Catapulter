@@ -2,6 +2,7 @@ package main.java.actor;
 
 import java.awt.Color;
 
+import main.java.UserInterface.TSX;
 import main.java.UserInterface.TileChar;
 import main.java.body.Body;
 import main.java.characteristics.ActorStats;
@@ -61,7 +62,22 @@ public class Actor extends ThingHolder {
         this.setHunger( 0 );
         this.setDecomposed( 100 );
         this.setTileChar( new TileChar( aActorSymbol, "#00b6ff" ) );
+        this.setTMX( "files/location-2.tsx" );
         this.type = "Actor";
+        System.out.println("*************************************************************************" );
+        if( this.getTMX() != null ) {
+        	System.out.println("yep");
+        	try {
+				TSX tsx = new TSX( this.getTMX() );
+				this.setThingImages( tsx.buildThingImages() );
+				int i = this.getThingImages().length;
+				System.out.println("thing image count: " + i );
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
     }
 
     public Actor() {
@@ -76,7 +92,9 @@ public class Actor extends ThingHolder {
         this.setHunger( 0 );
         this.setDecomposed( 100 );
         this.setTileChar( new TileChar() );
+        this.setTMX( "files/location.tsx" );
         this.type = "Actor";
+
 	}
     
     

@@ -1,8 +1,10 @@
 package main.java.UserInterface;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -16,6 +18,7 @@ public class TSX {
 	private NodeList images;
 	
 	private String imageSourcePath;
+	
 	private int tileCount;
 	private int tileWidth;
 	private int tileHeight;
@@ -24,7 +27,104 @@ public class TSX {
 	private NodeList animations;
 	private NodeList frames;
 	
+	private File file;
+	private DocumentBuilderFactory dbFactory;
+	private DocumentBuilder dBuilder;
+	private Document doc;
+	private Element tileset;
 	
+	private BufferedImage tileSetImage;
+	
+	private int xPosition;
+	private int yPosition;
+	
+	public static final int TILE_LAYER_COUNT = 5;
+	public static final int THING_LAYER_COUNT = 3;
+	
+	public TSX( String path ) throws Exception {
+		
+		this.tsxPath = path;
+		
+		file = new File( path );
+//		tsxPath += file.getParent() + "/";
+		dbFactory = DocumentBuilderFactory.newInstance();
+		dBuilder = dbFactory.newDocumentBuilder();
+		doc = dBuilder.parse( file );
+		doc.getDocumentElement().normalize();
+		tileset = doc.getDocumentElement();
+		tiles = tileset.getElementsByTagName( "tile" );
+		images = tileset.getElementsByTagName( "image" );
+		animations = tileset.getElementsByTagName( "animation" );
+		frames = tileset.getElementsByTagName( "frame" );
+		String parent = file.getParent() + "/";
+		imageSourcePath = parent + images.item( 0 ).getAttributes().getNamedItem( "source" ).getNodeValue().toString();
+		
+		tileCount   = Integer.valueOf( tileset.getAttribute( "tilecount"   ) );
+		tileWidth   = Integer.valueOf( tileset.getAttribute( "tilewidth"   ) );
+		tileHeight  = Integer.valueOf( tileset.getAttribute( "tileheight"  ) );
+		columnCount = Integer.valueOf( tileset.getAttribute( "columns" ) );
+		
+		tileSetImage = ImageIO.read( new File( imageSourcePath ) );
+		
+		xPosition = 0;
+		yPosition = 0;
+	}
+	
+	public Image[] buildThingImages() {
+		
+		Image[] thingImages = new Image[ tiles.getLength() ];						// number of different image sections in image
+		
+		System.out.println( "thingImages: " + tiles.getLength() );
+		for( int i = 0; i < thingImages.length; i++ ) {								// for each image section
+			
+			Image thingImage = new Image();
+			ImageLayer thingImageLayer = new ImageLayer();
+			ImageLayer[] thingImageLayers = new ImageLayer[ 1 ];
+			thingImage.setImageLayers( thingImageLayers );
+			
+			int frameCount;
+    		if( frames.getLength() > 0 ) {
+    			
+    			thingImageLayer.setAnimated( true );
+    			frameCount = frames.getLength();
+    			
+    		} else {
+    			
+    			thingImageLayer.setAnimated( false );
+    			frameCount = 1;
+    		}
+    		
+			ImageFrame[] thingImageFrames = new ImageFrame[ frameCount ];
+			
+			for( int j = 0; j < thingImageFrames.length; j++ ) {
+				
+				thingImageFrames[ j ] = new ImageFrame();
+				thingImageFrames[ j ].setFrameImage( tileSetImage.getSubimage( ( xPosition + j ) * tileWidth, ( yPosition + i ) * tileHeight, tileWidth, tileHeight ) );
+				
+				if( thingImageLayer.isAnimated() ) {
+					
+					thingImageFrames[ j ].setFrameDuration( Integer.valueOf( getFrames().item( j ).getAttributes().getNamedItem( "duration" ).getNodeValue() ) );
+				
+				} else {
+					
+					thingImageFrames[ j ].setFrameDuration( -1 );
+				}
+			}
+			thingImageLayer.setImageFrames( thingImageFrames );
+			thingImage.setImageLayer( 0, thingImageLayer );
+			thingImages[ i ] = thingImage;
+		}
+		return thingImages;
+	}
+	
+	public boolean isAnimated() {
+		
+		if( frames.getLength() > 1 ) {
+			
+			return true;
+		}
+		return false;
+	}
 	
 	public String getTsxPath() {
 		return tsxPath;
@@ -106,30 +206,6 @@ public class TSX {
 		this.frames = frames;
 	}
 
-	public TSX( String path ) throws Exception {
-		
-		this.tsxPath = path;
-		
-		File file = new File( path );
-//		tsxPath += file.getParent() + "/";
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-		Document doc = dBuilder.parse( file );
-		doc.getDocumentElement().normalize();
-		Element tileset = doc.getDocumentElement();
-		
-		tiles = tileset.getElementsByTagName( "tile" );
-		images = tileset.getElementsByTagName( "image" );
-		animations = tileset.getElementsByTagName( "animation" );
-		frames = tileset.getElementsByTagName( "frame" );
-		imageSourcePath = images.item( 0 ).getAttributes().getNamedItem( "source" ).getNodeValue().toString();
-		tileCount   = Integer.valueOf( tileset.getAttribute( "tilecount"   ) );
-		tileWidth   = Integer.valueOf( tileset.getAttribute( "tilewidth"   ) );
-		tileHeight  = Integer.valueOf( tileset.getAttribute( "tileheight"  ) );
-		columnCount = Integer.valueOf( tileset.getAttribute( "columns" ) );
-			
-	}
-
 	public String getTSXPath() {
 		
 		return tsxPath;
@@ -139,14 +215,4 @@ public class TSX {
 		
 		this.tsxPath = tsxPath;
 	}
-	
-	public boolean isAnimated() {
-		
-		if( frames.getLength() > 1 ) {
-			
-			return true;
-		}
-		return false;
-	}
-
 }

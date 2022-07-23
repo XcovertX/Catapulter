@@ -24,7 +24,7 @@ public class TMX {
 	private int layerCount;
 	
 	private int tiles[][][];
-	private ArrayList<Rect> objs = new ArrayList<Rect>();
+	private ArrayList< ObjectImage > objs = new ArrayList< ObjectImage >();
 	private String[] tokens;
 	private String image_Path;
 	private String[] image_paths;
@@ -106,11 +106,11 @@ public class TMX {
 							properties.add( new Property( propName, propType, propValue ) );
 						}
 					}
-					getObjs().add( new Rect( x, y, w, h, objName, objType, new String( name ), properties ) );
+					getObjs().add( new ObjectImage( x, y, w, h, objName, objType, new String( name ), properties ) );
 					
 				} else {
 					
-					getObjs().add( new Rect( x, y, w, h, objName, objType, new String( name ) ) );
+					getObjs().add( new ObjectImage( x, y, w, h, objName, objType, new String( name ) ) );
 				}
 			}
 		}
@@ -121,10 +121,10 @@ public class TMX {
 	public String[] getTSXPaths() throws Exception {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-		String[] imagePaths = new String[ getTSX_paths().length ];
+		String[] imagePaths = new String[ tsx_paths.length ];
 		
 		for( int i = 0; i < imagePaths.length; i++ ) {
-			File file = new File( getTSX_paths()[ i ] );
+			File file = new File( tsx_paths[ i ] );
 			Document doc = dBuilder.parse( file );
 			doc.getDocumentElement().normalize();
 			Element root = doc.getDocumentElement();
@@ -140,50 +140,62 @@ public class TMX {
 	}
 
 	public int[][][] getTiles() {
+		
 		return tiles;
 	}
 
-	public void setTiles(int tiles[][][]) {
+	public void setTiles( int tiles[][][] ) {
+		
 		this.tiles = tiles;
 	}
 
 	public NodeList getTilesets() {
+		
 		return tileSets;
 	}
 
-	public void setTilesets(NodeList tilesets) {
+	public void setTilesets( NodeList tilesets ) {
+		
 		this.tileSets = tilesets;
 	}
 
 	public String[] getImage_paths() {
+		
 		return image_paths;
 	}
 
-	public void setImage_paths(String[] image_paths) {
+	public void setImage_paths( String[] image_paths ) {
+		
 		this.image_paths = image_paths;
 	}
 
 	public NodeList getLayerList() {
+		
 		return layerList;
 	}
 
-	public void setLayerList(NodeList layerList) {
+	public void setLayerList( NodeList layerList ) {
+		
 		this.layerList = layerList;
 	}
 
 	public int getMapwidth() {
+		
 		return mapwidth;
 	}
 
-	public void setMapwidth(int mapwidth) {
+	public void setMapwidth( int mapwidth ) {
+		
 		this.mapwidth = mapwidth;
 	}
 
 	public int getMapheight() {
+		
 		return mapheight;
 	}
 
-	public void setMapheight(int mapheight) {
+	public void setMapheight( int mapheight ) {
+		
 		this.mapheight = mapheight;
 	}
 
@@ -191,23 +203,28 @@ public class TMX {
 		return tilewidth;
 	}
 
-	public void setTilewidth(int tilewidth) {
+	public void setTilewidth( int tilewidth ) {
+		
 		this.tilewidth = tilewidth;
 	}
 
-	public ArrayList<Rect> getObjs() {
+	public ArrayList< ObjectImage > getObjs() {
+		
 		return objs;
 	}
 
-	public void setObjs(ArrayList<Rect> objs) {
+	public void setObjs( ArrayList< ObjectImage > objs ) {
+		
 		this.objs = objs;
 	}
 
 	public String[] getTSX_paths() {
+		
 		return tsx_paths;
 	}
 
-	public void setTSX_paths(String[] tsx_paths) {
+	public void setTSX_paths( String[] tsx_paths 
+			) {
 		this.tsx_paths = tsx_paths;
 	}
 }

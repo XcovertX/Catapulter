@@ -103,18 +103,33 @@ public class TextMapController {
 			    for (int j = 0; j < gameRoom.getRoomWidth(); j++) {
 			    	
 			    	GameTile gameTile = ( GameTile ) Game.currentRoom.getTiles().get( accumulator );
-			    	TileImage tileImage = gameTile.getTileImage();
+			    	main.java.UserInterface.Image tileImage = gameTile.getBaseTileImage();
 			    	
 //			    	System.out.println( "tile num: " + gameTile.getTileNumber() + " img num: " + gameTile.getTileNumber() );
 			    	for( int k = 0; k < tileImage.getImageLayers().length; k++) {
-				    	TileImageLayer tileImageLayer = tileImage.getImageLayer( k );
+				    	ImageLayer tileImageLayer = tileImage.getImageLayer( k );
 				    	if( tileImageLayer != null ) {
-				    		TileImageFrame tileImageFrame = tileImageLayer.getActiveFrame();
+				    		ImageFrame tileImageFrame = tileImageLayer.getActiveFrame();
 				    		BufferedImage frameImage = tileImageFrame.getFrameImage();
 				    		Image image = SwingFXUtils.toFXImage( frameImage, null );
 				    		gc.drawImage( image, ( double ) j * tileWidth, ( double ) i * tileWidth );
 				    	}
 			    	}
+			    	
+			    	main.java.UserInterface.Image thingImage = gameTile.getCurrentTileImage();
+			    	
+			    	if( thingImage != null ) {
+				    	for( int k = 0; k < thingImage.getImageLayers().length; k++) {
+					    	ImageLayer thingImageLayer = thingImage.getImageLayer( k );
+					    	if( thingImageLayer != null ) {
+					    		ImageFrame thingImageFrame = thingImageLayer.getActiveFrame();
+					    		BufferedImage frameImage = thingImageFrame.getFrameImage();
+					    		Image image = SwingFXUtils.toFXImage( frameImage, null );
+					    		gc.drawImage( image, ( double ) j * tileWidth, ( double ) i * tileWidth );
+					    	}
+				    	}
+			    	}
+			    	
 			    	accumulator += 1;
 			    }
 			}
@@ -141,11 +156,11 @@ public class TextMapController {
 			    for (int k = 0; k < tmx.map_cols; k++) {
 			    	
 			    	GameTile gameTile = ( GameTile ) Game.currentRoom.getTiles().get( accumulator );
-			    	TileImage tileImage = gameTile.getTileImage();
+			    	main.java.UserInterface.Image tileImage = gameTile.getBaseTileImage();
 //			    	System.out.println( "tile num: " + gameTile.getTileNumber() + " img num: " + gameTile.getTileNumber() );
-			    	TileImageLayer tileImageLayer = tileImage.getImageLayer( i );
+			    	ImageLayer tileImageLayer = tileImage.getImageLayer( i );
 			    	if( tileImageLayer != null ) {
-			    		TileImageFrame tileImageFrame = tileImageLayer.getActiveFrame();
+			    		ImageFrame tileImageFrame = tileImageLayer.getActiveFrame();
 			    		BufferedImage frameImage = tileImageFrame.getFrameImage();
 			    		Image image = SwingFXUtils.toFXImage( frameImage, null );
 			    		gc.drawImage( image, ( double ) k * tmx.size, ( double ) j * tmx.size );

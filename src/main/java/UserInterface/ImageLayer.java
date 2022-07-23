@@ -2,15 +2,17 @@ package main.java.UserInterface;
 
 import java.awt.image.BufferedImage;
 
-public class TileImageLayer {
+public class ImageLayer {
 	
 	private boolean isAnimated;
 	private long timeAccumulation; // in milliseconds
 	private long lastUpdate;
-	private TileImageFrame[] frames;
+	private ImageFrame[] frames;
 	private int activeFrameIndex;
 	
-	public TileImageLayer( boolean isAnimated, TileImageFrame[] frames, int activeImageIndex ) {
+	public ImageLayer() {}
+	
+	public ImageLayer( boolean isAnimated, ImageFrame[] frames, int activeImageIndex ) {
 		
 		this.isAnimated = isAnimated;
 		this.frames = frames;
@@ -19,7 +21,7 @@ public class TileImageLayer {
 		this.timeAccumulation = 0;
 	}
 	
-	public TileImageFrame getActiveFrame() {
+	public ImageFrame getActiveFrame() {
 		
 		return frames[ activeFrameIndex ];
 	}
@@ -27,8 +29,7 @@ public class TileImageLayer {
 	public boolean frameSwapTimeCheck() {
 		
 		updateTimeAccumulation();
-		System.out.println( timeAccumulation );
-		System.out.println( frames[ activeFrameIndex ].getFrameDuration() );
+
 		if( timeAccumulation >= frames[ activeFrameIndex ].getFrameDuration() ) {
 			lastUpdate = System.currentTimeMillis();
 			timeAccumulation = 0;
@@ -74,12 +75,12 @@ public class TileImageLayer {
 		this.isAnimated = isAnimated;
 	}
 	
-	public TileImageFrame[] getFrames() {
+	public ImageFrame[] getImageFrames() {
 		
 		return frames;
 	}
 	
-	public void setAnimatedImage( TileImageFrame[] frames ) {
+	public void setImageFrames( ImageFrame[] frames ) {
 		
 		this.frames = frames;
 	}

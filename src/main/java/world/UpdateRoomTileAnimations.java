@@ -1,8 +1,8 @@
 package main.java.world;
 
-import main.java.UserInterface.TileImage;
-import main.java.UserInterface.TileImageFrame;
-import main.java.UserInterface.TileImageLayer;
+import main.java.UserInterface.Image;
+import main.java.UserInterface.ImageFrame;
+import main.java.UserInterface.ImageLayer;
 import main.java.game.Game;
 import main.java.gameObjects.Thing;
 import main.java.gameObjects.ThingHolder;
@@ -21,19 +21,37 @@ public class UpdateRoomTileAnimations extends UpdateWorld {
 			for( int i = 0; i < tiles.size(); i++ ) {
 				
 				GameTile gameTile = ( GameTile ) tiles.get( i );
-				TileImage tileImage = gameTile.getTileImage();
-				TileImageLayer[] tileImageLayers = tileImage.getImageLayers();
+				Image tileImage = gameTile.getBaseTileImage();
+				ImageLayer[] tileImageLayers = tileImage.getImageLayers();
 				
 				for( int j = 0; j < tileImageLayers.length; j++ ) {
 					
-					TileImageLayer tileImageLayer = tileImageLayers[ j ];
+					ImageLayer tileImageLayer = tileImageLayers[ j ];
 					
 					if( tileImageLayer != null ) {
+						
 						if( tileImageLayer.isAnimated() ) {
 							
 							if( tileImageLayer.frameSwapTimeCheck() ) {
 							
 								tileImageLayer.cycleActiveImage();
+							} 
+						}
+					}
+				}
+				Image thingImage = gameTile.getCurrentTileImage();
+				
+				if( thingImage != null ) {
+					
+					ImageLayer thingImageLayer = thingImage.getImageLayer( 0 );
+					
+					if( thingImageLayer != null ) {
+						
+						if( thingImageLayer.isAnimated() ) {
+							
+							if( thingImageLayer.frameSwapTimeCheck() ) {
+							
+								thingImageLayer.cycleActiveImage();
 							} 
 						}
 					}

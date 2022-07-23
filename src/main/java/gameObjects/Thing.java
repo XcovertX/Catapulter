@@ -3,6 +3,7 @@ package main.java.gameObjects;
 import java.awt.Color;
 
 import main.java.UserInterface.TileChar;
+import main.java.UserInterface.Image;
 import main.java.world.GameMap;
 import main.java.world.GameRoom;
 import main.java.world.GameTile;
@@ -54,7 +55,10 @@ public class Thing {
     protected boolean hasThingList;
     
 //    protected String tileChar;
+    private String tsxPath;
+    private String tmx;
     private TileChar tileChar;
+    private Image[] thingImages;
    
     
     public String type = "Thing";
@@ -524,14 +528,47 @@ public class Thing {
 	}
 
 	public boolean isGameTile() {
+		
 		return isGameTile;
 	}
 
-	public void setGameTile(boolean isGameTile) {
+	public void setGameTile( boolean isGameTile ) {
+		
 		this.isGameTile = isGameTile;
 	}
 
 	public boolean isGameRoom() {
+		
 		return isGameRoom;
+	}
+	
+	public Image[] getThingImages() {
+		
+		return thingImages;
+	}
+	
+	public void setThingImages( Image[] tileImages ) {
+		
+		this.thingImages = tileImages;
+	}
+
+	public String getTSXPath() {
+		
+		return tsxPath;
+	}
+
+	public void setTSXPath( String tsxPath ) {
+		
+		this.tsxPath = tsxPath;
+	}
+
+	public String getTMX() {
+		
+		return tmx;
+	}
+
+	public void setTMX( String tmx ) {
+		
+		this.tmx = tmx;
 	}
 }

@@ -11,7 +11,7 @@ public class TileImageRenderer {
 	
 	private String tmx;
 	
-	private TileImage[][] tileImageMap;
+	private Image[][] tileImageMap;
 	
 	
 	public void initTileMap() throws Exception {

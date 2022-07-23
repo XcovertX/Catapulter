@@ -1,31 +1,33 @@
 package main.java.UserInterface;
 
-public class TileImage {
+public class Image {
 	
 	private int tileImageNumber;
-	private TileImageLayer[] imageLayers; // 0 = base layer
+	private ImageLayer[] imageLayers; // 0 = base layer
 	
-	public TileImage( int layerCount, int tileImageNum ) {
+	public Image() {}
+	
+	public Image( int layerCount, int tileImageNum ) {
 		
-		this.imageLayers = new TileImageLayer[ layerCount ];
+		this.imageLayers = new ImageLayer[ layerCount ];
 		this.tileImageNumber = tileImageNum;
 	}
 	
-	public TileImageLayer[] getImageLayers() {
+	public ImageLayer[] getImageLayers() {
 		
 		return imageLayers;
 	}
 	
-	public void setImageLayers( TileImageLayer[] imageLayers ) {
+	public void setImageLayers( ImageLayer[] imageLayers ) {
 		
 		this.imageLayers = imageLayers;
 	}
 	
-	public TileImageLayer getImageLayer( int index ) {
+	public ImageLayer getImageLayer( int index ) {
 		
 		return imageLayers[ index ];
 	}
-	public void setImageLayer( int index, TileImageLayer imageLayer ) {
+	public void setImageLayer( int index, ImageLayer imageLayer ) {
 		
 		this.imageLayers[ index ] = imageLayer;
 	}

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import main.java.UserInterface.TileChar;
-import main.java.UserInterface.TileImage;
+import main.java.UserInterface.Image;
 import main.java.actor.Actor;
 import main.java.actor.NonPlayerActor;
 import main.java.game.Game;
@@ -31,7 +31,8 @@ public class GameTile extends ThingHolder {
     private String externalRoomName = "";
     private int externalTile = 0;
     
-    private TileImage tileImage;
+    private Image baseTileImage;
+    private Image currentTileImage;
 
     public GameTile() {
     	super( "", "", new ThingList() );
@@ -277,21 +278,55 @@ public class GameTile extends ThingHolder {
     public void setCurrentTileChar() {
     	
     	if( Game.currentGame.getPlayer().getTile().equals( this ) ) {
+    		
     		this.setCurrentTileChar( Game.currentGame.getPlayer().getTileChar() );
+    		
     	} else if( !npcs.isEmpty() ) {
+    		
     		Actor mostRecentActor = ( Actor ) this.npcs.getLast();
     		this.setCurrentTileChar( mostRecentActor.getTileChar() );
+    		
     	} else if( !things.isEmpty() ) {
+    		
     		Thing item = this.things.getLast();
     		this.setCurrentTileChar( item.getTileChar() );
+    		
     	} else {
+    		
     		this.setCurrentTileCharToDefaultTileChar();
+    	}
+    }
+    
+    public void setCurrentTileImage() {
+    	
+    	if( Game.currentGame.getPlayer().getTile().equals( this ) ) {
+    		Actor a = Game.currentGame.getPlayer();
+    		this.setCurrentTileImage( a.getThingImages()[0] );
+    		
+    	} else if( !npcs.isEmpty() ) {
+    		
+    		Actor mostRecentActor = ( Actor ) this.npcs.getLast();
+    		this.setCurrentTileImage( mostRecentActor.getThingImages()[0] );
+    		
+    	} else if( !things.isEmpty() ) {
+    		
+    		Thing item = this.things.getLast();
+    		this.setCurrentTileImage( item.getThingImages()[0] );
+    		
+    	} else {
+    		
+    		this.setCurrentTileImage( null );
     	}
     }
     
     public TileChar getCurrentTileChar() {
     	setCurrentTileChar();
     	return this.currentTileChar;
+    }
+    
+    public Image getCurrentTileImage() {
+    	setCurrentTileImage();
+    	return this.currentTileImage;
     }
     
     public int getTileNumber() {
@@ -404,18 +439,28 @@ public class GameTile extends ThingHolder {
 		return externalRoomName;
 	}
 	
-	public void setExternalRoomName(String externalRoomName) {
+	public void setExternalRoomName( String externalRoomName ) {
 		
 		this.externalRoomName = externalRoomName;
 	}
 	
-	public void setCurrentTileChar(TileChar currentTileChar) {
+	public void setCurrentTileChar( TileChar currentTileChar ) {
+		
 		this.currentTileChar = currentTileChar;
 	}
-	public TileImage getTileImage() {
-		return tileImage;
+	
+	public void setCurrentTileImage( Image currentTileImage ) {
+		
+		this.currentTileImage = currentTileImage;
 	}
-	public void setTileImage(TileImage tileImage) {
-		this.tileImage = tileImage;
+	
+	public Image getBaseTileImage() {
+		
+		return baseTileImage;
+	}
+	
+	public void setBaseTileImage( Image baseTileImage ) {
+		
+		this.baseTileImage = baseTileImage;
 	}
 }

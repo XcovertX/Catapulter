@@ -1,15 +1,15 @@
 package main.java.UserInterface;
 
-public class TileImageMap {
+public class ImageMap {
 	
-	private TileImage[][] tileImageMap;
-	private TileImage[][] tileImageMapVerticallyFlipped;
-	private TileImage[] tileImageArray;
+	private Image[][] tileImageMap;
+	private Image[][] tileImageMapVerticallyFlipped;
+	private Image[] tileImageArray;
 	
 	public void flipMapVertically() {
 		
-		tileImageMapVerticallyFlipped = new TileImage[ tileImageMap.length ][ tileImageMap[ 0 ].length ];
-		tileImageArray = new TileImage[ tileImageMap.length * tileImageMap[0].length ];
+		tileImageMapVerticallyFlipped = new Image[ tileImageMap.length ][ tileImageMap[ 0 ].length ];
+		tileImageArray = new Image[ tileImageMap.length * tileImageMap[0].length ];
 		
 		for( int i = 0; i < tileImageMap.length; i++ ) {
 			
@@ -22,7 +22,7 @@ public class TileImageMap {
 	
 	public void transformToArray() {
 		
-		tileImageArray = new TileImage[ tileImageMap.length * tileImageMap[0].length ];
+		tileImageArray = new Image[ tileImageMap.length * tileImageMap[0].length ];
 		int accumulator = 0;
 		for( int i = 0; i < tileImageMap.length; i++ ) {
 			
@@ -35,52 +35,52 @@ public class TileImageMap {
 	}
 
 
-	public TileImage[][] getTileImageMap() {
+	public Image[][] getTileImageMap() {
 		
 		return tileImageMap;
 	}
 	
-	public TileImage[][] getVerticallyFlippedTileImageMap() {
+	public Image[][] getVerticallyFlippedTileImageMap() {
 		
 		return tileImageMapVerticallyFlipped;
 	}
 
-	public void setTileImageMap( TileImage[][] tileImageMap ) {
+	public void setTileImageMap( Image[][] tileImageMap ) {
 		
 		this.tileImageMap = tileImageMap;
 	}
 	
-	public TileImage getTileImage( int row, int col ) {
+	public Image getTileImage( int row, int col ) {
 		
 		return tileImageMap[row][col];
 	}
 	
-	public void setTileImage( int row, int col, TileImage ti ) {
+	public void setTileImage( int row, int col, Image ti ) {
 		
 		tileImageMap[row][col] = ti;
 	}
 	
-	public TileImage getVerticallyFlippedTileImage( int row, int col ) {
+	public Image getVerticallyFlippedTileImage( int row, int col ) {
 		
 		return tileImageMapVerticallyFlipped[ row ][ col ];
 	}
 	
-	public void setVerticallyFlippedTileImage( int row, int col, TileImage ti ) {
+	public void setVerticallyFlippedTileImage( int row, int col, Image ti ) {
 		
 		tileImageMapVerticallyFlipped[ row ][ col ] = ti;
 	}
 	
 	public void buildLayout( int row, int col ) {
 		
-		tileImageMap = new TileImage[ row ][ col ];
+		tileImageMap = new Image[ row ][ col ];
 	}
 
-	public TileImage[] getTileImageArray() {
+	public Image[] getTileImageArray() {
 		
 		return tileImageArray;
 	}
 
-	public void setTileImageArray( TileImage[] tileImageMaplist ) {
+	public void setTileImageArray( Image[] tileImageMaplist ) {
 		
 		this.tileImageArray = tileImageMaplist;
 	}

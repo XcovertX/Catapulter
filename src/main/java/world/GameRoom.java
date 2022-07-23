@@ -1,6 +1,6 @@
 package main.java.world;
 
-import main.java.UserInterface.TileImageMap;
+import main.java.UserInterface.ImageMap;
 import main.java.actor.NonPlayerActor;
 import main.java.gameObjects.ThingHolder;
 import main.java.gameObjects.ThingList;
@@ -15,11 +15,10 @@ public class GameRoom extends ThingHolder {
 	private int roomWidth;
 	private boolean inside;
 	private boolean outside;
-	private String tmx;
 	
 	public GameRoom() {
 		super( "", "", new ThingList() );
-		this.tmx = "files/testRoom.tmx";
+		this.setTMX("files/testRoom.tmx");
 		this.isGameRoom = true;
 		this.type = "Room";
 	}
@@ -124,23 +123,13 @@ public class GameRoom extends ThingHolder {
 		
 		this.outside = outside;
 	}
-
-	public String getTMX() {
-		
-		return tmx;
-	}
-
-	public void setTMX( String tmx ) {
-		
-		this.tmx = tmx;
-	}
 	
-	public void setTileImages( TileImageMap tileImageMap ) {
+	public void setTileImages( ImageMap tileImageMap ) {
 		
 		ThingList tiles = getTiles();
 		for( int i = 0; i < tiles.size(); i++ ) {
 			GameTile tile = ( GameTile ) tiles.get( i );
-			tile.setTileImage( tileImageMap.getTileImageArray()[ i ] );
+			tile.setBaseTileImage( tileImageMap.getTileImageArray()[ i ] );
 		}
 	}
 }

@@ -96,6 +96,7 @@ public class Game {
     		
     		userInterface = new UserInterface( player );
     		userInterface.getDisplay().setRoom( currentRoom );
+    		
     		try {
 				new TMXParser( currentRoom );
 			} catch (Exception e) {

@@ -19,9 +19,13 @@ public class UpdateWorldMethods {
 	}
 	
 	public UpdateWorld getUpdateCommand( String updateName ) {
+		
 		try {
+			
 			return updates.get( updateName );
+			
 		} catch( IllegalArgumentException e ) {
+			
 			return null;
 		} 
 	}

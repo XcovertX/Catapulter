@@ -2,10 +2,12 @@ package main.java.UserInterface;
 
 import java.awt.image.BufferedImage;
 
-public class TileImageFrame {
+public class ImageFrame {
 	
 	private BufferedImage frameImage;
 	private long frameDuration;
+	
+	public ImageFrame() {}
 
 	public BufferedImage getFrameImage() {
 		
