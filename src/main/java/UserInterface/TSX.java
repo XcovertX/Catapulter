@@ -70,11 +70,10 @@ public class TSX {
 		yPosition = 0;
 	}
 	
-	public Image[] buildThingImages() {
+	public Image[] buildThingImages( int gameTileNumber ) {
 		
 		Image[] thingImages = new Image[ tiles.getLength() ];						// number of different image sections in image
-		
-		System.out.println( "thingImages: " + tiles.getLength() );
+
 		for( int i = 0; i < thingImages.length; i++ ) {								// for each image section
 			
 			Image thingImage = new Image();
@@ -112,6 +111,7 @@ public class TSX {
 			}
 			thingImageLayer.setImageFrames( thingImageFrames );
 			thingImage.setImageLayer( 0, thingImageLayer );
+			thingImage.setTileImageNumber( gameTileNumber );
 			thingImages[ i ] = thingImage;
 		}
 		return thingImages;

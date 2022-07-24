@@ -69,6 +69,7 @@ public class TMXParser {
 								Image tileImage = new Image( layer_count, accumulator );
 								tileImageMap.setTileImage( j, k, tileImage );
 							}
+							
 							Image tileImage = tileImageMap.getTileImage( j, k );
 							
 							// building tile layer i with frames
@@ -101,8 +102,8 @@ public class TMXParser {
 							tileImage.setImageLayer( i, imageLayer );
 						}
 					}
+					accumulator += 1;
 				}
-				accumulator += 1;
 			}
 		}
 		

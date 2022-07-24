@@ -129,7 +129,9 @@ public class GameRoom extends ThingHolder {
 		ThingList tiles = getTiles();
 		for( int i = 0; i < tiles.size(); i++ ) {
 			GameTile tile = ( GameTile ) tiles.get( i );
+			
 			tile.setBaseTileImage( tileImageMap.getTileImageArray()[ i ] );
+			tileImageMap.getTileImageArray()[ i ].setTileImageNumber( tile.getTileNumber() );
 		}
 	}
 }

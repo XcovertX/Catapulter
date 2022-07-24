@@ -39,7 +39,8 @@ public class UpdateRoomTileAnimations extends UpdateWorld {
 						}
 					}
 				}
-				Image thingImage = gameTile.getCurrentTileImage();
+				
+				Image thingImage = gameTile.getCurrentThingImage();
 				
 				if( thingImage != null ) {
 					

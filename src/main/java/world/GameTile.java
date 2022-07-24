@@ -32,7 +32,7 @@ public class GameTile extends ThingHolder {
     private int externalTile = 0;
     
     private Image baseTileImage;
-    private Image currentTileImage;
+    private Image currentThingImage;
 
     public GameTile() {
     	super( "", "", new ThingList() );
@@ -297,25 +297,25 @@ public class GameTile extends ThingHolder {
     	}
     }
     
-    public void setCurrentTileImage() {
+    public void setCurrentThingImage() {
     	
     	if( Game.currentGame.getPlayer().getTile().equals( this ) ) {
-    		Actor a = Game.currentGame.getPlayer();
-    		this.setCurrentTileImage( a.getThingImages()[0] );
+    		
+    		this.setCurrentThingImage( Game.currentGame.getPlayer().getThingImages()[0] );
     		
     	} else if( !npcs.isEmpty() ) {
     		
     		Actor mostRecentActor = ( Actor ) this.npcs.getLast();
-    		this.setCurrentTileImage( mostRecentActor.getThingImages()[0] );
+    		this.setCurrentThingImage( mostRecentActor.getThingImages()[0] );
     		
     	} else if( !things.isEmpty() ) {
     		
     		Thing item = this.things.getLast();
-    		this.setCurrentTileImage( item.getThingImages()[0] );
+    		this.setCurrentThingImage( item.getThingImages()[0] );
     		
     	} else {
     		
-    		this.setCurrentTileImage( null );
+    		this.setCurrentThingImage( null );
     	}
     }
     
@@ -324,9 +324,9 @@ public class GameTile extends ThingHolder {
     	return this.currentTileChar;
     }
     
-    public Image getCurrentTileImage() {
-    	setCurrentTileImage();
-    	return this.currentTileImage;
+    public Image getCurrentThingImage() {
+    	setCurrentThingImage();
+    	return this.currentThingImage;
     }
     
     public int getTileNumber() {
@@ -409,16 +409,6 @@ public class GameTile extends ThingHolder {
 		this.room = room;
 	}
 	
-//	public List< String > getCharPriorityQueue() {
-//		
-//		return currentTileCharPriorityQueue;
-//	}
-//	
-//	public void setcTileChar( List< String > charPriorityQueue ) {
-//		
-//		this.currentTileCharPriorityQueue = charPriorityQueue;
-//	}
-	
 	public void setDefaultTileChar( TileChar tileChar ) {
 		
 		this.defaultTileChar = tileChar;
@@ -449,9 +439,9 @@ public class GameTile extends ThingHolder {
 		this.currentTileChar = currentTileChar;
 	}
 	
-	public void setCurrentTileImage( Image currentTileImage ) {
+	public void setCurrentThingImage( Image currentThingImage ) {
 		
-		this.currentTileImage = currentTileImage;
+		this.currentThingImage = currentThingImage;
 	}
 	
 	public Image getBaseTileImage() {

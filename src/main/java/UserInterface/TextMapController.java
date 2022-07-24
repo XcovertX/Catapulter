@@ -98,7 +98,7 @@ public class TextMapController {
 			int accumulator = 0;
 			int tileWidth = 32; // figure out where to put this
 			GameRoom gameRoom = Game.currentRoom;
-			for (int i = 0; i < gameRoom.getRoomLength(); i++) {
+			for (int i = gameRoom.getRoomLength() - 1; i >= 0; i--) {
 				
 			    for (int j = 0; j < gameRoom.getRoomWidth(); j++) {
 			    	
@@ -116,7 +116,7 @@ public class TextMapController {
 				    	}
 			    	}
 			    	
-			    	main.java.UserInterface.Image thingImage = gameTile.getCurrentTileImage();
+			    	main.java.UserInterface.Image thingImage = gameTile.getCurrentThingImage();
 			    	
 			    	if( thingImage != null ) {
 				    	for( int k = 0; k < thingImage.getImageLayers().length; k++) {
@@ -129,19 +129,21 @@ public class TextMapController {
 					    	}
 				    	}
 			    	}
-			    	
 			    	accumulator += 1;
 			    }
 			}
-			
 		});
 	};
 	
 	public void setRoomDescription( String description ) {
 		
-		roomDescription.deleteText( 0, roomDescription.getLength() );
-		roomDescription.appendText( description );
-		roomDescription.setDisable( true );
+		Platform.runLater(() -> {
+		
+			roomDescription.deleteText( 0, roomDescription.getLength() );
+			roomDescription.appendText( description );
+			roomDescription.setDisable( true );
+			
+		});
 	}
 	
 	public void setTileMap() throws Exception {

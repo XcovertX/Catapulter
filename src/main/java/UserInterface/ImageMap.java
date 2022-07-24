@@ -28,7 +28,8 @@ public class ImageMap {
 			
 			for( int j = 0; j < tileImageMap[ 0 ].length; j++ ) {
 				
-				tileImageArray[ accumulator ] = tileImageMap[ i ][ j ];
+				tileImageArray[ accumulator ] = tileImageMapVerticallyFlipped[ i ][ j ];
+				
 				accumulator += 1;
 			}
 		}

@@ -69,7 +69,7 @@ public class Actor extends ThingHolder {
         	System.out.println("yep");
         	try {
 				TSX tsx = new TSX( this.getTMX() );
-				this.setThingImages( tsx.buildThingImages() );
+				this.setThingImages( tsx.buildThingImages( this.currentTile.getTileNumber() ) );
 				int i = this.getThingImages().length;
 				System.out.println("thing image count: " + i );
 				

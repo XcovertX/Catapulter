@@ -201,6 +201,7 @@ public class Go extends Action {
         }
         
         Game.currentGame.getUI().printlnColor( currentExits, Color.CYAN );
+        Game.currentGame.getUI().getTextMapController().setRoomDescription( currentExits );
     }
 
 	public boolean isDirection() {
