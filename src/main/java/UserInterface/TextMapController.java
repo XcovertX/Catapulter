@@ -94,6 +94,8 @@ public class TextMapController {
 		
 		Platform.runLater(() -> {
 			
+			this.setRoomDescription( Game.calendar.getClock() );
+			
 			GraphicsContext gc = tileMap.getGraphicsContext2D();
 			int accumulator = 0;
 			int tileWidth = 32; // figure out where to put this
@@ -105,7 +107,6 @@ public class TextMapController {
 			    	GameTile gameTile = ( GameTile ) Game.currentRoom.getTiles().get( accumulator );
 			    	main.java.UserInterface.Image tileImage = gameTile.getBaseTileImage();
 			    	
-//			    	System.out.println( "tile num: " + gameTile.getTileNumber() + " img num: " + gameTile.getTileNumber() );
 			    	for( int k = 0; k < tileImage.getImageLayers().length; k++) {
 				    	ImageLayer tileImageLayer = tileImage.getImageLayer( k );
 				    	if( tileImageLayer != null ) {
@@ -140,7 +141,9 @@ public class TextMapController {
 		Platform.runLater(() -> {
 		
 			roomDescription.deleteText( 0, roomDescription.getLength() );
-			roomDescription.appendText( description );
+			roomDescription.appendText( description + "\n\n" );
+			roomDescription.appendText( "Current exits are " + Game.currentTile.getTileExits() + "\n\n" );
+			roomDescription.appendText( Game.currentRoom.getDescription() );
 			roomDescription.setDisable( true );
 			
 		});
@@ -159,7 +162,6 @@ public class TextMapController {
 			    	
 			    	GameTile gameTile = ( GameTile ) Game.currentRoom.getTiles().get( accumulator );
 			    	main.java.UserInterface.Image tileImage = gameTile.getBaseTileImage();
-//			    	System.out.println( "tile num: " + gameTile.getTileNumber() + " img num: " + gameTile.getTileNumber() );
 			    	ImageLayer tileImageLayer = tileImage.getImageLayer( i );
 			    	if( tileImageLayer != null ) {
 			    		ImageFrame tileImageFrame = tileImageLayer.getActiveFrame();
@@ -171,36 +173,6 @@ public class TextMapController {
 			    }
 			}
 		}
-		
-//		GraphicsContext gc = tileMap.getGraphicsContext2D();
-//		TMXParser tmx = new TMXParser( Game.currentRoom.getTMX() );
-//		TileImageMap tileImageMap = tmx.getTileImageMap();
-//		tileImageMap.flipMapVertically();
-//		for (int i = 0; i < tmx.layer_count; i++) {
-//			for (int j = 0; j < tmx.map_rows; j++) {
-//			    for (int k = 0; k < tmx.map_cols; k++) {
-//			    	TileImageLayer tileImageLayer = tileImageMap.getVerticallyFlippedTileImage( j, k ).getImageLayer( i );
-//			    	if( tileImageLayer != null) {
-//			    		TileImageFrame tileImageFrame = tileImageLayer.getActiveFrame();
-//			    		BufferedImage frameImage = tileImageFrame.getFrameImage();
-//			    		Image image = SwingFXUtils.toFXImage( frameImage, null );
-//			    		gc.drawImage( image, ( double ) k * tmx.size, ( double ) j * tmx.size );
-//			    	}
-//			    }
-//			}
-//		}
-		
-//		GraphicsContext gc = tileMap.getGraphicsContext2D();
-//		for (int i = 0; i < tmx.layer_count; i++) {
-//			for (int j = 0; j < tmx.map_rows; j++) {
-//			    for (int k = 0; k < tmx.map_cols; k++) {
-//			    	if(tmx.tiles[i][j][k] != null) {
-//			    		Image image = SwingFXUtils.toFXImage(tmx.tiles[i][j][k], null);
-//			    		gc.drawImage(image, (double) k * tmx.size, (double) j * tmx.size);
-//			    	}
-//			    }
-//			}
-//		}
 	}
 	
 	@FXML

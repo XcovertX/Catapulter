@@ -63,6 +63,8 @@ public class TMXParser {
 							BufferedImage tileSetImage = ImageIO.read( new File( tmx.getImage_paths()[ tileSetNum ] ) );
 							
 							TSX tsx = TSXs[ tileSetNum ];
+							int xPosition = position % tsx.getColumnCount();
+							int yPosition = Math.floorDiv( position, tsx.getColumnCount() );
 							
 							// building initial tile image
 							if( i == 0 ) {
@@ -92,7 +94,7 @@ public class TMXParser {
 				    		for( int l = 0; l < frames.length; l++ ) {
 				    			
 				    			frames[ l ] = new ImageFrame();
-				    			frames[ l ].setFrameImage( tileSetImage.getSubimage( ( position + l ) * size, 0, size, size ) );
+				    			frames[ l ].setFrameImage( tileSetImage.getSubimage( ( xPosition + l ) * size, ( yPosition ) * size, size, size ) );
 				    			if( isAnimated ) {
 				    				frames[ l ].setFrameDuration( Integer.valueOf( tsx.getFrames().item( l ).getAttributes().getNamedItem( "duration" ).getNodeValue() ) );
 				    			}

@@ -18,7 +18,7 @@ public class GameRoom extends ThingHolder {
 	
 	public GameRoom() {
 		super( "", "", new ThingList() );
-		this.setTMX("files/testRoom.tmx");
+		this.setTMX("files/testCity.tmx");
 		this.isGameRoom = true;
 		this.type = "Room";
 	}

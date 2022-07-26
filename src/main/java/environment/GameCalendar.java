@@ -185,7 +185,7 @@ public class GameCalendar extends Time {
 	}
 	
 	public String getClock() {
-		return year + " : " + month + " : " + day + " : " + hour + " : " + minute + " : " + second + " : " + millisecond;
+		return year + " : " + month + " : " + day + " : " + hour + " : " + minute + " : " + second;
 	}
 	
 	public int[] getDate() {
