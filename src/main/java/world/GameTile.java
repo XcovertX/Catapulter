@@ -20,6 +20,8 @@ public class GameTile extends ThingHolder {
 	
 	private int n, s, w, e, nw, ne, sw, se, u, d, special;
     private int tileNumber;
+    private int tileRow;
+    private int tileColumn;
     private boolean notTile;
     private TileChar currentTileChar;
     private TileChar defaultTileChar;
@@ -452,5 +454,21 @@ public class GameTile extends ThingHolder {
 	public void setBaseTileImage( Image baseTileImage ) {
 		
 		this.baseTileImage = baseTileImage;
+	}
+	public int getTileRow() {
+		
+		return tileRow;
+	}
+	public void setTileRow( int tileRow ) {
+		
+		this.tileRow = tileRow;
+	}
+	public int getTileColumn() {
+		
+		return tileColumn;
+	}
+	public void setTileColumn( int tileColumn ) {
+		
+		this.tileColumn = tileColumn;
 	}
 }

@@ -97,6 +97,7 @@ public class TextMapController {
 			this.setRoomDescription( Game.calendar.getClock() );
 			
 			GraphicsContext gc = tileMap.getGraphicsContext2D();
+			Shader shader = new Shader();
 			int accumulator = 0;
 			int tileWidth = 32; // figure out where to put this
 			GameRoom gameRoom = Game.currentRoom;
@@ -112,6 +113,21 @@ public class TextMapController {
 				    	if( tileImageLayer != null ) {
 				    		ImageFrame tileImageFrame = tileImageLayer.getActiveFrame();
 				    		BufferedImage frameImage = tileImageFrame.getFrameImage();
+				    		
+				    		int playerRow = (int) Math.floor( Game.currentTile.getTileNumber() / Game.currentRoom.getRoomWidth()  );
+				    		int playerColumn = Game.currentTile.getTileNumber() % Game.currentRoom.getRoomWidth();
+				    		int thisRow = (int) Math.floor( gameTile.getTileNumber() / Game.currentRoom.getRoomWidth() );
+				    		int thisColumn = gameTile.getTileNumber() % Game.currentRoom.getRoomWidth();
+				    		if( thisRow > playerRow - 5 || thisRow < playerRow + 5 ) {
+				    			if( thisColumn > playerColumn - 5 || thisColumn < playerColumn + 5 ) {
+				    				int amount = Math.abs( playerRow - thisRow );
+				    				amount += Math.abs( playerColumn - thisColumn );
+				    				frameImage = shader.shiftBlue( frameImage, amount );
+				    			}
+				    			
+				    		}
+				    		
+				    		
 				    		Image image = SwingFXUtils.toFXImage( frameImage, null );
 				    		gc.drawImage( image, ( double ) j * tileWidth, ( double ) i * tileWidth );
 				    	}
