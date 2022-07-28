@@ -85,43 +85,53 @@ public class Shader {
 	    	
 	        for (int y = 0; y < img.getHeight(); y++) {
 	        	
-	            Color color = new Color( img.getRGB( x, y ) );
-	            int red = color.getRed();
-	            int blue = color.getBlue();
-	            int green = color.getGreen();
-
-	            float[] hsb = Color.RGBtoHSB(red, green, blue, null);
-
-	            float hue = hsb[0];
-
-	            float saturation = hsb[1];
-
-	            float brightness = hsb[2];
-	            
-	            float brightnessIncrement = (float) (1.0 - brightness);
-	            		
-	            brightnessIncrement += brightnessIncrement / rLight.getDistance();
-	            
-	            brightness += amount * brightnessIncrement;
-	            
-	            if( brightness > 1.0 ) {
-	            	brightness = ( float ) ( 0.1 * brightness );
-	            }
-	            
-	            if( brightness < 0 ) {
-	            	brightness = ( float ) 0.1;
-	            }
-	            
-	            int rgb = Color.HSBtoRGB(hue, saturation, brightness);
-
-	            red = (rgb>>16)&0xFF;
-
-	            green = (rgb>>8)&0xFF;
-
-	            blue = rgb&0xFF;
-	            
-	            int newColorRGB = new Color(red, green, blue ).getRGB();
-	            newImage.setRGB(x, y, newColorRGB );
+	        	int pixel = img.getRGB( x, y );
+	        	
+	        	if( isTransparent( pixel ) ) {
+	        		
+	        		newImage.setRGB(x, y, pixel );
+	        		
+	        	} else {
+	        		
+		            Color color = new Color( pixel );
+		            
+		            int red = color.getRed();
+		            int blue = color.getBlue();
+		            int green = color.getGreen();
+	
+		            float[] hsb = Color.RGBtoHSB(red, green, blue, null);
+	
+		            float hue = hsb[0];
+	
+		            float saturation = hsb[1];
+	
+		            float brightness = hsb[2];
+		            
+		            float brightnessIncrement = (float) (1.0 - brightness);
+		            		
+		            brightnessIncrement += brightnessIncrement / rLight.getDistance();
+		            
+		            brightness += amount * brightnessIncrement;
+		            
+		            if( brightness > 1.0 ) {
+		            	brightness = ( float ) ( 0.1 * brightness );
+		            }
+		            
+		            if( brightness < 0 ) {
+		            	brightness = ( float ) 0.1;
+		            }
+		            
+		            int rgb = Color.HSBtoRGB(hue, saturation, brightness);
+	
+		            red = (rgb>>16)&0xFF;
+	
+		            green = (rgb>>8)&0xFF;
+	
+		            blue = rgb&0xFF;
+		            
+		            int newColorRGB = new Color(red, green, blue ).getRGB();
+		            newImage.setRGB(x, y, newColorRGB );
+		        }
 	        }
 	    }
 		return newImage;
@@ -191,5 +201,13 @@ public class Shader {
 	        }
 	    }
 		return newImage;
+	}
+	
+	public boolean isTransparent( int pixel ) {
+//		int pixel = img.getRGB(x,y);
+		if( (pixel>>24) == 0x00 ) {
+		    return true;
+		}
+		return false;
 	}
 }
