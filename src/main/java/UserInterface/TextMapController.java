@@ -25,6 +25,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import main.java.game.Game;
+import main.java.gameObjects.RadiatingLight;
 import main.java.world.GameRoom;
 import main.java.world.GameTile;
 
@@ -114,20 +115,24 @@ public class TextMapController {
 				    		ImageFrame tileImageFrame = tileImageLayer.getActiveFrame();
 				    		BufferedImage frameImage = tileImageFrame.getFrameImage();
 				    		
-				    		int playerRow = (int) Math.floor( Game.currentTile.getTileNumber() / Game.currentRoom.getRoomWidth()  );
-				    		int playerColumn = Game.currentTile.getTileNumber() % Game.currentRoom.getRoomWidth();
-				    		int thisRow = (int) Math.floor( gameTile.getTileNumber() / Game.currentRoom.getRoomWidth() );
-				    		int thisColumn = gameTile.getTileNumber() % Game.currentRoom.getRoomWidth();
-				    		if( thisRow > playerRow - 5 || thisRow < playerRow + 5 ) {
-				    			if( thisColumn > playerColumn - 5 || thisColumn < playerColumn + 5 ) {
-				    				int amount = Math.abs( playerRow - thisRow );
-				    				amount += Math.abs( playerColumn - thisColumn );
-				    				frameImage = shader.shiftBlue( frameImage, amount );
-				    			}
+				    		if( k == 1 ) {
 				    			
+					    		double distance = Math.abs( Game.currentRoom.calculateDistance( Game.currentTile.getTileNumber(),
+					    															  gameTile.getTileNumber() ) );
+					    		
+					    		RadiatingLight rLight = ( RadiatingLight ) Game.currentGame.getPlayer().getLightSources()[ 0 ];
+					    		if( distance <= rLight.getDistance() ) {
+
+					    				int amount = ( int ) Math.floor( rLight.getDistance() - distance );
+
+//					    				frameImage = shader.shiftBlue( frameImage, amount );
+					    				frameImage = shader.shiftImageColor( frameImage, rLight, amount );
+					    			
+					    			
+					    		}
 				    		}
 				    		
-				    		
+//				    		frameImage = shader.shiftImageColor( frameImage, gameTile.getRoom().getAmbientLight() );
 				    		Image image = SwingFXUtils.toFXImage( frameImage, null );
 				    		gc.drawImage( image, ( double ) j * tileWidth, ( double ) i * tileWidth );
 				    	}

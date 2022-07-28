@@ -25,6 +25,8 @@ import main.java.actor.Human;
 import main.java.actor.NonPlayerActor;
 import main.java.application.GUI;
 import main.java.environment.GameCalendar;
+import main.java.gameObjects.Light;
+import main.java.gameObjects.RadiatingLight;
 import main.java.gameObjects.Thing;
 import main.java.gameObjects.ThingHolder;
 import main.java.gameObjects.ThingList;
@@ -87,6 +89,12 @@ public class Game {
     		currentWorld.setLocations();
     		
     		player = new Human( "player", "This is a player", currentTile, new ThingList(), " @ " );
+    		
+    		//test shader
+    		player.setLightSources( new Light[ 1 ] );
+    		player.getLightSources()[ 0 ] = new RadiatingLight( 5, 2, null );
+    		
+    		
     		Ring ring = new Ring();
     		ring.setName( "Ring of Might and Madness" );
     		Revolver r = new Revolver();

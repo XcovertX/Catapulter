@@ -27,6 +27,8 @@ public class Thing {
     protected String[] descriptors;
     protected String[] altNames;
     
+    private Light[] lightSources;
+    
     protected int size;							// size scale in drops or grains (same base unit size)
     protected double weight;					// weight
     protected int value;						// value
@@ -46,6 +48,7 @@ public class Thing {
 	protected boolean isContainedWithin;
     protected boolean isThingHolder;
     protected boolean isTranslucent;
+    protected boolean isLightSource;
     protected boolean isActor;
     protected boolean isNPC;
     protected boolean isGameTile;
@@ -570,5 +573,13 @@ public class Thing {
 	public void setTMX( String tmx ) {
 		
 		this.tmx = tmx;
+	}
+
+	public Light[] getLightSources() {
+		return lightSources;
+	}
+
+	public void setLightSources(Light[] lightSources) {
+		this.lightSources = lightSources;
 	}
 }

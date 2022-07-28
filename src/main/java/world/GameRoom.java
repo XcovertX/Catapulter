@@ -2,6 +2,9 @@ package main.java.world;
 
 import main.java.UserInterface.ImageMap;
 import main.java.actor.NonPlayerActor;
+import main.java.game.Game;
+import main.java.gameObjects.AmbientLight;
+import main.java.gameObjects.Light;
 import main.java.gameObjects.ThingHolder;
 import main.java.gameObjects.ThingList;
 import main.java.inputProcessor.MovementController;
@@ -20,6 +23,8 @@ public class GameRoom extends ThingHolder {
 		super( "", "", new ThingList() );
 		this.setTMX("files/testCity.tmx");
 		this.isGameRoom = true;
+		this.setLightSources( new Light[ 1 ] );
+		this.getLightSources()[ 0 ] = new AmbientLight();
 		this.type = "Room";
 	}
 
@@ -133,5 +138,39 @@ public class GameRoom extends ThingHolder {
 			tile.setBaseTileImage( tileImageMap.getTileImageArray()[ i ] );
 			tileImageMap.getTileImageArray()[ i ].setTileImageNumber( tile.getTileNumber() );
 		}
+	}
+	
+	public AmbientLight getAmbientLight() {
+		
+		return ( AmbientLight ) this.getLightSources()[ 0 ];
+	}
+	
+	public int calculateRow( int tileNumber ) {
+		
+		return (int) Math.floor( tileNumber / Game.currentRoom.getRoomWidth() );
+	}
+	
+	public int calculateColumn( int tileNumber ) {
+		
+		return tileNumber % getRoomWidth();
+	}
+	
+	public double calculateDistance( int tileNumberA, int tileNumberB ) {
+
+		int rowOfA = calculateRow( tileNumberA );
+		int colOfA = calculateColumn( tileNumberA );
+		int rowOfB = calculateRow( tileNumberB );
+		int colOfB = calculateColumn( tileNumberB );
+		
+		int base = colOfA - colOfB;
+		int height = rowOfA -rowOfB;
+		int baseSq = base * base;
+		int heightSq = height * height;
+		
+		int distSq = baseSq + heightSq;
+		
+		double distance = Math.sqrt( distSq );
+		
+		return distance;
 	}
 }
