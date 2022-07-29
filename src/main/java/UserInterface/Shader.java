@@ -31,7 +31,7 @@ public class Shader {
 	    return b;
 	}
 	
-	public BufferedImage shiftImageColor( BufferedImage img, AmbientLight ambLight, int amount ) {
+	public BufferedImage shiftImageColor( BufferedImage img, AmbientLight ambLight ) {
 		
 		BufferedImage newImage = new BufferedImage( img.getWidth(), 
 													img.getHeight(),
@@ -40,37 +40,40 @@ public class Shader {
 	    for (int x = 0; x < img.getWidth(); x++) {
 	    	
 	        for (int y = 0; y < img.getHeight(); y++) {
+	        	int pixel = img.getRGB( x, y );
 	        	
-	            Color color = new Color( img.getRGB( x, y ) );
-	            int red = color.getRed();
-	            int blue = color.getBlue();
-	            int green = color.getGreen();
-
-	            float[] hsb = Color.RGBtoHSB(red, green, blue, null);
-
-	            float hue = hsb[0];
-
-	            float saturation = hsb[1];
-
-	            float brightness = hsb[2];
+	        	if( isTransparent( pixel ) ) {
+	        		
+	        		newImage.setRGB(x, y, pixel );
+	        		
+	        	} else {
+	        		
+		            Color color = new Color( pixel );
 	            
-	            float brightnessIncrement = brightness / 10;
-	            
-	            brightness += brightnessIncrement * amount;
-	            
-//	            brightness = ( float ) ambLight.getBrightness();
-	            
-	            int rgb = Color.HSBtoRGB(hue, saturation, brightness);
-
-	            red = (rgb>>16)&0xFF;
-
-	            green = (rgb>>8)&0xFF;
-
-	            blue = rgb&0xFF;
-	            
-	            int newColorRGB = new Color(red, green, blue ).getRGB();
-	            newImage.setRGB(x, y, newColorRGB );
-	        }
+		            int red = color.getRed();
+		            int blue = color.getBlue();
+		            int green = color.getGreen();
+	
+		            float[] hsb = Color.RGBtoHSB(red, green, blue, null);
+	
+		            float hue = hsb[0];
+	
+		            float saturation = hsb[1];
+	
+		            float brightness = ambLight.getBrightness();
+		            
+		            int rgb = Color.HSBtoRGB(hue, saturation, brightness);
+	
+		            red = (rgb>>16)&0xFF;
+	
+		            green = (rgb>>8)&0xFF;
+	
+		            blue = rgb&0xFF;
+		            
+		            int newColorRGB = new Color(red, green, blue ).getRGB();
+		            newImage.setRGB(x, y, newColorRGB );
+		        }
+		    }
 	    }
 		return newImage;
 	}
@@ -109,7 +112,7 @@ public class Shader {
 		            
 		            float brightnessIncrement = (float) (1.0 - brightness);
 		            		
-		            brightnessIncrement += brightnessIncrement / rLight.getDistance();
+		            brightnessIncrement = brightnessIncrement / rLight.getDistance();
 		            
 		            brightness += amount * brightnessIncrement;
 		            

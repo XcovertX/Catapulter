@@ -25,7 +25,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import main.java.game.Game;
+import main.java.gameObjects.AmbientLight;
+import main.java.gameObjects.Light;
 import main.java.gameObjects.RadiatingLight;
+import main.java.gameObjects.Thing;
+import main.java.gameObjects.ThingList;
 import main.java.world.GameRoom;
 import main.java.world.GameTile;
 
@@ -98,10 +102,13 @@ public class TextMapController {
 			this.setRoomDescription( Game.calendar.getClock() );
 			
 			GraphicsContext gc = tileMap.getGraphicsContext2D();
+			GameRoom gameRoom = Game.currentRoom;
 			Shader shader = new Shader();
+			AmbientLight ambLight = gameRoom.getAmbientLight();
+			ThingList roomLightSourceObjects = gameRoom.getAllRoomLightSourceObjects();
 			int accumulator = 0;
 			int tileWidth = 32; // figure out where to put this
-			GameRoom gameRoom = Game.currentRoom;
+			
 			for (int i = gameRoom.getRoomLength() - 1; i >= 0; i--) {
 				
 			    for (int j = 0; j < gameRoom.getRoomWidth(); j++) {
@@ -115,24 +122,53 @@ public class TextMapController {
 				    		ImageFrame tileImageFrame = tileImageLayer.getActiveFrame();
 				    		BufferedImage frameImage = tileImageFrame.getFrameImage();
 				    		
+				    		
+				    		frameImage = shader.shiftImageColor( frameImage, ambLight );
+				    		
 				    		if( k == 1 ) {
 				    			
-					    		double distance = Math.abs( Game.currentRoom.calculateDistance( Game.currentTile.getTileNumber(),
-					    															  gameTile.getTileNumber() ) );
-					    		
-					    		RadiatingLight rLight = ( RadiatingLight ) Game.currentGame.getPlayer().getLightSources()[ 0 ];
-					    		if( distance <= rLight.getDistance() ) {
-
-					    				int amount = ( int ) Math.floor( rLight.getDistance() - distance );
-
-//					    				frameImage = shader.shiftBlue( frameImage, amount );
-					    				frameImage = shader.shiftImageColor( frameImage, rLight, amount );
+//					    		double physicalDistance = gameRoom.calculateDistance( Game.currentTile.getTileNumber(),
+//					    															  gameTile.getTileNumber() ) ;
+//					    		RadiatingLight rLight = ( RadiatingLight ) Game.currentGame.getPlayer().getLightSources().get( 0 );
+//					    		double lightDistance = rLight.getDistance();
+//					    		if( physicalDistance <= lightDistance ) {
+//
+//					    				int amount = ( int ) Math.floor( rLight.getDistance() - physicalDistance );
+//					    				frameImage = shader.shiftImageColor( frameImage, rLight, amount );
+//					    			
+//					    			
+//					    		}
+				    			
+				    			if( Game.currentGame.getPlayer().isLightSource() ) {
+				    				
+					    			RadiatingLight roomLightSource = ( RadiatingLight ) Game.currentGame.getPlayer().getLightSources().get(0); //change to have more than 1 light source in an object
+					    			double lightReach = roomLightSource.getDistance();
+					    			double distance = gameRoom.calculateDistance( Game.currentTile.getTileNumber(),
+											  									  gameTile.getTileNumber() );
 					    			
+						    		if( distance <= lightReach ) {
+
+					    				int amount = ( int ) Math.floor( lightReach - distance );
+					    				frameImage = shader.shiftImageColor( frameImage, roomLightSource, amount );
+						    		}
+				    				
+				    			}
+//					    		
+					    		for( int l = 0; l < roomLightSourceObjects.size(); l++ ) {
+
+					    			Thing thing = roomLightSourceObjects.get( l );
+					    			RadiatingLight roomLightSource = ( RadiatingLight ) thing.getLightSources().get(0); //change to have more than 1 light source in an object
+					    			double lightReach = roomLightSource.getDistance();
+					    			double distance = gameRoom.calculateDistance( thing.getCurrentGameTile().getTileNumber(),
+											  									  gameTile.getTileNumber() );
 					    			
+						    		if( distance <= lightReach ) {
+
+					    				int amount = ( int ) Math.floor( lightReach - distance );
+					    				frameImage = shader.shiftImageColor( frameImage, roomLightSource, amount );
+						    		}
 					    		}
 				    		}
-				    		
-//				    		frameImage = shader.shiftImageColor( frameImage, gameTile.getRoom().getAmbientLight() );
 				    		Image image = SwingFXUtils.toFXImage( frameImage, null );
 				    		gc.drawImage( image, ( double ) j * tileWidth, ( double ) i * tileWidth );
 				    	}

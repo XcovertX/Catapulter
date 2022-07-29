@@ -12,13 +12,15 @@ public class RadiatingLight extends Light {
 		this.setBrightness( MAX_BRIGHTNESS );
 		this.setDistance( AVG_DISTANCE );
 		this.setRGB( WHITE );
+		this.setTileNumber( INFINITE );
 	}
 
-	public RadiatingLight( int distance, int brightness, Color rgb ) {
+	public RadiatingLight( int distance, int brightness, Color rgb, int tileNumber ) {
 		
 		this.setBrightness( brightness );
 		this.setDistance( distance );
 		this.setRGB( rgb );
+		this.setTileNumber( tileNumber );
 	}
 	
 	public String getDirection() {

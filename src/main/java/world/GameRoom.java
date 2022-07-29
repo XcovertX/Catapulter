@@ -1,10 +1,14 @@
 package main.java.world;
 
+import java.util.ArrayList;
+import java.util.Vector;
+
 import main.java.UserInterface.ImageMap;
 import main.java.actor.NonPlayerActor;
 import main.java.game.Game;
 import main.java.gameObjects.AmbientLight;
 import main.java.gameObjects.Light;
+import main.java.gameObjects.Thing;
 import main.java.gameObjects.ThingHolder;
 import main.java.gameObjects.ThingList;
 import main.java.inputProcessor.MovementController;
@@ -19,12 +23,16 @@ public class GameRoom extends ThingHolder {
 	private boolean inside;
 	private boolean outside;
 	
+	private ThingList lightSourceObjects;
+	
 	public GameRoom() {
 		super( "", "", new ThingList() );
 		this.setTMX("files/testCity.tmx");
 		this.isGameRoom = true;
-		this.setLightSources( new Light[ 1 ] );
-		this.getLightSources()[ 0 ] = new AmbientLight();
+		this.setLightSources( new ArrayList< Light >() );
+		AmbientLight ambLight = new AmbientLight();
+		ambLight.setBrightness( ( float ) 0.05 );
+		this.getLightSources().add( ambLight );
 		this.type = "Room";
 	}
 
@@ -142,7 +150,7 @@ public class GameRoom extends ThingHolder {
 	
 	public AmbientLight getAmbientLight() {
 		
-		return ( AmbientLight ) this.getLightSources()[ 0 ];
+		return ( AmbientLight ) this.getLightSources().get( 0 );
 	}
 	
 	public int calculateRow( int tileNumber ) {
@@ -171,6 +179,110 @@ public class GameRoom extends ThingHolder {
 		
 		double distance = Math.sqrt( distSq );
 		
-		return distance;
+		return Math.abs( distance );
+	}
+	
+	public String calculateRelativeDirection( int tileNumberA, int tileNumberB ) {
+		
+		// vector 1
+		int yA = calculateRow( tileNumberA );
+		int xA = calculateColumn( tileNumberA );
+		int yB = yA + 1;
+		int xB = xA;
+		
+		// new point to make vector 2
+		int yC = calculateRow( tileNumberB );
+		int xC = calculateColumn( tileNumberB );
+		
+		int uX = xB - xA;
+		int uY = yB - yA;
+		int vX = yA - yB;
+		int vY = xB - xA;
+		int wX = xC - xA;
+		int wY = yC - yA;
+
+		double theta = Math.atan2( wX * vX + wY * vY, wX * uX + wY * uY );
+		
+		if( theta > ( 5 * Math.PI ) / 6 || theta < -( 5 * Math.PI ) / 6  ) {
+			
+			return "s";
+			
+		} else if( theta >= ( 2 * Math.PI ) / 3  ) {
+			
+			return "sw";
+			
+		} else if( theta >= Math.PI / 3  ) {
+			
+			return "w";
+			
+		} else if( theta >= Math.PI / 6  ) {
+			
+			return "nw";
+			
+		} else if( theta >= -Math.PI / 6  ) {
+			
+			return "n";
+			
+		} else if( theta >= -Math.PI / 3  ) {
+			
+			return "ne";
+			
+		} else if( theta >= -( 2 * Math.PI ) / 3  ) {
+			
+			return "e";
+			
+		} else if( theta >= -( 5 * Math.PI ) / 6  ) {
+			
+			return "se";
+			
+		} else {
+			
+			return "s";
+		}
+	}
+	
+	public GameTile getTile( int tileNumber ) {
+		
+		return ( GameTile ) this.getTiles().get( tileNumber );
+	}
+
+	public ThingList getAllRoomLightSourceObjects() {
+		return lightSourceObjects;
+	}
+
+	public void setAllRoomLightSourceObjects() {
+		
+		ThingList allLightSourceObjects = new ThingList();
+		
+		for( int i = 0; i < this.getTiles().size(); i++ ) {
+			
+			GameTile tile = ( GameTile ) this.getTiles().get( i );
+			
+			if( tile.getThings().size() > 0 ) {
+				
+				ThingList tList = tile.getThings();
+				
+				for( int j = 0; j < tList.size(); j++ ) {
+					
+					Thing thing = tList.get( j );
+					if( thing.isLightSource() ) {
+						thing.setCurrentGameTile(tile);
+						allLightSourceObjects.add( thing );
+					}
+				}
+			}
+			
+			if( tile.getNPCs().size() > 0 ) {
+				ThingList tList = tile.getNPCs();
+				for( int j = 0; j < tList.size(); j++ ) {
+					Thing thing = tList.get( j );
+					if( thing.isLightSource() ) {
+						allLightSourceObjects.add( thing );
+					}
+				}
+			}
+		}
+		
+		this.lightSourceObjects = allLightSourceObjects;
 	}
 }

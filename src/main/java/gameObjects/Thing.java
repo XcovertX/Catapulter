@@ -1,6 +1,7 @@
 package main.java.gameObjects;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 import main.java.UserInterface.TileChar;
 import main.java.UserInterface.Image;
@@ -27,7 +28,7 @@ public class Thing {
     protected String[] descriptors;
     protected String[] altNames;
     
-    private Light[] lightSources;
+    private ArrayList< Light > lightSources;
     
     protected int size;							// size scale in drops or grains (same base unit size)
     protected double weight;					// weight
@@ -60,6 +61,8 @@ public class Thing {
 //    protected String tileChar;
     private String tsxPath;
     private String tmx;
+    private int imageXPosition;
+    private int imageYPosition;
     private TileChar tileChar;
     private Image[] thingImages;
    
@@ -575,11 +578,37 @@ public class Thing {
 		this.tmx = tmx;
 	}
 
-	public Light[] getLightSources() {
+	public ArrayList< Light > getLightSources() {
 		return lightSources;
 	}
 
-	public void setLightSources(Light[] lightSources) {
+	public void setLightSources( ArrayList< Light > lightSources) {
 		this.lightSources = lightSources;
+	}
+
+	public int getImageXPosition() {
+		return imageXPosition;
+	}
+
+	public void setImageXPosition(int imageXPosition) {
+		this.imageXPosition = imageXPosition;
+	}
+
+	public int getImageYPosition() {
+		return imageYPosition;
+	}
+
+	public void setImageYPosition(int imageYPosition) {
+		this.imageYPosition = imageYPosition;
+	}
+
+	public boolean isLightSource() {
+		
+		return isLightSource;
+	}
+
+	public void setLightSource( boolean isLightSource ) {
+		
+		this.isLightSource = isLightSource;
 	}
 }

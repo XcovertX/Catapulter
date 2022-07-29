@@ -56,6 +56,7 @@ public class Actor extends ThingHolder {
         this.currentTile = aGameTile;
         this.setIsAlive( true );
         this.isActor = true;
+        this.setLightSource(true); //change after testing
         this.setStats( new ActorStats() );
         this.setThirst( 0 );
         this.setHitPoints( 5 );
@@ -64,14 +65,13 @@ public class Actor extends ThingHolder {
         this.setTileChar( new TileChar( aActorSymbol, "#00b6ff" ) );
         this.setTMX( "files/location-2.tsx" );
         this.type = "Actor";
-        System.out.println("*************************************************************************" );
+
         if( this.getTMX() != null ) {
-        	System.out.println("yep");
+
         	try {
 				TSX tsx = new TSX( this.getTMX() );
 				this.setThingImages( tsx.buildThingImages( this.currentTile.getTileNumber() ) );
 				int i = this.getThingImages().length;
-				System.out.println("thing image count: " + i );
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

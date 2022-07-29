@@ -9,8 +9,10 @@ public abstract class Light {
 	static final int MAX_BRIGHTNESS = 100;
 	static final int AVG_DISTANCE = 10;
 	
+	private int tileNumber;
+	
 	private int distance;
-	private int brightness;
+	private float brightness;
 	private Color RGB;
 	
 	public int getDistance() {
@@ -23,12 +25,12 @@ public abstract class Light {
 		this.distance = distance;
 	}
 	
-	public int getBrightness() {
+	public float getBrightness() {
 		
 		return brightness;
 	}
 	
-	public void setBrightness( int brightness ) {
+	public void setBrightness( float brightness ) {
 		
 		this.brightness = brightness;
 	}
@@ -41,5 +43,15 @@ public abstract class Light {
 	public void setRGB( Color rgb ) {
 		
 		RGB = rgb;
+	}
+
+	public int getTileNumber() {
+		
+		return tileNumber;
+	}
+
+	public void setTileNumber( int tileNumber ) {
+		
+		this.tileNumber = tileNumber;
 	}
 }

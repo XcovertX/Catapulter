@@ -6,15 +6,10 @@ import java.util.LinkedList;
 
 public class ThingList extends LinkedList< Thing > {
 	
-//	public String type;
-	
-//	private LinkedList< Thing > list;;
-	
 	public ThingList() {
-//		this.list = new LinkedList< Thing >();
-//		this.type = "ThingList";
+
 	}
-	
+
 	public String describeThings() {
 		String s = "";
 		

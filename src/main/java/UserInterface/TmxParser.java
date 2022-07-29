@@ -77,7 +77,7 @@ public class TMXParser {
 							// building tile layer i with frames
 							
 				    		boolean isAnimated = tsx.isAnimated();
-//				    		System.out.println("isAnimated: " + isAnimated);
+
 				    		int activeFrame = 0;
 				    		int frameCount;
 				    		if( isAnimated ) {
@@ -114,94 +114,6 @@ public class TMXParser {
 		gRoom.setTileImages( tileImageMap );
 		objs = tmx.getObjs();
 	}
-	
-	
-//	public TMXParser( Thing aThing ) throws Exception {
-//		
-//		this.aThing = aThing;
-//		this.tmx = new TMX( aThing.getTMX() );
-//		
-//		if( tmx != null ) {
-//			
-//			TSXs = constructAllTSX();
-//			images = getImages();
-//			size = tmx.getTilewidth();
-//			
-//			layer_count = tmx.getLayerList().getLength();
-//			map_cols = ( int ) ( tmx.getMapwidth() );
-//			map_rows = ( int ) ( tmx.getMapheight() );
-////			tiles = new BufferedImage[ layer_count ][ map_rows ][ map_cols ];
-////			
-////			tileImageMap = new TileImageMap();
-////			tileImageMap.buildLayout( map_rows, map_cols );
-//			
-//			for( int i = 0; i < tmx.getTiles().length; i++ ) { 						// for each layer
-//				
-//				int accumulator = 0;
-//				
-//				for( int j = 0; j < tmx.getTiles()[ 0 ].length; j++ ) { 			// for each row 
-//	
-//					for( int k = 0; k < tmx.getTiles()[ 0 ][ 0 ].length; k++ ) {	// for each column
-//	
-//						int tmxTileNum = tmx.getTiles()[ i ][ j ][ k ];				// number designating sub-image id		
-//						int tileSetNum = getTileSetNum( tmxTileNum );   			// number designate what tile set to use
-//						if( tileSetNum >= 0 ) {
-//							int firstgID = Integer.valueOf( tmx.getTilesets().item( tileSetNum ).getAttributes().item( 0 ).getNodeValue() );
-//							int position = tmxTileNum - firstgID;
-//							if( position >= 0 ) {
-//								
-//								BufferedImage tileSetImage = ImageIO.read( new File( tmx.getImage_paths()[ tileSetNum ] ) );
-//								
-//								TSX tsx = TSXs[ tileSetNum ];
-//								
-//								// building initial tile image
-//								if( i == 0 ) {
-//									TileImage tileImage = new TileImage( layer_count, accumulator );
-//									tileImageMap.setTileImage( j, k, tileImage );
-//								}
-//								TileImage tileImage = tileImageMap.getTileImage( j, k );
-//								
-//								// building tile layer i with frames
-//								
-//					    		boolean isAnimated = tsx.isAnimated();
-//	//				    		System.out.println("isAnimated: " + isAnimated);
-//					    		int activeFrame = 0;
-//					    		int frameCount;
-//					    		if( isAnimated ) {
-//					    			
-//					    			frameCount = tsx.getFrames().getLength(); 
-//					    			
-//					    		} else {
-//					    			
-//					    			frameCount = 1;
-//					    		}
-//					    		
-//					    		TileImageFrame[] frames = new TileImageFrame[ frameCount ];
-//					    		
-//					    		for( int l = 0; l < frames.length; l++ ) {
-//					    			
-//					    			frames[ l ] = new TileImageFrame();
-//					    			frames[ l ].setFrameImage( tileSetImage.getSubimage( ( position + l ) * size, 0, size, size ) );
-//					    			if( isAnimated ) {
-//					    				frames[ l ].setFrameDuration( Integer.valueOf( tsx.getFrames().item( l ).getAttributes().getNamedItem( "duration" ).getNodeValue() ) );
-//					    			}
-//					    		}
-//	
-//								TileImageLayer imageLayer = new TileImageLayer( isAnimated, frames, activeFrame );
-//								tileImage.setImageLayer( i, imageLayer );
-//							}
-//						}
-//					}
-//					accumulator += 1;
-//				}
-//			}
-//			
-//			tileImageMap.flipMapVertically();
-//			tileImageMap.transformToArray();
-//			gRoom.setTileImages( tileImageMap );
-//			objs = tmx.getObjs();
-//		}
-//	}
 	
 	public BufferedImage[] getImages() throws IOException {
 		BufferedImage[] imgs = new BufferedImage[ tmx.getImage_paths().length ];

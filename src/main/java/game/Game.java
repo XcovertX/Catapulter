@@ -18,6 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.java.UserInterface.GraphicalUserInterface;
 import main.java.UserInterface.TMXParser;
+import main.java.UserInterface.TSX;
 import main.java.UserInterface.UserInterface;
 import main.java.actor.Actor;
 import main.java.actor.Cat;
@@ -25,6 +26,7 @@ import main.java.actor.Human;
 import main.java.actor.NonPlayerActor;
 import main.java.application.GUI;
 import main.java.environment.GameCalendar;
+import main.java.gameObjects.Fire;
 import main.java.gameObjects.Light;
 import main.java.gameObjects.RadiatingLight;
 import main.java.gameObjects.Thing;
@@ -91,16 +93,27 @@ public class Game {
     		player = new Human( "player", "This is a player", currentTile, new ThingList(), " @ " );
     		
     		//test shader
-    		player.setLightSources( new Light[ 1 ] );
-    		player.getLightSources()[ 0 ] = new RadiatingLight( 5, 2, null );
+    		player.setLightSources( new ArrayList< Light >() );
+    		player.getLightSources().add( new RadiatingLight( 5, 2, null, currentTile.getTileNumber() ) );
     		
+    		String dir = currentRoom.calculateRelativeDirection( 30, 44 );
+    		System.out.println( "Direction: " + dir );
     		
     		Ring ring = new Ring();
     		ring.setName( "Ring of Might and Madness" );
+    		ring.setAltNames( new String[ 1 ] );
+    		ring.getAltNames()[ 0 ] = "ring";
+    		currentTile.getThings().add( ring );
+    		
+    		Fire fire = new Fire();
+    		fire.getLightSources().get( 0 ).setTileNumber( 20 );
+    		currentRoom.getTile( 20 ).getThings().add( fire );
+    		
     		Revolver r = new Revolver();
     		r.setName( "revolver" );
-    		player.getInventory().add( ring );
     		player.getInventory().add( r );
+    		
+    		currentRoom.setAllRoomLightSourceObjects();
     		
     		userInterface = new UserInterface( player );
     		userInterface.getDisplay().setRoom( currentRoom );
