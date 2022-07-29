@@ -79,6 +79,7 @@ public class GameTile extends ThingHolder {
         this.tileNumber = aTileNumber;
     	this.setDefaultTileChar( new TileChar( "   " ) );
     	this.setCurrentTileChar( this.defaultTileChar );
+    	this.setGameTile(true);
 //    	this.setCurrentTileChar();
     }
 

@@ -1,9 +1,12 @@
 package main.java.gameObjects;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import main.java.UserInterface.Image;
 import main.java.UserInterface.TSX;
+import main.java.light.Light;
+import main.java.light.RadiatingLight;
 
 public class Fire extends Thing {
 
@@ -28,7 +31,7 @@ public class Fire extends Thing {
 			}
         }
         ArrayList< Light > lightSources = new ArrayList< Light >();
-        RadiatingLight rLight = new RadiatingLight();
+        RadiatingLight rLight = new RadiatingLight( 10, 100, new Color( 255, 255, 255 ), "flicker" );
         lightSources.add( rLight );
         this.setLightSources( lightSources );
 	}

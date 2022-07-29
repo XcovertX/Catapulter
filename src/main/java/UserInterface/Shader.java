@@ -8,8 +8,8 @@ import java.awt.image.ColorModel;
 import java.awt.image.DataBufferByte;
 import java.awt.image.WritableRaster;
 
-import main.java.gameObjects.AmbientLight;
-import main.java.gameObjects.RadiatingLight;
+import main.java.light.AmbientLight;
+import main.java.light.RadiatingLight;
 
 public class Shader {
 	
@@ -114,7 +114,7 @@ public class Shader {
 		            		
 		            brightnessIncrement = brightnessIncrement / rLight.getDistance();
 		            
-		            brightness += amount * brightnessIncrement;
+		            brightness += amount * brightnessIncrement * .5;
 		            
 		            if( brightness > 1.0 ) {
 		            	brightness = ( float ) ( 0.1 * brightness );

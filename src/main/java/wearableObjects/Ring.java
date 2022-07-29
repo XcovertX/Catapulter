@@ -2,6 +2,7 @@ package main.java.wearableObjects;
 
 import main.java.UserInterface.Image;
 import main.java.UserInterface.TSX;
+import main.java.UserInterface.TileChar;
 
 public class Ring extends WearableThing {
 
@@ -13,6 +14,8 @@ public class Ring extends WearableThing {
 		this.type = "Ring";
 		
 		this.setHoldable( true );
+		
+		this.setTileChar( new TileChar( " r " ) );
 		
 		this.setTSXPath( "files/testcity_tileset.tsx" );
 		this.setImageXPosition( 4 );
@@ -26,7 +29,7 @@ public class Ring extends WearableThing {
 				this.getThingImages()[ 0 ] = tsx.buildThingImage( this.getImageXPosition(), this.getImageYPosition(), 32, 32 );
 				
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
         }

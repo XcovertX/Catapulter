@@ -25,11 +25,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import main.java.game.Game;
-import main.java.gameObjects.AmbientLight;
-import main.java.gameObjects.Light;
-import main.java.gameObjects.RadiatingLight;
 import main.java.gameObjects.Thing;
 import main.java.gameObjects.ThingList;
+import main.java.light.AmbientLight;
+import main.java.light.Light;
+import main.java.light.RadiatingLight;
 import main.java.world.GameRoom;
 import main.java.world.GameTile;
 
@@ -125,19 +125,7 @@ public class TextMapController {
 				    		
 				    		frameImage = shader.shiftImageColor( frameImage, ambLight );
 				    		
-				    		if( k == 1 ) {
-				    			
-//					    		double physicalDistance = gameRoom.calculateDistance( Game.currentTile.getTileNumber(),
-//					    															  gameTile.getTileNumber() ) ;
-//					    		RadiatingLight rLight = ( RadiatingLight ) Game.currentGame.getPlayer().getLightSources().get( 0 );
-//					    		double lightDistance = rLight.getDistance();
-//					    		if( physicalDistance <= lightDistance ) {
-//
-//					    				int amount = ( int ) Math.floor( rLight.getDistance() - physicalDistance );
-//					    				frameImage = shader.shiftImageColor( frameImage, rLight, amount );
-//					    			
-//					    			
-//					    		}
+//				    		if( k == 1 ) {
 				    			
 				    			if( Game.currentGame.getPlayer().isLightSource() ) {
 				    				
@@ -168,7 +156,7 @@ public class TextMapController {
 					    				frameImage = shader.shiftImageColor( frameImage, roomLightSource, amount );
 						    		}
 					    		}
-				    		}
+//				    		}
 				    		Image image = SwingFXUtils.toFXImage( frameImage, null );
 				    		gc.drawImage( image, ( double ) j * tileWidth, ( double ) i * tileWidth );
 				    	}

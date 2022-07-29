@@ -1,4 +1,4 @@
-package main.java.gameObjects;
+package main.java.light;
 
 import java.awt.Color;
 

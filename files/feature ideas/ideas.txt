@@ -20,3 +20,9 @@ Compass showing true north and player's relative direction
 Barcode / Qcode next to each player and npc
 
 Tile Icons that can be used instead of ASCII
+
+Batteries have a limit and duration. when a battery begins to go out the light behavior will switch to randomflicker
+
+players wielding a cloak candle will ( has special light source ) will reveal invisible things around them
+
+Weather layer that correlates to weather cycle

@@ -1,9 +1,10 @@
-package main.java.gameObjects;
+package main.java.light;
 
 import java.awt.Color;
 
 public class RadiatingLight extends Light {
 	
+	static final String DEFAULT_LIGHT_BEHAVIOR = "constant";
 	private String direction;
 	private int angle;
 	
@@ -12,15 +13,17 @@ public class RadiatingLight extends Light {
 		this.setBrightness( MAX_BRIGHTNESS );
 		this.setDistance( AVG_DISTANCE );
 		this.setRGB( WHITE );
-		this.setTileNumber( INFINITE );
+		this.setBehaviorType( DEFAULT_LIGHT_BEHAVIOR );
+		this.setIntensityFluctuation();
 	}
 
-	public RadiatingLight( int distance, int brightness, Color rgb, int tileNumber ) {
+	public RadiatingLight( int distance, int brightness, Color rgb, String behaviorType ) {
 		
 		this.setBrightness( brightness );
 		this.setDistance( distance );
 		this.setRGB( rgb );
-		this.setTileNumber( tileNumber );
+		this.setBehaviorType( behaviorType );
+		this.setIntensityFluctuation();
 	}
 	
 	public String getDirection() {

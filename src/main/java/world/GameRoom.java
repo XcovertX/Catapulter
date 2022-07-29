@@ -6,13 +6,13 @@ import java.util.Vector;
 import main.java.UserInterface.ImageMap;
 import main.java.actor.NonPlayerActor;
 import main.java.game.Game;
-import main.java.gameObjects.AmbientLight;
-import main.java.gameObjects.Light;
 import main.java.gameObjects.Thing;
 import main.java.gameObjects.ThingHolder;
 import main.java.gameObjects.ThingList;
 import main.java.inputProcessor.MovementController;
 import main.java.inputProcessor.MovementControllerList;
+import main.java.light.AmbientLight;
+import main.java.light.Light;
 
 
 public class GameRoom extends ThingHolder {
@@ -284,5 +284,21 @@ public class GameRoom extends ThingHolder {
 		}
 		
 		this.lightSourceObjects = allLightSourceObjects;
+	}
+	
+	public double calculateTotalHeight( Thing aThing ) {
+		
+		Thing t = aThing;
+		double totalHeight = 0.0;
+		totalHeight += t.getHeight();
+		
+		while( !t.getHeldBy().isGameTile() ) {
+			
+			ThingHolder tHolder = ( ThingHolder ) t.getHeldBy();
+			totalHeight += tHolder.getHeight();
+			t = tHolder;
+		}
+		
+		return totalHeight;
 	}
 }

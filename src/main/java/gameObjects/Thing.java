@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import main.java.UserInterface.TileChar;
+import main.java.light.Light;
 import main.java.UserInterface.Image;
 import main.java.world.GameMap;
 import main.java.world.GameRoom;
@@ -25,6 +26,8 @@ public class Thing {
     protected String matterState; 
     protected String isOwnedBy;
     
+    private Thing heldBy;
+    
     protected String[] descriptors;
     protected String[] altNames;
     
@@ -33,6 +36,7 @@ public class Thing {
     protected int size;							// size scale in drops or grains (same base unit size)
     protected double weight;					// weight
     protected int value;						// value
+    protected double height;					// height used to calculate how light reflects off the object
     
     protected boolean drinkable;
     protected boolean eatable;
@@ -85,6 +89,7 @@ public class Thing {
     	this.setSize( 0 );
     	this.setWeight( 0.0 );
     	this.setValue( 0 );
+    	this.setHeight( 0.0 );
     	
     	this.setDrinkable( false );
     	this.setTranslucence( false );
@@ -98,6 +103,7 @@ public class Thing {
 		this.setContainedWithin( false );
 		this.setDonned( false );
 		this.setAttackable( false );
+		this.setGameTile( false );
     }
 
     public Thing( String aName, String aDescription ) {
@@ -115,6 +121,7 @@ public class Thing {
     	
     	this.setSize( 0 );
     	this.setWeight( 0.0 );
+    	this.setHeight( 0.0 );
     	
         this.setDrinkable( false );
         this.setTranslucence( false );
@@ -127,6 +134,7 @@ public class Thing {
 		this.setUnderneath( false );
 		this.setContainedWithin( false );
 		this.setAttackable( false );
+		this.setGameTile( false );
     }
 
     public String getName() {
@@ -401,7 +409,9 @@ public class Thing {
 					aTile.setRoom( ( GameRoom ) tHolder );
 					
 					for( int k = 0; k < aTile.getNPCs().size(); k++ ) {
+						
 						aTile.getNPCs().get( k ).setCurrentGameTile( aTile );
+						this.setHeldBy( aTile );
 					}
 					
 				} else {
@@ -411,7 +421,8 @@ public class Thing {
 						GameTile tile = ( GameTile ) tHolder;
 						aThing.setCurrentGameTile( tile );
 						
-					} 
+					}	
+					aThing.setHeldBy( tHolder );
 				}
 			}
 		}
@@ -610,5 +621,24 @@ public class Thing {
 	public void setLightSource( boolean isLightSource ) {
 		
 		this.isLightSource = isLightSource;
+	}
+
+	public double getHeight() {
+		return height;
+	}
+
+	public void setHeight( double height ) {
+		
+		this.height = height;
+	}
+
+	public Thing getHeldBy() {
+		
+		return heldBy;
+	}
+
+	public void setHeldBy( Thing heldBy ) {
+		
+		this.heldBy = heldBy;
 	}
 }

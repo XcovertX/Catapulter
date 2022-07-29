@@ -27,13 +27,15 @@ import main.java.actor.NonPlayerActor;
 import main.java.application.GUI;
 import main.java.environment.GameCalendar;
 import main.java.gameObjects.Fire;
-import main.java.gameObjects.Light;
-import main.java.gameObjects.RadiatingLight;
+import main.java.gameObjects.Skull;
+import main.java.gameObjects.Table;
 import main.java.gameObjects.Thing;
 import main.java.gameObjects.ThingHolder;
 import main.java.gameObjects.ThingList;
 import main.java.globals.Direction;
 import main.java.inputProcessor.InputProcessor;
+import main.java.light.Light;
+import main.java.light.RadiatingLight;
 import main.java.mapBuilder.RoomBuilder;
 import main.java.utility.SignReader;
 import main.java.weapons.Revolver;
@@ -42,6 +44,7 @@ import main.java.world.GameMap;
 import main.java.world.GameRoom;
 import main.java.world.GameTile;
 import main.java.world.GameWorld;
+import main.java.world.UpdateLight;
 import main.java.world.UpdatePlayer;
 import main.java.world.UpdateRoomTileAnimations;
 
@@ -94,9 +97,9 @@ public class Game {
     		
     		//test shader
     		player.setLightSources( new ArrayList< Light >() );
-    		player.getLightSources().add( new RadiatingLight( 5, 2, null, currentTile.getTileNumber() ) );
+    		player.getLightSources().add( new RadiatingLight( 5, 2, null, "constant" ) );
     		
-    		String dir = currentRoom.calculateRelativeDirection( 30, 44 );
+    		String dir = currentRoom.calculateRelativeDirection( 30, 18 );
     		System.out.println( "Direction: " + dir );
     		
     		Ring ring = new Ring();
@@ -106,12 +109,25 @@ public class Game {
     		currentTile.getThings().add( ring );
     		
     		Fire fire = new Fire();
-    		fire.getLightSources().get( 0 ).setTileNumber( 20 );
-    		currentRoom.getTile( 20 ).getThings().add( fire );
+    		currentRoom.getTile( 20 ).addThing( fire );
     		
     		Revolver r = new Revolver();
     		r.setName( "revolver" );
     		player.getInventory().add( r );
+    		
+    		Table table = new Table();
+    		table.setHeight( 3.0 );
+    		Skull skull = new Skull();
+    		skull.setHeight( 2.0 );
+    		
+    		table.addThing( skull );
+    		skull.setOnTopOf( true );
+    		currentRoom.getTile( 30 ).addThing( table );
+    		
+    		currentWorld.setLocations();
+    		
+    		System.out.println( "Skull height: " + currentRoom.calculateTotalHeight( skull ) );
+    		System.out.println( "Table height: " + currentRoom.calculateTotalHeight( table ) );
     		
     		currentRoom.setAllRoomLightSourceObjects();
     		
@@ -200,6 +216,7 @@ public class Game {
 	
 	public void updateWorld() {
 		new UpdatePlayer().run();
+		new UpdateLight().run( Game.currentRoom );
 		new UpdateRoomTileAnimations().run( Game.currentRoom );
 		currentWorld.allLists( "environment" );
 //		currentWorld.allLists( "weather" );
