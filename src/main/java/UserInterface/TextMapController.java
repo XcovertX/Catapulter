@@ -118,14 +118,31 @@ public class TextMapController {
 			    	
 			    	for( int k = 0; k < tileImage.getImageLayers().length; k++) {
 				    	ImageLayer tileImageLayer = tileImage.getImageLayer( k );
+				    	
 				    	if( tileImageLayer != null ) {
+				    		
 				    		ImageFrame tileImageFrame = tileImageLayer.getActiveFrame();
+				    		BufferedImage bImage =tileImageFrame.getFrameImage();
+				    		int width =  bImage.getWidth();
+				    		int height = bImage.getHeight();
+				    		
+				    		BufferedImage newImage = new BufferedImage( bImage.getWidth(), 
+				    													bImage.getHeight(),
+				    													BufferedImage.TYPE_INT_ARGB );
+				    		
+//				    		ImagePixel[][] pixels = tileImageFrame.getFramePixels();
+//				    		for( int l = 0; l < width; l++ ) {
+//				    			
+//				    			for( int m = 0; m < height; m++ ) {
+//				    				
+//				    				newImage.setRGB( l, m, pixels[ m ][ l ].getRgb() );
+//				    				
+//				    			}
+//				    		}
 				    		BufferedImage frameImage = tileImageFrame.getFrameImage();
-				    		
-				    		
 				    		frameImage = shader.shiftImageColor( frameImage, ambLight );
 				    		
-//				    		if( k == 1 ) {
+				    		if( k >= 1 ) {
 				    			
 				    			if( Game.currentGame.getPlayer().isLightSource() ) {
 				    				
@@ -136,12 +153,16 @@ public class TextMapController {
 					    			
 						    		if( distance <= lightReach ) {
 
-					    				int amount = ( int ) Math.floor( lightReach - distance );
+						    			int amount;
+						    			if( k == 2 ) {
+						    				amount = ( int ) Math.floor( lightReach - distance ) * 4;
+						    			} else {
+						    				amount = ( int ) Math.floor( lightReach - distance );
+						    			}
 					    				frameImage = shader.shiftImageColor( frameImage, roomLightSource, amount );
 						    		}
-				    				
 				    			}
-//					    		
+  		
 					    		for( int l = 0; l < roomLightSourceObjects.size(); l++ ) {
 
 					    			Thing thing = roomLightSourceObjects.get( l );
@@ -156,7 +177,7 @@ public class TextMapController {
 					    				frameImage = shader.shiftImageColor( frameImage, roomLightSource, amount );
 						    		}
 					    		}
-//				    		}
+				    		}
 				    		Image image = SwingFXUtils.toFXImage( frameImage, null );
 				    		gc.drawImage( image, ( double ) j * tileWidth, ( double ) i * tileWidth );
 				    	}

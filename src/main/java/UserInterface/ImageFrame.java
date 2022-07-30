@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 public class ImageFrame {
 	
 	private BufferedImage frameImage;
+	private ImagePixel[][] framePixels;
 	private long frameDuration;
 	
 	public ImageFrame() {}
@@ -27,6 +28,16 @@ public class ImageFrame {
 	public void setFrameDuration( int frameDuration ) {
 		
 		this.frameDuration = frameDuration;
+	}
+
+	public ImagePixel[][] getFramePixels() {
+		
+		return framePixels;
+	}
+
+	public void setFramePixels( ImagePixel[][] framePixels ) {
+		
+		this.framePixels = framePixels;
 	}
 
 }

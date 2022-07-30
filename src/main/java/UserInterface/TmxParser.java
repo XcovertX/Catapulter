@@ -95,6 +95,7 @@ public class TMXParser {
 				    			
 				    			frames[ l ] = new ImageFrame();
 				    			frames[ l ].setFrameImage( tileSetImage.getSubimage( ( xPosition + l ) * size, ( yPosition ) * size, size, size ) );
+				    			frames[ l ].setFramePixels( getPixels( frames[ l ].getFrameImage() ) );
 				    			if( isAnimated ) {
 				    				frames[ l ].setFrameDuration( Integer.valueOf( tsx.getFrames().item( l ).getAttributes().getNamedItem( "duration" ).getNodeValue() ) );
 				    			}
@@ -113,6 +114,26 @@ public class TMXParser {
 		tileImageMap.transformToArray();
 		gRoom.setTileImages( tileImageMap );
 		objs = tmx.getObjs();
+	}
+	
+	public ImagePixel[][] getPixels( BufferedImage img ) {
+		
+		ImagePixel[][] pixels = new ImagePixel[ size ][ size ];
+		for( int i = 0; i < size; i++ ) {
+			for( int j = 0; j < size; j++ ) {
+				
+				ImagePixel pixel = new ImagePixel();
+				int rbg = img.getRGB(  i, j );
+				pixel.setRgb( rbg );
+				if( j == 0 || j == size - 1 || i == 0 || i == size - 1) {
+					pixel.setRoughness( 1 );
+				} else {
+					pixel.setRoughness(4);
+				}
+				pixels[ j ][ i ] = pixel;	
+			}
+		}
+		return pixels;
 	}
 	
 	public BufferedImage[] getImages() throws IOException {
