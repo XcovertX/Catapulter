@@ -2,6 +2,7 @@ package main.java.actor;
 
 import java.awt.Color;
 
+import main.java.UserInterface.Image;
 import main.java.UserInterface.TSX;
 import main.java.UserInterface.TileChar;
 import main.java.body.Body;
@@ -63,14 +64,16 @@ public class Actor extends ThingHolder {
         this.setHunger( 0 );
         this.setDecomposed( 100 );
         this.setTileChar( new TileChar( aActorSymbol, "#00b6ff" ) );
-        this.setTMX( "files/location-2.tsx" );
+        this.setTSXPath( "files/location-2.tsx" );
         this.type = "Actor";
 
-        if( this.getTMX() != null ) {
+        if( this.getTSXPath() != null ) {
 
         	try {
-				TSX tsx = new TSX( this.getTMX() );
-				this.setThingImages( tsx.buildThingImages( this.currentTile.getTileNumber() ) );
+				TSX tsx = new TSX( this.getTSXPath() );
+				Image[] images = new Image[ 1 ];
+				images[ 0 ] = tsx.buildThingImage( 0, 0, 32, 32  );
+				this.setThingImages( images );
 				int i = this.getThingImages().length;
 				
 			} catch (Exception e) {

@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 
 public class ImageLayer {
 	
+	private String name;
 	private boolean isAnimated;
 	private long timeAccumulation; // in milliseconds
 	private long lastUpdate;
@@ -83,5 +84,13 @@ public class ImageLayer {
 	public void setImageFrames( ImageFrame[] frames ) {
 		
 		this.frames = frames;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

@@ -26,3 +26,8 @@ Batteries have a limit and duration. when a battery begins to go out the light b
 players wielding a cloak candle will ( has special light source ) will reveal invisible things around them
 
 Weather layer that correlates to weather cycle
+
+Thing image tsx tile sets can have a standard format of differing sets of image frames that are
+	1. image frames of thing in good health
+	2. image frames of thing in degraded health
+	3. image frames of thing broken

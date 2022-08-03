@@ -46,7 +46,7 @@ public class TMXParser {
 		tileImageMap.buildLayout( map_rows, map_cols );
 		
 		for( int i = 0; i < tmx.getTiles().length; i++ ) { 						// for each layer
-			
+		
 			int accumulator = 0;
 			
 			for( int j = 0; j < tmx.getTiles()[ 0 ].length; j++ ) { 			// for each row 
@@ -69,6 +69,8 @@ public class TMXParser {
 							// building initial tile image
 							if( i == 0 ) {
 								Image tileImage = new Image( layer_count, accumulator );
+								tileImage.setImageWidth( size );
+								tileImage.setImageHeight( size );
 								tileImageMap.setTileImage( j, k, tileImage );
 							}
 							
@@ -102,6 +104,7 @@ public class TMXParser {
 				    		}
 
 							ImageLayer imageLayer = new ImageLayer( isAnimated, frames, activeFrame );
+							imageLayer.setName( tmx.getLayerList().item( i ).getAttributes().getNamedItem( "name" ).getNodeValue() );
 							tileImage.setImageLayer( i, imageLayer );
 						}
 					}
@@ -123,7 +126,9 @@ public class TMXParser {
 			for( int j = 0; j < size; j++ ) {
 				
 				ImagePixel pixel = new ImagePixel();
-				int rbg = img.getRGB(  i, j );
+				pixel.setX( i );
+				pixel.setY( j );
+				int rbg = img.getRGB( i, j );
 				pixel.setRgb( rbg );
 				if( j == 0 || j == size - 1 || i == 0 || i == size - 1) {
 					pixel.setRoughness( 1 );

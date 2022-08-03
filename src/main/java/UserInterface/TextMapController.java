@@ -102,101 +102,38 @@ public class TextMapController {
 			this.setRoomDescription( Game.calendar.getClock() );
 			
 			GraphicsContext gc = tileMap.getGraphicsContext2D();
+			gc.clearRect( 0, 0, tileMap.getWidth(), tileMap.getHeight() );
 			GameRoom gameRoom = Game.currentRoom;
 			Shader shader = new Shader();
-			AmbientLight ambLight = gameRoom.getAmbientLight();
-			ThingList roomLightSourceObjects = gameRoom.getAllRoomLightSourceObjects();
 			int accumulator = 0;
 			int tileWidth = 32; // figure out where to put this
 			
 			for (int i = gameRoom.getRoomLength() - 1; i >= 0; i--) {
 				
-			    for (int j = 0; j < gameRoom.getRoomWidth(); j++) {
+			    for (int j = gameRoom.getRoomWidth() - 1; j >= 0; j--) {
 			    	
 			    	GameTile gameTile = ( GameTile ) Game.currentRoom.getTiles().get( accumulator );
-			    	main.java.UserInterface.Image tileImage = gameTile.getBaseTileImage();
-			    	
-			    	for( int k = 0; k < tileImage.getImageLayers().length; k++) {
-				    	ImageLayer tileImageLayer = tileImage.getImageLayer( k );
-				    	
-				    	if( tileImageLayer != null ) {
-				    		
-				    		ImageFrame tileImageFrame = tileImageLayer.getActiveFrame();
-				    		BufferedImage bImage =tileImageFrame.getFrameImage();
-				    		int width =  bImage.getWidth();
-				    		int height = bImage.getHeight();
-				    		
-				    		BufferedImage newImage = new BufferedImage( bImage.getWidth(), 
-				    													bImage.getHeight(),
-				    													BufferedImage.TYPE_INT_ARGB );
-				    		
-//				    		ImagePixel[][] pixels = tileImageFrame.getFramePixels();
-//				    		for( int l = 0; l < width; l++ ) {
-//				    			
-//				    			for( int m = 0; m < height; m++ ) {
-//				    				
-//				    				newImage.setRGB( l, m, pixels[ m ][ l ].getRgb() );
-//				    				
-//				    			}
-//				    		}
-				    		BufferedImage frameImage = tileImageFrame.getFrameImage();
-				    		frameImage = shader.shiftImageColor( frameImage, ambLight );
-				    		
-				    		if( k >= 1 ) {
-				    			
-				    			if( Game.currentGame.getPlayer().isLightSource() ) {
-				    				
-					    			RadiatingLight roomLightSource = ( RadiatingLight ) Game.currentGame.getPlayer().getLightSources().get(0); //change to have more than 1 light source in an object
-					    			double lightReach = roomLightSource.getDistance();
-					    			double distance = gameRoom.calculateDistance( Game.currentTile.getTileNumber(),
-											  									  gameTile.getTileNumber() );
-					    			
-						    		if( distance <= lightReach ) {
 
-						    			int amount;
-						    			if( k == 2 ) {
-						    				amount = ( int ) Math.floor( lightReach - distance ) * 4;
-						    			} else {
-						    				amount = ( int ) Math.floor( lightReach - distance );
-						    			}
-					    				frameImage = shader.shiftImageColor( frameImage, roomLightSource, amount );
-						    		}
-				    			}
-  		
-					    		for( int l = 0; l < roomLightSourceObjects.size(); l++ ) {
-
-					    			Thing thing = roomLightSourceObjects.get( l );
-					    			RadiatingLight roomLightSource = ( RadiatingLight ) thing.getLightSources().get(0); //change to have more than 1 light source in an object
-					    			double lightReach = roomLightSource.getDistance();
-					    			double distance = gameRoom.calculateDistance( thing.getCurrentGameTile().getTileNumber(),
-											  									  gameTile.getTileNumber() );
-					    			
-						    		if( distance <= lightReach ) {
-
-					    				int amount = ( int ) Math.floor( lightReach - distance );
-					    				frameImage = shader.shiftImageColor( frameImage, roomLightSource, amount );
-						    		}
-					    		}
-				    		}
-				    		Image image = SwingFXUtils.toFXImage( frameImage, null );
-				    		gc.drawImage( image, ( double ) j * tileWidth, ( double ) i * tileWidth );
-				    	}
-			    	}
-			    	
-			    	main.java.UserInterface.Image thingImage = gameTile.getCurrentThingImage();
-			    	
-			    	if( thingImage != null ) {
-				    	for( int k = 0; k < thingImage.getImageLayers().length; k++) {
-					    	ImageLayer thingImageLayer = thingImage.getImageLayer( k );
-					    	if( thingImageLayer != null ) {
-					    		ImageFrame thingImageFrame = thingImageLayer.getActiveFrame();
-					    		BufferedImage frameImage = thingImageFrame.getFrameImage();
-					    		Image image = SwingFXUtils.toFXImage( frameImage, null );
-					    		gc.drawImage( image, ( double ) j * tileWidth, ( double ) i * tileWidth );
-					    	}
-				    	}
-			    	}
+//			    	BufferedImage newImage = gameTile.getBaseTileImage().getImageLayer( 0 ).getActiveFrame().getFrameImage();
+			    	BufferedImage newImage = shader.shadeImage( gameTile );
+		    		Image image = SwingFXUtils.toFXImage( newImage, null );
+		    		gc.drawImage( image, ( double ) j * tileWidth, ( double ) i * tileWidth );
+		    		
 			    	accumulator += 1;
+			    	
+//			    	GameTile gameTile = ( GameTile ) Game.currentRoom.getTiles().get( accumulator );
+//
+//			    	BufferedImage newImage = gameTile.getBaseTileImage().getImageLayer( 0 ).getActiveFrame().getFrameImage();
+//		    		Image image = SwingFXUtils.toFXImage( newImage, null );
+//		    		gc.drawImage( image, ( double ) j * tileWidth, ( double ) i * tileWidth );
+//		    		
+//		    		if( gameTile.getCurrentThingImage() != null ) {
+//			    		newImage = gameTile.getCurrentThingImage().getImageLayer( 0 ).getActiveFrame().getFrameImage();
+//			    		image = SwingFXUtils.toFXImage( newImage, null );
+//			    		gc.drawImage( image, ( double ) j * tileWidth, ( double ) i * tileWidth );
+//		    		}
+//		    		
+//			    	accumulator += 1;
 			    }
 			}
 		});
@@ -217,28 +154,28 @@ public class TextMapController {
 	
 	public void setTileMap() throws Exception {
 		
-		GraphicsContext gc = tileMap.getGraphicsContext2D();
-		TMXParser tmx = new TMXParser( Game.currentRoom );
-		
-		for (int i = 0; i < tmx.layer_count; i++) {
-			int accumulator = 0;
-			for (int j = 0; j < tmx.map_rows; j++) {
-				
-			    for (int k = 0; k < tmx.map_cols; k++) {
-			    	
-			    	GameTile gameTile = ( GameTile ) Game.currentRoom.getTiles().get( accumulator );
-			    	main.java.UserInterface.Image tileImage = gameTile.getBaseTileImage();
-			    	ImageLayer tileImageLayer = tileImage.getImageLayer( i );
-			    	if( tileImageLayer != null ) {
-			    		ImageFrame tileImageFrame = tileImageLayer.getActiveFrame();
-			    		BufferedImage frameImage = tileImageFrame.getFrameImage();
-			    		Image image = SwingFXUtils.toFXImage( frameImage, null );
-			    		gc.drawImage( image, ( double ) k * tmx.size, ( double ) j * tmx.size );
-			    	}
-			    	accumulator += 1;
-			    }
-			}
-		}
+//		GraphicsContext gc = tileMap.getGraphicsContext2D();
+//		TMXParser tmx = new TMXParser( Game.currentRoom );
+//		
+//		for (int i = 0; i < tmx.layer_count; i++) {
+//			int accumulator = 0;
+//			for (int j = 0; j < tmx.map_rows; j++) {
+//				
+//			    for (int k = 0; k < tmx.map_cols; k++) {
+//			    	
+//			    	GameTile gameTile = ( GameTile ) Game.currentRoom.getTiles().get( accumulator );
+//			    	main.java.UserInterface.Image tileImage = gameTile.getBaseTileImage();
+//			    	ImageLayer tileImageLayer = tileImage.getImageLayer( i );
+//			    	if( tileImageLayer != null ) {
+//			    		ImageFrame tileImageFrame = tileImageLayer.getActiveFrame();
+//			    		BufferedImage frameImage = tileImageFrame.getFrameImage();
+//			    		Image image = SwingFXUtils.toFXImage( frameImage, null );
+//			    		gc.drawImage( image, ( double ) k * tmx.size, ( double ) j * tmx.size );
+//			    	}
+//			    	accumulator += 1;
+//			    }
+//			}
+//		}
 	}
 	
 	@FXML
@@ -260,4 +197,53 @@ public class TextMapController {
 		});
 	}
 
+//	main.java.UserInterface.Image thingImage = gameTile.getCurrentThingImage();
+//	
+//	
+//	BufferedImage thingImage = shader.shadeImage(gameTile);
+//	image = SwingFXUtils.toFXImage( frameImage, null );
+//	gc.drawImage( image, ( double ) j * tileWidth, ( double ) i * tileWidth );
+	
+//	for( int k = 0; k < tileImage.getImageLayers().length; k++) {
+//    	ImageLayer tileImageLayer = tileImage.getImageLayer( k );
+//    	
+//    	if( tileImageLayer != null ) {
+//    		
+//    		ImageFrame tileImageFrame = tileImageLayer.getActiveFrame();
+//    		BufferedImage bImage = tileImageFrame.getFrameImage();
+//    		int width =  bImage.getWidth();
+//    		int height = bImage.getHeight();
+//    		
+//    		BufferedImage newImage = new BufferedImage( bImage.getWidth(), 
+//    													bImage.getHeight(),
+//    													BufferedImage.TYPE_INT_ARGB );
+//    		
+//    		ImagePixel[][] pixels = tileImageFrame.getFramePixels();
+//    		for( int l = 0; l < width; l++ ) {
+//    			
+//    			for( int m = 0; m < height; m++ ) {
+//    				
+//    				newImage.setRGB( l, m, pixels[ m ][ l ].getRgb() );
+//    				
+//    			}
+//    		}
+//    		
+//    		Image image = SwingFXUtils.toFXImage( newImage, null );
+//    		gc.drawImage( image, ( double ) j * tileWidth, ( double ) i * tileWidth );
+//    	}
+//	}
+	
+//	main.java.UserInterface.Image thingImage = gameTile.getCurrentThingImage();
+//	
+//	if( thingImage != null ) {
+//    	for( int k = 0; k < thingImage.getImageLayers().length; k++) {
+//	    	ImageLayer thingImageLayer = thingImage.getImageLayer( k );
+//	    	if( thingImageLayer != null ) {
+//	    		ImageFrame thingImageFrame = thingImageLayer.getActiveFrame();
+//	    		BufferedImage frameImage = thingImageFrame.getFrameImage();
+//	    		image = SwingFXUtils.toFXImage( frameImage, null );
+//	    		gc.drawImage( image, ( double ) j * tileWidth, ( double ) i * tileWidth );
+//	    	}
+//    	}
+//	}
 }

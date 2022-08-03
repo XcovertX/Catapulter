@@ -102,11 +102,11 @@ public class Game {
     		String dir = currentRoom.calculateRelativeDirection( 30, 18 );
     		System.out.println( "Direction: " + dir );
     		
-    		Ring ring = new Ring();
-    		ring.setName( "Ring of Might and Madness" );
-    		ring.setAltNames( new String[ 1 ] );
-    		ring.getAltNames()[ 0 ] = "ring";
-    		currentTile.getThings().add( ring );
+//    		Ring ring = new Ring();
+//    		ring.setName( "Ring of Might and Madness" );
+//    		ring.setAltNames( new String[ 1 ] );
+//    		ring.getAltNames()[ 0 ] = "ring";
+//    		currentTile.getThings().add( ring );
     		
     		Fire fire = new Fire();
     		currentRoom.getTile( 20 ).addThing( fire );
@@ -115,19 +115,19 @@ public class Game {
     		r.setName( "revolver" );
     		player.getInventory().add( r );
     		
-    		Table table = new Table();
-    		table.setHeight( 3.0 );
-    		Skull skull = new Skull();
-    		skull.setHeight( 2.0 );
-    		
-    		table.addThing( skull );
-    		skull.setOnTopOf( true );
-    		currentRoom.getTile( 30 ).addThing( table );
+//    		Table table = new Table();
+//    		table.setHeight( 3.0 );
+//    		Skull skull = new Skull();
+//    		skull.setHeight( 2.0 );
+//    		
+//    		table.addThing( skull );
+//    		skull.setOnTopOf( true );
+//    		currentRoom.getTile( 30 ).addThing( table );
     		
     		currentWorld.setLocations();
-    		
-    		System.out.println( "Skull height: " + currentRoom.calculateTotalHeight( skull ) );
-    		System.out.println( "Table height: " + currentRoom.calculateTotalHeight( table ) );
+//    		
+//    		System.out.println( "Skull height: " + currentRoom.calculateTotalHeight( skull ) );
+//    		System.out.println( "Table height: " + currentRoom.calculateTotalHeight( table ) );
     		
     		currentRoom.setAllRoomLightSourceObjects();
     		

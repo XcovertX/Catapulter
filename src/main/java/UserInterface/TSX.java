@@ -98,6 +98,7 @@ public class TSX {
 			for( int j = 0; j < thingImageFrames.length; j++ ) {
 				
 				thingImageFrames[ j ] = new ImageFrame();
+				
 				thingImageFrames[ j ].setFrameImage( tileSetImage.getSubimage( ( xPosition + j ) * tileWidth, ( yPosition + i ) * tileHeight, tileWidth, tileHeight ) );
 				
 				if( thingImageLayer.isAnimated() ) {
@@ -120,31 +121,36 @@ public class TSX {
 	public Image buildThingImage( int x, int y, int xSize, int ySize ) {
 		
 		Image thingImage = new Image();						// number of different image sections in image
-
+		thingImage.setImageWidth( xSize );
+		thingImage.setImageHeight( ySize );
 		ImageLayer thingImageLayer = new ImageLayer();
 		ImageLayer[] thingImageLayers = new ImageLayer[ 1 ];
+
 		thingImage.setImageLayers( thingImageLayers );
+		thingImageLayer.setName( "north" );					//change. set to north for testing
+
+		int frameCount;
+    	if( frames.getLength() > 0 ) {
+    			
+			thingImageLayer.setAnimated( true );
+			frameCount = frames.getLength();
 			
-		int frameCount = 1;
-		thingImageLayer.setAnimated( false );
-//    	if( frames.getLength() > 0 ) {
-//    			
-//			thingImageLayer.setAnimated( true );
-//			frameCount = frames.getLength();
-//			
-//		} else {
-//			
-//			thingImageLayer.setAnimated( false );
-//			frameCount = 1;
-//		}
+		} else {
+
+			thingImageLayer.setAnimated( false );
+			frameCount = 1;
+		}
 		
 		ImageFrame[] thingImageFrames = new ImageFrame[ frameCount ];
 		
+		if( thingImageFrames.length > 1 ) {
+			thingImageLayer.setAnimated( true );
+		}
 		for( int j = 0; j < thingImageFrames.length; j++ ) {
 			
 			thingImageFrames[ j ] = new ImageFrame();
 			thingImageFrames[ j ].setFrameImage( tileSetImage.getSubimage( ( x + j ) * xSize, y * ySize, xSize, ySize ) );
-			
+			thingImageFrames[ j ].setFramePixels( getPixels( thingImageFrames[ j ].getFrameImage(), xSize, ySize ) );
 			if( thingImageLayer.isAnimated() ) {
 				
 				thingImageFrames[ j ].setFrameDuration( Integer.valueOf( getFrames().item( j ).getAttributes().getNamedItem( "duration" ).getNodeValue() ) );
@@ -159,6 +165,28 @@ public class TSX {
 		thingImage.setTileImageNumber( -1 );
 		
 		return thingImage;
+	}
+	
+	public ImagePixel[][] getPixels( BufferedImage img, int xSize, int ySize ) {
+		
+		ImagePixel[][] pixels = new ImagePixel[ ySize ][ xSize ];
+		for( int i = 0; i < xSize; i++ ) {
+			for( int j = 0; j < ySize; j++ ) {
+				
+				ImagePixel pixel = new ImagePixel();
+				pixel.setX( i );
+				pixel.setY( j );
+				int rbg = img.getRGB( i, j );
+				pixel.setRgb( rbg );
+				if( j == 0 || j == ySize - 1 || i == 0 || i == xSize - 1) {
+					pixel.setRoughness( 1 );
+				} else {
+					pixel.setRoughness(4);
+				}
+				pixels[ j ][ i ] = pixel;	
+			}
+		}
+		return pixels;
 	}
 	
 	public boolean isAnimated() {

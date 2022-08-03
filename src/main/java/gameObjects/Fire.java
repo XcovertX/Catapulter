@@ -23,13 +23,17 @@ public class Fire extends Thing {
 
         	try {
 				TSX tsx = new TSX( this.getTSXPath() );
-				this.setThingImages( tsx.buildThingImages( 20 ) );
+				Image[] images = new Image[ 1 ];
+				images[ 0 ] = tsx.buildThingImage( 0, 0, 32, 32  );
+				this.setThingImages( images );
+				int i = this.getThingImages().length;
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
         }
+        
         ArrayList< Light > lightSources = new ArrayList< Light >();
         RadiatingLight rLight = new RadiatingLight( 10, 100, new Color( 255, 255, 255 ), "flicker" );
         lightSources.add( rLight );

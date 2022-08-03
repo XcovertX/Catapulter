@@ -3,6 +3,8 @@ package main.java.UserInterface;
 public class Image {
 	
 	private int tileImageNumber;
+	private int imageWidth;
+	private int imageHeight;
 	private ImageLayer[] imageLayers; // 0 = base layer
 	
 	public Image() {}
@@ -40,6 +42,26 @@ public class Image {
 	public void setTileImageNumber( int tileImageNumber ) {
 		
 		this.tileImageNumber = tileImageNumber;
+	}
+
+	public int getImageWidth() {
+		
+		return imageWidth;
+	}
+
+	public void setImageWidth( int imageWidth ) {
+		
+		this.imageWidth = imageWidth;
+	}
+
+	public int getImageHeight() {
+		
+		return imageHeight;
+	}
+
+	public void setImageHeight( int imageHeight ) {
+		
+		this.imageHeight = imageHeight;
 	}
 
 }
