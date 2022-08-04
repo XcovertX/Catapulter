@@ -65,7 +65,7 @@ public class TMXParser {
 							TSX tsx = TSXs[ tileSetNum ];
 							int xPosition = position % tsx.getColumnCount();
 							int yPosition = Math.floorDiv( position, tsx.getColumnCount() );
-							
+
 							// building initial tile image
 							if( i == 0 ) {
 								Image tileImage = new Image( layer_count, accumulator );

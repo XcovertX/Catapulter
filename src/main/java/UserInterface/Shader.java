@@ -156,18 +156,18 @@ public class Shader {
 					    					
 						    			} else if (
 						    					
-						    				relativeDirectionOfLight.equals( "n" ) && tileImageLayer.getName().equals( "north" ) ||
-					    					relativeDirectionOfLight.equals( "s" ) && tileImageLayer.getName().equals( "south" ) ||
+						    				relativeDirectionOfLight.equals( "n" ) && tileImageLayer.getName().equals( "south" ) ||
+					    					relativeDirectionOfLight.equals( "s" ) && tileImageLayer.getName().equals( "north" ) ||
 					    					relativeDirectionOfLight.equals( "w" ) && tileImageLayer.getName().equals( "west"  ) ||
 					    					relativeDirectionOfLight.equals( "e" ) && tileImageLayer.getName().equals( "east"  ) ||
 					    					relativeDirectionOfLight.equals( "nw" ) && 
-					    					( tileImageLayer.getName().equals( "north" ) || tileImageLayer.getName().equals( "west" ) ) ||
-					    					relativeDirectionOfLight.equals( "sw" ) && 
 					    					( tileImageLayer.getName().equals( "south" ) || tileImageLayer.getName().equals( "west" ) ) ||
+					    					relativeDirectionOfLight.equals( "sw" ) && 
+					    					( tileImageLayer.getName().equals( "north" ) || tileImageLayer.getName().equals( "west" ) ) ||
 					    					relativeDirectionOfLight.equals( "ne" ) && 
-					    					( tileImageLayer.getName().equals( "north" ) || tileImageLayer.getName().equals( "east" ) ) ||
+					    					( tileImageLayer.getName().equals( "south" ) || tileImageLayer.getName().equals( "east" ) ) ||
 					    					relativeDirectionOfLight.equals( "se" ) && 
-					    					( tileImageLayer.getName().equals( "south" ) || tileImageLayer.getName().equals( "east" ) ) ) { 
+					    					( tileImageLayer.getName().equals( "north" ) || tileImageLayer.getName().equals( "east" ) ) ) { 
 	
 						    				int amount = ( int ) Math.floor( lightReach - distanceFromLightSource );
 					    					newRGB =  applyLightShift( newRGB, amount * 2, lightReach, roomLightSource );
@@ -336,7 +336,7 @@ public class Shader {
         objHue = ( objHue + lightHue ) % 360;   // figure out how to adjust hue
         
         // adjust saturation
-        objSaturation = ( objSaturation + lightSaturation ) / 2;  
+//        objSaturation = ( objSaturation + lightSaturation ) / 2;  
         
         // adjust object's brightness
         

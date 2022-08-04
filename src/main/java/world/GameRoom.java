@@ -32,7 +32,7 @@ public class GameRoom extends ThingHolder {
 		this.isGameRoom = true;
 		this.setLightSources( new ArrayList< Light >() );
 		AmbientLight ambLight = new AmbientLight();
-		ambLight.setBrightness( ( float ) 0.05 );
+		ambLight.setBrightness( ( float ) 0.05);
 		ambLight.setRGB( new Color( 255, 242, 114 ) );
 		this.getLightSources().add( ambLight );
 		this.type = "Room";
@@ -144,10 +144,10 @@ public class GameRoom extends ThingHolder {
 		ThingList tiles = getTiles();
 		for( int i = 0; i < tiles.size(); i++ ) {
 			GameTile tile = ( GameTile ) tiles.get( i );
-			
 			tile.setBaseTileImage( tileImageMap.getTileImageArray()[ i ] );
 			tileImageMap.getTileImageArray()[ i ].setTileImageNumber( tile.getTileNumber() );
 		}
+
 	}
 	
 	public AmbientLight getAmbientLight() {

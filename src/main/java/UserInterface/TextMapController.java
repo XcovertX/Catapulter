@@ -110,7 +110,7 @@ public class TextMapController {
 			
 			for (int i = gameRoom.getRoomLength() - 1; i >= 0; i--) {
 				
-			    for (int j = gameRoom.getRoomWidth() - 1; j >= 0; j--) {
+			    for (int j = 0; j < gameRoom.getRoomWidth(); j++) {
 			    	
 			    	GameTile gameTile = ( GameTile ) Game.currentRoom.getTiles().get( accumulator );
 

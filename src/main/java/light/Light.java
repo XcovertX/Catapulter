@@ -3,6 +3,7 @@ package main.java.light;
 import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public abstract class Light {
 
