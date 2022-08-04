@@ -97,7 +97,7 @@ public class Game {
     		
     		//test shader
     		player.setLightSources( new ArrayList< Light >() );
-    		player.getLightSources().add( new RadiatingLight( 5, 2, null, "constant" ) );
+    		player.getLightSources().add( new RadiatingLight( 5, ( float ) 0.2, ( float ) 0.5, null, "constant" ) );
     		
     		String dir = currentRoom.calculateRelativeDirection( 30, 18 );
     		System.out.println( "Direction: " + dir );

@@ -1,5 +1,6 @@
 package main.java.world;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -32,6 +33,7 @@ public class GameRoom extends ThingHolder {
 		this.setLightSources( new ArrayList< Light >() );
 		AmbientLight ambLight = new AmbientLight();
 		ambLight.setBrightness( ( float ) 0.05 );
+		ambLight.setRGB( new Color( 255, 242, 114 ) );
 		this.getLightSources().add( ambLight );
 		this.type = "Room";
 	}
@@ -203,41 +205,41 @@ public class GameRoom extends ThingHolder {
 
 		double theta = Math.atan2( wX * vX + wY * vY, wX * uX + wY * uY );
 		
-		if( theta > ( 5 * Math.PI ) / 6 || theta < -( 5 * Math.PI ) / 6  ) {
+		if( theta == Math.PI || theta == -Math.PI  ) {
 			
 			return "s";
 			
-		} else if( theta >= ( 2 * Math.PI ) / 3  ) {
-			
-			return "sw";
-			
-		} else if( theta >= Math.PI / 3  ) {
-			
-			return "w";
-			
-		} else if( theta >= Math.PI / 6  ) {
-			
-			return "nw";
-			
-		} else if( theta >= -Math.PI / 6  ) {
-			
-			return "n";
-			
-		} else if( theta >= -Math.PI / 3  ) {
-			
-			return "ne";
-			
-		} else if( theta >= -( 2 * Math.PI ) / 3  ) {
-			
-			return "e";
-			
-		} else if( theta >= -( 5 * Math.PI ) / 6  ) {
+		} else if( theta < Math.PI && theta > Math.PI / 2 ) {
 			
 			return "se";
 			
+		} else if( theta == Math.PI / 2  ) {
+			
+			return "e";
+			
+		} else if( theta < Math.PI / 2 && theta > 0 ) {
+			
+			return "ne";
+			
+		} else if( theta == 0  ) {
+			
+			return "n";
+			
+		} else if( theta < 0 && theta > -Math.PI / 2  ) {
+			
+			return "nw";
+			
+		} else if( theta == -Math.PI / 2 ) {
+			
+			return "w";
+			
+		} else if( theta < -Math.PI / 2 && theta > -Math.PI ) {
+			
+			return "sw";
+			
 		} else {
 			
-			return "s";
+			return "unknown";
 		}
 	}
 	

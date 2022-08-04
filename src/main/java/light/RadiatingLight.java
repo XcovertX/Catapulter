@@ -11,13 +11,14 @@ public class RadiatingLight extends Light {
 	public RadiatingLight() {
 		
 		this.setBrightness( MAX_BRIGHTNESS );
+		this.setMaxBrightness( MAX_BRIGHTNESS );
 		this.setDistance( AVG_DISTANCE );
 		this.setRGB( WHITE );
 		this.setBehaviorType( DEFAULT_LIGHT_BEHAVIOR );
 		this.setIntensityFluctuation();
 	}
 
-	public RadiatingLight( int distance, int brightness, Color rgb, String behaviorType ) {
+	public RadiatingLight( int distance, float brightness, float maxBrightness, Color rgb, String behaviorType ) {
 		
 		this.setBrightness( brightness );
 		this.setDistance( distance );

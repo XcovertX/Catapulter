@@ -8,12 +8,13 @@ public abstract class Light {
 
 	static final int INFINITE = -1;
 	static final Color WHITE = new Color( 255, 255, 255 );
-	static final int MAX_BRIGHTNESS = 100;
+	static final float MAX_BRIGHTNESS = ( float ) 1.0;
 	static final int AVG_DISTANCE = 10;
 
 	private int    distance;
 	private float  height;
 	private float  brightness;
+	private float  maxBrightness;
 	private Color  RGB;
 	private String behaviorType;
 	
@@ -147,5 +148,15 @@ public abstract class Light {
 	private void updateLightFields() {
 		
 		this.distance = intensityFluctuation[ intentistyIndex ];
+	}
+
+	public float getMaxBrightness() {
+		
+		return maxBrightness;
+	}
+
+	public void setMaxBrightness( float maxBrightness ) {
+		
+		this.maxBrightness = maxBrightness;
 	}
 }

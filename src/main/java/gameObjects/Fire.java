@@ -26,7 +26,6 @@ public class Fire extends Thing {
 				Image[] images = new Image[ 1 ];
 				images[ 0 ] = tsx.buildThingImage( 0, 0, 32, 32  );
 				this.setThingImages( images );
-				int i = this.getThingImages().length;
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -35,7 +34,7 @@ public class Fire extends Thing {
         }
         
         ArrayList< Light > lightSources = new ArrayList< Light >();
-        RadiatingLight rLight = new RadiatingLight( 10, 100, new Color( 255, 255, 255 ), "flicker" );
+        RadiatingLight rLight = new RadiatingLight( 10, ( float ) 0.3, ( float ) 0.7, new Color( 255, 255, 255 ), "flicker" );
         lightSources.add( rLight );
         this.setLightSources( lightSources );
 	}

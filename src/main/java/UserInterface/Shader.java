@@ -35,53 +35,6 @@ public class Shader {
 	    return b;
 	}
 	
-	public BufferedImage applyAmbientLight( BufferedImage img, AmbientLight ambLight ) {
-		
-		BufferedImage newImage = new BufferedImage( img.getWidth(), 
-													img.getHeight(),
-	            									BufferedImage.TYPE_INT_ARGB );
-		
-	    for (int x = 0; x < img.getWidth(); x++) {
-	    	
-	        for (int y = 0; y < img.getHeight(); y++) {
-	        	int pixel = img.getRGB( x, y );
-	        	
-	        	if( isTransparent( pixel ) ) {
-	        		
-	        		newImage.setRGB(x, y, pixel );
-	        		
-	        	} else {
-	        		
-		            Color color = new Color( pixel );
-	            
-		            int red = color.getRed();
-		            int blue = color.getBlue();
-		            int green = color.getGreen();
-	
-		            float[] hsb = Color.RGBtoHSB(red, green, blue, null);
-	
-		            float hue = hsb[0];
-	
-		            float saturation = hsb[1];
-	
-		            float brightness = ambLight.getBrightness();
-		            
-		            int rgb = Color.HSBtoRGB(hue, saturation, brightness);
-	
-		            red = (rgb>>16)&0xFF;
-	
-		            green = (rgb>>8)&0xFF;
-	
-		            blue = rgb&0xFF;
-		            
-		            int newColorRGB = new Color(red, green, blue ).getRGB();
-		            newImage.setRGB(x, y, newColorRGB );
-		        }
-		    }
-	    }
-		return newImage;
-	}
-	
 	public BufferedImage shiftImageColor( BufferedImage img, RadiatingLight rLight, int amount ) {
 		
 		BufferedImage newImage = new BufferedImage( img.getWidth(), 
@@ -196,22 +149,28 @@ public class Shader {
 						    			String relativeDirectionOfLight = Game.currentRoom.calculateRelativeDirection( lightSourceTileNumber, thisTileNumber );
 		
 						    			if( tileImageLayer.getName().equals( "base" ) ||
-						    				tileImageLayer.getName().equals( "object" ) ||
-						    				relativeDirectionOfLight.equals( "n" ) && tileImageLayer.getName().equals( "south" ) ||
-					    					relativeDirectionOfLight.equals( "s" ) && tileImageLayer.getName().equals( "north" ) ||
-					    					relativeDirectionOfLight.equals( "w" ) && tileImageLayer.getName().equals( "east"  ) ||
-					    					relativeDirectionOfLight.equals( "e" ) && tileImageLayer.getName().equals( "west"  ) ||
+						    				tileImageLayer.getName().equals( "object" ) ) {
+						    				
+						    				int amount = ( int ) Math.floor( lightReach - distanceFromLightSource );
+					    					newRGB =  applyLightShift( newRGB, amount, lightReach, roomLightSource );
+					    					
+						    			} else if (
+						    					
+						    				relativeDirectionOfLight.equals( "n" ) && tileImageLayer.getName().equals( "north" ) ||
+					    					relativeDirectionOfLight.equals( "s" ) && tileImageLayer.getName().equals( "south" ) ||
+					    					relativeDirectionOfLight.equals( "w" ) && tileImageLayer.getName().equals( "west"  ) ||
+					    					relativeDirectionOfLight.equals( "e" ) && tileImageLayer.getName().equals( "east"  ) ||
 					    					relativeDirectionOfLight.equals( "nw" ) && 
-					    					( tileImageLayer.getName().equals( "south" ) || tileImageLayer.getName().equals( "east" ) ) ||
+					    					( tileImageLayer.getName().equals( "north" ) || tileImageLayer.getName().equals( "west" ) ) ||
 					    					relativeDirectionOfLight.equals( "sw" ) && 
-					    					( tileImageLayer.getName().equals( "north" ) || tileImageLayer.getName().equals( "east" ) ) ||
-					    					relativeDirectionOfLight.equals( "ne" ) && 
 					    					( tileImageLayer.getName().equals( "south" ) || tileImageLayer.getName().equals( "west" ) ) ||
+					    					relativeDirectionOfLight.equals( "ne" ) && 
+					    					( tileImageLayer.getName().equals( "north" ) || tileImageLayer.getName().equals( "east" ) ) ||
 					    					relativeDirectionOfLight.equals( "se" ) && 
-					    					( tileImageLayer.getName().equals( "north" ) || tileImageLayer.getName().equals( "west" ) ) ) { 
+					    					( tileImageLayer.getName().equals( "south" ) || tileImageLayer.getName().equals( "east" ) ) ) { 
 	
 						    				int amount = ( int ) Math.floor( lightReach - distanceFromLightSource );
-					    					newRGB =  applyLightShift( newRGB, amount, lightReach );
+					    					newRGB =  applyLightShift( newRGB, amount * 2, lightReach, roomLightSource );
 					    				}
 					    			}
 					    		}
@@ -227,7 +186,7 @@ public class Shader {
 		
 		if( thingImage != null ) {
 			
-//			for( int i = 0; i < thingImage.getImageLayers().length; i++ ) {
+			for( int i = 0; i < thingImage.getImageLayers().length; i++ ) {
 				
 				ImageLayer thingImageLayer = thingImage.getImageLayer( 0 );
 				
@@ -249,10 +208,8 @@ public class Shader {
 		    				}
 		    			}
 					}
-//					System.out.println( "Thing Image non transparent pixel count: " + x + " TileNumber: " + gameTile.getTileNumber() +
-////							" pixel color of pixel x15,y9: " + pixels[ 9 ][ 15 ].getRgb() +
-//							" sizex: " + thingImage.getImageWidth() + " sizey: " + thingImage.getImageHeight() );
 				}
+			}
 		}
 		    					
 //			    				newRGB = applyAmbientLight( pixel.getRgb() );
@@ -303,150 +260,111 @@ public class Shader {
 
 	public int applyAmbientLight( int pixel ) {
 
-        Color color = new Color( pixel );
+        Color objColor = new Color( pixel );
+        Color ambLightColor = Game.currentRoom.getAmbientLight().getRGB();
     
-        int red = color.getRed();
-        int blue = color.getBlue();
-        int green = color.getGreen();
+        int objRed   = objColor.getRed();
+        int objBlue  = objColor.getBlue();
+        int objGreen = objColor.getGreen();
 
-        float[] hsb = Color.RGBtoHSB(red, green, blue, null);
-
-        float hue = hsb[0];
-
-        float saturation = hsb[1];
-
-        float brightness = (float) ( Game.currentRoom.getAmbientLight().getBrightness() );
+        int ambLightRed	  = ambLightColor.getRed();
+        int ambLightBlue  = ambLightColor.getBlue();
+        int ambLightGreen = ambLightColor.getGreen();
         
-        if( brightness > 1.0 ) {
-        	brightness = ( float ) 1.0;
+        float[] objHSB = Color.RGBtoHSB( objRed, objGreen, objBlue, null);
+        float objHue 		= objHSB[0];
+        float objSaturation = objHSB[1];
+        float objBrightness = objHSB[2];
+        
+        float[] abmHSB = Color.RGBtoHSB( ambLightRed, ambLightGreen, ambLightBlue, null);
+        float ambHue 		= abmHSB[ 0 ];
+        float ambSaturation = abmHSB[ 1 ];
+        float ambBrightness = abmHSB[ 2 ];
+        
+        // adjust object's hue
+        objHue = ( objHue + 10 ) % 360;   // figure out how to adjust hue
+        
+        // adjust object's brightness
+        objBrightness = Game.currentRoom.getAmbientLight().getBrightness();
+        
+        if( objBrightness > 1.0 ) {
+        	objBrightness = ( float ) 1.0;
         }
         
-        if( brightness < 0 ) {
-        	brightness = ( float ) 0.1;
+        if( objBrightness < 0 ) {
+        	objBrightness = ( float ) 0;
         }
-                
-        int rgb = Color.HSBtoRGB(hue, saturation, brightness);
-
-        red = (rgb>>16)&0xFF;
-
-        green = (rgb>>8)&0xFF;
-
-        blue = rgb&0xFF;
         
-        int newColorRGB = new Color( red, green, blue ).getRGB();
+        int objRGB = Color.HSBtoRGB( objHue, objSaturation, objBrightness );
+
+        objRed = ( objRGB>>16 )&0xFF;
+
+        objGreen = ( objRGB>>8)&0xFF;
+
+        objBlue = objRGB&0xFF;
+        
+        int newColorRGB = new Color( objRed, objGreen, objBlue ).getRGB();
         
         return newColorRGB;
  
 	}
 
-	public int applyLightShift( int pixel, int amount, double distance ) {
+	public int applyLightShift( int pixel, int amount, double distance, RadiatingLight light ) {
+		
+		Color objColor = new Color( pixel );
+        Color lightColor = light.getRGB();
 
-        Color color = new Color( pixel );
-    
-        int red = color.getRed();
-        int blue = color.getBlue();
-        int green = color.getGreen();
+        int objRed  	= objColor.getRed();
+        int objBlue 	= objColor.getBlue();
+        int objGreen    = objColor.getGreen();
 
-        float[] hsb = Color.RGBtoHSB(red, green, blue, null);
-
-        float hue = hsb[0];
-
-        float saturation = hsb[1];
-
-        float brightness = hsb[2];
+        int lightRed	= lightColor.getRed();
+        int lightBlue   = lightColor.getBlue();
+        int lightGreen  = lightColor.getGreen();
         
-        float brightnessIncrement = (float) (1.0 - brightness);				// change this. Light should not affect 
+        float[] objHSB = Color.RGBtoHSB( objRed, objGreen, objBlue, null);
+        float objHue 		= objHSB[0];
+        float objSaturation = objHSB[1];
+        float objBrightness = objHSB[2];
+        
+        float[] lightHSB = Color.RGBtoHSB( lightRed, lightGreen, lightBlue, null);
+        float lightHue 		  = lightHSB[ 0 ];
+        float lightSaturation = lightHSB[ 1 ];
+        float lightBrightness = lightHSB[ 2 ];
+        
+        // adjust object's hue
+        objHue = ( objHue + lightHue ) % 360;   // figure out how to adjust hue
+        
+        // adjust saturation
+        objSaturation = ( objSaturation + lightSaturation ) / 2;  
+        
+        // adjust object's brightness
+        
+        float brightnessRemainder = (float) (1.0 - objBrightness);				// change this. Light should not affect 
         																	// the brightness if the intensity is not strong enough
-        brightnessIncrement = (float) ( brightnessIncrement / distance);
+        float brightnessIncrement = (float) ( brightnessRemainder / distance);
         
-        brightness += amount * brightnessIncrement * .5;
+        objBrightness += amount * brightnessIncrement * brightnessRemainder * .5;
         
-        if( brightness > 1.0 ) {
-        	brightness = ( float ) 1.0;
+        if( objBrightness > 1.0 ) {
+        	objBrightness = ( float ) 1.0;
         }
         
-        if( brightness < 0 ) {
-        	brightness = ( float ) 0.1;
+        if( objBrightness < 0 ) {
+        	objBrightness = ( float ) 0;
         }
+         
+        int objRGB = Color.HSBtoRGB( objHue, objSaturation, objBrightness );
+
+        objRed = ( objRGB>>16 )&0xFF;
+
+        objGreen = ( objRGB>>8)&0xFF;
+
+        objBlue = objRGB&0xFF;
         
-        int rgb = Color.HSBtoRGB(hue, saturation, brightness);
-
-        red = (rgb>>16)&0xFF;
-
-        green = (rgb>>8)&0xFF;
-
-        blue = rgb&0xFF;
+        int newColorRGB = new Color( objRed, objGreen, objBlue ).getRGB();
         
-        int newColorRGB = new Color( red, green, blue ).getRGB();
-
-        return newColorRGB;
-		
-	}
-	
-	
-	public BufferedImage shiftBlue( BufferedImage img, int amount ) {
-
-//		BufferedImage bi = copyImage( img );
-		
-	    BufferedImage newImage = new BufferedImage(img.getWidth(), img.getHeight(),
-	            BufferedImage.TYPE_INT_ARGB);
-
-	    
-	    for (int x = 0; x < img.getWidth(); x++) {
-	        for (int y = 0; y < img.getHeight(); y++) {
-	            Color color = new Color(img.getRGB(x, y));
-	            int red = color.getRed();
-	            int blue = color.getBlue();
-	            int green = color.getGreen();
-
-	            blue = blue + 30 - ( amount * 5 );
-	            
-	            if ( blue > 255 ) {
-	            	int newColorRGB = new Color(red, green, 255 ).getRGB();
-	                newImage.setRGB(x, y, newColorRGB);
-	            } else if( blue < 0 ) {
-	            	int newColorRGB = new Color(red, green, 0 ).getRGB();
-	                newImage.setRGB(x, y, newColorRGB);
-	            } else {
-	            	int newColorRGB = new Color(red, green, blue ).getRGB();
-	                newImage.setRGB(x, y, newColorRGB );
-	            }
-	        }
-	    }
-		return newImage;
-	}
-	
-	public BufferedImage shiftBlueNearPlayer( BufferedImage img, int xPosition, int yPosition ) {
-
-//		BufferedImage bi = copyImage( img );
-		
-	    BufferedImage newImage = new BufferedImage(img.getWidth(), img.getHeight(),
-	            BufferedImage.TYPE_INT_ARGB);
-
-	    
-	    for (int x = 0; x < img.getWidth(); x++) {
-	        for (int y = 0; y < img.getHeight(); y++) {
-	            Color color = new Color(img.getRGB(x, y));
-	            int red = color.getRed();
-	            int blue = color.getBlue();
-	            int green = color.getGreen();
-
-	            if( x >= xPosition + 5 || x <= xPosition - 5) {
-	            	if( y >= yPosition + 5 || y <= yPosition - 5) {
-			            int newColorRGB = new Color( red, green, blue + 15 - Math.abs( xPosition ) ).getRGB();
-			            if (blue != 255) {
-			            	
-			                newImage.setRGB(x, y, newColorRGB);
-			            }
-		            }
-	            } else {
-	            	
-	                newImage.setRGB(x, y, color.getRGB());
-	                
-	            }
-	        }
-	    }
-		return newImage;
+        return newColorRGB;	
 	}
 	
 	public boolean isTransparent( int pixel ) {
