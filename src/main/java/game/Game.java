@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.java.UserInterface.GraphicalUserInterface;
+import main.java.UserInterface.ShaderNew;
 import main.java.UserInterface.TMXParser;
 import main.java.UserInterface.TSX;
 import main.java.UserInterface.UserInterface;
@@ -86,21 +87,22 @@ public class Game {
     		
     		worldReader = new WorldReader();
     		
-    		currentWorld =  worldReader.getWorld( "files/worlds/testtileworld", "testtileworld.json" );
+    		currentWorld =  worldReader.getWorld( "files/worlds/tiny", "tiny.json" );
     		currentMap = (GameMap) ( currentWorld.getMaps().get( 0 ) );
     		currentRoom = (GameRoom) ( currentMap.getRooms().get( 0 ) );
     		currentTile = (GameTile) ( currentRoom.getTiles().get( 40 ) );
     		
-    		currentWorld.setLocations();
+    		
     		
     		player = new Human( "player", "This is a player", currentTile, new ThingList(), " @ " );
     		
+    		
     		//test shader
     		player.setLightSources( new ArrayList< Light >() );
-    		player.getLightSources().add( new RadiatingLight( 5, ( float ) 0.2, ( float ) 0.5, null, "constant" ) );
-    		
-    		String dir = currentRoom.calculateRelativeDirection( 30, 18 );
-    		System.out.println( "Direction: " + dir );
+    		player.getLightSources().add( new RadiatingLight( 5, ( float ) 0.2, ( float ) 0.5, new Color( 22, 150, 150 ), "flicker" ) );
+    		player.setLightSource( true );
+
+    		ShaderNew s = new ShaderNew( "files/assets/shaders/default.shader" );
     		
 //    		Ring ring = new Ring();
 //    		ring.setName( "Ring of Might and Madness" );
@@ -108,12 +110,12 @@ public class Game {
 //    		ring.getAltNames()[ 0 ] = "ring";
 //    		currentTile.getThings().add( ring );
     		
-    		Fire fire = new Fire();
-    		currentRoom.getTile( 20 ).addThing( fire );
-    		
-    		Revolver r = new Revolver();
-    		r.setName( "revolver" );
-    		player.getInventory().add( r );
+//    		Fire fire = new Fire();
+//    		currentRoom.getTile( 20 ).addThing( fire );
+//    		
+//    		Revolver r = new Revolver();
+//    		r.setName( "revolver" );
+//    		player.getInventory().add( r );
     		
 //    		Table table = new Table();
 //    		table.setHeight( 3.0 );

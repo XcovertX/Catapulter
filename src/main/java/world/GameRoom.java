@@ -28,7 +28,7 @@ public class GameRoom extends ThingHolder {
 	
 	public GameRoom() {
 		super( "", "", new ThingList() );
-		this.setTMX("files/testCity.tmx");
+		this.setTMX("files/tiny.tmx");
 		this.isGameRoom = true;
 		this.setLightSources( new ArrayList< Light >() );
 		AmbientLight ambLight = new AmbientLight();
@@ -255,6 +255,14 @@ public class GameRoom extends ThingHolder {
 	public void setAllRoomLightSourceObjects() {
 		
 		ThingList allLightSourceObjects = new ThingList();
+		
+		if( this == Game.currentRoom ) {
+			
+			if( Game.currentGame.getPlayer().isLightSource() ) {
+			
+				allLightSourceObjects.add( Game.currentGame.getPlayer() );
+			}
+		}
 		
 		for( int i = 0; i < this.getTiles().size(); i++ ) {
 			

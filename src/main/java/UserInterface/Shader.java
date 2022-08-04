@@ -139,7 +139,17 @@ public class Shader {
 			    								
 			    					Thing lightSourceObject = Game.currentRoom.getAllRoomLightSourceObjects().get( l);
 			    					RadiatingLight roomLightSource = ( RadiatingLight ) lightSourceObject.getLightSources().get( 0 );
-			    					int lightSourceTileNumber = lightSourceObject.getCurrentGameTile().getTileNumber();
+			    					int lightSourceTileNumber;
+			    					
+			    					if( lightSourceObject == Game.currentGame.getPlayer() ) {
+			    						
+			    						lightSourceTileNumber = Game.currentTile.getTileNumber();
+			    						
+			    					} else {
+			    						
+			    						lightSourceTileNumber = lightSourceObject.getCurrentGameTile().getTileNumber();
+			    					}
+			    					
 			    					int thisTileNumber = gameTile.getTileNumber();
 			    					double distanceFromLightSource = Game.currentRoom.calculateDistance( lightSourceTileNumber, thisTileNumber);
 			    					double lightReach = roomLightSource.getDistance();
@@ -195,7 +205,8 @@ public class Shader {
 					ImageFrame thingImageFrame = thingImageLayer.getActiveFrame();
 					BufferedImage frameImage = thingImageFrame.getFrameImage();
 					ImagePixel[][] pixels = thingImageFrame.getFramePixels();
-		    							for( int j = 0; j < thingImage.getImageWidth(); j++ ) {
+					
+		    		for( int j = 0; j < thingImage.getImageWidth(); j++ ) {
 		    			
 		    			for( int k = 0; k < thingImage.getImageHeight(); k++ ) {
 		    				
@@ -333,7 +344,7 @@ public class Shader {
         float lightBrightness = lightHSB[ 2 ];
         
         // adjust object's hue
-        objHue = ( objHue + lightHue ) % 360;   // figure out how to adjust hue
+//        objHue = ( objHue + lightHue ) % 360;   // figure out how to adjust hue
         
         // adjust saturation
 //        objSaturation = ( objSaturation + lightSaturation ) / 2;  

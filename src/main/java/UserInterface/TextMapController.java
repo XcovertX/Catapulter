@@ -106,34 +106,18 @@ public class TextMapController {
 			GameRoom gameRoom = Game.currentRoom;
 			Shader shader = new Shader();
 			int accumulator = 0;
-			int tileWidth = 32; // figure out where to put this
+			int tileWidth = 8; // figure out where to put this
 			
 			for (int i = gameRoom.getRoomLength() - 1; i >= 0; i--) {
 				
 			    for (int j = 0; j < gameRoom.getRoomWidth(); j++) {
 			    	
 			    	GameTile gameTile = ( GameTile ) Game.currentRoom.getTiles().get( accumulator );
-
-//			    	BufferedImage newImage = gameTile.getBaseTileImage().getImageLayer( 0 ).getActiveFrame().getFrameImage();
 			    	BufferedImage newImage = shader.shadeImage( gameTile );
 		    		Image image = SwingFXUtils.toFXImage( newImage, null );
 		    		gc.drawImage( image, ( double ) j * tileWidth, ( double ) i * tileWidth );
 		    		
 			    	accumulator += 1;
-			    	
-//			    	GameTile gameTile = ( GameTile ) Game.currentRoom.getTiles().get( accumulator );
-//
-//			    	BufferedImage newImage = gameTile.getBaseTileImage().getImageLayer( 0 ).getActiveFrame().getFrameImage();
-//		    		Image image = SwingFXUtils.toFXImage( newImage, null );
-//		    		gc.drawImage( image, ( double ) j * tileWidth, ( double ) i * tileWidth );
-//		    		
-//		    		if( gameTile.getCurrentThingImage() != null ) {
-//			    		newImage = gameTile.getCurrentThingImage().getImageLayer( 0 ).getActiveFrame().getFrameImage();
-//			    		image = SwingFXUtils.toFXImage( newImage, null );
-//			    		gc.drawImage( image, ( double ) j * tileWidth, ( double ) i * tileWidth );
-//		    		}
-//		    		
-//			    	accumulator += 1;
 			    }
 			}
 		});

@@ -64,7 +64,7 @@ public class Actor extends ThingHolder {
         this.setHunger( 0 );
         this.setDecomposed( 100 );
         this.setTileChar( new TileChar( aActorSymbol, "#00b6ff" ) );
-        this.setTSXPath( "files/location-2.tsx" );
+        this.setTSXPath( "files/tiny_location.tsx" );
         this.type = "Actor";
 
         if( this.getTSXPath() != null ) {
@@ -72,7 +72,7 @@ public class Actor extends ThingHolder {
         	try {
 				TSX tsx = new TSX( this.getTSXPath() );
 				Image[] images = new Image[ 1 ];
-				images[ 0 ] = tsx.buildThingImage( 0, 0, 32, 32  );
+				images[ 0 ] = tsx.buildThingImage( 0, 0, tsx.getTileWidth(), tsx.getTileHeight() );
 				this.setThingImages( images );
 				int i = this.getThingImages().length;
 				
