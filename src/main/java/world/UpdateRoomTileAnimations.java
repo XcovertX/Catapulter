@@ -1,12 +1,9 @@
-package main.java.world;
+package world;
 
-import main.java.UserInterface.Image;
-import main.java.UserInterface.ImageFrame;
-import main.java.UserInterface.ImageLayer;
-import main.java.game.Game;
-import main.java.gameObjects.Thing;
-import main.java.gameObjects.ThingHolder;
-import main.java.gameObjects.ThingList;
+import userInterface.Image;
+import userInterface.ImageLayer;
+import gameObjects.Thing;
+import gameObjects.ThingList;
 
 public class UpdateRoomTileAnimations extends UpdateWorld {
 

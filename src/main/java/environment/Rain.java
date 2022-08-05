@@ -1,6 +1,6 @@
-package main.java.environment;
+package environment;
 
-import main.java.gameObjects.Water;
+import gameObjects.Water;
 
 public class Rain extends Water {
 	

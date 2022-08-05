@@ -1,15 +1,15 @@
-package main.java.verbs;
+package verbs;
 
 import java.awt.Color;
 
-import main.java.actor.Actor;
-import main.java.actor.Human;
-import main.java.game.Game;
-import main.java.gameObjects.Container;
-import main.java.gameObjects.HomogeneousContentContainer;
-import main.java.gameObjects.Thing;
-import main.java.gameObjects.ThingHolder;
-import main.java.globals.CatapulterColor;
+import actor.Actor;
+import actor.Human;
+import game.Game;
+import gameObjects.Container;
+import gameObjects.HomogeneousContentContainer;
+import gameObjects.Thing;
+import gameObjects.ThingHolder;
+import globals.CatapulterColor;
 
 public class Look extends Action {
 	

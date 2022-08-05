@@ -1,4 +1,4 @@
-package main.java.inputProcessor;
+package inputProcessor;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -9,15 +9,15 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Random;
 
-import main.java.actor.Actor;
-import main.java.actor.Cat;
-import main.java.actor.NonPlayerActor;
-import main.java.game.Game;
-import main.java.globals.Direction;
-import main.java.world.GameMap;
-import main.java.world.GameRoom;
-import main.java.world.GameTile;
-import main.java.world.GameWorld;
+import actor.Actor;
+import actor.Cat;
+import actor.NonPlayerActor;
+import game.Game;
+import globals.Direction;
+import world.GameMap;
+import world.GameRoom;
+import world.GameTile;
+import world.GameWorld;
 
 public abstract class MovementController {
 	

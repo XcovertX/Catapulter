@@ -1,9 +1,9 @@
-package main.java.verbs;
+package verbs;
 
-import main.java.actor.Actor;
-import main.java.game.Game;
-import main.java.gameObjects.Food;
-import main.java.gameObjects.Thing;
+import actor.Actor;
+import game.Game;
+import gameObjects.Food;
+import gameObjects.Thing;
 
 public class Eat extends Action {
 	

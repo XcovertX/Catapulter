@@ -1,13 +1,13 @@
-package main.java.verbs;
+package verbs;
 
 import java.awt.Color;
 
-import main.java.game.Game;
-import main.java.gameObjects.Container;
-import main.java.gameObjects.Key;
-import main.java.gameObjects.Thing;
-import main.java.gameObjects.ThingHolder;
-import main.java.globals.CatapulterColor;
+import game.Game;
+import gameObjects.Container;
+import gameObjects.Key;
+import gameObjects.Thing;
+import gameObjects.ThingHolder;
+import globals.CatapulterColor;
 
 public class Unlock extends Action {
 	

@@ -1,8 +1,8 @@
-package main.java.environment;
+package environment;
 
 import java.util.Random;
 
-import main.java.globals.Direction;
+import globals.Direction;
 
 public class Wind {
 	//current wind direction, intensity and duration

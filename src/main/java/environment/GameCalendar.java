@@ -1,8 +1,8 @@
-package main.java.environment;
+package environment;
 
 import java.util.TimerTask;
 
-import main.java.game.Game;
+import game.Game;
 
 public class GameCalendar extends Time {
 	

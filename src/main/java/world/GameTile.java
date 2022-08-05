@@ -1,17 +1,14 @@
- package main.java.world;
+ package world;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
-import main.java.UserInterface.TileChar;
-import main.java.UserInterface.Image;
-import main.java.actor.Actor;
-import main.java.actor.NonPlayerActor;
-import main.java.game.Game;
-import main.java.gameObjects.Thing;
-import main.java.gameObjects.ThingHolder;
-import main.java.gameObjects.ThingList;
-import main.java.globals.Direction;
+import userInterface.TileChar;
+import userInterface.Image;
+import actor.Actor;
+import game.Game;
+import gameObjects.Thing;
+import gameObjects.ThingHolder;
+import gameObjects.ThingList;
+import globals.Direction;
 
 public class GameTile extends ThingHolder {
 	

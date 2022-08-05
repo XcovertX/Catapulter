@@ -1,8 +1,8 @@
-package main.java.verbs;
+package verbs;
 
 import java.awt.Color;
 
-import main.java.game.Game;
+import game.Game;
 
 public class Yell extends Action {
 	

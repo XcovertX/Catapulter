@@ -1,4 +1,4 @@
-package main.java.verbs;
+package verbs;
 
 public class Climb extends Action {
 

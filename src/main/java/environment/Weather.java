@@ -1,9 +1,9 @@
-package main.java.environment;
+package environment;
 
 import java.util.Random;
 
-import main.java.gameObjects.Thing;
-import main.java.globals.Direction;
+import gameObjects.Thing;
+import globals.Direction;
 
 public class Weather extends Thing {
 

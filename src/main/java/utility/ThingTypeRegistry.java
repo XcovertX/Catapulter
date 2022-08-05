@@ -1,29 +1,29 @@
-package main.java.utility;
+package utility;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import main.java.actor.Actor;
-import main.java.actor.NonPlayerActor;
-import main.java.gameObjects.Bottle;
-import main.java.gameObjects.Chest;
-import main.java.gameObjects.Container;
-import main.java.gameObjects.Furniture;
-import main.java.gameObjects.Key;
-import main.java.gameObjects.Lock;
-import main.java.gameObjects.Table;
-import main.java.gameObjects.Thing;
-import main.java.gameObjects.ThingHolder;
-import main.java.gameObjects.ThingList;
-import main.java.gameObjects.Treasure;
-import main.java.gameObjects.Water;
-import main.java.weapons.Weapon;
-import main.java.wearableObjects.Ring;
-import main.java.wearableObjects.WearableThing;
-import main.java.world.GameMap;
-import main.java.world.GameRoom;
-import main.java.world.GameTile;
-import main.java.world.GameWorld;
+import actor.Actor;
+import actor.NonPlayerActor;
+import gameObjects.Bottle;
+import gameObjects.Chest;
+import gameObjects.Container;
+import gameObjects.Furniture;
+import gameObjects.Key;
+import gameObjects.Lock;
+import gameObjects.Table;
+import gameObjects.Thing;
+import gameObjects.ThingHolder;
+import gameObjects.ThingList;
+import gameObjects.Treasure;
+import gameObjects.Water;
+import weapons.Weapon;
+import wearableObjects.Ring;
+import wearableObjects.WearableThing;
+import world.GameMap;
+import world.GameRoom;
+import world.GameTile;
+import world.GameWorld;
 
 public class ThingTypeRegistry {
 	

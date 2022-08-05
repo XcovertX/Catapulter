@@ -1,6 +1,6 @@
-package main.java.weapons;
+package weapons;
 
-import main.java.gameObjects.Thing;
+import gameObjects.Thing;
 
 public abstract class Ammunition extends Thing {
 	

@@ -1,9 +1,8 @@
-package main.java.actor;
-
-import main.java.UserInterface.TileChar;
-import main.java.game.Game;
-import main.java.gameObjects.ThingList;
-import main.java.world.GameTile;
+package actor;
+import userInterface.TileChar;
+import game.Game;
+import gameObjects.ThingList;
+import world.GameTile;
 
 public class Cat extends Animal {
 

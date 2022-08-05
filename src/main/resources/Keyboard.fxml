@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="152.0" minWidth="300.0" prefHeight="215.0" prefWidth="1100.0" styleClass="backGround" stylesheets="@keyboard.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.UserInterface.KeyboardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="152.0" minWidth="300.0" prefHeight="215.0" prefWidth="1100.0" styleClass="backGround" stylesheets="@keyboard.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.KeyboardController">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>

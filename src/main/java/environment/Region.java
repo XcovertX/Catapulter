@@ -1,6 +1,6 @@
-package main.java.environment;
+package environment;
 
-import main.java.gameObjects.ThingHolder;
+import gameObjects.ThingHolder;
 
 public class Region extends ThingHolder {
 

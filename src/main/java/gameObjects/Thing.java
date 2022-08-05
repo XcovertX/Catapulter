@@ -1,16 +1,15 @@
-package main.java.gameObjects;
+package gameObjects;
 
-import java.awt.Color;
 import java.util.ArrayList;
 
-import main.java.UserInterface.TileChar;
-import main.java.light.Light;
-import main.java.UserInterface.Image;
-import main.java.world.GameMap;
-import main.java.world.GameRoom;
-import main.java.world.GameTile;
-import main.java.world.GameWorld;
-import main.java.world.UpdateWorldMethods;
+import userInterface.TileChar;
+import light.Light;
+import userInterface.Image;
+import world.GameMap;
+import world.GameRoom;
+import world.GameTile;
+import world.GameWorld;
+import world.UpdateWorldMethods;
 
 public class Thing {
 	

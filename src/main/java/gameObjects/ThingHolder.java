@@ -1,6 +1,6 @@
-package main.java.gameObjects;
+package gameObjects;
 
-import main.java.verbs.Action;
+import verbs.Action;
 
 public class ThingHolder extends Thing {
 	

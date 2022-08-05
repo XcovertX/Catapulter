@@ -1,4 +1,4 @@
-package main.java.globals;
+package globals;
 
 import java.awt.Color;
 

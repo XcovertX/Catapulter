@@ -1,9 +1,9 @@
-package main.java.characteristics;
+package characteristics;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import main.java.calculator.Dice;
+import calculator.Dice;
 
 public class ActorClass {
 	

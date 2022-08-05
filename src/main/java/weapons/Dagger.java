@@ -1,4 +1,4 @@
-package main.java.weapons;
+package weapons;
 
 public class Dagger extends Blade {
 	

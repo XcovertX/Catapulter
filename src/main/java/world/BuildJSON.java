@@ -1,4 +1,4 @@
-package main.java.world;
+package world;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,7 +8,7 @@ import java.io.IOException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import main.java.resources.res.ResourceLoader;
+import resources.res.ResourceLoader;
 
 public class BuildJSON {
 	

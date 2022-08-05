@@ -1,4 +1,4 @@
- package main.java.mapBuilder;
+ package mapBuilder;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,17 +16,17 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
-import main.java.gameObjects.MapList;
-import main.java.gameObjects.RoomList;
-import main.java.gameObjects.Thing;
-import main.java.gameObjects.ThingList;
-import main.java.gameObjects.TileList;
-import main.java.resources.res.ResourceLoader;
-import main.java.utility.MapWriter;
-import main.java.world.GameMap;
-import main.java.world.GameRoom;
-import main.java.world.GameTile;
-import main.java.world.GameWorld;
+import gameObjects.MapList;
+import gameObjects.RoomList;
+import gameObjects.Thing;
+import gameObjects.ThingList;
+import gameObjects.TileList;
+import resources.res.ResourceLoader;
+import utility.MapWriter;
+import world.GameMap;
+import world.GameRoom;
+import world.GameTile;
+import world.GameWorld;
 
 public class RoomBuilder implements ActionListener {
 	

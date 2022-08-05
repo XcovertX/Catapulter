@@ -1,8 +1,8 @@
-package main.java.weapons;
+package weapons;
 
-import main.java.calculator.Dice;
-import main.java.damage.Damage;
-import main.java.gameObjects.Thing;
+import calculator.Dice;
+import damage.Damage;
+import gameObjects.Thing;
 
 public abstract class Weapon extends Thing {
 	

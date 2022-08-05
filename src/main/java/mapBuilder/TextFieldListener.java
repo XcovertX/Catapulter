@@ -1,4 +1,4 @@
-package main.java.mapBuilder;
+package mapBuilder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTextField;

@@ -1,10 +1,10 @@
-package main.java.utility;
+package utility;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import main.java.resources.res.ResourceLoader;
+import resources.res.ResourceLoader;
 
 public class SignReader {
 	

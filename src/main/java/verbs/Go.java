@@ -1,13 +1,13 @@
-package main.java.verbs;
+package verbs;
 
 import java.awt.Color;
 
-import main.java.actor.Actor;
-import main.java.game.Game;
-import main.java.globals.Direction;
-import main.java.world.GameMap;
-import main.java.world.GameRoom;
-import main.java.world.GameTile;
+import actor.Actor;
+import game.Game;
+import globals.Direction;
+import world.GameMap;
+import world.GameRoom;
+import world.GameTile;
 
 public class Go extends Action {
 	

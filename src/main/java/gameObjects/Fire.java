@@ -1,12 +1,12 @@
-package main.java.gameObjects;
+package gameObjects;
 
 import java.awt.Color;
 import java.util.ArrayList;
 
-import main.java.UserInterface.Image;
-import main.java.UserInterface.TSX;
-import main.java.light.Light;
-import main.java.light.RadiatingLight;
+import userInterface.Image;
+import userInterface.TSX;
+import light.Light;
+import light.RadiatingLight;
 
 public class Fire extends Thing {
 

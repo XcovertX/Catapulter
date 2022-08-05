@@ -1,8 +1,8 @@
-package main.java.gameObjects;
+package gameObjects;
 
-import main.java.UserInterface.Image;
-import main.java.UserInterface.TSX;
-import main.java.UserInterface.TileChar;
+import userInterface.Image;
+import userInterface.TSX;
+import userInterface.TileChar;
 
 public class Skull extends Thing {
 	

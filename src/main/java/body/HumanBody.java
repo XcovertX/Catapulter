@@ -1,4 +1,4 @@
-package main.java.body;
+package body;
 
 public class HumanBody extends Body{
 

@@ -1,4 +1,4 @@
-package main.java.damage;
+package damage;
 
 public class Pierce extends Damage {
 

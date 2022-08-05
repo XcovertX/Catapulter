@@ -1,4 +1,4 @@
-package main.java.armor;
+package armor;
 
 public abstract class Armor {
 

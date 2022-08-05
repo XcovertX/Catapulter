@@ -1,6 +1,6 @@
-package main.java.element;
+package element;
 
-import main.java.gameObjects.Thing;
+import gameObjects.Thing;
 
 public abstract class Element extends Thing {
 	

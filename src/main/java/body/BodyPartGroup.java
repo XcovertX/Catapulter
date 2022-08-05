@@ -1,7 +1,7 @@
-package main.java.body;
+package body;
 
-import main.java.gameObjects.Thing;
-import main.java.gameObjects.ThingHolder;
+import gameObjects.Thing;
+import gameObjects.ThingHolder;
 
 public abstract class BodyPartGroup extends ThingHolder {
 	

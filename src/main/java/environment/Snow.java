@@ -1,4 +1,4 @@
-package main.java.environment;
+package environment;
 
 public class Snow extends Rain {
 	

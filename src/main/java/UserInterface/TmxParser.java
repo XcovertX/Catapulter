@@ -1,4 +1,4 @@
-package main.java.UserInterface;
+package userInterface;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import main.java.gameObjects.Thing;
-import main.java.world.GameRoom;
+import gameObjects.Thing;
+import world.GameRoom;
 
 public class TMXParser {
 

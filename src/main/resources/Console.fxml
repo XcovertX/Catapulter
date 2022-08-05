@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.UserInterface.ConsoleController">
+<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ConsoleController">
    <center>
       <TextArea fx:id="console" editable="false" prefHeight="200.0" prefWidth="200.0" styleClass="consoleDisplay" stylesheets="@console.css" wrapText="true">
          <padding>

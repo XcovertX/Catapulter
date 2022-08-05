@@ -1,9 +1,9 @@
-package main.java.verbs;
+package verbs;
 
-import main.java.actor.Human;
-import main.java.game.Game;
-import main.java.gameObjects.Thing;
-import main.java.wearableObjects.WearableThing;
+import actor.Human;
+import game.Game;
+import gameObjects.Thing;
+import wearableObjects.WearableThing;
 
 public class Wear extends Action {
 	

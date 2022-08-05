@@ -1,11 +1,11 @@
-package main.java.verbs;
+package verbs;
 
 import java.awt.Color;
 import java.util.Random;
 
-import main.java.actor.Actor;
-import main.java.actor.NonPlayerActor;
-import main.java.game.Game;
+import actor.Actor;
+import actor.NonPlayerActor;
+import game.Game;
 
 public class Attack extends Action {
 

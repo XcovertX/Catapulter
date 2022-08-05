@@ -1,4 +1,4 @@
-package main.java.weapons;
+package weapons;
 
 public abstract class FiredWeapon extends RangeWeapon {
 	

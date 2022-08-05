@@ -1,4 +1,4 @@
-package main.java.verbs;
+package verbs;
 
 public class Ask extends Action {
 	

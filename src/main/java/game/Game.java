@@ -1,53 +1,33 @@
-package main.java.game;
+package game;
 
 import java.awt.Color;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.*;     // required for ArrayList
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import main.java.UserInterface.GraphicalUserInterface;
-import main.java.UserInterface.ShaderNew;
-import main.java.UserInterface.TMXParser;
-import main.java.UserInterface.TSX;
-import main.java.UserInterface.UserInterface;
-import main.java.actor.Actor;
-import main.java.actor.Cat;
-import main.java.actor.Human;
-import main.java.actor.NonPlayerActor;
-import main.java.application.GUI;
-import main.java.environment.GameCalendar;
-import main.java.gameObjects.Fire;
-import main.java.gameObjects.Skull;
-import main.java.gameObjects.Table;
-import main.java.gameObjects.Thing;
-import main.java.gameObjects.ThingHolder;
-import main.java.gameObjects.ThingList;
-import main.java.globals.Direction;
-import main.java.inputProcessor.InputProcessor;
-import main.java.light.Light;
-import main.java.light.RadiatingLight;
-import main.java.mapBuilder.RoomBuilder;
-import main.java.utility.SignReader;
-import main.java.weapons.Revolver;
-import main.java.wearableObjects.Ring;
-import main.java.world.GameMap;
-import main.java.world.GameRoom;
-import main.java.world.GameTile;
-import main.java.world.GameWorld;
-import main.java.world.UpdateLight;
-import main.java.world.UpdatePlayer;
-import main.java.world.UpdateRoomTileAnimations;
+import userInterface.GraphicalUserInterface;
+import userInterface.ShaderNew;
+import userInterface.TMXParser;
+import userInterface.UserInterface;
+import actor.Actor;
+import actor.Human;
+import environment.GameCalendar;
+import gameObjects.ThingList;
+import inputProcessor.InputProcessor;
+import light.Light;
+import light.RadiatingLight;
+import mapBuilder.RoomBuilder;
+import utility.SignReader;
+import world.GameMap;
+import world.GameRoom;
+import world.GameTile;
+import world.GameWorld;
+import world.UpdateLight;
+import world.UpdatePlayer;
+import world.UpdateRoomTileAnimations;
 
 public class Game {
     

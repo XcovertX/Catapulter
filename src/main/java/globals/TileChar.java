@@ -1,4 +1,4 @@
-package main.java.globals;
+package globals;
 
 public class TileChar {
 	public static final String wall = "[x]";

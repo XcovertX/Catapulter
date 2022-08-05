@@ -1,10 +1,10 @@
-package main.java.world;
+package world;
 
-import main.java.actor.Actor;
-import main.java.game.Game;
-import main.java.gameObjects.Bone;
-import main.java.gameObjects.Skull;
-import main.java.gameObjects.Thing;
+import actor.Actor;
+import game.Game;
+import gameObjects.Bone;
+import gameObjects.Skull;
+import gameObjects.Thing;
 
 public class UpdateDecomposing extends UpdateWorld {
 

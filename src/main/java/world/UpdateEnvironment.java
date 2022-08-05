@@ -1,6 +1,6 @@
-package main.java.world;
+package world;
 
-import main.java.gameObjects.Thing;
+import gameObjects.Thing;
 
 public class UpdateEnvironment extends UpdateWorld {
 

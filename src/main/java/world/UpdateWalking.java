@@ -1,10 +1,10 @@
-package main.java.world;
+package world;
 
-import main.java.actor.Actor;
-import main.java.actor.NonPlayerActor;
-import main.java.gameObjects.Thing;
-import main.java.inputProcessor.MovementController;
-import main.java.inputProcessor.MovementControllerList;
+import actor.Actor;
+import actor.NonPlayerActor;
+import gameObjects.Thing;
+import inputProcessor.MovementController;
+import inputProcessor.MovementControllerList;
 
 public class UpdateWalking extends UpdateWorld {
 	

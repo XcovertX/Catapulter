@@ -1,24 +1,18 @@
-package main.java.actor;
+package actor;
 
 import java.awt.Color;
 
-import main.java.UserInterface.Image;
-import main.java.UserInterface.TSX;
-import main.java.UserInterface.TileChar;
-import main.java.body.Body;
-import main.java.characteristics.ActorStats;
-import main.java.characteristics.Charisma;
-import main.java.characteristics.Constitution;
-import main.java.characteristics.Dexterity;
-import main.java.characteristics.Intelligence;
-import main.java.characteristics.Strength;
-import main.java.characteristics.Wisdom;
-import main.java.game.Game;
-import main.java.gameObjects.ThingHolder;
-import main.java.gameObjects.ThingList;
-import main.java.verbs.Conversation;
-import main.java.verbs.Fight;
-import main.java.world.GameTile;
+import userInterface.Image;
+import userInterface.TSX;
+import userInterface.TileChar;
+import body.Body;
+import characteristics.ActorStats;
+import game.Game;
+import gameObjects.ThingHolder;
+import gameObjects.ThingList;
+import verbs.Conversation;
+import verbs.Fight;
+import world.GameTile;
 
 public class Actor extends ThingHolder {
 	

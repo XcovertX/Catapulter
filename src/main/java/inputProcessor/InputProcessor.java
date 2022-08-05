@@ -1,28 +1,22 @@
-package main.java.inputProcessor;
+package inputProcessor;
 
 import java.awt.Color;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-import javafx.application.Platform;
-import main.java.UserInterface.UserInterface;
-import main.java.actor.Actor;
-import main.java.game.Game;
-import main.java.game.WorldReader;
-import main.java.gameObjects.Thing;
-import main.java.globals.Direction;
-import main.java.verbs.Action;
-import main.java.verbs.Say;
-import main.java.world.GameMap;
-import main.java.world.GameRoom;
-import main.java.world.GameTile;
-import main.java.world.GameWorld;
+import userInterface.UserInterface;
+import actor.Actor;
+import game.Game;
+import game.WorldReader;
+import globals.Direction;
+import verbs.Action;
+import world.GameMap;
+import world.GameRoom;
+import world.GameTile;
 
 public class InputProcessor {
 	

@@ -1,4 +1,4 @@
-package main.java.mapBuilder;
+package mapBuilder;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -11,8 +11,8 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
-import main.java.gameObjects.Thing;
-import main.java.utility.ThingTypeRegistry;
+import gameObjects.Thing;
+import utility.ThingTypeRegistry;
 
 public class MapSerializer implements JsonSerializer< Thing > {
 	

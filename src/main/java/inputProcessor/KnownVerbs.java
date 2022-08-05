@@ -1,36 +1,36 @@
-package main.java.inputProcessor;
+package inputProcessor;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import main.java.verbs.Action;
-import main.java.verbs.Ask;
-import main.java.verbs.Attack;
-import main.java.verbs.Climb;
-import main.java.verbs.Close;
-import main.java.verbs.Cut;
-import main.java.verbs.Drink;
-import main.java.verbs.Drop;
-import main.java.verbs.Eat;
-import main.java.verbs.Get;
-import main.java.verbs.Give;
-import main.java.verbs.Go;
-import main.java.verbs.Light;
-import main.java.verbs.List;
-import main.java.verbs.Look;
-import main.java.verbs.Loot;
-import main.java.verbs.Open;
-import main.java.verbs.Put;
-import main.java.verbs.Read;
-import main.java.verbs.Say;
-import main.java.verbs.Sleep;
-import main.java.verbs.Stab;
-import main.java.verbs.Take;
-import main.java.verbs.Unlock;
-import main.java.verbs.Use;
-import main.java.verbs.Wear;
-import main.java.verbs.Whisper;
-import main.java.verbs.Yell;
+import verbs.Action;
+import verbs.Ask;
+import verbs.Attack;
+import verbs.Climb;
+import verbs.Close;
+import verbs.Cut;
+import verbs.Drink;
+import verbs.Drop;
+import verbs.Eat;
+import verbs.Get;
+import verbs.Give;
+import verbs.Go;
+import verbs.Light;
+import verbs.List;
+import verbs.Look;
+import verbs.Loot;
+import verbs.Open;
+import verbs.Put;
+import verbs.Read;
+import verbs.Say;
+import verbs.Sleep;
+import verbs.Stab;
+import verbs.Take;
+import verbs.Unlock;
+import verbs.Use;
+import verbs.Wear;
+import verbs.Whisper;
+import verbs.Yell;
 
 public class KnownVerbs {
 	

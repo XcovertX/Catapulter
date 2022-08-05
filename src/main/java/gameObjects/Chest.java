@@ -1,6 +1,6 @@
-package main.java.gameObjects;
+package gameObjects;
 
-import main.java.game.Game;
+import game.Game;
 
 public class Chest extends Container {
 	public Chest(){

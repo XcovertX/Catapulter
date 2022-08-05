@@ -1,9 +1,9 @@
-package main.java.verbs;
+package verbs;
 
-import main.java.game.Game;
-import main.java.gameObjects.*;
-import main.java.globals.CatapulterColor;
-import main.java.world.UpdateThirst;
+import game.Game;
+import gameObjects.*;
+import globals.CatapulterColor;
+import world.UpdateThirst;
 
 public class Drink extends Action {
 	

@@ -1,4 +1,4 @@
-package main.java.resources.res;
+package resources.res;
 
 import java.io.File;
 

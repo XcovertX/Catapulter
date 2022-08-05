@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.UserInterface.TextInputController">
+<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.TextInputController">
    <center>
       <TextField fx:id="textInput" onAction="#userIn" styleClass="textInput" stylesheets="@console.css">
          <BorderPane.margin>

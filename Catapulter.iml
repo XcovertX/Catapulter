@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="EclipseModuleManager">
+    <libelement value="jar://$USER_HOME$/Desktop/eclipse/openjfx-16_windows-x64_bin-sdk/javafx-sdk-16/lib/javafx.base.jar!/" />
+    <libelement value="jar://$USER_HOME$/Desktop/eclipse/openjfx-16_windows-x64_bin-sdk/javafx-sdk-16/lib/javafx.controls.jar!/" />
+    <libelement value="jar://$USER_HOME$/Desktop/eclipse/openjfx-16_windows-x64_bin-sdk/javafx-sdk-16/lib/javafx.fxml.jar!/" />
+    <libelement value="jar://$USER_HOME$/Desktop/eclipse/openjfx-16_windows-x64_bin-sdk/javafx-sdk-16/lib/javafx.graphics.jar!/" />
+    <libelement value="jar://$USER_HOME$/Desktop/eclipse/openjfx-16_windows-x64_bin-sdk/javafx-sdk-16/lib/javafx.media.jar!/" />
+    <libelement value="jar://$USER_HOME$/Desktop/eclipse/openjfx-16_windows-x64_bin-sdk/javafx-sdk-16/lib/javafx.swing.jar!/" />
+    <libelement value="jar://$USER_HOME$/Desktop/eclipse/openjfx-16_windows-x64_bin-sdk/javafx-sdk-16/lib/javafx.web.jar!/" />
+    <libelement value="jar://$USER_HOME$/Desktop/eclipse/openjfx-16_windows-x64_bin-sdk/javafx-sdk-16/lib/javafx-swt.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/gson-2.8.6.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/gson-extras-0.2.2-dev1n+f8657bfc.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/jsr250-api-1.0.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/swing2swt.jar!/" />
+    <libelement value="jar://$USER_HOME$/Desktop/eclipse/plugins/richtextfx-0.10.9.jar!/" />
+    <conelement value="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER" />
+    <src_description expected_position="0">
+      <src_folder value="file://$MODULE_DIR$/src" expected_position="0" />
+    </src_description>
+  </component>
+</module>

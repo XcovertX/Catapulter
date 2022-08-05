@@ -1,11 +1,11 @@
-package main.java.world;
+package world;
 
 import java.util.ArrayList;
 
-import main.java.gameObjects.Thing;
-import main.java.gameObjects.ThingList;
-import main.java.light.Light;
-import main.java.light.RadiatingLight;
+import gameObjects.Thing;
+import gameObjects.ThingList;
+import light.Light;
+import light.RadiatingLight;
 
 public class UpdateLight extends UpdateWorld {
 

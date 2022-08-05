@@ -1,10 +1,10 @@
-package main.java.gameObjects;
+package gameObjects;
 
 import java.util.LinkedList;
 
-import main.java.world.GameMap;
-import main.java.world.GameRoom;
-import main.java.world.GameTile;
+import world.GameMap;
+import world.GameRoom;
+import world.GameTile;
 
 public class TileList extends LinkedList< GameTile > {
 	

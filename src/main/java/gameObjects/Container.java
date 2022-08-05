@@ -1,4 +1,4 @@
-package main.java.gameObjects;
+package gameObjects;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;

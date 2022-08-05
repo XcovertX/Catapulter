@@ -1,4 +1,4 @@
-package main.java.light;
+package light;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,11 +1,11 @@
-package main.java.utility;
+package utility;
 
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-import main.java.gameObjects.Thing;
-import main.java.gameObjects.ThingList;
+import gameObjects.Thing;
+import gameObjects.ThingList;
 
 
 public class ListTypeRegistry {

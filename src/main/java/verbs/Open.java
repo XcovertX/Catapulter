@@ -1,9 +1,9 @@
-package main.java.verbs;
+package verbs;
 
-import main.java.game.Game;
-import main.java.gameObjects.Container;
-import main.java.gameObjects.Thing;
-import main.java.gameObjects.ThingHolder;
+import game.Game;
+import gameObjects.Container;
+import gameObjects.Thing;
+import gameObjects.ThingHolder;
 
 public class Open extends Action {
 	

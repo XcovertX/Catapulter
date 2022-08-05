@@ -1,8 +1,8 @@
-package main.java.verbs;
+package verbs;
 
-import main.java.game.Game;
-import main.java.gameObjects.Thing;
-import main.java.wearableObjects.WearableThing;
+import game.Game;
+import gameObjects.Thing;
+import wearableObjects.WearableThing;
 
 public class Put extends Action {
 	

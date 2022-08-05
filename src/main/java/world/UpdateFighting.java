@@ -1,8 +1,8 @@
-package main.java.world;
+package world;
 
-import main.java.actor.Actor;
-import main.java.gameObjects.Thing;
-import main.java.verbs.Fight;
+import actor.Actor;
+import gameObjects.Thing;
+import verbs.Fight;
 
 public class UpdateFighting extends UpdateWorld {
 

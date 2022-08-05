@@ -1,10 +1,10 @@
-package main.java.verbs;
+package verbs;
 
 import java.awt.Color;
 
-import main.java.actor.Actor;
-import main.java.game.Game;
-import main.java.gameObjects.Thing;
+import actor.Actor;
+import game.Game;
+import gameObjects.Thing;
 
 public class Loot extends Action{
 	

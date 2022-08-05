@@ -1,8 +1,8 @@
-package main.java.world;
+package world;
 
-import main.java.gameObjects.RoomList;
-import main.java.gameObjects.ThingHolder;
-import main.java.gameObjects.ThingList;
+import gameObjects.RoomList;
+import gameObjects.ThingHolder;
+import gameObjects.ThingList;
 
 
 public class GameMap extends ThingHolder {

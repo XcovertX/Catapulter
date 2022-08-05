@@ -1,6 +1,6 @@
-package main.java.body;
+package body;
 
-import main.java.weapons.Weapon;
+import weapons.Weapon;
 
 public class Hand extends BodyPartGroup {
 	

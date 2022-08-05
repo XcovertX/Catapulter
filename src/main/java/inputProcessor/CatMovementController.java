@@ -1,11 +1,11 @@
-package main.java.inputProcessor;
+package inputProcessor;
 
 import java.util.ArrayList;
 
-import main.java.actor.Cat;
-import main.java.actor.NonPlayerActor;
-import main.java.calculator.D20;
-import main.java.globals.Direction;
+import actor.Cat;
+import actor.NonPlayerActor;
+import calculator.D20;
+import globals.Direction;
 
 public class CatMovementController extends MovementController {
 	

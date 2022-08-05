@@ -1,8 +1,8 @@
-package main.java.world;
+package world;
 
-import main.java.gameObjects.Thing;
-import main.java.gameObjects.ThingHolder;
-import main.java.gameObjects.ThingList;
+import gameObjects.Thing;
+import gameObjects.ThingHolder;
+import gameObjects.ThingList;
 
 public class GameWorld extends ThingHolder {
 	

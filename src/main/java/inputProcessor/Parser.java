@@ -1,4 +1,4 @@
-package main.java.inputProcessor;
+package inputProcessor;
 
 public class Parser {
 

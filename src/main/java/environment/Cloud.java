@@ -1,8 +1,8 @@
-package main.java.environment;
+package environment;
 
 import java.util.Random;
 
-import main.java.gameObjects.Water;
+import gameObjects.Water;
 
 public class Cloud extends Water {
 

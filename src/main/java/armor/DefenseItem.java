@@ -1,6 +1,6 @@
-package main.java.armor;
+package armor;
 
-import main.java.gameObjects.Thing;
+import gameObjects.Thing;
 
 public abstract class DefenseItem extends Thing {
 

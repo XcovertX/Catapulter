@@ -1,4 +1,4 @@
-package main.java.light;
+package light;
 
 import java.awt.Color;
 import java.util.HashMap;

@@ -1,6 +1,6 @@
-package main.java.characteristics;
+package characteristics;
 
-import main.java.calculator.D8;
+import calculator.D8;
 
 public class Rogue extends ActorClass {
 

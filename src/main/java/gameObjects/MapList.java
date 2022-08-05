@@ -1,9 +1,9 @@
-package main.java.gameObjects;
+package gameObjects;
 
 import java.util.LinkedList;
 
-import main.java.world.GameMap;
-import main.java.world.GameWorld;
+import world.GameMap;
+import world.GameWorld;
 
 public class MapList extends LinkedList< GameMap > {
 	

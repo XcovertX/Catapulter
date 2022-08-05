@@ -1,4 +1,4 @@
-package main.java.calculator;
+package calculator;
 
 import java.util.Random;
 

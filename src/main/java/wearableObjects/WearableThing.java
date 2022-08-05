@@ -1,8 +1,8 @@
-package main.java.wearableObjects;
+package wearableObjects;
 
 import java.util.LinkedList;
 
-import main.java.gameObjects.Thing;
+import gameObjects.Thing;
 
 public class WearableThing extends Thing {
 	

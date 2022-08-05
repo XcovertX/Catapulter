@@ -1,10 +1,10 @@
-package main.java.inputProcessor;
+package inputProcessor;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import main.java.actor.NonPlayerActor;
-import main.java.actor.Cat;
+import actor.NonPlayerActor;
+import actor.Cat;
 
 public class MovementControllerList {
 	

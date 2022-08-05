@@ -1,4 +1,4 @@
-package main.java.gameObjects;
+package gameObjects;
 
 public class Key extends Thing {
 	

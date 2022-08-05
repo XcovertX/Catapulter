@@ -1,9 +1,9 @@
-package main.java.verbs;
+package verbs;
 
 import java.awt.Color;
 
-import main.java.actor.Actor;
-import main.java.game.Game;
+import actor.Actor;
+import game.Game;
 
 public class Strike extends Action {
 

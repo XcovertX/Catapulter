@@ -1,0 +1,51 @@
+#type vertex
+#version 330 core
+layout (location=0) in vec3 aPos;
+layout (location=1) in vec4 aColor;
+layout (location=2) in vec2 aTexCoords;
+layout (location=3) in float aTexID;
+
+uniform mat4 uProjection;
+uniform mat4 uView;
+
+out vec4 fColor;
+out vec2 fTexCoords;
+out float fTexID;
+
+void main()
+{
+    fColor = aColor;
+    fTexCoords = aTexCoords;
+    fTexID = aTexID;
+    gl_Position = uProjection * uView * vec4(aPos, 1.0);
+}
+
+#type fragment
+#version 330 core
+
+in vec4 fColor;
+in vec2 fTexCoords;
+in float fTexID;
+
+uniform sampler2D uTextures[8]; // can change, but lower end devices may not work
+
+out vec4 color;
+
+void main()
+{
+    // To make gray
+    //    float avg = ((fColor.r + fColor.g + fColor.b) / 3);
+    //    color = vec4(avg, avg, avg, 1);
+    // weird noise look
+    //    float noise = fract(sin(dot(fColor.xy, vec2(12.9898, 78.233))) * 43758.5453);
+    //    color = fColor * noise;
+
+    if (fTexID > 0) {
+        // Cant index into an array w/ a float, cast to int.
+        int id = int(fTexID);
+        color = fColor * texture(uTextures[id], fTexCoords);
+//        color = vec4(fTexCoords, 0, 1); // (x,y,0,1)
+    } else {
+        color = fColor;
+    }
+}

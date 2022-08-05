@@ -1,19 +1,17 @@
-package main.java.world;
+package world;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Vector;
 
-import main.java.UserInterface.ImageMap;
-import main.java.actor.NonPlayerActor;
-import main.java.game.Game;
-import main.java.gameObjects.Thing;
-import main.java.gameObjects.ThingHolder;
-import main.java.gameObjects.ThingList;
-import main.java.inputProcessor.MovementController;
-import main.java.inputProcessor.MovementControllerList;
-import main.java.light.AmbientLight;
-import main.java.light.Light;
+import userInterface.ImageMap;
+import actor.NonPlayerActor;
+import game.Game;
+import gameObjects.Thing;
+import gameObjects.ThingHolder;
+import gameObjects.ThingList;
+import inputProcessor.MovementControllerList;
+import light.AmbientLight;
+import light.Light;
 
 
 public class GameRoom extends ThingHolder {

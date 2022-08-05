@@ -1,6 +1,6 @@
-package main.java.body;
+package body;
 
-import main.java.gameObjects.Thing;
+import gameObjects.Thing;
 
 public abstract class BodyPart extends Thing {
 

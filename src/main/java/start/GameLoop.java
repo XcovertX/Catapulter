@@ -1,9 +1,9 @@
-package main.java.start;
+package start;
 
 import java.io.IOException;
 
 import javafx.application.Platform;
-import main.java.game.Game;
+import game.Game;
 
 public class GameLoop implements Runnable {
 	

@@ -1,4 +1,4 @@
-package main.java.gameObjects;
+package gameObjects;
 
 public abstract class Liquid extends Thing  {
 	

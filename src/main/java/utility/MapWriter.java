@@ -1,4 +1,4 @@
-package main.java.utility;
+package utility;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.google.gson.Gson;
 
-import main.java.resources.res.ResourceLoader;
+import resources.res.ResourceLoader;
 
 public class MapWriter {
 

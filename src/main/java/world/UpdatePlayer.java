@@ -1,11 +1,11 @@
-package main.java.world;
+package world;
 
 import java.awt.Color;
 
-import main.java.actor.Actor;
-import main.java.game.Game;
-import main.java.gameObjects.Thing;
-import main.java.globals.CatapulterColor;
+import actor.Actor;
+import game.Game;
+import gameObjects.Thing;
+import globals.CatapulterColor;
 
 public class UpdatePlayer extends UpdateWorld {
 

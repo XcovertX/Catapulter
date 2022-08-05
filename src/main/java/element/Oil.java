@@ -1,4 +1,4 @@
-package main.java.element;
+package element;
 
 public abstract class Oil extends Element {
 	

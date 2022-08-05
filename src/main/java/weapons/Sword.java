@@ -1,6 +1,6 @@
-package main.java.weapons;
+package weapons;
 
-import main.java.damage.Slash;
+import damage.Slash;
 
 public class Sword extends Blade {
 	

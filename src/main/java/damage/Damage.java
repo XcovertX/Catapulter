@@ -1,4 +1,4 @@
-package main.java.damage;
+package damage;
 
 public abstract class Damage {
 

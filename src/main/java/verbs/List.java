@@ -1,6 +1,6 @@
-package main.java.verbs;
+package verbs;
 
-import main.java.game.Game;
+import game.Game;
 
 public class List extends Action {
 	

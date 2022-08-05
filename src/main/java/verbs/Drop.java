@@ -1,7 +1,7 @@
-package main.java.verbs;
+package verbs;
 
-import main.java.game.Game;
-import main.java.gameObjects.Thing;
+import game.Game;
+import gameObjects.Thing;
 
 public class Drop extends Action {
 	

@@ -1,4 +1,4 @@
-package main.java.characteristics;
+package characteristics;
 
 import java.util.HashMap;
 import java.util.Map;
