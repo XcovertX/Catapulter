@@ -19,20 +19,24 @@ public class UpdateRoomTileAnimations extends UpdateWorld {
 				
 				GameTile gameTile = ( GameTile ) tiles.get( i );
 				Image tileImage = gameTile.getBaseTileImage();
-				ImageLayer[] tileImageLayers = tileImage.getImageLayers();
-				
-				for( int j = 0; j < tileImageLayers.length; j++ ) {
-					
-					ImageLayer tileImageLayer = tileImageLayers[ j ];
-					
-					if( tileImageLayer != null ) {
-						
-						if( tileImageLayer.isAnimated() ) {
-							
-							if( tileImageLayer.frameSwapTimeCheck() ) {
-							
-								tileImageLayer.cycleActiveImage();
-							} 
+
+				if( tileImage != null ){
+
+					ImageLayer[] tileImageLayers = tileImage.getImageLayers();
+
+					for( int j = 0; j < tileImageLayers.length; j++ ) {
+
+						ImageLayer tileImageLayer = tileImageLayers[ j ];
+
+						if( tileImageLayer != null ) {
+
+							if( tileImageLayer.isAnimated() ) {
+
+								if (tileImageLayer.frameSwapTimeCheck()) {
+
+									tileImageLayer.cycleActiveImage();
+								}
+							}
 						}
 					}
 				}

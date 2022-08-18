@@ -3,6 +3,9 @@ package world;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import jade.Camera;
+import jade.RoomScene;
+import org.joml.Vector2f;
 import userInterface.ImageMap;
 import actor.NonPlayerActor;
 import game.Game;
@@ -23,16 +26,24 @@ public class GameRoom extends ThingHolder {
 	private boolean outside;
 	
 	private ThingList lightSourceObjects;
+	private RoomScene scene;
+	private Camera camera;
+
+	private String roomTileSetPath;
+	public static final int ROOM_TILE_WIDTH = 32;
+	public static final int ROOM_TILE_HEIGHT = 32;
 	
 	public GameRoom() {
 		super( "", "", new ThingList() );
-		this.setTMX("files/tiny.tmx");
+		this.setTMX( "assets/TMX/tiny.tmx" );
 		this.isGameRoom = true;
 		this.setLightSources( new ArrayList< Light >() );
 		AmbientLight ambLight = new AmbientLight();
 		ambLight.setBrightness( ( float ) 0.05);
 		ambLight.setRGB( new Color( 255, 242, 114 ) );
 		this.getLightSources().add( ambLight );
+		this.scene = new RoomScene( this );
+		this.camera = new Camera( new Vector2f( 0, 0 ) );
 		this.type = "Room";
 	}
 
@@ -45,6 +56,7 @@ public class GameRoom extends ThingHolder {
 		this.roomLength = aRoomLength;
 		this.roomWidth = aRoomWidth;
 		this.isGameRoom = true;
+		this.camera = new Camera( new Vector2f( -250, 0 ) );
 	}
 	
 	public void initializeNPCMovement() {
@@ -141,11 +153,11 @@ public class GameRoom extends ThingHolder {
 		
 		ThingList tiles = getTiles();
 		for( int i = 0; i < tiles.size(); i++ ) {
+
 			GameTile tile = ( GameTile ) tiles.get( i );
 			tile.setBaseTileImage( tileImageMap.getTileImageArray()[ i ] );
 			tileImageMap.getTileImageArray()[ i ].setTileImageNumber( tile.getTileNumber() );
 		}
-
 	}
 	
 	public AmbientLight getAmbientLight() {
@@ -308,5 +320,20 @@ public class GameRoom extends ThingHolder {
 		}
 		
 		return totalHeight;
+	}
+
+	public RoomScene getScene() { return scene; }
+
+	public void setScene( RoomScene scene ) { this.scene = scene; }
+
+	public Camera getCamera() { return camera; }
+
+	public void setCamera( Camera camera ) { this.camera = camera; }
+
+	public String getRoomTileSetPath() { return roomTileSetPath; }
+
+	public void setRoomTileSetPath( String roomTileSetPath ) {
+
+		this.roomTileSetPath = roomTileSetPath;
 	}
 }

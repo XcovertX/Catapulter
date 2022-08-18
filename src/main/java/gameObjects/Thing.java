@@ -64,6 +64,8 @@ public class Thing {
 //    protected String tileChar;
     private String tsxPath;
     private String tmx;
+
+	private String imageResourcePath;
     private int imageXPosition;
     private int imageYPosition;
     private TileChar tileChar;
@@ -639,5 +641,12 @@ public class Thing {
 	public void setHeldBy( Thing heldBy ) {
 		
 		this.heldBy = heldBy;
+	}
+
+	public String getImageResourcePath() { return imageResourcePath; }
+
+	public void setImageResourcePath( String imageResourcePath ) {
+
+		this.imageResourcePath = imageResourcePath;
 	}
 }

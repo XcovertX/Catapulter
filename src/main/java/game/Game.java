@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.io.BufferedReader;
 import java.util.*;     // required for ArrayList
 
+import jade.Window;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -42,7 +43,10 @@ public class Game {
     public Stage window;
     public Parent root;
     public GraphicalUserInterface gui;
-    
+
+    // scene window
+    private Window gameWindow;
+
 	public static WorldReader worldReader;
     private String input;
     private String output;
@@ -51,38 +55,34 @@ public class Game {
     private boolean roomChange = false;
     private Actor player;  // the player - provides 'first person perspective'
     
-    public Game( boolean mapBuilderMode, boolean newGame ) {
+    public Game( boolean newGame ) {
     	
-    	if( mapBuilderMode == true ) {
-    		
-    		new RoomBuilder();
-    		
-    	} else if( newGame == true ) {
+    	 if( newGame == true ) {
     		
     		// TODO build new game / load game selector
-    		
-    		
-    		
+
     		Game.currentGame = this;
     		
     		worldReader = new WorldReader();
     		
     		currentWorld =  worldReader.getWorld( "files/worlds/tiny", "tiny.json" );
-    		currentMap = (GameMap) ( currentWorld.getMaps().get( 0 ) );
-    		currentRoom = (GameRoom) ( currentMap.getRooms().get( 0 ) );
-    		currentTile = (GameTile) ( currentRoom.getTiles().get( 40 ) );
+    		currentMap   = ( GameMap )  ( currentWorld.getMaps().get( 0 ) );
+    		currentRoom  = ( GameRoom ) ( currentMap.getRooms().get( 0 ) );
+    		currentTile  = ( GameTile ) ( currentRoom.getTiles().get( 40 ) );
     		
-    		
+    		gameWindow = Window.get();
+            gameWindow.run();
+
     		
     		player = new Human( "player", "This is a player", currentTile, new ThingList(), " @ " );
     		
     		
-    		//test shader
-    		player.setLightSources( new ArrayList< Light >() );
-    		player.getLightSources().add( new RadiatingLight( 5, ( float ) 0.2, ( float ) 0.5, new Color( 22, 150, 150 ), "flicker" ) );
-    		player.setLightSource( true );
-
-    		ShaderNew s = new ShaderNew( "files/assets/shaders/default.shader" );
+//    		//test shader
+//    		player.setLightSources( new ArrayList< Light >() );
+//    		player.getLightSources().add( new RadiatingLight( 5, ( float ) 0.2, ( float ) 0.5, new Color( 22, 150, 150 ), "flicker" ) );
+//    		player.setLightSource( true );
+//
+//    		ShaderNew s = new ShaderNew( "files/assets/shaders/default.shader" );
     		
 //    		Ring ring = new Ring();
 //    		ring.setName( "Ring of Might and Madness" );
@@ -106,22 +106,22 @@ public class Game {
 //    		skull.setOnTopOf( true );
 //    		currentRoom.getTile( 30 ).addThing( table );
     		
-    		currentWorld.setLocations();
+//    		currentWorld.setLocations();
 //    		
 //    		System.out.println( "Skull height: " + currentRoom.calculateTotalHeight( skull ) );
 //    		System.out.println( "Table height: " + currentRoom.calculateTotalHeight( table ) );
     		
-    		currentRoom.setAllRoomLightSourceObjects();
-    		
-    		userInterface = new UserInterface( player );
-    		userInterface.getDisplay().setRoom( currentRoom );
-    		
-    		try {
-				new TMXParser( currentRoom );
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//    		currentRoom.setAllRoomLightSourceObjects();
+//
+//    		userInterface = new UserInterface( player );
+//    		userInterface.getDisplay().setRoom( currentRoom );
+//
+//    		try {
+//				new TMXParser( currentRoom );
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 	        calendar = new GameCalendar( currentGame );
 
 	        setInputProcessor( new InputProcessor() );
@@ -133,26 +133,14 @@ public class Game {
 
     // access methods
     // map
-    public GameMap getMap() {
-    	
-        return currentMap;
-    } 
+    public GameMap getMap() { return currentMap; }
 
-    public void setMap( GameMap aMap ) {
-    	
-    	currentMap = aMap;
-    }
+    public void setMap( GameMap aMap ) { currentMap = aMap; }
 
     // player
-    public Actor getPlayer() {
-    	
-        return player;
-    }
+    public Actor getPlayer() { return player; }
 
-    public void setPlayer( Actor aPlayer ) {
-    	
-        player = aPlayer;
-    }
+    public void setPlayer( Actor aPlayer ) { player = aPlayer; }
     
     // test method
     public void changeScene() {
@@ -176,13 +164,16 @@ public class Game {
         s = welcome.getText();
         userInterface.println( s );
     }
+
+    public Window getGameWindow() { return gameWindow; }
+
+    public void setGameWindow(Window gameWindow) { this.gameWindow = gameWindow; }
     
     public void roomChange() {
     	this.roomChange = true;
     }
     
-    public void render() {
-    }
+    public void render() { }
     
     public UserInterface getUI() {
     	return this.userInterface;

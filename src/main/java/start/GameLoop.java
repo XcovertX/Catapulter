@@ -2,19 +2,21 @@ package start;
 
 import java.io.IOException;
 
+import jade.Window;
 import javafx.application.Platform;
 import game.Game;
 
 public class GameLoop implements Runnable {
 	
 	private boolean running;
-	private final double updateRate = 1.0d/60.0d;
+	private final double updateRate = 1.0d/12.0d;
 	
 	private long nextStatTime;
 	private int fps;
 	private int ups;
 	
 	private Game game;
+
 	
 	public GameLoop( Game game ) {
 		
@@ -39,7 +41,7 @@ public class GameLoop implements Runnable {
 			
 			while( accumulator > updateRate ) {
 				
-				update();
+				update( accumulator );
 				accumulator -= updateRate;
 				render();
 			}
@@ -48,31 +50,35 @@ public class GameLoop implements Runnable {
 		}
 	}
 	
-	private void update() {
-		
-		try {
-			
+	private void update( double accumulator ) {
+		game.getGameWindow().update( accumulator );
+
+//		try {
+//
 			game.updateWorld();
-				
-			game.getInputProcessor().update();
-			
-			Thread.sleep(100); // TODO not sure how to appropriately free up the thread. Fix when build thread-pool
-			
-		} catch (InterruptedException e) {
-			
-			e.printStackTrace();
-			
-		} catch (IOException e) {
-			
-			System.out.println("Failed to update loop.");
-			e.printStackTrace();
-		}
+//
+//			game.getInputProcessor().update();
+//
+//			Thread.sleep(100); // TODO not sure how to appropriately free up the thread. Fix when build thread-pool
+//
+//
+//
+//
+//		} catch (InterruptedException e) {
+//
+//			e.printStackTrace();
+//
+//		} catch (IOException e) {
+//
+//			System.out.println("Failed to update loop.");
+//			e.printStackTrace();
+//		}
 		ups++;
 	}
 	
 	private void render() {
 		
-		game.getUI().getGuiMapController().render();
+//		game.getUI().getGuiMapController().render();
 //		fps++;
 	}
 	

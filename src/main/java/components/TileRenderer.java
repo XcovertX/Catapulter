@@ -6,22 +6,22 @@ import org.joml.Vector2f;
 import org.joml.Vector4f;
 import renderer.Texture;
 
-public class SpriteRenderer extends Component {
+public class TileRenderer extends Component {
 
     private Vector4f color;
-    private Sprite sprite;
+    private Tile tile;
     private Transform lastTransform;
     private boolean isDirty = false;
 
-    public SpriteRenderer( Vector4f color ) {
+    public TileRenderer( Vector4f color ) {
         this.color = color;
-        this.sprite = new Sprite( null );
+        this.tile = new Tile( null );
         this.isDirty = true;
     }
 
-    public SpriteRenderer( Sprite sprite ) {
+    public TileRenderer( Tile tile ) {
         this.color = new Vector4f(1, 1, 1, 1);
-        this.sprite = sprite;
+        this.tile = tile;
         this.isDirty = true;
     }
 
@@ -45,16 +45,16 @@ public class SpriteRenderer extends Component {
     }
 
     public Texture getTexture() {
-        return sprite.getTexture();
+        return tile.getTexture();
     }
 
     public Vector2f[] getTexCoords() {
-        return sprite.getTexCoords();
+        return tile.getTexCoords();
     }
 
-    public void setSprite( Sprite sprite ) {
+    public void setTile( Tile tile ) {
 
-        this.sprite = sprite;
+        this.tile = tile;
         this.isDirty = true;
     }
 

@@ -3,12 +3,12 @@ package components;
 import org.joml.Vector2f;
 import renderer.Texture;
 
-public class Sprite {
+public class Tile {
 
     private Texture texture;
     private Vector2f[] texCoords;
 
-    public Sprite( Texture texture ) {
+    public Tile( Texture texture ) {
 
         Vector2f[] texCoords = {
 
@@ -20,7 +20,7 @@ public class Sprite {
         init( texture, texCoords );
     }
 
-    public Sprite( Texture texture, Vector2f[] texCoords ) {
+    public Tile( Texture texture, Vector2f[] texCoords ) {
         init( texture, texCoords );
     }
 

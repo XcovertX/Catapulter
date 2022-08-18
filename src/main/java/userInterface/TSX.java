@@ -2,12 +2,15 @@ package userInterface;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.*;
+import org.xml.sax.SAXException;
 
 public class TSX {
 	
@@ -40,31 +43,58 @@ public class TSX {
 	public static final int TILE_LAYER_COUNT = 5;
 	public static final int THING_LAYER_COUNT = 3;
 	
-	public TSX( String path ) throws Exception {
+	public TSX( String path ) {
 		
-		this.tsxPath = path;
-		
+		tsxPath = path;
 		file = new File( path );
 //		tsxPath += file.getParent() + "/";
 		dbFactory = DocumentBuilderFactory.newInstance();
-		dBuilder = dbFactory.newDocumentBuilder();
-		doc = dBuilder.parse( file );
+
+		try {
+
+			dBuilder = dbFactory.newDocumentBuilder();
+			doc = dBuilder.parse( file );
+
+		} catch ( ParserConfigurationException e ) {
+
+			e.printStackTrace();
+			assert false: "ERROR: (TSX) Failed to build '" + dbFactory.toString() + "'";
+
+		} catch ( IOException e ) {
+
+			e.printStackTrace();
+			assert false: "ERROR: (TSX) Could not parse file '" + path + "'";
+
+		} catch ( SAXException e ) {
+
+			e.printStackTrace();
+			assert false: "ERROR: (TSX) SAX Could not parse file '" + path + "'";
+		}
+
 		doc.getDocumentElement().normalize();
 		tileset = doc.getDocumentElement();
 		tiles = tileset.getElementsByTagName( "tile" );
 		images = tileset.getElementsByTagName( "image" );
 		animations = tileset.getElementsByTagName( "animation" );
 		frames = tileset.getElementsByTagName( "frame" );
-		String parent = file.getParent() + "/";
-		imageSourcePath = parent + images.item( 0 ).getAttributes().getNamedItem( "source" ).getNodeValue().toString();
+//		String parent = file.getParent() + "/";
+		imageSourcePath = images.item( 0 ).getAttributes().getNamedItem( "source" ).getNodeValue().toString();
 		
 		tileCount   = Integer.valueOf( tileset.getAttribute( "tilecount"   ) );
 		tileWidth   = Integer.valueOf( tileset.getAttribute( "tilewidth"   ) );
 		tileHeight  = Integer.valueOf( tileset.getAttribute( "tileheight"  ) );
-		columnCount = Integer.valueOf( tileset.getAttribute( "columns" ) );
-		
-		tileSetImage = ImageIO.read( new File( imageSourcePath ) );
-		
+		columnCount = Integer.valueOf( tileset.getAttribute( "columns"     ) );
+
+		try {
+
+			tileSetImage = ImageIO.read( new File( imageSourcePath ) );
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+			assert false: "ERROR: (TSX) Could not load image '" + imageSourcePath + "'";
+		}
+
 		xPosition = 0;
 		yPosition = 0;
 	}
@@ -150,6 +180,7 @@ public class TSX {
 			thingImageFrames[ j ] = new ImageFrame();
 			thingImageFrames[ j ].setFrameImage( tileSetImage.getSubimage( ( x + j ) * xSize, y * ySize, xSize, ySize ) );
 			thingImageFrames[ j ].setFramePixels( getPixels( thingImageFrames[ j ].getFrameImage(), xSize, ySize ) );
+
 			if( thingImageLayer.isAnimated() ) {
 				
 				thingImageFrames[ j ].setFrameDuration( Integer.valueOf( getFrames().item( j ).getAttributes().getNamedItem( "duration" ).getNodeValue() ) );
@@ -195,14 +226,6 @@ public class TSX {
 			return true;
 		}
 		return false;
-	}
-	
-	public String getTsxPath() {
-		return tsxPath;
-	}
-
-	public void setTsxPath(String tsxPath) {
-		this.tsxPath = tsxPath;
 	}
 
 	public NodeList getTiles() {
@@ -277,13 +300,7 @@ public class TSX {
 		this.frames = frames;
 	}
 
-	public String getTSXPath() {
-		
-		return tsxPath;
-	}
+	public String getTSXPath() { return tsxPath; }
 
-	public void setTSXPath(String tsxPath) {
-		
-		this.tsxPath = tsxPath;
-	}
+	public void setTSXPath(String tsxPath) { this.tsxPath = tsxPath; }
 }

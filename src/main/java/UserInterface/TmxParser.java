@@ -8,13 +8,17 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 import gameObjects.Thing;
+import jade.Transform;
+import org.joml.Vector2f;
 import world.GameRoom;
 
 public class TMXParser {
 
 	private GameRoom gameRoom;
 	private Thing aThing;
+
 	private TMX tmx;
+
 	private TSX[] TSXs;
 	public int size;
 	public int layer_count, map_cols, map_rows, img_cols, img_rows, frames;
@@ -29,7 +33,7 @@ public class TMXParser {
 	 * TMX Parser pulls all of the needed information from a tmx file and
 	 * constructs TileImage objects to use for the player's map
 	 */
-	public TMXParser( GameRoom gRoom ) throws Exception {
+	public TMXParser( GameRoom gRoom ) {
 		
 		gameRoom = gRoom;
 		tmx = new TMX( gRoom.getTMX() );
@@ -59,18 +63,34 @@ public class TMXParser {
 						int firstgID = Integer.valueOf( tmx.getTilesets().item( tileSetNum ).getAttributes().item( 0 ).getNodeValue() );
 						int position = tmxTileNum - firstgID;
 						if( position >= 0 ) {
-							
-							BufferedImage tileSetImage = ImageIO.read( new File( tmx.getImage_paths()[ tileSetNum ] ) );
-							
+
+							BufferedImage tileSetImage = null;
+
+							try {
+
+								tileSetImage = ImageIO.read( new File( tmx.getImage_paths()[ tileSetNum ] ) );
+
+							} catch ( IOException e ) {
+
+								e.printStackTrace();
+								assert false: "ERROR: Could not parse file '" + tmx.getImage_paths()[ tileSetNum ] + "'";
+							}
+
 							TSX tsx = TSXs[ tileSetNum ];
 							int xPosition = position % tsx.getColumnCount();
 							int yPosition = Math.floorDiv( position, tsx.getColumnCount() );
 
 							// building initial tile image
 							if( i == 0 ) {
+
 								Image tileImage = new Image( layer_count, accumulator );
 								tileImage.setImageWidth( size );
 								tileImage.setImageHeight( size );
+								tileImage.setName( "base_tile_x:" + j + "_y:" + k );
+								Vector2f posVec     = new Vector2f( j*size, k*size );
+								Vector2f scaleVec   = new Vector2f( 100, 100 );
+								tileImage.transform = new Transform( posVec, scaleVec );
+								tileImage.setzIndex( 0 );
 								tileImageMap.setTileImage( j, k, tileImage );
 							}
 							
@@ -141,15 +161,25 @@ public class TMXParser {
 		return pixels;
 	}
 	
-	public BufferedImage[] getImages() throws IOException {
+	public BufferedImage[] getImages() {
+
 		BufferedImage[] imgs = new BufferedImage[ tmx.getImage_paths().length ];
 		for(int i = 0; i < imgs.length; i++) {
-			imgs[i] = ImageIO.read(new File(tmx.getImage_paths()[i]));
+
+			try {
+
+				imgs[ i ] = ImageIO.read( new File( tmx.getImage_paths()[ i ] ) );
+
+			} catch ( IOException e ) {
+
+				e.printStackTrace();
+				assert false: "ERROR: Could not parse file '" + tmx.getImage_paths()[ i ] + "'";
+			}
 		}
 		return imgs;
 	}
 	
-	public int getTileSetNum( int tmxTileNum ) throws IOException {
+	public int getTileSetNum( int tmxTileNum ) {
 		
 		for( int i = 0; i < tmx.getTSX_paths().length; i++ ) {
 			
@@ -175,7 +205,7 @@ public class TMXParser {
 		return -1;
 	}
 	
-	public TSX[] constructAllTSX() throws Exception {
+	public TSX[] constructAllTSX() {
 		
 		String[] tsxPaths = tmx.getTSX_paths();
 		TSX[] tsxs = new TSX[ tsxPaths.length ];
@@ -187,15 +217,9 @@ public class TMXParser {
 		return tsxs;
 	}
 
-	public ImageMap getTileImageMap() {
-		
-		return tileImageMap;
-	}
+	public ImageMap getTileImageMap() { return tileImageMap; }
 
-	public void setTileImageMap( ImageMap tileImageMap ) {
-		
-		this.tileImageMap = tileImageMap;
-	}
+	public void setTileImageMap( ImageMap tileImageMap ) { this.tileImageMap = tileImageMap; }
 
 	public GameRoom getGameRoom() {
 		return gameRoom;
@@ -212,4 +236,12 @@ public class TMXParser {
 	public void setAThing(Thing aThing) {
 		this.aThing = aThing;
 	}
+
+	public TMX getTmx() { return tmx; }
+
+	public void setTmx( TMX tmx ) { this.tmx = tmx; }
+
+	public TSX[] getTSXs() { return TSXs; }
+
+	public void setTSXs( TSX[] TSXs ) { this.TSXs = TSXs; }
 }

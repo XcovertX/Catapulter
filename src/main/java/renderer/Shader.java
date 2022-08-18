@@ -22,35 +22,44 @@ public class Shader {
     public Shader(String filePath) {
         this.filePath = filePath;
         try {
-            String source = new String(Files.readAllBytes(Paths.get(filePath)));
-            String[] splitString = source.split("(#type)( )+([a-zA-Z]+)");
+            String source = new String( Files.readAllBytes( Paths.get( filePath ) ) );
+            String[] splitString = source.split( "(#type)( )+([a-zA-Z]+)" );
 
             // find the first pattern after #type 'pattern'
-            int index = source.indexOf("#type") + 6;
-            int eol = source.indexOf("\r\n", index);
-            String firstPattern = source.substring(index, eol).trim();
+            int index = source.indexOf( "#type" ) + 6;
+            int eol = source.indexOf( "\r\n", index );
+            String firstPattern = source.substring( index, eol ).trim();
 
             // find the second pattern after #type 'pattern'
-            index = source.indexOf("#type", eol) + 6;
-            eol = source.indexOf("\r\n", index);
-            String secondPattern = source.substring(index, eol).trim();
+            index = source.indexOf( "#type", eol ) + 6;
+            eol = source.indexOf( "\r\n", index );
+            String secondPattern = source.substring( index, eol ).trim();
 
-            if(firstPattern.equals("vertex")) {
+            if( firstPattern.equals( "vertex" ) ) {
+
                 vertexSource = splitString[1];
-            } else if(firstPattern.equals("fragment")) {
+
+            } else if( firstPattern.equals( "fragment" ) ) {
+
                 fragmentSource = splitString[1];
+
             } else {
+
                 throw new IOException("Unexpected token: '" + firstPattern + "'");
             }
+            if( secondPattern.equals( "fragment" ) ) {
 
-            if(secondPattern.equals("fragment")) {
                 fragmentSource = splitString[2];
-            } else if(secondPattern.equals("vertex")) {
+
+            } else if( secondPattern.equals( "vertex" ) ) {
+
                 vertexSource = splitString[2];
             } else {
+
                 throw new IOException("Unexpected token: '" + secondPattern + "'");
             }
         } catch (IOException e) {
+
             e.printStackTrace();
             assert false: "ERROR: Could not open file for shader: '" + filePath + "'";
         }
