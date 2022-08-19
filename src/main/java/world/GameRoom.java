@@ -35,7 +35,7 @@ public class GameRoom extends ThingHolder {
 	
 	public GameRoom() {
 		super( "", "", new ThingList() );
-		this.setTMX( "assets/TMX/tiny.tmx" );
+		this.setTMX( "assets/images/testRoom.tmx" );
 		this.isGameRoom = true;
 		this.setLightSources( new ArrayList< Light >() );
 		AmbientLight ambLight = new AmbientLight();
@@ -43,7 +43,7 @@ public class GameRoom extends ThingHolder {
 		ambLight.setRGB( new Color( 255, 242, 114 ) );
 		this.getLightSources().add( ambLight );
 		this.scene = new RoomScene( this );
-		this.camera = new Camera( new Vector2f( 0, 0 ) );
+		this.camera = new Camera( new Vector2f( 0, 0) );
 		this.type = "Room";
 	}
 
@@ -144,7 +144,7 @@ public class GameRoom extends ThingHolder {
 		return outside;
 	}
 
-	public void setOutside(boolean outside) {
+	public void setOutside( boolean outside ) {
 		
 		this.outside = outside;
 	}

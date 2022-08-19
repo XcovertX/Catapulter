@@ -10,6 +10,8 @@ public class Image {
 
 	private String name;
 	private int tileImageNumber;
+
+	private int tilesetPosition;
 	private int imageWidth;
 	private int imageHeight;
 	private List< Component > components;
@@ -131,5 +133,9 @@ public class Image {
 	public int getzIndex() { return zIndex; }
 
 	public void setzIndex( int zIndex ) { this.zIndex = zIndex; }
+
+	public int getTilesetPosition() { return tilesetPosition; }
+
+	public void setTilesetPosition( int tilesetPosition ) { this.tilesetPosition = tilesetPosition; }
 
 }

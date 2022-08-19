@@ -50,6 +50,7 @@ public class SpriteSheet {
     }
 
     public Sprite getSprite( int index ) {
+
         return this.sprites.get( index );
     }
 }

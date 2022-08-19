@@ -193,7 +193,7 @@ public class RenderBatch implements Comparable<RenderBatch> {
         float xAdd = 1.0f;
         float yAdd = 1.0f;
 
-        for ( int i=0; i < 4; i++ ) {
+        for ( int i = 0; i < 4; i++ ) {
 
             if ( i == 1 ) {
 

@@ -45,19 +45,19 @@ public class TMXParser {
 		map_cols = ( int ) ( tmx.getMapwidth() );
 		map_rows = ( int ) ( tmx.getMapheight() );
 		tiles = new BufferedImage[ layer_count ][ map_rows ][ map_cols ];
-		
-		tileImageMap = new ImageMap();
-		tileImageMap.buildLayout( map_rows, map_cols );
+
+//		tileImageMap = new ImageMap();
+//		tileImageMap.buildLayout( map_rows, map_cols );
 		
 		for( int i = 0; i < tmx.getTiles().length; i++ ) { 						// for each layer
 		
 			int accumulator = 0;
 			
-			for( int j = 0; j < tmx.getTiles()[ 0 ].length; j++ ) { 			// for each row 
+			for( int j = 0; j < tmx.getTiles()[ 0 ].length; j++ ) { 			// for each row
 
 				for( int k = 0; k < tmx.getTiles()[ 0 ][ 0 ].length; k++ ) {	// for each column
 
-					int tmxTileNum = tmx.getTiles()[ i ][ j ][ k ];				// number designating sub-image id		
+					int tmxTileNum = tmx.getTiles()[ i ][ j ][ k ];				// number designating sub-image id
 					int tileSetNum = getTileSetNum( tmxTileNum );   			// number designate what tile set to use
 					if( tileSetNum >= 0 ) {
 						int firstgID = Integer.valueOf( tmx.getTilesets().item( tileSetNum ).getAttributes().item( 0 ).getNodeValue() );
@@ -86,15 +86,16 @@ public class TMXParser {
 								Image tileImage = new Image( layer_count, accumulator );
 								tileImage.setImageWidth( size );
 								tileImage.setImageHeight( size );
-								tileImage.setName( "base_tile_x:" + j + "_y:" + k );
-								Vector2f posVec     = new Vector2f( j*size, k*size );
-								Vector2f scaleVec   = new Vector2f( 100, 100 );
+								tileImage.setTilesetPosition( position );
+								Vector2f posVec     = new Vector2f( k*size,j*size );
+								Vector2f scaleVec   = new Vector2f( size, size );
 								tileImage.transform = new Transform( posVec, scaleVec );
 								tileImage.setzIndex( 0 );
-								tileImageMap.setTileImage( j, k, tileImage );
+								gRoom.getTile( accumulator ).setBaseTileImage( tileImage );
+//								tileImageMap.setTileImage( j, k, tileImage );
 							}
 							
-							Image tileImage = tileImageMap.getTileImage( j, k );
+							Image tileImage = gRoom.getTile( accumulator ).getBaseTileImage();
 							
 							// building tile layer i with frames
 							
@@ -133,9 +134,9 @@ public class TMXParser {
 			}
 		}
 		
-		tileImageMap.flipMapVertically();
-		tileImageMap.transformToArray();
-		gRoom.setTileImages( tileImageMap );
+//		tileImageMap.flipMapVertically();
+//		tileImageMap.transformToArray();
+//		gRoom.setTileImages( tileImageMap );
 		objs = tmx.getObjs();
 	}
 	

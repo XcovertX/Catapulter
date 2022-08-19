@@ -9,7 +9,7 @@ public class ImageMap {
 	public void flipMapVertically() {
 		
 		tileImageMapVerticallyFlipped = new Image[ tileImageMap.length ][ tileImageMap[ 0 ].length ];
-		tileImageArray = new Image[ tileImageMap.length * tileImageMap[0].length ];
+		tileImageArray = new Image[ tileImageMap.length * tileImageMap[ 0 ].length ];
 		
 		for( int i = 0; i < tileImageMap.length; i++ ) {
 			
@@ -22,14 +22,14 @@ public class ImageMap {
 	
 	public void transformToArray() {
 		
-		tileImageArray = new Image[ tileImageMap.length * tileImageMap[0].length ];
+		tileImageArray = new Image[ tileImageMap.length * tileImageMap[ 0 ].length ];
 		int accumulator = 0;
 		for( int i = 0; i < tileImageMap.length; i++ ) {
-			
+
 			for( int j = 0; j < tileImageMap[ 0 ].length; j++ ) {
-				
-				tileImageArray[ accumulator ] = tileImageMapVerticallyFlipped[ i ][ j ];
-				
+
+				tileImageArray[ accumulator ] = tileImageMap[ i ][ j ];
+
 				accumulator += 1;
 			}
 		}

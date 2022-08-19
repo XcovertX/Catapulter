@@ -62,7 +62,7 @@ public class RoomScene extends Scene {
 
         this.camera = gameRoom.getCamera();
 
-        sprites = AssetPool.getSpriteSheet( "assets/images/testcity_tileset.png" );
+        sprites = AssetPool.getSpriteSheet( "assets/images/center-sheet.png" );
         ThingList gameTiles = gameRoom.getTiles();
 
         for( gameObjects.Thing gameTile : gameTiles ) {
@@ -70,7 +70,11 @@ public class RoomScene extends Scene {
             GameTile gt = ( GameTile ) gameTile;
             Image baseImage = gt.getBaseTileImage();
 //            Image currentThingImage = gt.getCurrentThingImage();
-            baseImage.addComponent( new SpriteRenderer( sprites.getSprite( 1) ) );
+            System.out.println( "tilenum: " + gt.getTileNumber() + " " +
+                                "tileposX: " + gt.getBaseTileImage().transform.position.x + " " +
+                                "tileposY: " + gt.getBaseTileImage().transform.position.y + " " +
+                                "tilesetpos " + gt.getBaseTileImage().getTilesetPosition() );
+            baseImage.addComponent( new SpriteRenderer( sprites.getSprite( baseImage.getTilesetPosition() ) ) );
             this.addGameImageToScene( baseImage );
 
         }
@@ -131,11 +135,17 @@ public class RoomScene extends Scene {
 //        }
 //        this.camera.position.x += 100;
 //        this.camera.adjustProjection();
-        this.gameImages.get(20).transform.position.x += 50 * dt;
-        for( Image gameImage : this.gameImages ) {
+//        this.gameImages.get(10).transform.position.x += 1.01;
 
-            gameImage.update( ( float ) dt );
-        }
+//        this.gameImages.get(10).update( ( float) dt );
+
+//        for( Image gameImage : this.gameImages ) {
+//            gameImage.transform.position.x *= 1.01 ;
+//            gameImage.transform.position.y *= 1.01;
+//            gameImage.transform.scale.x *= 1.01;
+//            gameImage.transform.scale.y *= 1.01;
+//            gameImage.update( ( float ) dt );
+//        }
         this.renderer.render();
     }
 

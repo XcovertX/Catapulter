@@ -34,7 +34,7 @@ public abstract class Scene {
         if( !isRunning ) {
 
             gameImages.add( gameImage );
-            System.out.println( "added " + gameImage.getName() );
+
         } else {
 
             gameImages.add( gameImage );

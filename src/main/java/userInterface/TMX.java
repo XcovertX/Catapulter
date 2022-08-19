@@ -95,7 +95,7 @@ public class TMX {
 
 				for( int k = 0; k < getMapwidth(); k++ ) {
 
-					getTiles()[ i ][ j ][ k ] = Integer.parseInt( tokens[ k + j * getMapwidth() ].trim() );
+					getTiles()[ i ][ getMapheight() - 1 - j ][ k ] = Integer.parseInt( tokens[ k + j * getMapwidth() ].trim() );
 				}
 			}
 		}
