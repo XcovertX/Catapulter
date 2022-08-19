@@ -15,7 +15,7 @@ public class Fire extends Thing {
 		this.setLightSource(true);
 		this.setName( "fire" );
 		this.type = "Fire";
-		this.setTSXPath( "files/torch_tileset.tsx" );
+		this.setTSXPath( "assets/images/torch_tileset.tsx" );
 		this.setImageResourcePath( "assets/images/torch_tileset.png" );
 		this.setImageXPosition( 0 );
 		this.setImageYPosition( 0 );

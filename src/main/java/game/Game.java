@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.io.BufferedReader;
 import java.util.*;     // required for ArrayList
 
+import gameObjects.Fire;
 import jade.Window;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -69,7 +70,10 @@ public class Game {
     		currentMap   = ( GameMap )  ( currentWorld.getMaps().get( 0 ) );
     		currentRoom  = ( GameRoom ) ( currentMap.getRooms().get( 0 ) );
     		currentTile  = ( GameTile ) ( currentRoom.getTiles().get( 40 ) );
-    		
+
+            Fire fire = new Fire();
+            currentRoom.getTile( 20 ).addThing( fire );
+
     		gameWindow = Window.get();
             gameWindow.run();
 
@@ -90,8 +94,7 @@ public class Game {
 //    		ring.getAltNames()[ 0 ] = "ring";
 //    		currentTile.getThings().add( ring );
     		
-//    		Fire fire = new Fire();
-//    		currentRoom.getTile( 20 ).addThing( fire );
+
 //    		
 //    		Revolver r = new Revolver();
 //    		r.setName( "revolver" );

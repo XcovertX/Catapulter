@@ -74,8 +74,18 @@ public class RoomScene extends Scene {
                                 "tileposX: " + gt.getBaseTileImage().transform.position.x + " " +
                                 "tileposY: " + gt.getBaseTileImage().transform.position.y + " " +
                                 "tilesetpos " + gt.getBaseTileImage().getTilesetPosition() );
+
             baseImage.addComponent( new SpriteRenderer( sprites.getSprite( baseImage.getTilesetPosition() ) ) );
             this.addGameImageToScene( baseImage );
+            if( !gt.getThings().isEmpty() ) {
+                System.out.println( "torch: " + gt.getTileNumber());
+                torch = AssetPool.getSpriteSheet( "assets/images/torch_tileset.png" );
+                Image image = new Image( "torch", new Transform( baseImage.transform.position,
+                        baseImage.transform.scale ),0 );
+                image.addComponent( new SpriteRenderer( torch.getSprite( 1 ) ) );
+                this.addGameImageToScene( image );
+            }
+
 
         }
 //        sprites = AssetPool.getSpriteSheet( "assets/images/spritesheet.png" );
@@ -90,6 +100,10 @@ public class RoomScene extends Scene {
 
         // TODO determine how a shader is selected
         AssetPool.getShader( "assets/shaders/default.glsl" );
+
+        AssetPool.addSpriteSheet( "assets/images/torch_tileset.png",
+                new SpriteSheet( AssetPool.getTexture( "assets/images/torch_tileset.png" ),
+                        32, 32, 4, 0 ) );
 
         for( int i = 0; i <  tsxFiles.length; i++ ) {
 
@@ -139,13 +153,13 @@ public class RoomScene extends Scene {
 
 //        this.gameImages.get(10).update( ( float) dt );
 
-//        for( Image gameImage : this.gameImages ) {
+        for( Image gameImage : this.gameImages ) {
 //            gameImage.transform.position.x *= 1.01 ;
 //            gameImage.transform.position.y *= 1.01;
 //            gameImage.transform.scale.x *= 1.01;
 //            gameImage.transform.scale.y *= 1.01;
-//            gameImage.update( ( float ) dt );
-//        }
+            gameImage.update( ( float ) dt );
+        }
         this.renderer.render();
     }
 
