@@ -4,6 +4,8 @@ import components.SpriteRenderer;
 import components.SpriteSheet;
 import components.TileRenderer;
 import components.TileSheet;
+import gameObjects.Thing;
+import gameObjects.ThingHolder;
 import gameObjects.ThingList;
 import org.joml.Vector2f;
 import userInterface.Image;
@@ -13,6 +15,7 @@ import userInterface.TSX;
 import util.AssetPool;
 import world.GameRoom;
 import world.GameTile;
+import world.UpdateWorldMethods;
 
 public class RoomScene extends Scene {
 
@@ -69,24 +72,16 @@ public class RoomScene extends Scene {
 
             GameTile gt = ( GameTile ) gameTile;
             Image baseImage = gt.getBaseTileImage();
-//            Image currentThingImage = gt.getCurrentThingImage();
-            System.out.println( "tilenum: " + gt.getTileNumber() + " " +
-                                "tileposX: " + gt.getBaseTileImage().transform.position.x + " " +
-                                "tileposY: " + gt.getBaseTileImage().transform.position.y + " " +
-                                "tilesetpos " + gt.getBaseTileImage().getTilesetPosition() );
-
             baseImage.addComponent( new SpriteRenderer( sprites.getSprite( baseImage.getTilesetPosition() ) ) );
             this.addGameImageToScene( baseImage );
-            if( !gt.getThings().isEmpty() ) {
-                System.out.println( "torch: " + gt.getTileNumber());
-                torch = AssetPool.getSpriteSheet( "assets/images/torch_tileset.png" );
-                Image image = new Image( "torch", new Transform( baseImage.transform.position,
-                        baseImage.transform.scale ),0 );
-                image.addComponent( new SpriteRenderer( torch.getSprite( 1 ) ) );
-                this.addGameImageToScene( image );
+
+            gt.initAllImages( baseImage );
+
+            Image currentThingImage = gt.getCurrentThingImage();
+            if( currentThingImage != null ) {
+
+                this.addGameImageToScene( currentThingImage );
             }
-
-
         }
 //        sprites = AssetPool.getSpriteSheet( "assets/images/spritesheet.png" );
 //        torch   = AssetPool.getSpriteSheet( "assets/images/torch_tileset.png" );
@@ -101,10 +96,6 @@ public class RoomScene extends Scene {
         // TODO determine how a shader is selected
         AssetPool.getShader( "assets/shaders/default.glsl" );
 
-        AssetPool.addSpriteSheet( "assets/images/torch_tileset.png",
-                new SpriteSheet( AssetPool.getTexture( "assets/images/torch_tileset.png" ),
-                        32, 32, 4, 0 ) );
-
         for( int i = 0; i <  tsxFiles.length; i++ ) {
 
             TSX tsx = tsxFiles[ i ];
@@ -116,6 +107,7 @@ public class RoomScene extends Scene {
             AssetPool.addSpriteSheet( resourceName,
                     new SpriteSheet( AssetPool.getTexture( resourceName ),
                                      spriteWidth, spriteHeight, spriteCount, 0 ) );
+
         }
     }
 
@@ -169,4 +161,6 @@ public class RoomScene extends Scene {
         ThingList gameTiles = gameRoom.getTiles();
 
     }
+
+
 }

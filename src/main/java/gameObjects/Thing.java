@@ -2,9 +2,15 @@ package gameObjects;
 
 import java.util.ArrayList;
 
+import components.SpriteRenderer;
+import components.SpriteSheet;
+import jade.RoomScene;
+import jade.Transform;
+import userInterface.TSX;
 import userInterface.TileChar;
 import light.Light;
 import userInterface.Image;
+import util.AssetPool;
 import world.GameMap;
 import world.GameRoom;
 import world.GameTile;
@@ -70,6 +76,8 @@ public class Thing {
     private int imageYPosition;
     private TileChar tileChar;
     private Image[] thingImages;
+
+	private Image thingImage;
    
     
     public String type = "Thing";
@@ -497,6 +505,77 @@ public class Thing {
 		}
 	}
 
+	public void initAllImages( Image baseImage ) {
+
+		if( this.isThingHolder ) {
+
+			ThingHolder tHolder = ( ThingHolder ) this;
+			ThingList things = tHolder.getThings();
+
+			for( int i = 0; i < things.size(); i++ ) {
+
+				Thing aThing = things.get( i );
+
+				if( aThing.isThingHolder() ) {
+
+					aThing.initAllImages( baseImage );
+
+				}
+
+				if( aThing.type.equals( "Tile" ) ) {
+
+					GameTile aTile = ( GameTile ) aThing;
+
+					for( int j = 0; j < aTile.getNPCs().size(); j++ ) {
+
+						Thing npc = aTile.getNPCs().get( j );
+						npc.initImage( baseImage );
+					}
+
+				} else {
+
+					aThing.initImage( baseImage );
+				}
+			}
+
+		} else {
+
+			this.initImage( baseImage );
+		}
+	}
+
+	private void initImage( Image baseImage ) {
+
+		System.out.println( this.getName() );
+
+		if( this.getTSXPath() != null ) {
+
+			TSX tsx = new TSX( this.getTSXPath() );
+
+			Image thingImage = new Image();
+			thingImage.setName( this.getName() );
+			thingImage.setImageResourcePath( tsx.getImageSourcePath() );
+			thingImage.setImageWidth( tsx.getTileWidth() );
+			thingImage.setImageHeight( tsx.getTileHeight() );
+			thingImage.setImageFrameCount( tsx.getFrames().getLength() );
+			thingImage.transform = new Transform();
+			thingImage.setTilesetPosition( 0 );
+
+			AssetPool.addSpriteSheet( thingImage.getImageResourcePath(),
+					new SpriteSheet( AssetPool.getTexture( thingImage.getImageResourcePath() ),
+							thingImage.getImageWidth(),
+							thingImage.getImageHeight(),
+							thingImage.getImageFrameCount(),
+							0) );
+
+			thingImage.setSpriteSheet( AssetPool.getSpriteSheet( thingImage.getImageResourcePath() ) );
+			thingImage.setzIndex( 0 );
+			thingImage.addComponent(new SpriteRenderer( thingImage.getSpriteSheet().getSprite( thingImage.getTilesetPosition() ) ) );
+			baseImage.transform.copy( thingImage.transform );
+			this.setThingImage( thingImage );
+		}
+	}
+
 	public boolean isNPC() {
 		return isNPC;
 	}
@@ -649,4 +728,8 @@ public class Thing {
 
 		this.imageResourcePath = imageResourcePath;
 	}
+
+	public Image getThingImage() { return thingImage; }
+
+	public void setThingImage( Image thingImage ) { this.thingImage = thingImage; }
 }

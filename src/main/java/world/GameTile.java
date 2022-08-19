@@ -311,7 +311,7 @@ public class GameTile extends ThingHolder {
     	} else if( !things.isEmpty() ) {
     		
     		Thing item = this.things.getLast();
-    		this.setCurrentThingImage( item.getThingImages()[0] );
+    		this.setCurrentThingImage( item.getThingImage() );
     		
     	} else {
     		

@@ -3,10 +3,14 @@ package gameObjects;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import components.SpriteRenderer;
+import components.SpriteSheet;
+import jade.Transform;
 import userInterface.Image;
 import userInterface.TSX;
 import light.Light;
 import light.RadiatingLight;
+import util.AssetPool;
 
 public class Fire extends Thing {
 
@@ -16,22 +20,17 @@ public class Fire extends Thing {
 		this.setName( "fire" );
 		this.type = "Fire";
 		this.setTSXPath( "assets/images/torch_tileset.tsx" );
-		this.setImageResourcePath( "assets/images/torch_tileset.png" );
+
 		this.setImageXPosition( 0 );
 		this.setImageYPosition( 0 );
 		
         if( this.getTSXPath() != null ) {
 
-        	try {
-				TSX tsx = new TSX( this.getTSXPath() );
-				Image[] images = new Image[ 1 ];
-				images[ 0 ] = tsx.buildThingImage( 0, 0, 32, 32  );
-				this.setThingImages( images );
-				
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			TSX tsx = new TSX( this.getTSXPath() );
+
+			Image[] images = new Image[ 1 ];
+			images[ 0 ] = tsx.buildThingImage( 0, 0, 32, 32  );
+			this.setThingImages( images );
         }
         
         ArrayList< Light > lightSources = new ArrayList< Light >();

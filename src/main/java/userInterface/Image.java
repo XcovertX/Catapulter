@@ -1,5 +1,6 @@
 package userInterface;
 
+import components.SpriteSheet;
 import jade.Component;
 import jade.Transform;
 
@@ -11,15 +12,21 @@ public class Image {
 	private String name;
 	private int tileImageNumber;
 
+	private String ImageResourcePath;
+
+	private SpriteSheet spriteSheet;
+
 	private int tilesetPosition;
 	private int imageWidth;
 	private int imageHeight;
+
+	private int imageFrameCount;
 	private List< Component > components;
 	public Transform transform;
 	private int zIndex;
 	private ImageLayer[] imageLayers; // 0 = base layer
 	
-	public Image() { }
+	public Image() { this.components = new ArrayList<>(); }
 	
 	public Image( int layerCount, int tileImageNum ) {
 		
@@ -137,5 +144,17 @@ public class Image {
 	public int getTilesetPosition() { return tilesetPosition; }
 
 	public void setTilesetPosition( int tilesetPosition ) { this.tilesetPosition = tilesetPosition; }
+
+	public String getImageResourcePath() { return ImageResourcePath; }
+
+	public void setImageResourcePath( String imageResourcePath ) { ImageResourcePath = imageResourcePath; }
+
+	public int getImageFrameCount() { return imageFrameCount; }
+
+	public void setImageFrameCount( int imageFrameCount ) { this.imageFrameCount = imageFrameCount; }
+
+	public SpriteSheet getSpriteSheet() { return spriteSheet; }
+
+	public void setSpriteSheet( SpriteSheet spriteSheet ) { this.spriteSheet = spriteSheet; }
 
 }

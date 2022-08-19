@@ -74,13 +74,11 @@ public class Game {
             Fire fire = new Fire();
             currentRoom.getTile( 20 ).addThing( fire );
 
-    		gameWindow = Window.get();
+    		player = new Human( "player", "This is a player", currentTile, new ThingList(), " @ " );
+
+            gameWindow = Window.get();
             gameWindow.run();
 
-    		
-    		player = new Human( "player", "This is a player", currentTile, new ThingList(), " @ " );
-    		
-    		
 //    		//test shader
 //    		player.setLightSources( new ArrayList< Light >() );
 //    		player.getLightSources().add( new RadiatingLight( 5, ( float ) 0.2, ( float ) 0.5, new Color( 22, 150, 150 ), "flicker" ) );
@@ -193,7 +191,7 @@ public class Game {
 	public void updateWorld() {
 		new UpdatePlayer().run();
 		new UpdateLight().run( Game.currentRoom );
-		new UpdateRoomTileAnimations().run( Game.currentRoom );
+//		new UpdateRoomTileAnimations().run( Game.currentRoom );
 		currentWorld.allLists( "environment" );
 //		currentWorld.allLists( "weather" );
 		currentWorld.allLists( "actors" );
