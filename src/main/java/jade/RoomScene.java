@@ -143,12 +143,12 @@ public class RoomScene extends Scene {
 //        this.gameImages.get(10).transform.position.x += 1.01;
 
 //        this.gameImages.get(10).update( ( float) dt );
-
-        for( Image gameImage : this.gameImages ) {
 //            gameImage.transform.position.x *= 1.01 ;
 //            gameImage.transform.position.y *= 1.01;
 //            gameImage.transform.scale.x *= 1.01;
 //            gameImage.transform.scale.y *= 1.01;
+        for( Image gameImage : this.gameImages ) {
+
             gameImage.update( ( float ) dt );
         }
         this.renderer.render();

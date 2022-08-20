@@ -1,5 +1,6 @@
 package userInterface;
 
+import components.SpriteRenderer;
 import components.SpriteSheet;
 import jade.Component;
 import jade.Transform;
@@ -38,15 +39,15 @@ public class Image {
 
 		if( components != null ) {
 
-			for (Component c : components) {
+			for ( Component c : components ) {
 
-				if (componentClass.isAssignableFrom(c.getClass())) {
+				if ( componentClass.isAssignableFrom( c.getClass() ) ) {
 
 					try {
 
-						return componentClass.cast(c);
+						return componentClass.cast( c );
 
-					} catch (ClassCastException e) {
+					} catch ( ClassCastException e ) {
 
 						e.printStackTrace();
 						assert false : "ERROR: Casting component.";
@@ -81,10 +82,12 @@ public class Image {
 
 		if( this.isAnimated() ) {
 
+
 			boolean swapReady = frameSwapTimeCheck( dt );
 
 			if( swapReady ) {
 
+				System.out.println( "update: " + dt);
 				cycleActiveFrame();
 			}
 
@@ -125,6 +128,7 @@ public class Image {
 
 		updateTimeAccumulation( dt );
 
+		System.out.println( "frameDur: "+ frameDuration[ activeTilesetPosition ] );
 		if( timeAccumulation >= frameDuration[ activeTilesetPosition ] ) {
 			lastUpdate = dt;
 			timeAccumulation = 0;
@@ -149,6 +153,8 @@ public class Image {
 
 			activeTilesetPosition = 0;
 		}
+
+		this.getComponent( SpriteRenderer.class ).setSprite( this.getSpriteSheet().getSprite( activeTilesetPosition ) );
 	}
 
 	public int getTileImageNumber() { return tileImageNumber; }

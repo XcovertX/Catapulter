@@ -560,6 +560,8 @@ public class Thing {
 			thingImage.setImageFrameCount( tsx.getFrames().getLength() );
 			thingImage.transform = new Transform();
 			thingImage.setActiveTilesetPosition( 0 );
+			thingImage.setAnimated( tsx.isAnimated() );
+			thingImage.setFrameDuration( tsx.getFrameDuration() );
 
 			AssetPool.addSpriteSheet( thingImage.getImageResourcePath(),
 					new SpriteSheet( AssetPool.getTexture( thingImage.getImageResourcePath() ),

@@ -25,6 +25,8 @@ public class TSX {
 	private int tileWidth;
 	private int tileHeight;
 	private int columnCount;
+
+	private float[] frameDuration;
 	
 	private NodeList animations;
 	private NodeList frames;
@@ -97,6 +99,20 @@ public class TSX {
 
 		xPosition = 0;
 		yPosition = 0;
+
+		setFrameDuration();
+
+//		int frameCount;
+//		if( frames.getLength() > 0 ) {
+//
+//			thingImage.setAnimated( true );
+//			frameCount = frames.getLength();
+//
+//		} else {
+//
+//			thingImageLayer.setAnimated( false );
+//			frameCount = 1;
+//		}
 	}
 	
 //	public Image[] buildThingImages( int gameTileNumber ) {
@@ -237,7 +253,7 @@ public class TSX {
 		return images;
 	}
 
-	public void setImages(NodeList images) {
+	public void setImages( NodeList images ) {
 		this.images = images;
 	}
 
@@ -253,7 +269,7 @@ public class TSX {
 		return tileCount;
 	}
 
-	public void setTileCount(int tileCount) {
+	public void setTileCount( int tileCount ) {
 		this.tileCount = tileCount;
 	}
 
@@ -261,7 +277,7 @@ public class TSX {
 		return tileWidth;
 	}
 
-	public void setTileWidth(int tileWidth) {
+	public void setTileWidth( int tileWidth ) {
 		this.tileWidth = tileWidth;
 	}
 
@@ -269,7 +285,7 @@ public class TSX {
 		return tileHeight;
 	}
 
-	public void setTileHeight(int tileHeight) {
+	public void setTileHeight( int tileHeight ) {
 		this.tileHeight = tileHeight;
 	}
 
@@ -300,4 +316,17 @@ public class TSX {
 	public String getTSXPath() { return tsxPath; }
 
 	public void setTSXPath(String tsxPath) { this.tsxPath = tsxPath; }
+
+	public float[] getFrameDuration() { return frameDuration; }
+
+	public void setFrameDuration() {
+
+		this.frameDuration = new float[ frames.getLength() ];
+
+		for( int i = 0; i < frames.getLength(); i++ ){
+
+			this.frameDuration[ i ] = 0.001f * Integer.parseInt(
+					this.getFrames().item( i ).getAttributes().getNamedItem( "duration" ).getNodeValue() );
+		}
+	}
 }
