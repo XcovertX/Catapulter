@@ -60,21 +60,6 @@ public class Actor extends ThingHolder {
         this.setTileChar( new TileChar( aActorSymbol, "#00b6ff" ) );
         this.setTSXPath( "files/tiny_location.tsx" );
         this.type = "Actor";
-
-        if( this.getTSXPath() != null ) {
-
-        	try {
-				TSX tsx = new TSX( this.getTSXPath() );
-				Image[] images = new Image[ 1 ];
-				images[ 0 ] = tsx.buildThingImage( 0, 0, tsx.getTileWidth(), tsx.getTileHeight() );
-				this.setThingImages( images );
-				int i = this.getThingImages().length;
-				
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        }
     }
 
     public Actor() {

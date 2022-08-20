@@ -45,9 +45,6 @@ public class TMXParser {
 		map_cols = ( int ) ( tmx.getMapwidth() );
 		map_rows = ( int ) ( tmx.getMapheight() );
 		tiles = new BufferedImage[ layer_count ][ map_rows ][ map_cols ];
-
-//		tileImageMap = new ImageMap();
-//		tileImageMap.buildLayout( map_rows, map_cols );
 		
 		for( int i = 0; i < tmx.getTiles().length; i++ ) { 						// for each layer
 		
@@ -60,7 +57,8 @@ public class TMXParser {
 					int tmxTileNum = tmx.getTiles()[ i ][ j ][ k ];				// number designating sub-image id
 					int tileSetNum = getTileSetNum( tmxTileNum );   			// number designate what tile set to use
 					if( tileSetNum >= 0 ) {
-						int firstgID = Integer.valueOf( tmx.getTilesets().item( tileSetNum ).getAttributes().item( 0 ).getNodeValue() );
+						int firstgID = Integer.parseInt(
+								tmx.getTilesets().item( tileSetNum ).getAttributes().item( 0 ).getNodeValue() );
 						int position = tmxTileNum - firstgID;
 						if( position >= 0 ) {
 
@@ -83,16 +81,16 @@ public class TMXParser {
 							// building initial tile image
 							if( i == 0 ) {
 
-								Image tileImage = new Image( layer_count, accumulator );
+								Image tileImage = new Image();
 								tileImage.setImageWidth( size );
 								tileImage.setImageHeight( size );
-								tileImage.setTilesetPosition( position );
+								tileImage.setActiveTilesetPosition( position );
 								Vector2f posVec     = new Vector2f( k*size,j*size );
 								Vector2f scaleVec   = new Vector2f( size, size );
 								tileImage.transform = new Transform( posVec, scaleVec );
 								tileImage.setzIndex( 0 );
+								tileImage.setImageResourcePath( tmx.getImage_paths()[ tileSetNum ] );
 								gRoom.getTile( accumulator ).setBaseTileImage( tileImage );
-//								tileImageMap.setTileImage( j, k, tileImage );
 							}
 							
 							Image tileImage = gRoom.getTile( accumulator ).getBaseTileImage();
@@ -101,7 +99,6 @@ public class TMXParser {
 							
 				    		boolean isAnimated = tsx.isAnimated();
 
-				    		int activeFrame = 0;
 				    		int frameCount;
 				    		if( isAnimated ) {
 				    			
@@ -111,57 +108,29 @@ public class TMXParser {
 				    			
 				    			frameCount = 1;
 				    		}
-				    		
-				    		ImageFrame[] frames = new ImageFrame[ frameCount ];
-				    		
-				    		for( int l = 0; l < frames.length; l++ ) {
-				    			
-				    			frames[ l ] = new ImageFrame();
-				    			frames[ l ].setFrameImage( tileSetImage.getSubimage( ( xPosition + l ) * size, ( yPosition ) * size, size, size ) );
-				    			frames[ l ].setFramePixels( getPixels( frames[ l ].getFrameImage() ) );
-				    			if( isAnimated ) {
-				    				frames[ l ].setFrameDuration( Integer.valueOf( tsx.getFrames().item( l ).getAttributes().getNamedItem( "duration" ).getNodeValue() ) );
-				    			}
-				    		}
 
-							ImageLayer imageLayer = new ImageLayer( isAnimated, frames, activeFrame );
-							imageLayer.setName( tmx.getLayerList().item( i ).getAttributes().getNamedItem( "name" ).getNodeValue() );
-							tileImage.setImageLayer( i, imageLayer );
+							tileImage.setImageFrameCount( frameCount );
+							tileImage.setFrameDuration( new float[ frameCount ] );
+
+				    		for( int l = 0; l < frameCount; l++ ) {
+
+				    			if( isAnimated ) {
+									tileImage.getFrameDuration()[ l ] = (float ) Integer.parseInt(
+											tsx.getFrames().item( l ).getAttributes().getNamedItem( "duration" ).getNodeValue() );
+				    			} else {
+
+									tileImage.getFrameDuration()[ l ] = -1.0f;
+								}
+				    		}
 						}
 					}
 					accumulator += 1;
 				}
 			}
 		}
-		
-//		tileImageMap.flipMapVertically();
-//		tileImageMap.transformToArray();
-//		gRoom.setTileImages( tileImageMap );
 		objs = tmx.getObjs();
 	}
-	
-	public ImagePixel[][] getPixels( BufferedImage img ) {
-		
-		ImagePixel[][] pixels = new ImagePixel[ size ][ size ];
-		for( int i = 0; i < size; i++ ) {
-			for( int j = 0; j < size; j++ ) {
-				
-				ImagePixel pixel = new ImagePixel();
-				pixel.setX( i );
-				pixel.setY( j );
-				int rbg = img.getRGB( i, j );
-				pixel.setRgb( rbg );
-				if( j == 0 || j == size - 1 || i == 0 || i == size - 1) {
-					pixel.setRoughness( 1 );
-				} else {
-					pixel.setRoughness(4);
-				}
-				pixels[ j ][ i ] = pixel;	
-			}
-		}
-		return pixels;
-	}
-	
+
 	public BufferedImage[] getImages() {
 
 		BufferedImage[] imgs = new BufferedImage[ tmx.getImage_paths().length ];
@@ -184,13 +153,15 @@ public class TMXParser {
 		
 		for( int i = 0; i < tmx.getTSX_paths().length; i++ ) {
 			
-			int firstgID_1 = Integer.valueOf(tmx.getTilesets().item(i).getAttributes().item(0).getNodeValue());
+			int firstgID_1 = Integer.parseInt(
+					tmx.getTilesets().item( i ).getAttributes().item( 0 ).getNodeValue() );
 			
 			if( tmxTileNum >= firstgID_1 ) {
 				
 				if( i + 1 < tmx.getTSX_paths().length  ) {
 					
-					int firstgID_2 = Integer.valueOf(tmx.getTilesets().item(i+1).getAttributes().item(0).getNodeValue());
+					int firstgID_2 = Integer.parseInt(
+							tmx.getTilesets().item( i+1 ).getAttributes().item( 0 ).getNodeValue() );
 					
 					if( tmxTileNum < firstgID_2 ) {
 						

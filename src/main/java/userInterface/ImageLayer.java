@@ -11,19 +11,16 @@ public class ImageLayer {
 	
 	public ImageLayer() {}
 	
-	public ImageLayer( boolean isAnimated, ImageFrame[] frames, int activeImageIndex ) {
+	public ImageLayer( boolean isAnimated, ImageFrame[] frames, int activeFrameIndex ) {
 		
 		this.isAnimated = isAnimated;
 		this.frames = frames;
-		this.activeFrameIndex = activeImageIndex;
+		this.activeFrameIndex = activeFrameIndex;
 		this.lastUpdate = System.currentTimeMillis();
 		this.timeAccumulation = 0;
 	}
 	
-	public ImageFrame getActiveFrame() {
-		
-		return frames[ activeFrameIndex ];
-	}
+	public ImageFrame getActiveFrame() { return frames[ activeFrameIndex ]; }
 	
 	public boolean frameSwapTimeCheck() {
 		
@@ -37,20 +34,11 @@ public class ImageLayer {
 		return false;
 	}
 	
-	private void updateTimeAccumulation() {
-		
-		timeAccumulation += System.currentTimeMillis() - lastUpdate;
-	}
+	private void updateTimeAccumulation() { timeAccumulation += System.currentTimeMillis() - lastUpdate; }
 	
-	public void increaseTimeAccumulation( int msCount ) {
-		
-		timeAccumulation += msCount;
-	}
+	public void increaseTimeAccumulation( int msCount ) { timeAccumulation += msCount; }
 	
-	public void setTimeAccumulation( int msCount ) {
-		
-		timeAccumulation = msCount;
-	}
+	public void setTimeAccumulation( int msCount ) { timeAccumulation = msCount; }
 	
 	public void cycleActiveImage() {
 		
@@ -64,25 +52,13 @@ public class ImageLayer {
 		}
 	}
 	
-	public boolean isAnimated() {
-		
-		return isAnimated;
-	}
+	public boolean isAnimated() { return isAnimated; }
 	
-	public void setAnimated( boolean isAnimated ) {
-		
-		this.isAnimated = isAnimated;
-	}
+	public void setAnimated( boolean isAnimated ) { this.isAnimated = isAnimated; }
 	
-	public ImageFrame[] getImageFrames() {
-		
-		return frames;
-	}
+	public ImageFrame[] getImageFrames() { return frames; }
 	
-	public void setImageFrames( ImageFrame[] frames ) {
-		
-		this.frames = frames;
-	}
+	public void setImageFrames( ImageFrame[] frames ) { this.frames = frames; }
 
 	public String getName() {
 		return name;

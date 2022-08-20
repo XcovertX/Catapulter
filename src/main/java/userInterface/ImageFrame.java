@@ -3,22 +3,12 @@ package userInterface;
 import java.awt.image.BufferedImage;
 
 public class ImageFrame {
-	
-	private BufferedImage frameImage;
-	private ImagePixel[][] framePixels;
+
+	private int imageFrameNumber;
+
 	private long frameDuration;
 	
 	public ImageFrame() {}
-
-	public BufferedImage getFrameImage() {
-		
-		return frameImage;
-	}
-
-	public void setFrameImage( BufferedImage frameImage ) {
-		
-		this.frameImage = frameImage;
-	}
 
 	public long getFrameDuration() {
 		
@@ -30,14 +20,7 @@ public class ImageFrame {
 		this.frameDuration = frameDuration;
 	}
 
-	public ImagePixel[][] getFramePixels() {
-		
-		return framePixels;
-	}
+	public int getImageFrameNumber() { return imageFrameNumber; }
 
-	public void setFramePixels( ImagePixel[][] framePixels ) {
-		
-		this.framePixels = framePixels;
-	}
-
+	public void setImageFrameNumber( int imageFrameNumber ) { this.imageFrameNumber = imageFrameNumber; }
 }

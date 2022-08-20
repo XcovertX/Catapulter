@@ -39,7 +39,6 @@ public class RoomScene extends Scene {
         TMXParser tmxParser = new TMXParser( gameRoom );
         TMX tmxFile = tmxParser.getTmx();
         TSX[] tsxFiles = tmxParser.getTSXs();
-
         loadResources( tsxFiles );
 
         this.camera = new Camera( new Vector2f( -250, 0 ) );
@@ -72,7 +71,17 @@ public class RoomScene extends Scene {
 
             GameTile gt = ( GameTile ) gameTile;
             Image baseImage = gt.getBaseTileImage();
-            baseImage.addComponent( new SpriteRenderer( sprites.getSprite( baseImage.getTilesetPosition() ) ) );
+
+            AssetPool.addSpriteSheet( baseImage.getImageResourcePath(),
+                    new SpriteSheet( AssetPool.getTexture( baseImage.getImageResourcePath() ),
+                            baseImage.getImageWidth(),
+                            baseImage.getImageHeight(),
+                            baseImage.getImageFrameCount(),
+                            0 ) );
+
+            SpriteSheet spriteSheet = AssetPool.getSpriteSheet( baseImage.getImageResourcePath() );
+            baseImage.setSpriteSheet( spriteSheet );
+            baseImage.addComponent( new SpriteRenderer( spriteSheet.getSprite( baseImage.getActiveTilesetPosition() ) ) );
             this.addGameImageToScene( baseImage );
 
             gt.initAllImages( baseImage );
@@ -83,12 +92,6 @@ public class RoomScene extends Scene {
                 this.addGameImageToScene( currentThingImage );
             }
         }
-//        sprites = AssetPool.getSpriteSheet( "assets/images/spritesheet.png" );
-//        torch   = AssetPool.getSpriteSheet( "assets/images/torch_tileset.png" );
-//
-//        gameImage = new Image( ":object 2", new Transform( new Vector2f( 0, 200 ),
-//                new Vector2f( 100, 100 ) ),0 );
-//        gameImage.addComponent( new SpriteRenderer( torch.getSprite( 1 ) ) );
     }
 
     private void loadResources( TSX[] tsxFiles ) {
@@ -110,10 +113,6 @@ public class RoomScene extends Scene {
 
         }
     }
-
-    private int spriteIndex = 0;
-    private float spriteFlipTime = 0.2f;
-    private float spriteFlipTimeLeft = 0.0f;
 
     @Override
     public void update( double  dt ) {

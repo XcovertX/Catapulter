@@ -559,7 +559,7 @@ public class Thing {
 			thingImage.setImageHeight( tsx.getTileHeight() );
 			thingImage.setImageFrameCount( tsx.getFrames().getLength() );
 			thingImage.transform = new Transform();
-			thingImage.setTilesetPosition( 0 );
+			thingImage.setActiveTilesetPosition( 0 );
 
 			AssetPool.addSpriteSheet( thingImage.getImageResourcePath(),
 					new SpriteSheet( AssetPool.getTexture( thingImage.getImageResourcePath() ),
@@ -570,7 +570,11 @@ public class Thing {
 
 			thingImage.setSpriteSheet( AssetPool.getSpriteSheet( thingImage.getImageResourcePath() ) );
 			thingImage.setzIndex( 0 );
-			thingImage.addComponent(new SpriteRenderer( thingImage.getSpriteSheet().getSprite( thingImage.getTilesetPosition() ) ) );
+			thingImage.addComponent(
+					new SpriteRenderer(
+							thingImage.getSpriteSheet().getSprite(
+									thingImage.getActiveTilesetPosition() ) ) );
+
 			baseImage.transform.copy( thingImage.transform );
 			this.setThingImage( thingImage );
 		}

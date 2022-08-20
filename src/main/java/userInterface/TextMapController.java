@@ -95,10 +95,10 @@ public class TextMapController {
 				
 			    for (int j = 0; j < gameRoom.getRoomWidth(); j++) {
 			    	
-			    	GameTile gameTile = ( GameTile ) Game.currentRoom.getTiles().get( accumulator );
-			    	BufferedImage newImage = shader.shadeImage( gameTile );
-		    		Image image = SwingFXUtils.toFXImage( newImage, null );
-		    		gc.drawImage( image, ( double ) j * tileWidth, ( double ) i * tileWidth );
+//			    	GameTile gameTile = ( GameTile ) Game.currentRoom.getTiles().get( accumulator );
+//			    	BufferedImage newImage = shader.shadeImage( gameTile );
+//		    		Image image = SwingFXUtils.toFXImage( newImage, null );
+//		    		gc.drawImage( image, ( double ) j * tileWidth, ( double ) i * tileWidth );
 		    		
 			    	accumulator += 1;
 			    }

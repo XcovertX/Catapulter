@@ -11,29 +11,23 @@ public class Image {
 
 	private String name;
 	private int tileImageNumber;
-
 	private String ImageResourcePath;
-
 	private SpriteSheet spriteSheet;
-
-	private int tilesetPosition;
+	private boolean isAnimated;
+	private float timeAccumulation; // in milliseconds
+	private float lastUpdate;
+	private int activeTilesetPosition;
 	private int imageWidth;
 	private int imageHeight;
-
 	private int imageFrameCount;
 	private List< Component > components;
+
 	public Transform transform;
 	private int zIndex;
-	private ImageLayer[] imageLayers; // 0 = base layer
-	
+
+	private float[] frameDuration;
+
 	public Image() { this.components = new ArrayList<>(); }
-	
-	public Image( int layerCount, int tileImageNum ) {
-		
-		this.imageLayers = new ImageLayer[ layerCount ];
-		this.tileImageNumber = tileImageNum;
-		this.components = new ArrayList<>();
-	}
 
 	public Image( String name, Transform transform, int zIndex ) {
 
@@ -85,6 +79,17 @@ public class Image {
 
 	public void update( float dt ) {
 
+		if( this.isAnimated() ) {
+
+			boolean swapReady = frameSwapTimeCheck( dt );
+
+			if( swapReady ) {
+
+				cycleActiveFrame();
+			}
+
+		}
+
 		for( int i = 0; i < components.size(); i++ ) {
 
 			components.get( i ).update( dt );
@@ -93,9 +98,11 @@ public class Image {
 
 	public void start() {
 
+		this.setTimeAccumulation( 0 );
+
 		if( components != null ) {
 
-			for (int i = 0; i < components.size(); i++) {
+			for( int i = 0; i < components.size(); i++ ) {
 
 				components.get(i).start();
 			}
@@ -113,13 +120,36 @@ public class Image {
 	public int zIndex() {
 		return this.zIndex;
 	}
-	
-	public ImageLayer[] getImageLayers() { return imageLayers; }
-	
-	public void setImageLayers( ImageLayer[] imageLayers ) { this.imageLayers = imageLayers; }
-	
-	public ImageLayer getImageLayer( int index ) { return imageLayers[ index ]; }
-	public void setImageLayer( int index, ImageLayer imageLayer ) { this.imageLayers[ index ] = imageLayer; }
+
+	public boolean frameSwapTimeCheck( float dt ) {
+
+		updateTimeAccumulation( dt );
+
+		if( timeAccumulation >= frameDuration[ activeTilesetPosition ] ) {
+			lastUpdate = dt;
+			timeAccumulation = 0;
+			return true;
+		}
+		return false;
+	}
+
+	private void updateTimeAccumulation( float dt ) { timeAccumulation += dt; }
+
+	public void increaseTimeAccumulation( float dt ) { timeAccumulation += dt; }
+
+	public void setTimeAccumulation( float dt ) { timeAccumulation = dt; }
+
+	public void cycleActiveFrame() {
+
+		if( !( activeTilesetPosition + 1 >= imageFrameCount ) ) {
+
+			activeTilesetPosition += 1;
+
+		} else {
+
+			activeTilesetPosition = 0;
+		}
+	}
 
 	public int getTileImageNumber() { return tileImageNumber; }
 
@@ -141,9 +171,9 @@ public class Image {
 
 	public void setzIndex( int zIndex ) { this.zIndex = zIndex; }
 
-	public int getTilesetPosition() { return tilesetPosition; }
+	public int getActiveTilesetPosition() { return activeTilesetPosition; }
 
-	public void setTilesetPosition( int tilesetPosition ) { this.tilesetPosition = tilesetPosition; }
+	public void setActiveTilesetPosition( int tilesetPosition ) { this.activeTilesetPosition = tilesetPosition; }
 
 	public String getImageResourcePath() { return ImageResourcePath; }
 
@@ -156,5 +186,13 @@ public class Image {
 	public SpriteSheet getSpriteSheet() { return spriteSheet; }
 
 	public void setSpriteSheet( SpriteSheet spriteSheet ) { this.spriteSheet = spriteSheet; }
+
+	public boolean isAnimated() { return isAnimated; }
+
+	public void setAnimated( boolean isAnimated ) { this.isAnimated = isAnimated; }
+
+	public float[] getFrameDuration() { return frameDuration; }
+
+	public void setFrameDuration( float[] frameDuration ) { this.frameDuration = frameDuration; }
 
 }

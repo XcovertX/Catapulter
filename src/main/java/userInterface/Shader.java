@@ -93,131 +93,131 @@ public class Shader {
 		return newImage;
 	}
 	
-	public BufferedImage shadeImage( GameTile gameTile ) {
+//	public BufferedImage shadeImage( GameTile gameTile ) {
 		
-		Image tileImage = gameTile.getBaseTileImage();
-		Image thingImage = gameTile.getCurrentThingImage();
-		
-		int width = tileImage.getImageWidth();
-		int height = tileImage.getImageHeight();
-		
-		ImagePixel[][] newPixels = new ImagePixel[height][width];
-		
-		BufferedImage newImage = new BufferedImage( 
-				tileImage.getImageWidth(), 
-				tileImage.getImageHeight(),
-				BufferedImage.TYPE_INT_ARGB );	
-		
-		if(tileImage != null ) {
-		
-			for( int i = 0; i < tileImage.getImageLayers().length; i++ ) {
-				
-				ImageLayer tileImageLayer = tileImage.getImageLayer( i );
-				
-				if( tileImageLayer != null ) {
-
-					ImageFrame tileImageFrame = tileImageLayer.getActiveFrame();	
-					ImagePixel[][] pixels = tileImageFrame.getFramePixels();
-		    		
-					for( int j = 0; j < tileImage.getImageWidth(); j++ ) {
-		    			
-		    			for( int k = 0; k < tileImage.getImageHeight(); k++ ) {
-		    				
-		    				ImagePixel pixel = pixels[ k ][ j ];
-		    				int newRGB = pixel.getRgb();
-		    				newPixels[ k ][ j ] = new ImagePixel();
-		    				
-		    				if( !isTransparent( pixel.getRgb() ) ) {
-		    					
-		    					newRGB = applyAmbientLight( pixel.getRgb() );
-
-			    				for( int l = 0; l < Game.currentRoom.getAllRoomLightSourceObjects().size(); l++ ) {
-			    								
-			    					Thing lightSourceObject = Game.currentRoom.getAllRoomLightSourceObjects().get( l);
-			    					RadiatingLight roomLightSource = ( RadiatingLight ) lightSourceObject.getLightSources().get( 0 );
-			    					int lightSourceTileNumber;
-			    					
-			    					if( lightSourceObject == Game.currentGame.getPlayer() ) {
-			    						
-			    						lightSourceTileNumber = Game.currentTile.getTileNumber();
-			    						
-			    					} else {
-			    						
-			    						lightSourceTileNumber = lightSourceObject.getCurrentGameTile().getTileNumber();
-			    					}
-			    					
-			    					int thisTileNumber = gameTile.getTileNumber();
-			    					double distanceFromLightSource = Game.currentRoom.calculateDistance( lightSourceTileNumber, thisTileNumber);
-			    					double lightReach = roomLightSource.getDistance();
-			    					
-						    		if( distanceFromLightSource <= lightReach ) {
-			
-						    			String relativeDirectionOfLight = Game.currentRoom.calculateRelativeDirection( lightSourceTileNumber, thisTileNumber );
-		
-						    			if( tileImageLayer.getName().equals( "base" ) ||
-						    				tileImageLayer.getName().equals( "object" ) ) {
-						    				
-						    				int amount = ( int ) Math.floor( lightReach - distanceFromLightSource );
-					    					newRGB =  applyLightShift( newRGB, amount, lightReach, roomLightSource );
-					    					
-						    			} else if (
-						    					
-						    				relativeDirectionOfLight.equals( "n" ) && tileImageLayer.getName().equals( "south" ) ||
-					    					relativeDirectionOfLight.equals( "s" ) && tileImageLayer.getName().equals( "north" ) ||
-					    					relativeDirectionOfLight.equals( "w" ) && tileImageLayer.getName().equals( "west"  ) ||
-					    					relativeDirectionOfLight.equals( "e" ) && tileImageLayer.getName().equals( "east"  ) ||
-					    					relativeDirectionOfLight.equals( "nw" ) && 
-					    					( tileImageLayer.getName().equals( "south" ) || tileImageLayer.getName().equals( "west" ) ) ||
-					    					relativeDirectionOfLight.equals( "sw" ) && 
-					    					( tileImageLayer.getName().equals( "north" ) || tileImageLayer.getName().equals( "west" ) ) ||
-					    					relativeDirectionOfLight.equals( "ne" ) && 
-					    					( tileImageLayer.getName().equals( "south" ) || tileImageLayer.getName().equals( "east" ) ) ||
-					    					relativeDirectionOfLight.equals( "se" ) && 
-					    					( tileImageLayer.getName().equals( "north" ) || tileImageLayer.getName().equals( "east" ) ) ) { 
-	
-						    				int amount = ( int ) Math.floor( lightReach - distanceFromLightSource );
-					    					newRGB =  applyLightShift( newRGB, amount * 2, lightReach, roomLightSource );
-					    				}
-					    			}
-					    		}
-			    				newPixels[ k ][ j ].setRgb( newRGB );
-			    				newImage.setRGB( j, k, newPixels[ k ][ j ].getRgb() );
-		    				}
-		    				
-		    			}		    		
-		    		}
-				}
-			}
-		}
-		
-		if( thingImage != null ) {
-			
-			for( int i = 0; i < thingImage.getImageLayers().length; i++ ) {
-				
-				ImageLayer thingImageLayer = thingImage.getImageLayer( 0 );
-				
-				if( thingImageLayer != null ) {
-					
-					ImageFrame thingImageFrame = thingImageLayer.getActiveFrame();
-					BufferedImage frameImage = thingImageFrame.getFrameImage();
-					ImagePixel[][] pixels = thingImageFrame.getFramePixels();
-					
-		    		for( int j = 0; j < thingImage.getImageWidth(); j++ ) {
-		    			
-		    			for( int k = 0; k < thingImage.getImageHeight(); k++ ) {
-		    				
-		    				int newRGB = frameImage.getRGB(j, k);
-	
-		    				if( !isTransparent( newRGB ) ) {
-		    					
-			    				newPixels[ k ][ j ].setRgb( newRGB );
-			    				newImage.setRGB( j, k, newPixels[ k ][ j ].getRgb() );
-		    				}
-		    			}
-					}
-				}
-			}
-		}
+//		Image tileImage = gameTile.getBaseTileImage();
+//		Image thingImage = gameTile.getCurrentThingImage();
+//
+//		int width = tileImage.getImageWidth();
+//		int height = tileImage.getImageHeight();
+//
+//		ImagePixel[][] newPixels = new ImagePixel[height][width];
+//
+//		BufferedImage newImage = new BufferedImage(
+//				tileImage.getImageWidth(),
+//				tileImage.getImageHeight(),
+//				BufferedImage.TYPE_INT_ARGB );
+//
+//		if(tileImage != null ) {
+//
+//			for( int i = 0; i < tileImage.getImageLayers().length; i++ ) {
+//
+//				ImageLayer tileImageLayer = tileImage.getImageLayer( i );
+//
+//				if( tileImageLayer != null ) {
+//
+//					ImageFrame tileImageFrame = tileImageLayer.getActiveFrame();
+//					ImagePixel[][] pixels = tileImageFrame.getFramePixels();
+//
+//					for( int j = 0; j < tileImage.getImageWidth(); j++ ) {
+//
+//		    			for( int k = 0; k < tileImage.getImageHeight(); k++ ) {
+//
+//		    				ImagePixel pixel = pixels[ k ][ j ];
+//		    				int newRGB = pixel.getRgb();
+//		    				newPixels[ k ][ j ] = new ImagePixel();
+//
+//		    				if( !isTransparent( pixel.getRgb() ) ) {
+//
+//		    					newRGB = applyAmbientLight( pixel.getRgb() );
+//
+//			    				for( int l = 0; l < Game.currentRoom.getAllRoomLightSourceObjects().size(); l++ ) {
+//
+//			    					Thing lightSourceObject = Game.currentRoom.getAllRoomLightSourceObjects().get( l);
+//			    					RadiatingLight roomLightSource = ( RadiatingLight ) lightSourceObject.getLightSources().get( 0 );
+//			    					int lightSourceTileNumber;
+//
+//			    					if( lightSourceObject == Game.currentGame.getPlayer() ) {
+//
+//			    						lightSourceTileNumber = Game.currentTile.getTileNumber();
+//
+//			    					} else {
+//
+//			    						lightSourceTileNumber = lightSourceObject.getCurrentGameTile().getTileNumber();
+//			    					}
+//
+//			    					int thisTileNumber = gameTile.getTileNumber();
+//			    					double distanceFromLightSource = Game.currentRoom.calculateDistance( lightSourceTileNumber, thisTileNumber);
+//			    					double lightReach = roomLightSource.getDistance();
+//
+//						    		if( distanceFromLightSource <= lightReach ) {
+//
+//						    			String relativeDirectionOfLight = Game.currentRoom.calculateRelativeDirection( lightSourceTileNumber, thisTileNumber );
+//
+//						    			if( tileImageLayer.getName().equals( "base" ) ||
+//						    				tileImageLayer.getName().equals( "object" ) ) {
+//
+//						    				int amount = ( int ) Math.floor( lightReach - distanceFromLightSource );
+//					    					newRGB =  applyLightShift( newRGB, amount, lightReach, roomLightSource );
+//
+//						    			} else if (
+//
+//						    				relativeDirectionOfLight.equals( "n" ) && tileImageLayer.getName().equals( "south" ) ||
+//					    					relativeDirectionOfLight.equals( "s" ) && tileImageLayer.getName().equals( "north" ) ||
+//					    					relativeDirectionOfLight.equals( "w" ) && tileImageLayer.getName().equals( "west"  ) ||
+//					    					relativeDirectionOfLight.equals( "e" ) && tileImageLayer.getName().equals( "east"  ) ||
+//					    					relativeDirectionOfLight.equals( "nw" ) &&
+//					    					( tileImageLayer.getName().equals( "south" ) || tileImageLayer.getName().equals( "west" ) ) ||
+//					    					relativeDirectionOfLight.equals( "sw" ) &&
+//					    					( tileImageLayer.getName().equals( "north" ) || tileImageLayer.getName().equals( "west" ) ) ||
+//					    					relativeDirectionOfLight.equals( "ne" ) &&
+//					    					( tileImageLayer.getName().equals( "south" ) || tileImageLayer.getName().equals( "east" ) ) ||
+//					    					relativeDirectionOfLight.equals( "se" ) &&
+//					    					( tileImageLayer.getName().equals( "north" ) || tileImageLayer.getName().equals( "east" ) ) ) {
+//
+//						    				int amount = ( int ) Math.floor( lightReach - distanceFromLightSource );
+//					    					newRGB =  applyLightShift( newRGB, amount * 2, lightReach, roomLightSource );
+//					    				}
+//					    			}
+//					    		}
+//			    				newPixels[ k ][ j ].setRgb( newRGB );
+//			    				newImage.setRGB( j, k, newPixels[ k ][ j ].getRgb() );
+//		    				}
+//
+//		    			}
+//		    		}
+//				}
+//			}
+//		}
+//
+//		if( thingImage != null ) {
+//
+//			for( int i = 0; i < thingImage.getImageLayers().length; i++ ) {
+//
+//				ImageLayer thingImageLayer = thingImage.getImageLayer( 0 );
+//
+//				if( thingImageLayer != null ) {
+//
+//					ImageFrame thingImageFrame = thingImageLayer.getActiveFrame();
+//					BufferedImage frameImage = thingImageFrame.getFrameImage();
+//					ImagePixel[][] pixels = thingImageFrame.getFramePixels();
+//
+//		    		for( int j = 0; j < thingImage.getImageWidth(); j++ ) {
+//
+//		    			for( int k = 0; k < thingImage.getImageHeight(); k++ ) {
+//
+//		    				int newRGB = frameImage.getRGB(j, k);
+//
+//		    				if( !isTransparent( newRGB ) ) {
+//
+//			    				newPixels[ k ][ j ].setRgb( newRGB );
+//			    				newImage.setRGB( j, k, newPixels[ k ][ j ].getRgb() );
+//		    				}
+//		    			}
+//					}
+//				}
+//			}
+//		}
 		    					
 //			    				newRGB = applyAmbientLight( pixel.getRgb() );
 
@@ -262,8 +262,8 @@ public class Shader {
 //				}
 //			}
 //		}
-		return newImage;
-	}
+//		return new Image();
+//	}
 
 	public int applyAmbientLight( int pixel ) {
 

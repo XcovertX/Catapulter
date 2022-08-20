@@ -23,15 +23,6 @@ public class Fire extends Thing {
 
 		this.setImageXPosition( 0 );
 		this.setImageYPosition( 0 );
-		
-        if( this.getTSXPath() != null ) {
-
-			TSX tsx = new TSX( this.getTSXPath() );
-
-			Image[] images = new Image[ 1 ];
-			images[ 0 ] = tsx.buildThingImage( 0, 0, 32, 32  );
-			this.setThingImages( images );
-        }
         
         ArrayList< Light > lightSources = new ArrayList< Light >();
         RadiatingLight rLight = new RadiatingLight( 10, ( float ) 0.3, ( float ) 0.7, new Color( 255, 255, 255 ), "flicker" );

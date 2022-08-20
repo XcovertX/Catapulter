@@ -301,7 +301,7 @@ public class GameTile extends ThingHolder {
     	
     	if( Game.currentGame.getPlayer().getTile().equals( this ) ) {
     		
-    		this.setCurrentThingImage( Game.currentGame.getPlayer().getThingImages()[0] );
+    		this.setCurrentThingImage( null );
     		
     	} else if( !npcs.isEmpty() ) {
     		

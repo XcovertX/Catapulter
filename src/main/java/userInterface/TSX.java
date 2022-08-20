@@ -99,103 +99,100 @@ public class TSX {
 		yPosition = 0;
 	}
 	
-	public Image[] buildThingImages( int gameTileNumber ) {
-		
-		Image[] thingImages = new Image[ tiles.getLength() ];						// number of different image sections in image
-
-		for( int i = 0; i < thingImages.length; i++ ) {								// for each image section
-			
-			Image thingImage = new Image();
-			ImageLayer thingImageLayer = new ImageLayer();
-			ImageLayer[] thingImageLayers = new ImageLayer[ 1 ];
-			thingImage.setImageLayers( thingImageLayers );
-			
-			int frameCount;
-    		if( frames.getLength() > 0 ) {
-    			
-    			thingImageLayer.setAnimated( true );
-    			frameCount = frames.getLength();
-    			
-    		} else {
-    			
-    			thingImageLayer.setAnimated( false );
-    			frameCount = 1;
-    		}
-    		
-			ImageFrame[] thingImageFrames = new ImageFrame[ frameCount ];
-			
-			for( int j = 0; j < thingImageFrames.length; j++ ) {
-				
-				thingImageFrames[ j ] = new ImageFrame();
-				
-				thingImageFrames[ j ].setFrameImage( tileSetImage.getSubimage( ( xPosition + j ) * tileWidth, ( yPosition + i ) * tileHeight, tileWidth, tileHeight ) );
-				
-				if( thingImageLayer.isAnimated() ) {
-					
-					thingImageFrames[ j ].setFrameDuration( Integer.valueOf( getFrames().item( j ).getAttributes().getNamedItem( "duration" ).getNodeValue() ) );
-				
-				} else {
-					
-					thingImageFrames[ j ].setFrameDuration( -1 );
-				}
-			}
-			thingImageLayer.setImageFrames( thingImageFrames );
-			thingImage.setImageLayer( 0, thingImageLayer );
-			thingImage.setTileImageNumber( gameTileNumber );
-			thingImages[ i ] = thingImage;
-		}
-		return thingImages;
-	}
+//	public Image[] buildThingImages( int gameTileNumber ) {
+//
+//		Image[] thingImages = new Image[ tiles.getLength() ];						// number of different image sections in image
+//
+//		for( int i = 0; i < thingImages.length; i++ ) {								// for each image section
+//
+//			Image thingImage = new Image();
+//
+//			int frameCount;
+//    		if( frames.getLength() > 0 ) {
+//
+//    			thingImage.setAnimated( true );
+//    			frameCount = frames.getLength();
+//
+//    		} else {
+//
+//    			thingImage.setAnimated( false );
+//    			frameCount = 1;
+//    		}
+//
+//			ImageFrame[] thingImageFrames = new ImageFrame[ frameCount ];
+//
+//			for( int j = 0; j < thingImageFrames.length; j++ ) {
+//
+//				thingImageFrames[ j ] = new ImageFrame();
+//
+//				thingImageFrames[ j ].setFrameImage( tileSetImage.getSubimage( ( xPosition + j ) * tileWidth, ( yPosition + i ) * tileHeight, tileWidth, tileHeight ) );
+//
+//				if( thingImageLayer.isAnimated() ) {
+//
+//					thingImageFrames[ j ].setFrameDuration( Integer.valueOf( getFrames().item( j ).getAttributes().getNamedItem( "duration" ).getNodeValue() ) );
+//
+//				} else {
+//
+//					thingImageFrames[ j ].setFrameDuration( -1 );
+//				}
+//			}
+//			thingImageLayer.setImageFrames( thingImageFrames );
+//			thingImage.setImageLayer( 0, thingImageLayer );
+//			thingImage.setTileImageNumber( gameTileNumber );
+//			thingImages[ i ] = thingImage;
+//		}
+//		return thingImages;
+//	}
 	
-	public Image buildThingImage( int x, int y, int xSize, int ySize ) {
-		
-		Image thingImage = new Image();						// number of different image sections in image
-		thingImage.setImageWidth( xSize );
-		thingImage.setImageHeight( ySize );
-		ImageLayer thingImageLayer = new ImageLayer();
-		ImageLayer[] thingImageLayers = new ImageLayer[ 1 ];
-
-		thingImage.setImageLayers( thingImageLayers );
-		thingImageLayer.setName( "north" );					//change. set to north for testing
-
-		int frameCount;
-    	if( frames.getLength() > 0 ) {
-    			
-			thingImageLayer.setAnimated( true );
-			frameCount = frames.getLength();
-			
-		} else {
-
-			thingImageLayer.setAnimated( false );
-			frameCount = 1;
-		}
-		
-		ImageFrame[] thingImageFrames = new ImageFrame[ frameCount ];
-		
-		if( thingImageFrames.length > 1 ) {
-			thingImageLayer.setAnimated( true );
-		}
-		for( int j = 0; j < thingImageFrames.length; j++ ) {
-			
-			thingImageFrames[ j ] = new ImageFrame();
-			thingImageFrames[ j ].setFrameImage( tileSetImage.getSubimage( ( x + j ) * xSize, y * ySize, xSize, ySize ) );
-			thingImageFrames[ j ].setFramePixels( getPixels( thingImageFrames[ j ].getFrameImage(), xSize, ySize ) );
-
-			if( thingImageLayer.isAnimated() ) {
-				
-				thingImageFrames[ j ].setFrameDuration( Integer.valueOf( getFrames().item( j ).getAttributes().getNamedItem( "duration" ).getNodeValue() ) );
-			
-			} else {
-				
-				thingImageFrames[ j ].setFrameDuration( -1 );
-			}
-		}
-		thingImageLayer.setImageFrames( thingImageFrames );
-		thingImage.setImageLayer( 0, thingImageLayer );
-		thingImage.setTileImageNumber( -1 );
-		
-		return thingImage;
-	}
+//	public Image buildThingImage( int x, int y, int xSize, int ySize ) {
+//
+//		Image thingImage = new Image();						// number of different image sections in image
+//		thingImage.setImageWidth( xSize );
+//		thingImage.setImageHeight( ySize );
+//		ImageLayer thingImageLayer = new ImageLayer();
+//		ImageLayer[] thingImageLayers = new ImageLayer[ 1 ];
+//
+////		thingImage.setImageLayers( thingImageLayers );
+//		thingImageLayer.setName( "north" );					//change. set to north for testing
+//
+//		int frameCount;
+//    	if( frames.getLength() > 0 ) {
+//
+//			thingImageLayer.setAnimated( true );
+//			frameCount = frames.getLength();
+//
+//		} else {
+//
+//			thingImageLayer.setAnimated( false );
+//			frameCount = 1;
+//		}
+//
+//		ImageFrame[] thingImageFrames = new ImageFrame[ frameCount ];
+//
+//		if( thingImageFrames.length > 1 ) {
+//			thingImageLayer.setAnimated( true );
+//		}
+//		for( int j = 0; j < thingImageFrames.length; j++ ) {
+//
+//			thingImageFrames[ j ] = new ImageFrame();
+//			thingImageFrames[ j ].setFrameImage( tileSetImage.getSubimage( ( x + j ) * xSize, y * ySize, xSize, ySize ) );
+//			thingImageFrames[ j ].setFramePixels( getPixels( thingImageFrames[ j ].getFrameImage(), xSize, ySize ) );
+//
+//			if( thingImageLayer.isAnimated() ) {
+//
+//				thingImageFrames[ j ].setFrameDuration( Integer.valueOf( getFrames().item( j ).getAttributes().getNamedItem( "duration" ).getNodeValue() ) );
+//
+//			} else {
+//
+//				thingImageFrames[ j ].setFrameDuration( -1 );
+//			}
+//		}
+//		thingImageLayer.setImageFrames( thingImageFrames );
+//		thingImage.setImageLayer( 0, thingImageLayer );
+//		thingImage.setTileImageNumber( -1 );
+//
+//		return thingImage;
+//	}
 	
 	public ImagePixel[][] getPixels( BufferedImage img, int xSize, int ySize ) {
 		
