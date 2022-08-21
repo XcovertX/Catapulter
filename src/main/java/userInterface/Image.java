@@ -4,6 +4,7 @@ import components.SpriteRenderer;
 import components.SpriteSheet;
 import jade.Component;
 import jade.Transform;
+import jade.Transition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +23,17 @@ public class Image {
 	private int imageHeight;
 	private int imageFrameCount;
 	private List< Component > components;
-
 	public Transform transform;
+	public Transition transition;
 	private int zIndex;
 
 	private float[] frameDuration;
 
-	public Image() { this.components = new ArrayList<>(); }
+	public Image() {
+
+		this.components = new ArrayList<>();
+		this.transition = null;
+	}
 
 	public Image( String name, Transform transform, int zIndex ) {
 
@@ -87,6 +92,15 @@ public class Image {
 			if( swapReady ) {
 
 				cycleActiveFrame();
+			}
+		}
+		if( transition != null ) {
+
+			transition.update();
+
+			if( transition.isComplete() ) {
+
+				transition = null;
 			}
 		}
 		for( int i = 0; i < components.size(); i++ ) {

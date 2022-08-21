@@ -3,6 +3,7 @@ package actor;
 import java.awt.Color;
 
 import jade.Transform;
+import jade.Transition;
 import userInterface.Image;
 import userInterface.TSX;
 import userInterface.TileChar;
@@ -288,8 +289,7 @@ public class Actor extends ThingHolder {
 
 	public void movePlayerSprite( GameTile gt ) {
 
-		Transform toTransform = gt.getBaseTileImage().transform;
-		toTransform.copy( this.getThingImage().transform );
+		this.getThingImage().transition = new Transition( getThingImage().transform, gt.getBaseTileImage().transform );
 	}
 
 	public int getThirstCounter() {
