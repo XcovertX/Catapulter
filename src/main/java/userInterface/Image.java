@@ -82,17 +82,13 @@ public class Image {
 
 		if( this.isAnimated() ) {
 
-
 			boolean swapReady = frameSwapTimeCheck( dt );
 
 			if( swapReady ) {
 
-				System.out.println( "update: " + dt);
 				cycleActiveFrame();
 			}
-
 		}
-
 		for( int i = 0; i < components.size(); i++ ) {
 
 			components.get( i ).update( dt );
@@ -128,7 +124,6 @@ public class Image {
 
 		updateTimeAccumulation( dt );
 
-		System.out.println( "frameDur: "+ frameDuration[ activeTilesetPosition ] );
 		if( timeAccumulation >= frameDuration[ activeTilesetPosition ] ) {
 			lastUpdate = dt;
 			timeAccumulation = 0;

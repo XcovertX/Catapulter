@@ -1,5 +1,6 @@
 package jade;
 
+import actor.Actor;
 import components.SpriteRenderer;
 import components.SpriteSheet;
 import components.TileRenderer;
@@ -83,6 +84,12 @@ public class RoomScene extends Scene {
             baseImage.setSpriteSheet( spriteSheet );
             baseImage.addComponent( new SpriteRenderer( spriteSheet.getSprite( baseImage.getActiveTilesetPosition() ) ) );
             this.addGameImageToScene( baseImage );
+        }
+
+        for( gameObjects.Thing gameTile : gameTiles ) {
+
+            GameTile gt = ( GameTile ) gameTile;
+            Image baseImage = gt.getBaseTileImage();
 
             gt.initAllImages( baseImage );
 
@@ -91,6 +98,7 @@ public class RoomScene extends Scene {
 
                 this.addGameImageToScene( currentThingImage );
             }
+
         }
     }
 
@@ -160,6 +168,4 @@ public class RoomScene extends Scene {
         ThingList gameTiles = gameRoom.getTiles();
 
     }
-
-
 }

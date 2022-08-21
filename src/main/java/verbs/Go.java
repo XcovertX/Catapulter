@@ -66,7 +66,7 @@ public class Go extends Action {
     void moveActorTo( Actor p, GameTile aGameTile ) {
         p.setTile( aGameTile );
         aGameTile.setCurrentTileChar();
-        
+		p.movePlayerSprite( aGameTile );
     }
 
     // move an Actor in direction 'dir'
@@ -201,7 +201,8 @@ public class Go extends Action {
         }
         
         Game.currentGame.getUI().printlnColor( currentExits, Color.CYAN );
-        Game.currentGame.getUI().getTextMapController().setRoomDescription( currentExits );
+
+//        Game.currentGame.getUI().getTextMapController().setRoomDescription( currentExits );
     }
 
 	public boolean isDirection() {

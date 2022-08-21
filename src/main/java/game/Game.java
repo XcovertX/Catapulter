@@ -107,15 +107,15 @@ public class Game {
 //    		skull.setOnTopOf( true );
 //    		currentRoom.getTile( 30 ).addThing( table );
     		
-//    		currentWorld.setLocations();
+    		currentWorld.setLocations();
 //    		
 //    		System.out.println( "Skull height: " + currentRoom.calculateTotalHeight( skull ) );
 //    		System.out.println( "Table height: " + currentRoom.calculateTotalHeight( table ) );
     		
 //    		currentRoom.setAllRoomLightSourceObjects();
 //
-//    		userInterface = new UserInterface( player );
-//    		userInterface.getDisplay().setRoom( currentRoom );
+    		userInterface = new UserInterface( player );
+    		userInterface.getDisplay().setRoom( currentRoom );
 //
 //    		try {
 //				new TMXParser( currentRoom );

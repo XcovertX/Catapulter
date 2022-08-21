@@ -2,6 +2,7 @@ package actor;
 
 import java.awt.Color;
 
+import jade.Transform;
 import userInterface.Image;
 import userInterface.TSX;
 import userInterface.TileChar;
@@ -58,7 +59,7 @@ public class Actor extends ThingHolder {
         this.setHunger( 0 );
         this.setDecomposed( 100 );
         this.setTileChar( new TileChar( aActorSymbol, "#00b6ff" ) );
-        this.setTSXPath( "files/tiny_location.tsx" );
+        this.setTSXPath( "assets/images/location-2.tsx" );
         this.type = "Actor";
     }
 
@@ -74,7 +75,7 @@ public class Actor extends ThingHolder {
         this.setHunger( 0 );
         this.setDecomposed( 100 );
         this.setTileChar( new TileChar() );
-        this.setTMX( "files/location.tsx" );
+        this.setTSXPath( "assets/images/location-2.tsx" );
         this.type = "Actor";
 
 	}
@@ -276,10 +277,19 @@ public class Actor extends ThingHolder {
 	public boolean isPlayer() {
 		
 		if( this.equals( Game.currentGame.getPlayer() ) ) {
+
 			return true;
+
 		} else {
+
 			return false;
 		}
+	}
+
+	public void movePlayerSprite( GameTile gt ) {
+
+		Transform toTransform = gt.getBaseTileImage().transform;
+		toTransform.copy( this.getThingImage().transform );
 	}
 
 	public int getThirstCounter() {

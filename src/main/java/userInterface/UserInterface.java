@@ -62,7 +62,7 @@ public class UserInterface implements ActionListener {
 		
 		this.display = new Display();
 
-		initializeGUI(); //javafx gui
+//		initializeGUI(); //javafx gui
 		
 		consLog = new ConsoleLogic( display, guiController );
 

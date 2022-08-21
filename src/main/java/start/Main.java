@@ -17,8 +17,8 @@ public class Main {
 //        Thread gameThread = new Thread( new GameLoop( game ) );
 //        gameThread.setName( "Game_Thread" );
 //        gameThread.start();
-//        game.showIntro();
-//        game.getInputProcessor().updateOutput( 0 ); // change this update once new login process implemented
+        game.showIntro();
+        game.getInputProcessor().updateOutput( 0 ); // change this update once new login process implemented
     }
 }
 

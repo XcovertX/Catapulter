@@ -70,12 +70,12 @@ public class ConsoleLogic {
 		} catch (Exception ex) {}
 		
 		final String str = s;
-		Platform.runLater(() -> {
-	
-			
-			controller.insertText( str );
-			
-		});
+//		Platform.runLater(() -> {
+//
+//
+//			controller.insertText( str );
+//
+//		});
 			
 			scrollBottom();
 	}

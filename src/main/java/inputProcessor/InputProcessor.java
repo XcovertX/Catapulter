@@ -174,6 +174,8 @@ public class InputProcessor {
             	for( int i = 0; i < gt.getNPCs().size(); i++ ) {
             		
             		Actor actor = ( Actor ) gt.getNPCs().get( i );
+
+					//TODO: this is a weird way of doing this
             		if( actor.isAlive() ) {
 	            		userInterface.printColor( actor.toString(), Color.green );
 	            		userInterface.printlnColor( " is here.", Color.white );

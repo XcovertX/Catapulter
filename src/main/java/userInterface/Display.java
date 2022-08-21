@@ -187,7 +187,7 @@ public class Display {
 	    }
 		map.setText( mapRep ); // TODO remove once new GUI is in place
 		
-		Game.currentGame.getUI().getGuiController().setMapChars( mapRep, tileChars ) ;
+//		Game.currentGame.getUI().getGuiController().setMapChars( mapRep, tileChars ) ;
 		
 	}
 

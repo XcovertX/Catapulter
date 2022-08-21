@@ -82,10 +82,10 @@ public class TSX {
 //		String parent = file.getParent() + "/";
 		imageSourcePath = images.item( 0 ).getAttributes().getNamedItem( "source" ).getNodeValue().toString();
 		
-		tileCount   = Integer.valueOf( tileset.getAttribute( "tilecount"   ) );
-		tileWidth   = Integer.valueOf( tileset.getAttribute( "tilewidth"   ) );
-		tileHeight  = Integer.valueOf( tileset.getAttribute( "tileheight"  ) );
-		columnCount = Integer.valueOf( tileset.getAttribute( "columns"     ) );
+		tileCount   = Integer.parseInt( tileset.getAttribute( "tilecount"  ) );
+		tileWidth   = Integer.parseInt( tileset.getAttribute( "tilewidth"  ) );
+		tileHeight  = Integer.parseInt( tileset.getAttribute( "tileheight" ) );
+		columnCount = Integer.parseInt( tileset.getAttribute( "columns"    ) );
 
 		try {
 

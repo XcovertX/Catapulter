@@ -106,7 +106,7 @@ public class Controller {
 		
 		Platform.runLater(() -> {
 			
-			keyboardHolder.setBottom( kc.getKeyboard() );
+//			keyboardHolder.setBottom( kc.getKeyboard() );
 			
 		});
 	}

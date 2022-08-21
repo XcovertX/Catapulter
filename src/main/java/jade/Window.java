@@ -20,6 +20,7 @@ public class Window {
     private int width, height;
     private String title;
     private long glfwWindow;
+    public boolean isInitialized = false;
 
     public float r, g, b, a;
 
@@ -209,6 +210,8 @@ public class Window {
         this.imGuiLayer.initImGui();
 
         Window.changeScene( 2 );
+        isInitialized = true;
+        System.out.println( "Window Initialized!" );
     }
 
     public static int getWidth() {

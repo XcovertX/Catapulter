@@ -12,8 +12,6 @@ public abstract class Scene {
     private boolean isRunning = false;
 
     protected List< Image > gameImages = new ArrayList<>();
-    protected List< Image > tileImages = new ArrayList<>();
-    protected List< Image > objectImages = new ArrayList<>();
 
     public Scene() { }
 

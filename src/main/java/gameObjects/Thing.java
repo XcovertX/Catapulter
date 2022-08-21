@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import components.SpriteRenderer;
 import components.SpriteSheet;
+import game.Game;
 import jade.RoomScene;
 import jade.Transform;
 import userInterface.TSX;
@@ -516,26 +517,28 @@ public class Thing {
 
 				Thing aThing = things.get( i );
 
-				if( aThing.isThingHolder() ) {
+				aThing.initAllImages( baseImage );
+			}
 
-					aThing.initAllImages( baseImage );
+			if( tHolder.type.equals( "Tile" ) ) {
 
+				GameTile gt = ( GameTile ) tHolder;
+
+				if( gt.equals( Game.currentTile ) ) {
+
+					Game.currentGame.getPlayer().initAllImages( baseImage );
+					System.out.println( "currentPlayer init" );
 				}
 
-				if( aThing.type.equals( "Tile" ) ) {
+				for( int j = 0; j < gt.getNPCs().size(); j++ ) {
 
-					GameTile aTile = ( GameTile ) aThing;
-
-					for( int j = 0; j < aTile.getNPCs().size(); j++ ) {
-
-						Thing npc = aTile.getNPCs().get( j );
-						npc.initImage( baseImage );
-					}
-
-				} else {
-
-					aThing.initImage( baseImage );
+					Thing npc = gt.getNPCs().get( j );
+					npc.initImage( baseImage );
 				}
+
+			} else {
+
+				this.initImage( baseImage );
 			}
 
 		} else {
@@ -562,6 +565,8 @@ public class Thing {
 			thingImage.setActiveTilesetPosition( 0 );
 			thingImage.setAnimated( tsx.isAnimated() );
 			thingImage.setFrameDuration( tsx.getFrameDuration() );
+
+			System.out.println( thingImage.getImageResourcePath() );
 
 			AssetPool.addSpriteSheet( thingImage.getImageResourcePath(),
 					new SpriteSheet( AssetPool.getTexture( thingImage.getImageResourcePath() ),
