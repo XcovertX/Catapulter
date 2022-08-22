@@ -27,7 +27,7 @@ public class GameLoop implements Runnable {
 	public void run() {
 
 		running = true;
-		double accumulator = 0;
+		float accumulator = 0;
 		long currentTime = System.currentTimeMillis();
 		long lastUpdate = System.currentTimeMillis();
 		nextStatTime = System.currentTimeMillis() + 1000;
@@ -50,7 +50,7 @@ public class GameLoop implements Runnable {
 		}
 	}
 	
-	private void update( double accumulator ) {
+	private void update( float accumulator ) {
 		if( game.getGameWindow().isInitialized ) {
 			game.getGameWindow().update(accumulator);
 		}

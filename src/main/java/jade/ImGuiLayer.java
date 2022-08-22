@@ -1,16 +1,22 @@
 package jade;
 
-import imgui.ImGui;
-import imgui.ImGuiIO;
-import imgui.callbacks.ImStrConsumer;
-import imgui.callbacks.ImStrSupplier;
-import imgui.enums.ImGuiBackendFlags;
-import imgui.enums.ImGuiConfigFlags;
-import imgui.enums.ImGuiKey;
-import imgui.enums.ImGuiMouseCursor;
+import game.Game;
+import globals.Direction;
+import imgui.*;
+import imgui.callback.ImStrConsumer;
+import imgui.callback.ImStrSupplier;
+import imgui.flag.*;
 import imgui.gl3.ImGuiImplGl3;
+import imgui.glfw.ImGuiImplGlfw;
+import imgui.type.ImBoolean;
+import org.lwjgl.glfw.GLFW;
 
 import static org.lwjgl.glfw.GLFW.*;
+
+import java.util.Objects;
+
+import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class ImGuiLayer {
     private long glfwWindow;
@@ -18,6 +24,7 @@ public class ImGuiLayer {
     private final long[] mouseCursors = new long[ ImGuiMouseCursor.COUNT ];
 
     // LWJGL3 renderer (SHOULD be initialized)
+    private final ImGuiImplGlfw imGuiGlfw = new ImGuiImplGlfw();
     private final ImGuiImplGl3 imGuiGl3 = new ImGuiImplGl3();
 
     public ImGuiLayer( long glfwWindow ) {
@@ -38,6 +45,8 @@ public class ImGuiLayer {
         io.setConfigFlags( ImGuiConfigFlags.NavEnableKeyboard ); // Navigation with keyboard
         io.setBackendFlags( ImGuiBackendFlags.HasMouseCursors ); // Mouse cursors to display while resizing windows etc.
         io.setBackendPlatformName( "imgui_java_impl_glfw" );
+        io.addConfigFlags( ImGuiConfigFlags.ViewportsEnable );
+        imGuiGlfw.init( glfwWindow, true );
 
         // ------------------------------------------------------------
         // Keyboard mapping. ImGui will use those indices to peek into the io.KeysDown[] array.
@@ -83,9 +92,13 @@ public class ImGuiLayer {
         // GLFW callbacks to handle user input
 
         glfwSetKeyCallback( glfwWindow, ( w, key, scancode, action, mods ) -> {
+
             if ( action == GLFW_PRESS ) {
+
                 io.setKeysDown( key, true );
+
             } else if ( action == GLFW_RELEASE ) {
+
                 io.setKeysDown( key, false );
             }
 
@@ -96,7 +109,9 @@ public class ImGuiLayer {
         });
 
         glfwSetCharCallback( glfwWindow, ( w, c ) -> {
+
             if ( c != GLFW_KEY_DELETE ) {
+
                 io.addInputCharacter( c );
             }
         });
@@ -113,15 +128,16 @@ public class ImGuiLayer {
             io.setMouseDown( mouseDown );
 
             if ( !io.getWantCaptureMouse() && mouseDown[ 1 ] ) {
+
                 ImGui.setWindowFocus( null );
             }
         });
 
         glfwSetScrollCallback( glfwWindow, ( w, xOffset, yOffset ) -> {
+
             io.setMouseWheelH( io.getMouseWheelH() + ( float ) xOffset );
             io.setMouseWheel(  io.getMouseWheel()  + ( float ) yOffset );
         });
-
         io.setSetClipboardTextFn( new ImStrConsumer() {
             @Override
             public void accept( final String s ) {
@@ -132,12 +148,9 @@ public class ImGuiLayer {
         io.setGetClipboardTextFn( new ImStrSupplier() {
             @Override
             public String get() {
+
                 final String clipboardString = glfwGetClipboardString( glfwWindow );
-                if( clipboardString != null ) {
-                    return clipboardString;
-                } else {
-                    return "";
-                }
+                return Objects.requireNonNullElse(clipboardString, "");
             }
         });
 
@@ -188,11 +201,11 @@ public class ImGuiLayer {
     }
 
     private void startFrame( final float deltaTime ) {
-        float[] winWidth =  { Window.getWidth() };
-        float[] winHeight = { Window.getHeight() };
+        float[] winWidth   =  { Window.getWidth() };
+        float[] winHeight  = { Window.getHeight() };
         double[] mousePosX = { 0 };
         double[] mousePosY = { 0 };
-        glfwGetCursorPos(glfwWindow, mousePosX, mousePosY);
+        glfwGetCursorPos( glfwWindow, mousePosX, mousePosY );
 
         // We SHOULD call those methods to update Dear ImGui state for the current frame
         final ImGuiIO io = ImGui.getIO();
@@ -210,7 +223,13 @@ public class ImGuiLayer {
     private void endFrame() {
         // After Dear ImGui prepared a draw data, we use it in the LWJGL3 renderer.
         // At that moment ImGui will be rendered to the current OpenGL context.
-        imGuiGl3.render( ImGui.getDrawData() );
+        imGuiGl3.renderDrawData( ImGui.getDrawData() );
+        if( ImGui.getIO().hasConfigFlags( ImGuiConfigFlags.ViewportsEnable ) ) {
+            final long backupWindowPtr = GLFW.glfwGetCurrentContext();
+            ImGui.updatePlatformWindows();
+            ImGui.renderPlatformWindowsDefault();
+            GLFW.glfwMakeContextCurrent(backupWindowPtr);
+        }
     }
 
     // If you want to clean a room after yourself - do it by yourself
@@ -220,15 +239,37 @@ public class ImGuiLayer {
         ImGui.destroyContext();
     }
 
-    public void update( float dt ) {
-
-        startFrame( dt );
+    public void update( Scene currentScene, float dt ) {
 
         // Any Dear ImGui code SHOULD go between ImGui.newFrame()/ImGui.render() methods
+        imGuiGlfw.newFrame();
         ImGui.newFrame();
+        setupDockSpace();
+        currentScene.sceneImgui();
         ImGui.showDemoWindow();
+        GameViewWindow.imgui();
+        ImGui.end();
         ImGui.render();
+        ImGui.endFrame();
+        imGuiGl3.renderDrawData(ImGui.getDrawData());
 
         endFrame();
+    }
+
+    private void setupDockSpace() {
+        int windowFlags = ImGuiWindowFlags.MenuBar | ImGuiWindowFlags.NoDocking;
+
+        ImGui.setNextWindowPos(0.0f, 0.0f, ImGuiCond.Always);
+        ImGui.setNextWindowSize(Window.getWidth(), Window.getHeight());
+        ImGui.pushStyleVar(ImGuiStyleVar.WindowRounding, 0.0f);
+        ImGui.pushStyleVar(ImGuiStyleVar.WindowBorderSize, 0.0f);
+        windowFlags |= ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoResize |
+                ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoNavFocus;
+
+        ImGui.begin("DockSpace Demo", new ImBoolean(true), windowFlags);
+        ImGui.popStyleVar(2);
+
+        // DockSpace
+        ImGui.dockSpace(ImGui.getID("DockSpace"));
     }
 }

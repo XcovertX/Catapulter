@@ -2,6 +2,7 @@ package jade;
 
 import renderer.Renderer;
 import userInterface.Image;
+import imgui.ImGui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,9 @@ public abstract class Scene {
     private boolean isRunning = false;
 
     protected List< Image > gameImages = new ArrayList<>();
+
+    protected Image activeGameImage = null;
+    protected boolean levelLoaded = false;
 
     public Scene() { }
 
@@ -41,6 +45,17 @@ public abstract class Scene {
         }
     }
 
+    public void sceneImgui() {
+        if( activeGameImage != null ) {
+            ImGui.begin( "Inspector" );
+            activeGameImage.imgui();
+            ImGui.end();
+        }
+        imgui();
+    }
+
+    public void imgui() {}
+
     public abstract void update( double dt );
 
     public abstract void update();
@@ -48,4 +63,5 @@ public abstract class Scene {
     public Camera camera() {
         return this.camera;
     }
+
 }

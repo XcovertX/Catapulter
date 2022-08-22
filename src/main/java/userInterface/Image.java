@@ -166,6 +166,14 @@ public class Image {
 		this.getComponent( SpriteRenderer.class ).setSprite( this.getSpriteSheet().getSprite( activeTilesetPosition ) );
 	}
 
+	public void imgui() {
+
+		for( Component component : components ) {
+
+			component.imgui();
+		}
+	}
+
 	public int getTileImageNumber() { return tileImageNumber; }
 
 	public void setTileImageNumber( int tileImageNumber ) { this.tileImageNumber = tileImageNumber; }

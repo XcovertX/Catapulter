@@ -4,6 +4,8 @@ import game.Game;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
+import renderer.DebugDraw;
+import renderer.FrameBuffer;
 import start.Catapulter;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
@@ -12,24 +14,16 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class Window {
-//    private final ImGuiImplGlfw imGuiGlfw = new ImGuiImplGlfw();
-//    private final ImGuiImplGl3 imGuiGl3 = new ImGuiImplGl3();
-//
-//    private String glslVersion = null;
 
     private int width, height;
     private String title;
     private long glfwWindow;
     public boolean isInitialized = false;
-
+    private FrameBuffer frameBuffer;
     public float r, g, b, a;
-
     private static Window window = null;
-
     private static Scene currentScene;
-
     private ImGuiLayer imGuiLayer;
-
     private Window() {
 
         this.width = 500;
@@ -62,6 +56,9 @@ public class Window {
                 assert false : "Unknown scene: '" + newScene + "'";
                 break;
         }
+
+//        currentScene.init();
+//        currentScene.start();
     }
 
     public static Window get() {
@@ -87,30 +84,36 @@ public class Window {
     public void loop() {
         double beginTime = glfwGetTime();
 
-        double endTime;
-        double dt = -1.0f;
+        float endTime;
+        float dt = -1.0f;
         while(!glfwWindowShouldClose(glfwWindow)) {
             // poll events
             glfwPollEvents();
 
-            glClearColor(r, g, b, a);
-            glClear(GL_COLOR_BUFFER_BIT);
+            DebugDraw.beginFrame();
+
+            this.frameBuffer.bind();
+
+            glClearColor( r, g, b, a );
+            glClear( GL_COLOR_BUFFER_BIT );
 
             if(dt >= 0) {
+
+                DebugDraw.draw();
                 currentScene.update(dt);
             }
 
-            this.imGuiLayer.update((float) dt);
+            this.imGuiLayer.update( currentScene, dt );
 
             glfwSwapBuffers(glfwWindow);
 
-            endTime = glfwGetTime();
-            dt = endTime - beginTime;
+            endTime = (float) glfwGetTime();
+            dt = (float ) (endTime - beginTime);
             beginTime = endTime;
         }
     }
 
-    public void update( double dt ) {
+    public void update( float dt ) {
 
         if( glfwWindowShouldClose( glfwWindow ) ) {
 
@@ -120,14 +123,20 @@ public class Window {
         // poll events
         glfwPollEvents();
 
-        glClearColor(r, g, b, a);
-        glClear(GL_COLOR_BUFFER_BIT);
+        DebugDraw.beginFrame();
+
+        this.frameBuffer.bind();
+        glClearColor( r, g, b, a );
+        glClear( GL_COLOR_BUFFER_BIT );
 
         if( dt >= 0 ) {
+
+            DebugDraw.draw();
             currentScene.update( dt );
         }
+        this.frameBuffer.unbind();
 
-        this.imGuiLayer.update( ( float ) dt);
+        this.imGuiLayer.update( currentScene, dt );
 
         glfwSwapBuffers( glfwWindow );
     }
@@ -161,10 +170,7 @@ public class Window {
         GLFWErrorCallback.createPrint( System.err ).set();
 
         // initialize GLFW
-        if( !glfwInit() ) {
-
-            throw new IllegalStateException( "Unable to initialize GLFW." );
-        }
+        if( !glfwInit() ) { throw new IllegalStateException( "Unable to initialize GLFW." ); }
         // Config GLFW
         glfwDefaultWindowHints();
 
@@ -173,7 +179,8 @@ public class Window {
 
         glfwWindowHint( GLFW_VISIBLE, GLFW_FALSE );
         glfwWindowHint( GLFW_RESIZABLE, GLFW_TRUE );
-        glfwWindowHint( GLFW_MAXIMIZED, GLFW_TRUE );
+        glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
+//        glfwWindowHint( GLFW_MAXIMIZED, GLFW_TRUE );
 
 
         // Create the window
@@ -190,6 +197,7 @@ public class Window {
         glfwSetWindowSizeCallback( glfwWindow, ( w, newWidth, newHeight ) -> {
             Window.setWidth( newWidth );
             Window.setHeight( newHeight );
+            glViewport(0, 0, newWidth, newHeight);
         });
         // Set key callbacks
         glfwSetKeyCallback( glfwWindow, KeyListener::keyCallback );
@@ -208,6 +216,8 @@ public class Window {
         glBlendFunc( GL_ONE, GL_ONE_MINUS_SRC_ALPHA );
         this.imGuiLayer = new ImGuiLayer( glfwWindow );
         this.imGuiLayer.initImGui();
+        this.frameBuffer = new FrameBuffer( 3840, 2160 );
+        glViewport( 0, 0, 3840, 2160 );
 
         Window.changeScene( 2 );
         isInitialized = true;
@@ -229,4 +239,15 @@ public class Window {
     public static void setHeight(int newHeight) {
         get().height = newHeight;
     }
+
+    public static FrameBuffer getFramebuffer() { return get().frameBuffer; }
+
+    public static float getTargetAspectRatio() { return 16.0f / 9.0f; }
+
+    public static Scene getCurrentScene() {
+        get();
+        return currentScene; }
+
+    public static void setCurrentScene( Scene currentScene ) { Window.currentScene = currentScene; }
+
 }

@@ -80,29 +80,22 @@ public class Actor extends ThingHolder {
         this.type = "Actor";
 
 	}
-    
-    
+
 	public ActorStats getStats() {
 		return stats;
 	}
 
-	public void setStats(ActorStats stats) {
+	public void setStats( ActorStats stats ) {
 		this.stats = stats;
 	}
 
-	public void setAlive(boolean isAlive) {
+	public void setAlive( boolean isAlive ) {
 		this.isAlive = isAlive;
 	}
 
-	public void setTile( GameTile aGameTile ) {
-    	
-        this.currentTile = aGameTile;
-    }
+	public void setTile( GameTile aGameTile ) { this.currentTile = aGameTile; }
 
-    public GameTile getTile() {
-
-        return currentTile;
-    }
+    public GameTile getTile() { return currentTile; }
 	
 	// TODO make some kind of verb list for other character 
 	public void say( String words ) {
@@ -111,35 +104,17 @@ public class Actor extends ThingHolder {
 		Game.currentGame.getUI().println( "\"" + words + ".\"" );
 	}
 	
-    public void setThirst( int tLevel ) {
-    	
-        this.getStats().setThirst( tLevel );
-    }
+    public void setThirst( int tLevel ) { this.getStats().setThirst( tLevel ); }
 
-    public int getThirst() {
-
-        return this.getStats().getThirst();
-    }
+    public int getThirst() { return this.getStats().getThirst(); }
     
-    public void setHunger( int hLevel ) {
-    	
-        this.getStats().setHunger( hLevel );
-    }
+    public void setHunger( int hLevel ) { this.getStats().setHunger( hLevel ); }
 
-    public int getHunger() {
+    public int getHunger() { return this.getStats().getHunger(); }
 
-        return this.getStats().getHunger();
-    }
+	public double getHitPoints() { return this.getStats().getHPCurrent(); }
 
-	public double getHitPoints() {
-		
-		return this.getStats().getHPCurrent();
-	}
-
-	public void setHitPoints( int hitPoints ) {
-		
-		this.getStats().setHPCurrent( hitPoints );
-	}
+	public void setHitPoints( int hitPoints ) { this.getStats().setHPCurrent( hitPoints ); }
 
 	public boolean isAttackable() {
 		return attackable;
@@ -177,7 +152,6 @@ public class Actor extends ThingHolder {
 		setDecomposed( 100 );
 		setDecomposing( true );
 		this.getTileChar().setCharColor( "#E1341E" );
-		
 	}
 	
 	public ThingList getInventory() {
@@ -187,6 +161,7 @@ public class Actor extends ThingHolder {
 	public void dropAll() {
 		
 		for(int i = 0; i < this.things.size(); i++) {
+
 			this.getTile().getThings().add( this.things.remove( i ) );
 		}
 	}
@@ -203,7 +178,7 @@ public class Actor extends ThingHolder {
 		return isDecomposing;
 	}
 
-	public void setDecomposed(int decomposed) {
+	public void setDecomposed( int decomposed ) {
 		this.decomposed = decomposed;
 	}
 
@@ -211,11 +186,11 @@ public class Actor extends ThingHolder {
 		return deathDate;
 	}
 
-	public void setDeathDate(long deathDate) {
+	public void setDeathDate( long deathDate ) {
 		this.deathDate = deathDate;
 	}
 
-	public void setDecomposing(boolean isDecomposing) {
+	public void setDecomposing( boolean isDecomposing ) {
 		this.isDecomposing = isDecomposing;
 	}
 
@@ -223,7 +198,7 @@ public class Actor extends ThingHolder {
 		return isEngagedInCombat;
 	}
 
-	public void setEngagedInCombat(boolean isEngagedInCombat) {
+	public void setEngagedInCombat( boolean isEngagedInCombat ) {
 		this.isEngagedInCombat = isEngagedInCombat;
 	}
 
@@ -231,7 +206,7 @@ public class Actor extends ThingHolder {
 		return isWalking;
 	}
 
-	public void setWalking(boolean isWalking) {
+	public void setWalking( boolean isWalking ) {
 		this.isWalking = isWalking;
 	}
 
@@ -239,7 +214,7 @@ public class Actor extends ThingHolder {
 		return isWandering;
 	}
 
-	public void setWandering(boolean isWandering) {
+	public void setWandering( boolean isWandering ) {
 		this.isWandering = isWandering;
 	}
 
@@ -247,7 +222,7 @@ public class Actor extends ThingHolder {
 		return fight;
 	}
 
-	public void setFight(Fight fight) {
+	public void setFight( Fight fight ) {
 		this.fight = fight;
 	}
 
@@ -255,7 +230,7 @@ public class Actor extends ThingHolder {
 		return isEngagedInConversation;
 	}
 
-	public void setEngagedInConversation(boolean isEngagedInConversation) {
+	public void setEngagedInConversation( boolean isEngagedInConversation ) {
 		this.isEngagedInConversation = isEngagedInConversation;
 	}
 
@@ -263,7 +238,7 @@ public class Actor extends ThingHolder {
 		return conversation;
 	}
 
-	public void setConversation(Conversation conversation) {
+	public void setConversation( Conversation conversation ) {
 		this.conversation = conversation;
 	}
 
@@ -271,21 +246,11 @@ public class Actor extends ThingHolder {
 		return isRunning;
 	}
 
-	public void setRunning(boolean isRunning) {
+	public void setRunning( boolean isRunning ) {
 		this.isRunning = isRunning;
 	}
 	
-	public boolean isPlayer() {
-		
-		if( this.equals( Game.currentGame.getPlayer() ) ) {
-
-			return true;
-
-		} else {
-
-			return false;
-		}
-	}
+	public boolean isPlayer() { return this.equals( Game.currentGame.getPlayer() ); }
 
 	public void movePlayerSprite( GameTile gt ) {
 
@@ -296,7 +261,7 @@ public class Actor extends ThingHolder {
 		return thirstCounter;
 	}
 
-	public void setThirstCounter(int thirstCounter) {
+	public void setThirstCounter( int thirstCounter ) {
 		this.thirstCounter = thirstCounter;
 	}
 
@@ -304,7 +269,7 @@ public class Actor extends ThingHolder {
 		return hungerCounter;
 	}
 
-	public void setHungerCounter(int hungerCounter) {
+	public void setHungerCounter( int hungerCounter ) {
 		this.hungerCounter = hungerCounter;
 	}
 	
@@ -320,7 +285,7 @@ public class Actor extends ThingHolder {
 		return body;
 	}
 
-	public void setBody(Body body) {
+	public void setBody( Body body ) {
 		this.body = body;
 	}
 
@@ -328,7 +293,7 @@ public class Actor extends ThingHolder {
 		return race;
 	}
 
-	public void setRace(String race) {
+	public void setRace( String race ) {
 		this.race = race;
 	}
 
@@ -336,9 +301,7 @@ public class Actor extends ThingHolder {
 		return isSitting;
 	}
 
-	public void setIsSitting(boolean isSitting) {
-		this.isSitting = isSitting;
-	}
+	public void setIsSitting( boolean isSitting ) { this.isSitting = isSitting; }
 
 	public String getDistanceBounds() {
 		return distanceBounds;

@@ -5,6 +5,7 @@ import renderer.Texture;
 
 public class Sprite {
 
+    private float width, height;
     private Texture texture;
     private Vector2f[] texCoords;
 
@@ -38,5 +39,17 @@ public class Sprite {
         return this.texCoords;
     }
 
+    public void setTextureCoords( Vector2f[] textureCoords ) {
+        this.texCoords = textureCoords;
+    }
 
+    public float getWidth() { return width; }
+
+    public void setWidth( float width ) { this.width = width; }
+
+    public float getHeight() { return height; }
+
+    public void setHeight( float height ) { this.height = height; }
+
+    public int getTextureId() { return texture == null ? -1 : texture.getId(); }
 }
