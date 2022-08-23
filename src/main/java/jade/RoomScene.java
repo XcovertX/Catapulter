@@ -16,6 +16,7 @@ import userInterface.TMX;
 import userInterface.TMXParser;
 import userInterface.TSX;
 import util.AssetPool;
+import verbs.Go;
 import world.GameRoom;
 import world.GameTile;
 import world.UpdateWorldMethods;
@@ -167,20 +168,19 @@ public class RoomScene extends Scene {
 
         if ( KeyListener.isKeyPressed( GLFW_KEY_RIGHT ) ) {
 
-            System.out.println( "right" );
-            this.camera.position.x += 100f * dt;
+           new Go().run( "e" );
 
         } else if ( KeyListener.isKeyPressed( GLFW_KEY_LEFT ) ) {
 
-            camera.position.x -= 100f * dt;
+            new Go().run( "w" );
         }
         if ( KeyListener.isKeyPressed( GLFW_KEY_UP ) ) {
 
-            camera.position.y += 100f * dt;
+            new Go().run( "n" );
 
         } else if ( KeyListener.isKeyPressed( GLFW_KEY_DOWN ) ) {
 
-            camera.position.y -= 100f * dt;
+            new Go().run( "s" );
         }
 
         for( Image gameImage : this.gameImages ) {
