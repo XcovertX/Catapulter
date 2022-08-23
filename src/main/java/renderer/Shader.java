@@ -45,7 +45,7 @@ public class Shader {
 
             } else {
 
-                throw new IOException("Unexpected token: '" + firstPattern + "'");
+                throw new IOException( "Unexpected token: '" + firstPattern + "'");
             }
             if( secondPattern.equals( "fragment" ) ) {
 

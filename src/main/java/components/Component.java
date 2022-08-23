@@ -1,4 +1,4 @@
-package jade;
+package components;
 
 import userInterface.Image;
 import imgui.ImGui;

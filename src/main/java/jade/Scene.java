@@ -46,9 +46,14 @@ public abstract class Scene {
     }
 
     public void sceneImgui() {
-        if( activeGameImage != null ) {
+//        if( activeGameImage != null ) {
+//            ImGui.begin( "Inspector" );
+//            activeGameImage.imgui();
+//            ImGui.end();
+//        }
+        for( Image image : gameImages ) {
             ImGui.begin( "Inspector" );
-            activeGameImage.imgui();
+            image.imgui();
             ImGui.end();
         }
         imgui();

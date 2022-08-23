@@ -16,7 +16,7 @@ import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.*;
 
-public class RenderBatch implements Comparable<RenderBatch> {
+public class RenderBatch implements Comparable< RenderBatch > {
     // Vertex
     // ******************************************************************
     // Pos              color                        TexCoords      texID
@@ -45,8 +45,8 @@ public class RenderBatch implements Comparable<RenderBatch> {
     private Shader shader;
     private int zIndex;
 
-    public RenderBatch(int maxBatchSize, int zIndex) {
-        shader = AssetPool.getShader("assets/shaders/default.glsl");
+    public RenderBatch( int maxBatchSize, int zIndex ) {
+        this.shader = AssetPool.getShader("assets/shaders/default.glsl");
         this.sprites = new SpriteRenderer[maxBatchSize];
         this.maxBatchSize = maxBatchSize;
         this.zIndex = zIndex;

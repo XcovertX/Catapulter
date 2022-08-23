@@ -2,7 +2,7 @@ package userInterface;
 
 import components.SpriteRenderer;
 import components.SpriteSheet;
-import jade.Component;
+import components.Component;
 import jade.Transform;
 import jade.Transition;
 
@@ -11,6 +11,8 @@ import java.util.List;
 
 public class Image {
 
+	private static int ID_COUNTER = 0;
+	private int uid = -1;
 	private String name;
 	private int tileImageNumber;
 	private String ImageResourcePath;
@@ -33,11 +35,16 @@ public class Image {
 
 		this.components = new ArrayList<>();
 		this.transition = null;
+		this.uid = ID_COUNTER++;
 	}
 
 	public Image( String name, Transform transform, int zIndex ) {
 
-		init( name, new ArrayList<>(), transform, zIndex );
+		this.name = name;
+		this.components = new ArrayList<>();
+		this.transform = transform;
+		this.zIndex = zIndex;
+		this.uid = ID_COUNTER++;
 	}
 
 	public < T extends Component > T getComponent( Class< T > componentClass ) {
@@ -79,6 +86,7 @@ public class Image {
 
 	public void addComponent( Component c ) {
 
+		c.generateId();
 		this.components.add( c );
 		c.gameImage = this;
 	}
@@ -103,9 +111,9 @@ public class Image {
 				transition = null;
 			}
 		}
-		for( int i = 0; i < components.size(); i++ ) {
+		for (Component component : components) {
 
-			components.get( i ).update( dt );
+			component.update( dt );
 		}
 	}
 
@@ -115,19 +123,11 @@ public class Image {
 
 		if( components != null ) {
 
-			for( int i = 0; i < components.size(); i++ ) {
+			for (Component component : components) {
 
-				components.get(i).start();
+				component.start();
 			}
 		}
-	}
-
-	public void init( String name, List<Component> components, Transform transform, int zIndex ) {
-
-		this.name = name;
-		this.components = components;
-		this.transform = transform;
-		this.zIndex = zIndex;
 	}
 
 	public int zIndex() {
@@ -145,6 +145,10 @@ public class Image {
 		}
 		return false;
 	}
+
+	public static void init( int maxId ) { ID_COUNTER = maxId; }
+
+	public int getUid() { return this.uid; }
 
 	private void updateTimeAccumulation( float dt ) { timeAccumulation += dt; }
 
@@ -173,6 +177,8 @@ public class Image {
 			component.imgui();
 		}
 	}
+
+	public List<Component> getAllComponents() { return this.components; }
 
 	public int getTileImageNumber() { return tileImageNumber; }
 

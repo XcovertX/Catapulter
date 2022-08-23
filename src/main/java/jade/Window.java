@@ -180,7 +180,7 @@ public class Window {
         glfwWindowHint( GLFW_VISIBLE, GLFW_FALSE );
         glfwWindowHint( GLFW_RESIZABLE, GLFW_TRUE );
         glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
-//        glfwWindowHint( GLFW_MAXIMIZED, GLFW_TRUE );
+        glfwWindowHint( GLFW_MAXIMIZED, GLFW_TRUE );
 
 
         // Create the window

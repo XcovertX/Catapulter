@@ -31,6 +31,7 @@ public class RoomScene extends Scene {
     private SpriteSheet sprites;
     private TileSheet tiles;
     private SpriteSheet torch;
+    Image levelEditorStuff = new Image("LevelEditor", new Transform(new Vector2f()), 0);
 
     private GameRoom gameRoom;
 
@@ -40,6 +41,9 @@ public class RoomScene extends Scene {
 
     @Override
     public void init() {
+
+        levelEditorStuff.addComponent( new MouseControls() );
+        levelEditorStuff.addComponent( new GridLines() );
 
         TMXParser tmxParser = new TMXParser( gameRoom );
         TMX tmxFile = tmxParser.getTmx();
@@ -194,18 +198,38 @@ public class RoomScene extends Scene {
 
     }
 
-//    public void imgui() {
-//        ImGui.begin("Test Window");
-//
-//        ImVec2 windowPos = new ImVec2();
-//        ImGui.getWindowPos(windowPos);
-//        ImVec2 windowSize = new ImVec2();
-//        ImGui.getWindowSize(windowSize);
-//        ImVec2 itemSpacing = new ImVec2();
-//        ImGui.getStyle().getItemSpacing(itemSpacing);
-//
-//        float windowX2 = windowPos.x + windowSize.x;
-//
+    public void imgui() {
+        ImGui.begin("Test Window");
+
+        ImVec2 windowPos = new ImVec2();
+        ImGui.getWindowPos(windowPos);
+        ImVec2 windowSize = new ImVec2();
+        ImGui.getWindowSize(windowSize);
+        ImVec2 itemSpacing = new ImVec2();
+        ImGui.getStyle().getItemSpacing(itemSpacing);
+
+        float windowX2 = windowPos.x + windowSize.x;
+
+        for( int i = 0; i < gameImages.size(); i++  ) {
+
+            Image image = gameImages.get(i);
+            SpriteRenderer sr = image.getComponent( SpriteRenderer.class );
+            SpriteSheet ss = image.getSpriteSheet();
+            Sprite sprite = ss.getSprite(3);
+            float spriteWidth = sprite.getWidth() * 4;
+            float spriteHeight = sprite.getHeight() * 4;
+            int id = sprite.getTextureId();
+            Vector2f[] textureCoords = sprite.getTexCoords();
+
+            ImGui.pushID(i);
+            if(ImGui.imageButton(id, spriteWidth, spriteHeight, textureCoords[2].x, textureCoords[0].y, textureCoords[0].x, textureCoords[2].y)) {
+//                Image object = Prefabs.generateSpriteObject(sprite, 32, 32);
+                // Attach this to the mouse cursor
+                levelEditorStuff.getComponent(MouseControls.class).pickupObject(image);
+            }
+            ImGui.popID();
+        }
+
 //        for( int i = 0; i < sprites.size(); i++ ) {
 //
 //            Sprite sprite = sprites.getSprite(i);
@@ -230,7 +254,7 @@ public class RoomScene extends Scene {
 //                ImGui.sameLine();
 //            }
 //        }
-//
-//        ImGui.end();
-//    }
+
+        ImGui.end();
+    }
 }

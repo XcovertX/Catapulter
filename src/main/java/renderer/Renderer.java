@@ -19,11 +19,11 @@ public class Renderer {
 
     public void add( Image gameImage ) {
 
-        SpriteRenderer spr = gameImage.getComponent( SpriteRenderer.class );
+        SpriteRenderer sr = gameImage.getComponent( SpriteRenderer.class );
 
-        if ( spr != null ) {
+        if ( sr != null ) {
 
-            add( spr );
+            add( sr );
         }
     }
 

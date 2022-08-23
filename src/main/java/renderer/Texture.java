@@ -103,11 +103,11 @@ public class Texture {
     public String getFilepath() { return this.filePath; }
 
     @Override
-    public boolean equals(Object object) {
-        if(object == null) return false;
-        if(!(object instanceof  Texture)) return false;
-        Texture objectTexture = (Texture) object;
+    public boolean equals( Object object ) {
+        if( object == null ) return false;
+        if( !( object instanceof  Texture ) ) return false;
+        Texture objectTexture = ( Texture ) object;
         return objectTexture.getWidth() == this.width && objectTexture.getHeight() == this.height
-                && objectTexture.getId() == this.textureID && objectTexture.getFilepath().equals(this.filePath);
+                && objectTexture.getId() == this.textureID && objectTexture.getFilepath().equals( this.filePath );
     }
 }

@@ -1,2 +1,35 @@
-package components;public class MouseControls {
+package components;
+
+import jade.MouseListener;
+import jade.Window;
+import userInterface.Image;
+import util.Settings;
+
+import static org.lwjgl.glfw.GLFW.GLFW_MOUSE_BUTTON_LEFT;
+
+public class MouseControls extends Component {
+    Image holdingObject = null;
+
+    public void pickupObject( Image gameObject ) {
+        this.holdingObject = gameObject;
+        Window.getCurrentScene().addGameImageToScene( gameObject );
+    }
+
+    public void place() {
+        this.holdingObject = null;
+    }
+
+    @Override
+    public void update(float dt) {
+        if(holdingObject != null) {
+            holdingObject.transform.position.x = MouseListener.getOrthoX();
+            holdingObject.transform.position.y = MouseListener.getOrthoY();
+            holdingObject.transform.position.x = (int) (holdingObject.transform.position.x / Settings.GRID_WIDTH) * Settings.GRID_WIDTH;
+            holdingObject.transform.position.y = (int) (holdingObject.transform.position.y / Settings.GRID_HEIGHT) * Settings.GRID_HEIGHT;
+
+            if( MouseListener.mouseButtonDown( GLFW_MOUSE_BUTTON_LEFT ) ) {
+                place();
+            }
+        }
+    }
 }

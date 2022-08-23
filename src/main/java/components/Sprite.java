@@ -22,6 +22,7 @@ public class Sprite {
     }
 
     public Sprite( Texture texture, Vector2f[] texCoords ) {
+
         init( texture, texCoords );
     }
 
@@ -31,17 +32,13 @@ public class Sprite {
         this.texCoords = texCoords;
     }
 
-    public Texture getTexture() {
-        return this.texture;
-    }
+    public Texture getTexture() { return this.texture; }
 
-    public Vector2f[] getTexCoords() {
-        return this.texCoords;
-    }
+    public void setTexture( Texture texture ) { this.texture = texture; }
 
-    public void setTextureCoords( Vector2f[] textureCoords ) {
-        this.texCoords = textureCoords;
-    }
+    public Vector2f[] getTexCoords() { return this.texCoords; }
+
+    public void setTexCoords( Vector2f[] textureCoords ) { this.texCoords = textureCoords; }
 
     public float getWidth() { return width; }
 
