@@ -97,13 +97,6 @@ public class Actor extends ThingHolder {
 
     public GameTile getTile() { return currentTile; }
 	
-	// TODO make some kind of verb list for other character 
-	public void say( String words ) {
-		Game.currentGame.getUI().printColor( this.toString(), Color.GREEN );
-		Game.currentGame.getUI().printColor(" says: ", Color.YELLOW);
-		Game.currentGame.getUI().println( "\"" + words + ".\"" );
-	}
-	
     public void setThirst( int tLevel ) { this.getStats().setThirst( tLevel ); }
 
     public int getThirst() { return this.getStats().getThirst(); }
@@ -252,7 +245,7 @@ public class Actor extends ThingHolder {
 	
 	public boolean isPlayer() { return this.equals( Game.currentGame.getPlayer() ); }
 
-	public void movePlayerSprite( GameTile gt ) {
+	public void moveSprite( GameTile gt ) {
 
 		this.getThingImage().transition = new Transition( getThingImage().transform, gt.getBaseTileImage().transform );
 	}

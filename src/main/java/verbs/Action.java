@@ -72,7 +72,7 @@ public abstract class Action {
 		return isTalkCommand;
 	}
 
-	public void setTalkCommand(boolean isTalkCommand) {
+	public void setTalkCommand( boolean isTalkCommand ) {
 		this.isTalkCommand = isTalkCommand;
 	}
 

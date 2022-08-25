@@ -1,9 +1,12 @@
 package verbs;
 
+import components.Component;
+import components.SpriteRenderer;
 import game.Game;
 import gameObjects.Container;
 import gameObjects.Thing;
 import gameObjects.ThingHolder;
+import jade.Window;
 
 public class Take extends Action {
 
@@ -31,6 +34,8 @@ public class Take extends Action {
 				Game.currentGame.getPlayer().addThing( thing );
 				Game.currentTile.getThings().remove( index );
 				thing.setLocationInRoom( "inventory" );
+
+				thing.getThingImage().removeComponent( SpriteRenderer.class );
 			} else {
 				Game.currentGame.getUI().println( "You can not pick up the " + thing + "." );
 			}

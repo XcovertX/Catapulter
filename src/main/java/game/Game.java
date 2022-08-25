@@ -23,6 +23,7 @@ import light.Light;
 import light.RadiatingLight;
 import mapBuilder.RoomBuilder;
 import utility.SignReader;
+import wearableObjects.Ring;
 import world.GameMap;
 import world.GameRoom;
 import world.GameTile;
@@ -58,7 +59,7 @@ public class Game {
     
     public Game( boolean newGame ) {
     	
-    	 if( newGame == true ) {
+    	 if( newGame ) {
     		
     		// TODO build new game / load game selector
 
@@ -76,7 +77,15 @@ public class Game {
 
     		player = new Human( "player", "This is a player", currentTile, new ThingList(), " @ " );
 
-            gameWindow = Window.get();
+
+             Ring ring = new Ring();
+             ring.setName( "Ring of Might and Madness" );
+             ring.setAltNames( new String[ 1 ] );
+             ring.getAltNames()[ 0 ] = "ring";
+             currentRoom.getTile( 50 ).getThings().add( ring );
+
+
+             gameWindow = Window.get();
             gameWindow.run();
 
 //    		//test shader
@@ -85,13 +94,7 @@ public class Game {
 //    		player.setLightSource( true );
 //
 //    		ShaderNew s = new ShaderNew( "files/assets/shaders/default.shader" );
-    		
-//    		Ring ring = new Ring();
-//    		ring.setName( "Ring of Might and Madness" );
-//    		ring.setAltNames( new String[ 1 ] );
-//    		ring.getAltNames()[ 0 ] = "ring";
-//    		currentTile.getThings().add( ring );
-    		
+
 
 //    		
 //    		Revolver r = new Revolver();

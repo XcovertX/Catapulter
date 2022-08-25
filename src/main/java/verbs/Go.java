@@ -5,6 +5,7 @@ import java.awt.Color;
 import actor.Actor;
 import game.Game;
 import globals.Direction;
+import messages.*;
 import world.GameMap;
 import world.GameRoom;
 import world.GameTile;
@@ -17,8 +18,7 @@ public class Go extends Action {
 	}
 
 	@Override
-	public void run() {
-	}
+	public void run() { }
 
 	@Override
 	public void run( String thing ) {
@@ -41,16 +41,10 @@ public class Go extends Action {
 	}
 	
 	@Override
-	public void run(String thingName, String preposition) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void run( String thingName, String preposition ) { }
 	
 	@Override
-	public void run( String thingNameOne, String preposition, String thingNameTwo ) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void run( String thingNameOne, String preposition, String thingNameTwo ) { }
 
 	@Override
 	public boolean requiresNoun() {
@@ -61,21 +55,15 @@ public class Go extends Action {
 	public void setRequiresNoun( boolean requiresNoun ) {
 		this.requiresNoun = requiresNoun;
 	}
-	
-	 // move a Person to a Room
+
     void moveActorTo( Actor p, GameTile aGameTile ) {
         p.setTile( aGameTile );
         aGameTile.setCurrentTileChar();
-		p.movePlayerSprite( aGameTile );
+		p.moveSprite( aGameTile );
     }
 
-    // move an Actor in direction 'dir'
    public int moveTo( Actor anActor, Direction dir ) {
-        // return: Constant representing the room number moved to
-        // or NOEXIT
-        //
-        // try to move any Person (typically but not necessarily player)
-        // in direction indicated by dir
+
         GameTile gt = anActor.getTile();
         int exit;
 
@@ -93,16 +81,12 @@ public class Go extends Action {
                 exit = gt.getW();
                 break;
             default:
-                exit = Direction.NOEXIT; // noexit - stay in same room
+                exit = Direction.NOEXIT;
                 break;
         }
         if ( exit != Direction.NOEXIT ) {
-        	
-        	
-        	 //TODO Make this a variable
-        	if( ( ( GameTile ) Game.currentRoom.getTiles().get( exit ) ).isDoor() ==  true) { //NOTE: you can stop using this if you want the NPA to stay in room.
-        		
-        		//TODO This doesn't make sense --
+
+        	if( ( ( GameTile ) Game.currentRoom.getTiles().get( exit ) ).isDoor() ) {
         		GameTile door = (GameTile) ( Game.currentRoom.getTiles().get( exit ) );
 //        		Game.currentWorld =  worldReader.getWorld( door.getExternalMapLocation(), door.getExternalMapName() );
         		Game.currentTile.setCurrentTileCharToDefaultTileChar();
@@ -133,75 +117,26 @@ public class Go extends Action {
         return exit;
     }
 
-    public int movePlayerTo( Direction dir ) {
-        // return: Constant representing the room number moved to
-        // or NOEXIT (see moveTo())
-        //        
-        return moveTo( Game.currentGame.getPlayer(), dir );
+    public int movePlayerTo( Direction direction ) {
+
+        return moveTo( Game.currentGame.getPlayer(), direction );
     }
 
     public void updateOutput( int roomNumber ) {
-        // if roomNumber = NOEXIT, display a special message, otherwise
-        // display text (e.g. name and description of room)
-        String s;
-        String currentExits = null;
 
-        GameTile gt = Game.currentGame.getPlayer().getTile(); // current room player is in
+        GameTile gt = Game.currentGame.getPlayer().getTile();
         
         if ( roomNumber == Direction.NOEXIT ) {
-        	
-            s = "No Exit!";
-            currentExits = gt.getTileExits().toString();     
-            Game.currentGame.getUI().println( s );
-            
+			new ExitsMessage().run( "No Exit" );
+			new ExitsMessage().run( gt );
         } else {
-        
-    		Game.currentGame.getUI().printColor( "Time: " + Game.calendar.getTime(), Color.ORANGE );
-    		Game.currentGame.getUI().printColor( "Wind Direction: " + Game.calendar.getWeather().getCurrentWindDirection() + " ::: ", Color.ORANGE );
-    		Game.currentGame.getUI().printlnColor( "Wind Speed: " + Game.calendar.getWeather().getCurrentWindIntensity(), Color.ORANGE );
-    		Game.currentGame.getUI().print( "You are in " );
-    		Game.currentGame.getUI().printColor( gt.getName(), Color.MAGENTA ); // switched to reading room info rather than tile
-    		Game.currentGame.getUI().println( "." );							// remove once confirmed it works
-    		Game.currentGame.getUI().println( gt.getDescription() );
-//    		Game.currentGame.getUI().printColor( gt.getRoom().getName(), Color.MAGENTA );
-//    		Game.currentGame.getUI().println( "." );
-//    		Game.currentGame.getUI().println( gt.getRoom().getDescription() );
-            
-            if( !gt.getThings().isEmpty() ) {
-            	
-            	for( int i = 0; i < gt.getThings().size(); i++ ) {
-            		
-            		s = "There is a ";
-            		Game.currentGame.getUI().printColor( s, Color.white );
-            		s = gt.getThings().get( i ).toString();
-            		Game.currentGame.getUI().printColor( s, Color.yellow );
-            		s = " on the floor."; // TODO make this a variable
-            		Game.currentGame.getUI().printlnColor( s, Color.white );
-            	}
-            }
-            
-            if( !gt.getNPCs().isEmpty() ) {
-            	
-            	for( int i = 0; i < gt.getNPCs().size(); i++ ) {
-            		
-            		Actor actor = ( Actor ) gt.getNPCs().get( i );
-            		if( actor.isAlive() ) {
-            			Game.currentGame.getUI().printColor( actor.toString(), Color.green );
-            			Game.currentGame.getUI().printlnColor( " is here.", Color.white );
-            		} else {
-            			Game.currentGame.getUI().printColor( "The corpse of ", Color.white );
-            			Game.currentGame.getUI().printColor( actor.toString(), Color.RED );
-            			Game.currentGame.getUI().printlnColor( " is here.", Color.white );
-            		}
-            	}
-            }
-            
-            currentExits = "The current exits are " + gt.getTileExits().toString();
+			new LocationMessage().run( gt );
+			new DescriptionMessage().run( gt );
+			new ExitsMessage().run( gt );
+			new ActorsPresentMessage().run( gt );
+			new ThingsPresentMessage().run( gt );
             Game.currentGame.getUI().getDisplay().setRoom( Game.currentRoom ); 
         }
-        
-        Game.currentGame.getUI().printlnColor( currentExits, Color.CYAN );
-
 //        Game.currentGame.getUI().getTextMapController().setRoomDescription( currentExits );
     }
 
@@ -209,19 +144,13 @@ public class Go extends Action {
 		return isDirection;
 	}
 
-	public void setIsDirection(boolean isDirection) {
+	public void setIsDirection( boolean isDirection ) {
 		this.isDirection = isDirection;
 	}
 
 	@Override
-	public boolean canHaveNoun() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	public boolean canHaveNoun() { return false; }
 
 	@Override
-	public void setCanHaveNoun(boolean requiresNoun) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void setCanHaveNoun( boolean requiresNoun ) { }
 }

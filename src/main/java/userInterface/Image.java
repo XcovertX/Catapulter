@@ -76,9 +76,10 @@ public class Image {
 
 			Component C = components.get( i );
 
-			if( componentClass.isAssignableFrom( components.getClass() ) ) {
+			if( componentClass.isAssignableFrom( C.getClass() ) ) {
 
 				components.remove( i );
+				transform.setVisible( false );
 				return;
 			}
 		}
@@ -111,7 +112,7 @@ public class Image {
 				transition = null;
 			}
 		}
-		for (Component component : components) {
+		for ( Component component : components ) {
 
 			component.update( dt );
 		}

@@ -79,11 +79,11 @@ public class Thing {
     private Image[] thingImages;
 
 	private Image thingImage;
-   
+	private int tilesetStartPosition;
     
     public String type = "Thing";
-    
-    public Thing() {
+
+	public Thing() {
     	this.name = "";
     	this.altNames = new String[0];
     	this.description = "";
@@ -95,6 +95,7 @@ public class Thing {
     	this.setLocationInRoom( "" );
     	this.setMatterState( "" );
     	this.setIsOwnedBy( "" );
+		this.tilesetStartPosition = 0;
     	
     	this.setSize( 0 );
     	this.setWeight( 0.0 );
@@ -128,6 +129,7 @@ public class Thing {
         this.setLocationInRoom( "" );
     	this.setMatterState( "" );
     	this.setIsOwnedBy( "" );
+		this.tilesetStartPosition = 0;
     	
     	this.setSize( 0 );
     	this.setWeight( 0.0 );
@@ -549,8 +551,6 @@ public class Thing {
 
 	private void initImage( Image baseImage ) {
 
-		System.out.println( this.getName() );
-
 		if( this.getTSXPath() != null ) {
 
 			TSX tsx = new TSX( this.getTSXPath() );
@@ -560,19 +560,24 @@ public class Thing {
 			thingImage.setImageResourcePath( tsx.getImageSourcePath() );
 			thingImage.setImageWidth( tsx.getTileWidth() );
 			thingImage.setImageHeight( tsx.getTileHeight() );
-			thingImage.setImageFrameCount( tsx.getFrames().getLength() );
+			thingImage.setImageFrameCount( tsx.getFrameCount() );
 			thingImage.transform = new Transform();
-			thingImage.setActiveTilesetPosition( 0 );
+			thingImage.setActiveTilesetPosition( this.getTilesetStartPosition() );
 			thingImage.setAnimated( tsx.isAnimated() );
 			thingImage.setFrameDuration( tsx.getFrameDuration() );
 
+			System.out.println( thingImage.getName() );
 			System.out.println( thingImage.getImageResourcePath() );
+			System.out.println( thingImage.getImageFrameCount() );
+			System.out.println( thingImage.isAnimated() );
+			System.out.println( thingImage.isAnimated() );
+
 
 			AssetPool.addSpriteSheet( thingImage.getImageResourcePath(),
 					new SpriteSheet( AssetPool.getTexture( thingImage.getImageResourcePath() ),
 							thingImage.getImageWidth(),
 							thingImage.getImageHeight(),
-							thingImage.getImageFrameCount(),
+							tsx.getTileCount(),
 							0) );
 
 			thingImage.setSpriteSheet( AssetPool.getSpriteSheet( thingImage.getImageResourcePath() ) );
@@ -586,6 +591,10 @@ public class Thing {
 			this.setThingImage( thingImage );
 		}
 	}
+
+	public int getTilesetStartPosition() { return this.tilesetStartPosition; };
+
+	public void setTilesetStartPosition( int position ) { this.tilesetStartPosition = position; };
 
 	public boolean isNPC() {
 		return isNPC;

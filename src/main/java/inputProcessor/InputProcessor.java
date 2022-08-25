@@ -131,12 +131,11 @@ public class InputProcessor {
     }
 
     public void updateOutput( int roomNumber ) {
-        // if roomNumber = NOEXIT, display a special message, otherwise
-        // display text (e.g. name and description of room)    
+
         String s;
         String currentExits = null;
 
-        GameTile gt = Game.currentGame.getPlayer().getTile(); // current room player is in
+        GameTile gt = Game.currentGame.getPlayer().getTile();
         
         if ( roomNumber == Direction.NOEXIT ) {
         	
@@ -274,8 +273,7 @@ public class InputProcessor {
         verb = wordlist.get( 0 );
         preposition = wordlist.get( 1 );
         noun = wordlist.get( 2 );
-        
-        
+
         //Checks if viable verb;
         if( knownVerbs.check( verb ) == false ) {
         	msg = "I am unfamiliar with the term " + verb + ". What should I do?";
@@ -327,20 +325,20 @@ public class InputProcessor {
         } 
     }  
 
-    public String ParseCommand( List< String > wordlist ) {
-
-        String msg;
-        if ( wordlist.size() == 1 ) {
-            msg = ProcessVerb( wordlist );
-        } else if( wordlist.size() == 2 ) {
-            msg = ProcessVerbNoun( wordlist );
-        } else if( wordlist.size() > 2) {
-        	msg = ProcessVerbString( wordlist );
-        } else {
-            msg = "I don't understand what you're trying to do";
-        }
-        return msg;
-    }
+//    public String ParseCommand( List< String > wordlist ) {
+//
+//        String msg;
+//        if ( wordlist.size() == 1 ) {
+//            msg = ProcessVerb( wordlist );
+//        } else if( wordlist.size() == 2 ) {
+//            msg = ProcessVerbNoun( wordlist );
+//        } else if( wordlist.size() > 2) {
+//        	msg = ProcessVerbString( wordlist );
+//        } else {
+//            msg = "I don't understand what you're trying to do";
+//        }
+//        return msg;
+//    }
     
     public String parseCommand( List< String > wordList ) {
 
@@ -402,8 +400,6 @@ public class InputProcessor {
     	List< List < String > > bothLists = new ArrayList< List < String > >();
     	bothLists.add( sentenceComponents );
     	bothLists.add( wordList );
-//    	System.out.println( wordList );
-//    	System.out.println( sentenceComponents );
     	return bothLists;
     }
     
@@ -432,10 +428,7 @@ public class InputProcessor {
     			}
     		}
     	}
-//    	System.out.println( wordList );
-//    	System.out.println( sentenceComponents );
     	return bothLists;
-    	
     }
     
     /**
@@ -463,10 +456,7 @@ public class InputProcessor {
     			}
     		}
     	}
-//    	System.out.println( wordList );
-//    	System.out.println( sentenceComponents );
     	return bothLists;
-    	
     }
     
     /**
@@ -505,9 +495,6 @@ public class InputProcessor {
     			i--; 													// shift count to account for deletion of adjective
     		}
     	}
-//    	System.out.println( wordList );
-//    	System.out.println( sentenceComponents );
-//    	System.out.println( nounAdjectives );
     	return nounAdjectives;
     }
     
@@ -530,8 +517,6 @@ public class InputProcessor {
 				components.add( i, "unknown" );
 			}
 		}
-//		System.out.println( wordList ); // remove when done
-//		System.out.println( components ); // remove when done
     	return components;
     }
    
@@ -544,10 +529,8 @@ public class InputProcessor {
 
         while ( tokenizer.hasMoreTokens() ) {
             t = tokenizer.nextToken();
-            
             stringList.add( t );
         }
-        
         return stringList;
     }
 	

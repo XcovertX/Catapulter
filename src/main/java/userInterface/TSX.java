@@ -241,6 +241,18 @@ public class TSX {
 		return false;
 	}
 
+	public int getFrameCount() {
+
+		if( frames.getLength() > 1 ) {
+
+			return frames.getLength();
+
+		} else {
+
+			return 1;
+		}
+	}
+
 	public NodeList getTiles() {
 		return tiles;
 	}

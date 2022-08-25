@@ -2,6 +2,7 @@ package actor;
 import userInterface.TileChar;
 import game.Game;
 import gameObjects.ThingList;
+import verbs.Say;
 import world.GameTile;
 
 public class Cat extends Animal {
@@ -30,7 +31,7 @@ public class Cat extends Animal {
 
 	public void sayMeow() {
 		if( this.currentTile.getRoom().equals( Game.currentRoom ) ) {
-			say( "meow" );  
+			new Say().run( this.getName(), "meow" );
 		}
 	}
 	
@@ -45,14 +46,9 @@ public class Cat extends Animal {
 		this.setDescription( "A cat is here, slowly walking about the room." );
 	}
 	
-	public void scratch() {
-		
-	}
+	public void scratch() { }
 
 	@Override
-	public void actionList() {
-		
-		
-	}
+	public void actionList() { }
 }
 

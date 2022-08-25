@@ -7,6 +7,8 @@ public class Transform {
     public Vector2f position;
     public Vector2f scale;
 
+    private boolean visible;
+
     public Transform() {
         init( new Vector2f(), new Vector2f() );
     }
@@ -23,6 +25,7 @@ public class Transform {
 
         this.position = position;
         this.scale = scale;
+        this.visible = true;
     }
 
     public Transform copy() {
@@ -41,6 +44,13 @@ public class Transform {
         if( obj == null ) return false;
         else if( !( obj instanceof Transform ) ) return false;
         Transform t = ( Transform ) obj;
-        return t.position.equals( this.position ) && t.scale.equals( this.scale );
+        return  t.position.equals( this.position ) &&
+                t.scale.equals( this.scale ) &&
+                t.visible == this.visible;
     }
+
+    public boolean isVisible() { return visible; }
+
+    public void setVisible( boolean visible ) { this.visible = visible; }
+
 }

@@ -26,10 +26,7 @@ public class Get extends Action {
 	}
 
 	@Override
-	public void run( String thingName, String preposition ) {
-		// move player
-		
-	}
+	public void run( String thingName, String preposition ) { }
 	
 	@Override
 	public void run( String thingNameOne, String preposition, String thingNameTwo ) {

@@ -181,16 +181,13 @@ public class Look extends Action {
 							}
 						}
 					} else {
-						
 
-						System.out.println("here2");
 						if( container.isHomogeneousContentContainer() ) {
 							
 							HomogeneousContentContainer hcc = ( HomogeneousContentContainer ) container;
 					
 							if( hcc.canContainLiquid() ) {
 
-								System.out.println("here3");
 								String capacityUsed = container.getCapacityUsedEstimation();
 								Game.currentGame.getUI().println( "The " + container + " is " + capacityUsed + "." );
 							}

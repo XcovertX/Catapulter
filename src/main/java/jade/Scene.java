@@ -1,5 +1,6 @@
 package jade;
 
+import components.Component;
 import renderer.Renderer;
 import userInterface.Image;
 import imgui.ImGui;
@@ -42,6 +43,20 @@ public abstract class Scene {
             gameImages.add( gameImage );
             gameImage.start();
             this.renderer.add( gameImage );
+        }
+    }
+
+    public void removeGameImageFromScene( int UID ) {
+
+        for( int i = 0; i < gameImages.size(); i++ ) {
+
+            Image image = gameImages.get( i );
+
+            if( image.getUid() == UID ) {
+
+                gameImages.remove( i );
+                return;
+            }
         }
     }
 

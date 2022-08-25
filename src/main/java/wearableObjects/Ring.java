@@ -17,7 +17,8 @@ public class Ring extends WearableThing {
 		
 		this.setTileChar( new TileChar( " r " ) );
 		
-		this.setTSXPath( "files/testcity_tileset.tsx" );
+		this.setTSXPath( "assets/images/testcity_tileset.tsx" );
+		this.setTilesetStartPosition( 23 );
 		this.setImageXPosition( 4 );
 		this.setImageYPosition( 3 );
 
