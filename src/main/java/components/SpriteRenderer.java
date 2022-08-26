@@ -11,7 +11,10 @@ public class SpriteRenderer extends Component {
     private Vector4f color;
     private Sprite sprite;
     private transient Transform lastTransform;
+    private final Vector2f nullVector = new Vector2f( 0, 0 );
+    private final Transform nullTransform = new Transform( nullVector, nullVector );
     private transient boolean isDirty = false;
+
 
 //    public SpriteRenderer( Vector4f color ) {
 //        this.color = color;
@@ -34,6 +37,11 @@ public class SpriteRenderer extends Component {
     public void update( float dt ) {
 
         if( !this.lastTransform.equals( this.gameImage.transform ) ) {
+
+            if( !this.gameImage.isVisible() ) {
+
+                this.nullTransform.copy( this.gameImage.transform );
+            }
 
             this.gameImage.transform.copy( this.lastTransform );
             isDirty = true;

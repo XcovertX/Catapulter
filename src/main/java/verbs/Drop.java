@@ -24,6 +24,10 @@ public class Drop extends Action {
 			Game.currentTile.addThing( thing ); // adds thing to tile where player is located
 			thing.setLocationInRoom( "floor" );
 			Game.currentGame.getUI().println( "You drop the " + thing + " on the " + thing.getLocationInRoom() );
+
+			System.out.println( "this is also the way" );
+			thing.getThingImage().setVisible( Game.currentTile );
+
 		}
 	}
 	

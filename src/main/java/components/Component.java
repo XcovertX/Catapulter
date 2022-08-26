@@ -15,6 +15,8 @@ public abstract class Component {
     private int uid = -1;
     public transient Image gameImage = null;
 
+    private boolean flaggedRemove = false;
+
     public void start() { }
 
     public abstract void update( float dt );
@@ -89,4 +91,8 @@ public abstract class Component {
     public int getUid() { return this.uid; }
 
     public static void init( int maxId ) { ID_COUNTER = maxId; }
+
+    public boolean isFlaggedForRemoval() { return flaggedRemove; }
+
+    public void setRemoveFlag( boolean removeFlag ) { flaggedRemove = removeFlag; }
 }

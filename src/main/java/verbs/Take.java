@@ -35,7 +35,8 @@ public class Take extends Action {
 				Game.currentTile.getThings().remove( index );
 				thing.setLocationInRoom( "inventory" );
 
-				thing.getThingImage().removeComponent( SpriteRenderer.class );
+				System.out.println( "this is the way." );
+				thing.getThingImage().setInvisible();
 			} else {
 				Game.currentGame.getUI().println( "You can not pick up the " + thing + "." );
 			}

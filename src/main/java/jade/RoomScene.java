@@ -107,7 +107,6 @@ public class RoomScene extends Scene {
 
                 this.addGameImageToScene( currentThingImage );
             }
-
         }
     }
 
@@ -133,42 +132,10 @@ public class RoomScene extends Scene {
 
     @Override
     public void update( double  dt ) {
-//
-//        spriteFlipTimeLeft -= dt;
-//
-//        if( spriteFlipTimeLeft <= 0 ) {
-//
-//            spriteFlipTimeLeft = spriteFlipTime;
-//            spriteIndex++;
-//
-//            if( spriteIndex > 3 ) {
-//
-//                spriteIndex = 0;
-//            }
-//            gameImage.getComponent( SpriteRenderer.class ).setSprite( torch.getSprite( spriteIndex ) );
-//        }
-//        dt = ( float ) dt;
-////        obj1.transform.position.x += 50 * dt;
-//        System.out.println( "FPS: " + ( 1.0f / dt ) );
-//
-//        for( Image gameImage : this.gameImages ) {
-//
-//            gameImage.update( ( float ) dt );
-//        }
-//        this.camera.position.x += 100;
-//        this.camera.adjustProjection();
-//        this.gameImages.get(10).transform.position.x += 1.01;
-
-//        this.gameImages.get(10).update( ( float) dt );
-//            gameImage.transform.position.x *= 1.01 ;
-//            gameImage.transform.position.y *= 1.01;
-//            gameImage.transform.scale.x *= 1.01;
-//            gameImage.transform.scale.y *= 1.01;
-
 
         if ( KeyListener.isKeyPressed( GLFW_KEY_RIGHT ) ) {
 
-           new Go().run( "e" );
+            new Go().run( "e" );
 
         } else if ( KeyListener.isKeyPressed( GLFW_KEY_LEFT ) ) {
 
@@ -189,14 +156,11 @@ public class RoomScene extends Scene {
         }
 
         this.renderer.render();
+        this.removeFlaggedComponents();
     }
 
     @Override
-    public void update(){
-
-        ThingList gameTiles = gameRoom.getTiles();
-
-    }
+    public void update(){ }
 
     public void imgui() {
         ImGui.begin("Test Window");
@@ -256,5 +220,18 @@ public class RoomScene extends Scene {
 //        }
 
         ImGui.end();
+    }
+
+    private void removeFlaggedComponents() {
+        for( Image gameImage : this.gameImages ) {
+
+            for( int i = 0; i < gameImage.getAllComponents().size(); i++ ){
+
+                Component c = gameImage.getAllComponents().get( i );
+                if( c.isFlaggedForRemoval() ){
+                    gameImage.getAllComponents().remove( i );
+                }
+            }
+        }
     }
 }

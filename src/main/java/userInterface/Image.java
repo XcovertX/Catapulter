@@ -5,6 +5,7 @@ import components.SpriteSheet;
 import components.Component;
 import jade.Transform;
 import jade.Transition;
+import world.GameTile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,15 +75,22 @@ public class Image {
 
 		for( int i = 0; i < components.size(); i++ ) {
 
-			Component C = components.get( i );
+			Component c = components.get( i );
 
-			if( componentClass.isAssignableFrom( C.getClass() ) ) {
+			if( componentClass.isAssignableFrom( c.getClass() ) ) {
 
-				components.remove( i );
+				c.setRemoveFlag( true );
 				transform.setVisible( false );
 				return;
 			}
 		}
+	}
+
+	public void removeSpriteRenderer() {
+
+		SpriteRenderer c = getComponent( SpriteRenderer.class );
+		setInvisible();
+		c.setRemoveFlag( true );
 	}
 
 	public void addComponent( Component c ) {
@@ -224,5 +232,17 @@ public class Image {
 	public float[] getFrameDuration() { return frameDuration; }
 
 	public void setFrameDuration( float[] frameDuration ) { this.frameDuration = frameDuration; }
+
+	public void setVisible( GameTile gt ) {
+		this.transform.position.x = gt.getBaseTileImage().transform.position.x;
+		this.transform.position.y = gt.getBaseTileImage().transform.position.y;
+		this.transform.scale.x = imageWidth;
+		this.transform.scale.y = imageHeight;
+		this.transform.setVisible( true );
+	}
+
+	public void setInvisible() { this.transform.setVisible( false ); }
+
+	public boolean isVisible() { return this.transform.isVisible(); }
 
 }
