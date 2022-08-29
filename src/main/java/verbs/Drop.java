@@ -2,6 +2,8 @@ package verbs;
 
 import game.Game;
 import gameObjects.Thing;
+import jade.Transform;
+import jade.Transition;
 
 public class Drop extends Action {
 	
@@ -10,9 +12,7 @@ public class Drop extends Action {
 	}
 
 	@Override
-	public void run() {
-	}
-	
+	public void run() { }
 	
 	@Override
 	public void run( String thingName ) {
@@ -26,8 +26,9 @@ public class Drop extends Action {
 			Game.currentGame.getUI().println( "You drop the " + thing + " on the " + thing.getLocationInRoom() );
 
 			System.out.println( "this is also the way" );
-			thing.getThingImage().setVisible( Game.currentTile );
-
+//			thing.getThingImage().setVisible( Game.currentTile );
+			Game.currentTile.getBaseTileImage().transform.copy( thing.getThingImage().transform );
+			thing.getThingImage().transition = new Transition( thing.getThingImage().transform, true );
 		}
 	}
 	

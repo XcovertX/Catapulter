@@ -5,6 +5,7 @@ import components.SpriteSheet;
 import components.Component;
 import jade.Transform;
 import jade.Transition;
+import org.joml.Vector2f;
 import world.GameTile;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class Image {
 	private int imageFrameCount;
 	private List< Component > components;
 	public Transform transform;
+
 	public Transition transition;
 	private int zIndex;
 
@@ -132,7 +134,7 @@ public class Image {
 
 		if( components != null ) {
 
-			for (Component component : components) {
+			for ( Component component : components ) {
 
 				component.start();
 			}

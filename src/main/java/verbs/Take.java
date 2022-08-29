@@ -6,6 +6,7 @@ import game.Game;
 import gameObjects.Container;
 import gameObjects.Thing;
 import gameObjects.ThingHolder;
+import jade.Transition;
 import jade.Window;
 
 public class Take extends Action {
@@ -36,7 +37,8 @@ public class Take extends Action {
 				thing.setLocationInRoom( "inventory" );
 
 				System.out.println( "this is the way." );
-				thing.getThingImage().setInvisible();
+//				thing.getThingImage().setInvisible();
+				thing.getThingImage().transition = new Transition( thing.getThingImage().transform, false );
 			} else {
 				Game.currentGame.getUI().println( "You can not pick up the " + thing + "." );
 			}

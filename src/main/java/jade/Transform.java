@@ -6,16 +6,11 @@ public class Transform {
 
     public Vector2f position;
     public Vector2f scale;
-
     private boolean visible;
 
-    public Transform() {
-        init( new Vector2f(), new Vector2f() );
-    }
+    public Transform() { init( new Vector2f(), new Vector2f() ); }
 
-    public Transform( Vector2f position ) {
-        init( position, new Vector2f() );
-    }
+    public Transform( Vector2f position ) { init( position, new Vector2f() ); }
 
     public Transform( Vector2f position, Vector2f scale ) {
         init( position, scale );
@@ -38,15 +33,26 @@ public class Transform {
         to.scale.set( this.scale );
     }
 
+    public void copyPosition( Transform to ) { to.position.set( this.position ); }
+
+    public void copyScale( Transform to ) { to.scale.set( this.scale ); }
+
     @Override
     public boolean equals( Object obj ) {
 
         if( obj == null ) return false;
         else if( !( obj instanceof Transform ) ) return false;
         Transform t = ( Transform ) obj;
-        return  t.position.equals( this.position ) &&
+        if( t.position.equals( this.position ) &&
                 t.scale.equals( this.scale ) &&
-                t.visible == this.visible;
+                t.visible == this.visible ) {
+            return true;
+        } else {
+            System.out.println( t.position.equals( this.position ) );
+            System.out.println( t.scale.equals( this.scale ) );
+            System.out.println( t.visible == this.visible );
+            return false;
+        }
     }
 
     public boolean isVisible() { return visible; }
