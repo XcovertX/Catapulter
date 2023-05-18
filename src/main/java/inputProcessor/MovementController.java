@@ -70,7 +70,6 @@ public abstract class MovementController {
 			weightedExits.add( lastDirection );
 			weightedExits.add( lastDirection );
 		}
-		System.out.println( "we: " + weightedExits );
 		Random rand = new Random();
 		int randomNumber = rand.nextInt( weightedExits.size() );
 		String randomDirection = weightedExits.get( randomNumber );
@@ -84,7 +83,7 @@ public abstract class MovementController {
 		int direction = movePlayerTo( this.getRelativeHeading() );
 		
 		if( direction != -1 ) {
-			System.out.println( "moving forward" );
+
 			updateOutput( direction );
 		}
 		
@@ -210,7 +209,7 @@ public abstract class MovementController {
 		}
 		
 		randomDirection = getWeightedRandomDirection( currentExits );
-		System.out.println( "dir: " + randomDirection );
+
 		if( randomDirection == "n" && ( recentlyVisited != "n" || recentlyVisited != "nw" || recentlyVisited != "ne" ) ) {
 			
 			this.lastDirection = randomDirection;
@@ -268,16 +267,13 @@ public abstract class MovementController {
 	
 	// move an actor to a new tile
     void moveActorTo( Actor npc, GameTile aGameTile ) {
-    	
     	previousTile = currentTile;
     	currentTile = aGameTile;
-    	previousTile.getNPCs().remove( npc ); 
-//    	previousTile.setTileChar();
+    	previousTile.getNPCs().remove( npc );
         currentTile.addNPC( npc );
-//        currentTile.setTileChar();
         npc.setTile( aGameTile );
+		npc.moveSprite( aGameTile ); // added this to match verbs.go in an attemp to get npc's image to move
         setCounter( 0 );
-        
     }
 
     // move an Actor in direction 'dir'

@@ -71,7 +71,7 @@ public class Game {
     		currentWorld =  worldReader.getWorld( "files/worlds/testtileworld", "testtileworld.json" );
     		currentMap   = ( GameMap )  ( currentWorld.getMaps().get( 0 ) );
     		currentRoom  = ( GameRoom ) ( currentMap.getRooms().get( 0 ) );
-    		currentTile  = ( GameTile ) ( currentRoom.getTiles().get( 167 ) );
+    		currentTile  = ( GameTile ) ( currentRoom.getTiles().get( 137 ) );
 
             Fire fire = new Fire();
             currentRoom.getTile( 20 ).addThing( fire );
@@ -85,8 +85,18 @@ public class Game {
              ring.getAltNames()[ 0 ] = "ring";
              currentRoom.getTile( 50 ).getThings().add( ring );
 
-             Cat c = new Cat();
-             currentRoom.getTile(139).getNPCs().add( c );
+             Cat c1 = new Cat();
+             currentRoom.getTile(1).getNPCs().add( c1 );
+             Cat c2 = new Cat();
+             currentRoom.getTile(6).getNPCs().add( c2 );
+             Cat c3 = new Cat();
+             currentRoom.getTile(17).getNPCs().add( c3 );
+             Cat c4 = new Cat();
+             currentRoom.getTile(123).getNPCs().add( c4 );
+             Cat c5 = new Cat();
+             currentRoom.getTile(13).getNPCs().add( c5 );
+             Cat c6 = new Cat();
+             currentRoom.getTile(145).getNPCs().add( c6 );
 
              gameWindow = Window.get();
             gameWindow.run();
