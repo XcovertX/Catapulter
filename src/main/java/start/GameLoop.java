@@ -51,24 +51,16 @@ public class GameLoop implements Runnable {
 	}
 	
 	private void update( float accumulator ) {
+
 		if( game.getGameWindow().isInitialized ) {
-			game.getGameWindow().update(accumulator);
+
+			game.getGameWindow().update( accumulator );
 		}
 
 		try {
-//
+
 			game.updateWorld();
-//
 			game.getInputProcessor().update();
-
-//			Thread.sleep(100); // TODO not sure how to appropriately free up the thread. Fix when build thread-pool
-
-
-
-
-//		} catch (InterruptedException e) {
-//
-//			e.printStackTrace();
 
 		} catch (IOException e) {
 

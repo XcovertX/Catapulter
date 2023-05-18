@@ -84,7 +84,7 @@ public abstract class MovementController {
 		int direction = movePlayerTo( this.getRelativeHeading() );
 		
 		if( direction != -1 ) {
-			System.out.println( "moving formard" );
+			System.out.println( "moving forward" );
 			updateOutput( direction );
 		}
 		

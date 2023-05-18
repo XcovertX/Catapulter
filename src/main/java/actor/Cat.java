@@ -13,6 +13,7 @@ public class Cat extends Animal {
 		this.setHitPoints ( 3 );
 		this.setControllerType( "cat" );
 		this.setMovementType( "inRoomWander" );
+//		this.setTSXPath( "assets/images/c.tsx" );
 		this.type = "Cat";
 	}
 	
@@ -26,7 +27,11 @@ public class Cat extends Animal {
 		this.setMovementType( "inRoomWander" );
 		this.setDistanceBounds( "inMap" );
 		this.setTileChar( new TileChar( " c " ) );
+		this.setTSXPath( "assets/images/c.tsx" );
 		this.type = "Cat";
+
+		this.setImageXPosition( 0 );
+		this.setImageYPosition( 0 );
 	}
 
 	public void sayMeow() {

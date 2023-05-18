@@ -13,13 +13,6 @@ public class SpriteRenderer extends Component {
     private transient Transform lastTransform;
     private transient boolean isDirty = false;
 
-
-//    public SpriteRenderer( Vector4f color ) {
-//        this.color = color;
-//        this.sprite = new Sprite( null );
-//        this.isDirty = true;
-//    }
-
     public SpriteRenderer( Sprite sprite ) {
         this.color = new Vector4f(1, 1, 1, 1);
         this.sprite = sprite;
@@ -35,21 +28,8 @@ public class SpriteRenderer extends Component {
     public void update( float dt ) {
 
         if( !this.lastTransform.equals( this.gameImage.transform ) ) {
-
-//            if( !this.gameImage.isVisible() ) {
-//
-//                Transform nullTransform = new Transform( new Vector2f( 0, 0 ), new Vector2f( 0, 0 ) );
-//                nullTransform.copy( this.gameImage.transform );
-//            }
-
-            System.out.println( this.gameImage.getName() + " " + this.gameImage.transform.position );
             this.gameImage.transform.copy( this.lastTransform );
             isDirty = true;
-        } else if( this.gameImage.getName() != null ) {
-            if( this.gameImage.getName().equals("Ring of Might and Madness")){
-                System.out.println( this.gameImage.getName() + " " + this.gameImage.transform.position );
-            }
-
         }
     }
 

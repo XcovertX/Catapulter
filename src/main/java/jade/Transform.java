@@ -43,16 +43,9 @@ public class Transform {
         if( obj == null ) return false;
         else if( !( obj instanceof Transform ) ) return false;
         Transform t = ( Transform ) obj;
-        if( t.position.equals( this.position ) &&
-                t.scale.equals( this.scale ) &&
-                t.visible == this.visible ) {
-            return true;
-        } else {
-            System.out.println( t.position.equals( this.position ) );
-            System.out.println( t.scale.equals( this.scale ) );
-            System.out.println( t.visible == this.visible );
-            return false;
-        }
+        return t.position.equals(this.position) &&
+                t.scale.equals(this.scale) &&
+                t.visible == this.visible;
     }
 
     public boolean isVisible() { return visible; }

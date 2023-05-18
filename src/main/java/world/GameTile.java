@@ -306,7 +306,7 @@ public class GameTile extends ThingHolder {
     	} else if( !npcs.isEmpty() ) {
     		
     		Actor mostRecentActor = ( Actor ) this.npcs.getLast();
-    		this.setCurrentThingImage( mostRecentActor.getThingImages()[0] );
+    		this.setCurrentThingImage( mostRecentActor.getThingImage() );
     		
     	} else if( !things.isEmpty() ) {
     		

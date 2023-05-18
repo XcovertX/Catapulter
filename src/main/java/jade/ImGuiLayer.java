@@ -9,6 +9,7 @@ import imgui.flag.*;
 import imgui.gl3.ImGuiImplGl3;
 import imgui.glfw.ImGuiImplGlfw;
 import imgui.type.ImBoolean;
+import imgui.type.ImString;
 import org.lwjgl.glfw.GLFW;
 
 import static org.lwjgl.glfw.GLFW.*;
@@ -237,12 +238,14 @@ public class ImGuiLayer {
         setupDockSpace();
 //        currentScene.sceneImgui();
         currentScene.update( dt );
-//        ImGui.showDemoWindow();
+        currentScene.imgui();
+
+        ImGui.showUserGuide();
 //        GameViewWindow.imgui();
         ImGui.end();
         ImGui.render();
         ImGui.endFrame();
-//        imGuiGl3.renderDrawData(ImGui.getDrawData());
+        imGuiGl3.renderDrawData(ImGui.getDrawData());
 
         endFrame();
     }
@@ -250,17 +253,17 @@ public class ImGuiLayer {
     private void setupDockSpace() {
         int windowFlags = ImGuiWindowFlags.MenuBar | ImGuiWindowFlags.NoDocking;
 
-        ImGui.setNextWindowPos(0.0f, 0.0f, ImGuiCond.Always);
-        ImGui.setNextWindowSize(Window.getWidth(), Window.getHeight());
+        ImGui.setNextWindowPos( 700.0f, 0.0f, ImGuiCond.Always );
+        ImGui.setNextWindowSize( Window.getWidth(), Window.getHeight() );
         ImGui.pushStyleVar(ImGuiStyleVar.WindowRounding, 0.0f);
         ImGui.pushStyleVar(ImGuiStyleVar.WindowBorderSize, 0.0f);
         windowFlags |= ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoResize |
                 ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoNavFocus;
 
-        ImGui.begin("DockSpace Demo", new ImBoolean(true), windowFlags);
-        ImGui.popStyleVar(2);
+        ImGui.begin( "DockSpace", new ImBoolean(true), windowFlags );
+        ImGui.popStyleVar( 2 );
 
         // DockSpace
-        ImGui.dockSpace(ImGui.getID("DockSpace"));
+        ImGui.dockSpace( ImGui.getID( "DockSpace") );
     }
 }

@@ -283,6 +283,11 @@ public class UserInterface implements ActionListener {
 	public String[] getCommands() {
 		return commands;
 	}
+
+	public void textIn( String text ){
+		setText( text );
+		setCommands( text.split( " " ) );
+	}
 	
 	public void setCommands( String[] inputCommands ) {
 		commands = inputCommands;

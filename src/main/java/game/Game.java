@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.io.BufferedReader;
 import java.util.*;     // required for ArrayList
 
+import actor.Cat;
 import gameObjects.Fire;
 import jade.Window;
 import javafx.scene.Parent;
@@ -70,7 +71,7 @@ public class Game {
     		currentWorld =  worldReader.getWorld( "files/worlds/testtileworld", "testtileworld.json" );
     		currentMap   = ( GameMap )  ( currentWorld.getMaps().get( 0 ) );
     		currentRoom  = ( GameRoom ) ( currentMap.getRooms().get( 0 ) );
-    		currentTile  = ( GameTile ) ( currentRoom.getTiles().get( 40 ) );
+    		currentTile  = ( GameTile ) ( currentRoom.getTiles().get( 167 ) );
 
             Fire fire = new Fire();
             currentRoom.getTile( 20 ).addThing( fire );
@@ -84,6 +85,8 @@ public class Game {
              ring.getAltNames()[ 0 ] = "ring";
              currentRoom.getTile( 50 ).getThings().add( ring );
 
+             Cat c = new Cat();
+             currentRoom.getTile(139).getNPCs().add( c );
 
              gameWindow = Window.get();
             gameWindow.run();
@@ -193,7 +196,7 @@ public class Game {
 	
 	public void updateWorld() {
 		new UpdatePlayer().run();
-		new UpdateLight().run( Game.currentRoom );
+//      new UpdateLight().run( Game.currentRoom );
 //		new UpdateRoomTileAnimations().run( Game.currentRoom );
 		currentWorld.allLists( "environment" );
 //		currentWorld.allLists( "weather" );
