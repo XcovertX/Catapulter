@@ -79,26 +79,15 @@ public class Game {
     		player = new Human( "player", "This is a player", currentTile, new ThingList(), " @ " );
 
 
-             Ring ring = new Ring();
-             ring.setName( "Ring of Might and Madness" );
-             ring.setAltNames( new String[ 1 ] );
-             ring.getAltNames()[ 0 ] = "ring";
-             currentRoom.getTile( 50 ).getThings().add( ring );
+            Ring ring = new Ring();
+            ring.setName( "Ring of Might and Madness" );
+            ring.setAltNames( new String[ 1 ] );
+            ring.getAltNames()[ 0 ] = "ring";
+            currentRoom.getTile( 50 ).getThings().add( ring );
 
-             Cat c1 = new Cat();
-             currentRoom.getTile(1).getNPCs().add( c1 );
-             Cat c2 = new Cat();
-             currentRoom.getTile(6).getNPCs().add( c2 );
-             Cat c3 = new Cat();
-             currentRoom.getTile(17).getNPCs().add( c3 );
-             Cat c4 = new Cat();
-             currentRoom.getTile(123).getNPCs().add( c4 );
-             Cat c5 = new Cat();
-             currentRoom.getTile(13).getNPCs().add( c5 );
-             Cat c6 = new Cat();
-             currentRoom.getTile(145).getNPCs().add( c6 );
-
-             gameWindow = Window.get();
+            Cat c1 = new Cat();
+            currentRoom.getTile(1).getNPCs().add( c1 );
+            gameWindow = Window.get();
             gameWindow.run();
 
 //    		//test shader

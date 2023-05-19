@@ -562,16 +562,10 @@ public class Thing {
 			thingImage.setImageHeight( tsx.getTileHeight() );
 			thingImage.setImageFrameCount( tsx.getFrameCount() );
 			thingImage.transform = new Transform();
+			thingImage.setActiveTilesetStartPosition( this.getTilesetStartPosition() );
 			thingImage.setActiveTilesetPosition( this.getTilesetStartPosition() );
 			thingImage.setAnimated( tsx.isAnimated() );
 			thingImage.setFrameDuration( tsx.getFrameDuration() );
-
-			System.out.println( thingImage.getName() );
-			System.out.println( thingImage.getImageResourcePath() );
-			System.out.println( thingImage.getImageFrameCount() );
-			System.out.println( thingImage.isAnimated() );
-			System.out.println( thingImage.isAnimated() );
-
 
 			AssetPool.addSpriteSheet( thingImage.getImageResourcePath(),
 					new SpriteSheet( AssetPool.getTexture( thingImage.getImageResourcePath() ),

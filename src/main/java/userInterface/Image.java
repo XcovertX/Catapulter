@@ -23,6 +23,7 @@ public class Image {
 	private float timeAccumulation; // in milliseconds
 	private float lastUpdate;
 	private int activeTilesetPosition;
+	private int activeTilesetStartPosition = 0; //says where to start for animations
 	private int imageWidth;
 	private int imageHeight;
 	private int imageFrameCount;
@@ -175,7 +176,7 @@ public class Image {
 
 		} else {
 
-			activeTilesetPosition = 0;
+			activeTilesetPosition = activeTilesetStartPosition;
 		}
 
 		this.getComponent( SpriteRenderer.class ).setSprite( this.getSpriteSheet().getSprite( activeTilesetPosition ) );
@@ -215,6 +216,9 @@ public class Image {
 
 	public void setActiveTilesetPosition( int tilesetPosition ) { this.activeTilesetPosition = tilesetPosition; }
 
+	public void setActiveTilesetStartPosition( int tilesetPosition ) { this.activeTilesetStartPosition = tilesetPosition; }
+
+	public int getActiveTilesetStartPosition() { return this.activeTilesetStartPosition; }
 	public String getImageResourcePath() { return ImageResourcePath; }
 
 	public void setImageResourcePath( String imageResourcePath ) { ImageResourcePath = imageResourcePath; }

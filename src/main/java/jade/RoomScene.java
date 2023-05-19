@@ -79,7 +79,7 @@ public class RoomScene extends Scene {
 
         this.camera = gameRoom.getCamera();
 
-        sprites = AssetPool.getSpriteSheet( "assets/images/center-sheet.png" );
+        sprites = AssetPool.getSpriteSheet( "assets/images/walls.png" );
         ThingList gameTiles = gameRoom.getTiles();
 
         for( gameObjects.Thing gameTile : gameTiles ) {

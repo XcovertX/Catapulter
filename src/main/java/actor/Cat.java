@@ -21,7 +21,7 @@ public class Cat extends Animal {
 		
 		this.setHoldable(true);
 		this.setHitPoints ( 3 );
-		this.getStats().setDexterity( 10 );
+		this.getStats().setDexterity( 20 );
 		this.getStats().setArmorClass( 2 );
 		this.setControllerType( "cat" );
 		this.setMovementType( "inRoomWander" );
@@ -37,7 +37,7 @@ public class Cat extends Animal {
 
 	public void sayMeow() {
 		if( this.currentTile.getRoom().equals( Game.currentRoom ) ) {
-			new Say().run( this.getName(), "meow" );
+			new Say().run( this.getName(), "meowt of my way!" );
 		}
 	}
 	

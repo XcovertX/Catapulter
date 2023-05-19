@@ -69,6 +69,18 @@ public abstract class MovementController {
 			weightedExits.add( lastDirection );
 			weightedExits.add( lastDirection );
 			weightedExits.add( lastDirection );
+			weightedExits.add( lastDirection );
+			weightedExits.add( lastDirection );
+			weightedExits.add( lastDirection );
+			weightedExits.add( lastDirection );
+			weightedExits.add( lastDirection );
+			weightedExits.add( lastDirection );
+			weightedExits.add( lastDirection );
+			weightedExits.add( lastDirection );
+			weightedExits.add( lastDirection );
+			weightedExits.add( lastDirection );
+			weightedExits.add( lastDirection );
+			weightedExits.add( lastDirection );
 		}
 		Random rand = new Random();
 		int randomNumber = rand.nextInt( weightedExits.size() );

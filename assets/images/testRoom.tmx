@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.9" tiledversion="1.9.0" orientation="orthogonal" renderorder="left-up" width="13" height="13" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="12">
- <tileset firstgid="1" source="assets/images/center-sheet-2.tsx"/>
+ <tileset firstgid="1" source="assets/images/walls.tsx"/>
  <tileset firstgid="14" source="assets/images/location-2.tsx"/>
  <layer id="1" name="background" width="13" height="13">
   <data encoding="csv">

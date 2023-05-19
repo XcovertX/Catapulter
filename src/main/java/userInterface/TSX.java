@@ -253,11 +253,13 @@ public class TSX {
 		}
 	}
 
+	public int getAnimationCount() { return animations.getLength(); }
+
 	public NodeList getTiles() {
 		return tiles;
 	}
 
-	public void setTiles(NodeList tiles) {
+	public void setTiles( NodeList tiles ) {
 		this.tiles = tiles;
 	}
 
