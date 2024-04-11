@@ -35,6 +35,7 @@ sourceSets.main {
 jar {
     archiveBaseName = 'gs-gradle'
     archiveVersion =  '0.1.0'
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
     manifest {
         attributes(
                 'Main-Class': 'main.java.start.Catapulter' // replace with you main class     
@@ -47,12 +48,12 @@ jar {
 
 dependencies {
 
-	compile group: 'org.danilopianini', name: 'gson-extras', version: '0.2.1'
+	implementation group: 'org.danilopianini', name: 'gson-extras', version: '0.2.1'
 
-	// https://mvnrepository.com/artifact/com.google.code.gson/gson
-	implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.9'
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.9'
 
-	// here starts JavaFX
+	// JavaFX
     implementation 'org.openjfx:javafx:16'
     implementation 'org.openjfx:javafx-base:16'
     implementation 'org.openjfx:javafx-graphics:16'

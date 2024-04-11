@@ -23,7 +23,6 @@ public class CatapulterApplication extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		
     	boolean t = true;
     	boolean f = false;
     	
