@@ -85,10 +85,10 @@ public class Game {
     		
     		player = new Human( "player", "This is a player", currentTile, new ThingList(), " @ " );
     		
-    		userInterface = new UserInterfaceNew( player );
-    		userInterface.getDisplay().setRoom( currentRoom );
+    		// userInterface = new UserInterfaceNew( player );
+    		// userInterface.getDisplay().setRoom( currentRoom );
  
-	        calendar = new GameCalendar( currentGame );
+	        // calendar = new GameCalendar( currentGame );
 
 	        setInputProcessor( new InputProcessor() );
 	        
@@ -140,7 +140,7 @@ public class Game {
         String s;
         SignReader welcome = new SignReader( "files/graphics", "welcome.txt" );
         s = welcome.getText();
-        userInterface.println( s );
+        // userInterface.println( s );
     }
     
     public void roomChange() {

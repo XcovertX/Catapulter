@@ -28,7 +28,6 @@ import main.java.world.GameRoom;
 import main.java.world.GameTile;
 
 public class DisplayNew {
-	
 	private JFrame mainFrame;
 	
 	private JPanel consolePanel;
@@ -54,8 +53,8 @@ public class DisplayNew {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception ex) {}
 		
-		mainFrame = new JFrame(); 
-		mainFrame.setLayout(new BorderLayout( 5, 5 ));
+		// mainFrame = new JFrame(); 
+		// mainFrame.setLayout(new BorderLayout( 5, 5 ));
 		
 		consolePanel = new JPanel();
 		consolePanel.setLayout(new BorderLayout());
@@ -129,15 +128,15 @@ public class DisplayNew {
         mapHolder.add( mapViewerPanel );
         mapHolder.add( characterViewerPanel );
         
-		mainFrame.add( consolePanel, BorderLayout.CENTER );
-        mainFrame.add( mapHolder, BorderLayout.EAST );
-        mainFrame.pack();
-		mainFrame.setTitle("Catapulter");
-		mainFrame.setSize(1300, 650);
-		mainFrame.setLocationRelativeTo(null);
-		mainFrame.setResizable(true);
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.setVisible(true);
+		// mainFrame.add( consolePanel, BorderLayout.CENTER );
+        // mainFrame.add( mapHolder, BorderLayout.EAST );
+        // mainFrame.pack();
+		// mainFrame.setTitle("Catapulter");
+		// mainFrame.setSize(1300, 650);
+		// mainFrame.setLocationRelativeTo(null);
+		// mainFrame.setResizable(true);
+		// mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// mainFrame.setVisible(true);
 	}
 	
 	public void setRoom( GameRoom aRoom ) {
@@ -148,7 +147,7 @@ public class DisplayNew {
 		String[] mapArray = new String[ aRoom.getRoomWidth() * aRoom.getRoomLength() ];
 		camera();
 		int tileNumberTotal = aRoom.getRoomLength() * aRoom.getRoomWidth();
-		mainFrame.setTitle( aRoom.getName() );
+		// mainFrame.setTitle( aRoom.getName() );
 		
 		int k = 0;
 	    for( int i = aRoom.getRoomWidth(); i > 0; i-- ) {

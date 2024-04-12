@@ -7,15 +7,15 @@ import javafx.stage.Stage;
 import main.java.application.*;
 import main.java.game.Game;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import java.io.IOException;
 
-
+@SpringBootApplication
 public class Catapulter {
-	
-//	public static Stage window;
 
 	public static void main(String[] args){
-		System.out.println("working");
-	     Application.launch(CatapulterApplication.class,args);
+		SpringApplication.run(CatapulterApplication.class,args);
 	   }
 }
