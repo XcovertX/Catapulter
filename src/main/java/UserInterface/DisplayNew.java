@@ -100,10 +100,11 @@ public class DisplayNew {
         mapViewerPanel.setBackground(new Color(50, 50, 50));
         
         map = new JTextArea();
-        map.setFont( new Font( "Consolas", Font.PLAIN, 17 ) );
+        map.setFont( new Font( "Monospaced", Font.PLAIN, 14 ) );
         map.setBackground( new Color( 50, 50, 50 ) );
         map.setBorder( BorderFactory.createLineBorder( Color.green ) );
         map.setForeground( Color.white );
+        map.setEditable( false );
         
         //***********************************************
         //not used
@@ -147,15 +148,17 @@ public class DisplayNew {
 		mapList = new ArrayList<>();
 		String[] mapArray = new String[ aRoom.getRoomWidth() * aRoom.getRoomLength() ];
 		camera();
-		int tileNumberTotal = aRoom.getRoomLength() * aRoom.getRoomWidth();
 		mainFrame.setTitle( aRoom.getName() );
 		
+		int roomLength = aRoom.getRoomLength();
+		int roomWidth = aRoom.getRoomWidth();
+		
 		int k = 0;
-	    for( int i = aRoom.getRoomWidth(); i > 0; i-- ) {
+	    for( int row = roomWidth - 1; row >= 0; row-- ) {
 	    	
-	    	for( int j = aRoom.getRoomLength(); j > 0; j-- ) {
+	    	for( int col = 0; col < roomLength; col++ ) {
 	    		
-	    		int index = tileNumberTotal - j;
+	    		int index = row * roomLength + col;
 	    		mapRep += ( ( GameTile ) aRoom.getTiles().get( index ) ).getTileChar();
 	    		textMap += ( " " + Integer.toString( index ) );
 	    		mapList.add( Integer.toString( index ) );
@@ -163,16 +166,15 @@ public class DisplayNew {
 	    		k++;
 	    	}
 	    	textMap += "\r\n";
-	    	if( i > 1 ) {
+	    	if( row > 0 ) {
 	    		mapRep += "\r\n";
 	    	}
 	    	mapList.add( "\r\n" );
-	    	tileNumberTotal = tileNumberTotal - aRoom.getRoomLength();
-    	}
+	    }
 		
 	    int x = 0;
-	    for(int i = 0; i < aRoom.getRoomWidth(); i++ ) {
-	    	for( int j = 0; j < aRoom.getRoomLength(); j++ ) {
+	    for(int i = 0; i < roomWidth; i++ ) {
+	    	for( int j = 0; j < roomLength; j++ ) {
 	    		System.out.print( mapArray[x] );
 	    		x++;
 	    	}

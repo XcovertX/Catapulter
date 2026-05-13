@@ -136,20 +136,20 @@ public class Display {
 	public void setRoom( GameRoom aRoom ) {
 		
 		String mapRep = "";
-		int roomNumberTotal = aRoom.getRoomLength() * aRoom.getRoomWidth();
 		mainFrame.setTitle( aRoom.getName() );
 		
+		int roomLength = aRoom.getRoomLength();
+		int roomWidth = aRoom.getRoomWidth();
 		
-	    for( int i = aRoom.getRoomWidth(); i > 0; i-- ) {
+	    for( int row = roomWidth - 1; row >= 0; row-- ) {
 	    	
-	    	for( int j = aRoom.getRoomLength(); j > 0; j-- ) {
+	    	for( int col = 0; col < roomLength; col++ ) {
 	    		
-	    		int index = roomNumberTotal - j;
+	    		int index = row * roomLength + col;
 	    		mapRep += ( ( GameTile ) aRoom.getTiles().get( index ) ).getTileChar();
 	    	}
 	    	mapRep += "\r\n";
-	    	roomNumberTotal = roomNumberTotal - aRoom.getRoomLength();
-    	}
+	   	}
 		
 		map.setText( mapRep );
 	}

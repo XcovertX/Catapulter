@@ -15,7 +15,7 @@ public class ResourceLoader {
 		documentName = dName;
 		String userDirectory = System.getProperty( "user.dir" );
 		
-		return new File( userDirectory + "\\" + folderName + "\\" + documentName );
+		return new File( userDirectory + File.separator + folderName + File.separator + documentName );
 		}
 
 }
